@@ -1,0 +1,50 @@
+[INFO]2022-06-24 10:05:24,645 - Starting KapoktplsApplication using Java 17 on DESKTOP-6ILCUMO with PID 19360 (D:\MyWorks\Java\smallTerm\kapoktpls\target\classes started by 18350 in D:\MyWorks\Java\smallTerm\kapoktpls)
+[INFO]2022-06-24 10:05:24,645 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-24 10:05:24,694 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-24 10:05:24,694 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-24 10:05:25,658 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-24 10:05:25,658 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-24 10:05:25,658 - Starting service [Tomcat]
+[INFO]2022-06-24 10:05:25,658 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-24 10:05:25,736 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-24 10:05:25,736 - Root WebApplicationContext: initialization completed in 1042 ms
+[INFO]2022-06-24 10:05:26,721 - LiveReload server is running on port 35729
+[INFO]2022-06-24 10:05:26,737 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-24 10:05:26,753 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-24 10:05:26,768 - Started KapoktplsApplication in 2.485 seconds (JVM running for 3.333)
+[INFO]2022-06-24 10:05:34,516 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO]2022-06-24 10:05:34,516 - Initializing Servlet 'dispatcherServlet'
+[INFO]2022-06-24 10:05:34,517 - Completed initialization in 1 ms
+[INFO]2022-06-24 10:05:35,336 - Init duration for springdoc-openapi is: 196 ms
+[INFO]2022-06-24 10:08:48,171 - Starting KapoktplsApplication using Java 17 on DESKTOP-6ILCUMO with PID 38036 (D:\MyWorks\Java\smallTerm\kapoktpls\target\classes started by 18350 in D:\MyWorks\Java\smallTerm\kapoktpls)
+[INFO]2022-06-24 10:08:48,171 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-24 10:08:48,220 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-24 10:08:48,220 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-24 10:08:49,055 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-24 10:08:49,061 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-24 10:08:49,062 - Starting service [Tomcat]
+[INFO]2022-06-24 10:08:49,062 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-24 10:08:49,131 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-24 10:08:49,132 - Root WebApplicationContext: initialization completed in 912 ms
+[INFO]2022-06-24 10:08:50,061 - LiveReload server is running on port 35729
+[INFO]2022-06-24 10:08:50,077 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-24 10:08:50,092 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-24 10:08:50,108 - Started KapoktplsApplication in 2.295 seconds (JVM running for 3.04)
+[INFO]2022-06-24 10:09:30,413 - Starting KapoktplsApplication using Java 17 on DESKTOP-6ILCUMO with PID 8392 (D:\MyWorks\Java\smallTerm\kapoktpls\target\classes started by 18350 in D:\MyWorks\Java\smallTerm\kapoktpls)
+[INFO]2022-06-24 10:09:30,429 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-24 10:09:30,476 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-24 10:09:30,476 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-24 10:09:31,367 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-24 10:09:31,367 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-24 10:09:31,367 - Starting service [Tomcat]
+[INFO]2022-06-24 10:09:31,367 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-24 10:09:31,445 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-24 10:09:31,445 - Root WebApplicationContext: initialization completed in 963 ms
+[INFO]2022-06-24 10:09:32,414 - LiveReload server is running on port 35729
+[INFO]2022-06-24 10:09:32,429 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-24 10:09:32,445 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-24 10:09:32,460 - Started KapoktplsApplication in 2.378 seconds (JVM running for 3.064)
+[INFO]2022-06-24 10:09:35,333 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO]2022-06-24 10:09:35,333 - Initializing Servlet 'dispatcherServlet'
+[INFO]2022-06-24 10:09:35,334 - Completed initialization in 1 ms
+[INFO]2022-06-24 10:09:36,005 - Init duration for springdoc-openapi is: 175 ms

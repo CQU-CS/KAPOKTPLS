@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqu.kapok.kapoktpls.dao.PersonDao">
+
+    <resultMap id="BaseResultMap" type="com.cqu.kapok.kapoktpls.entity.Person">
+        <!--@Table person-->
+        <result property="personId" column="person_id" jdbcType="INTEGER"/>
+        <result property="personName" column="person_name" jdbcType="VARCHAR"/>
+        <result property="personGender" column="person_gender" jdbcType="INTEGER"/>
+        <result property="personBirth" column="person_birth" jdbcType="TIMESTAMP"/>
+        <result property="personNumber" column="person_number" jdbcType="VARCHAR"/>
+        <result property="personQq" column="person_qq" jdbcType="VARCHAR"/>
+        <result property="personAddress" column="person_address" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          person_id, person_name, person_gender, person_birth, person_number, person_qq, person_address
+        from person
+        where person_id = #{personId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          person_id, person_name, person_gender, person_birth, person_number, person_qq, person_address
+        from person
+        <where>
+            <if test="personId != null">
+                and person_id = #{personId}
+            </if>
+            <if test="personName != null and personName != ''">
+                and person_name = #{personName}
+            </if>
+            <if test="personGender != null">
+                and person_gender = #{personGender}
+            </if>
+            <if test="personBirth != null">
+                and person_birth = #{personBirth}
+            </if>
+            <if test="personNumber != null and personNumber != ''">
+                and person_number = #{personNumber}
+            </if>
+            <if test="personQq != null and personQq != ''">
+                and person_qq = #{personQq}
+            </if>
+            <if test="personAddress != null and personAddress != ''">
+                and person_address = #{personAddress}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          person_id, person_name, person_gender, person_birth, person_number, person_qq, person_address
+        from KAPOKTPLS.person
+    </select>
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from person
+        <where>
+            <if test="personId != null">
+                and person_id = #{personId}
+            </if>
+            <if test="personName != null and personName != ''">
+                and person_name = #{personName}
+            </if>
+            <if test="personGender != null">
+                and person_gender = #{personGender}
+            </if>
+            <if test="personBirth != null">
+                and person_birth = #{personBirth}
+            </if>
+            <if test="personNumber != null and personNumber != ''">
+                and person_number = #{personNumber}
+            </if>
+            <if test="personQq != null and personQq != ''">
+                and person_qq = #{personQq}
+            </if>
+            <if test="personAddress != null and personAddress != ''">
+                and person_address = #{personAddress}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="personId" useGeneratedKeys="true">
+        insert into person(person_name, person_gender, person_birth, person_number, person_qq, person_address)
+        values (#{personName}, #{personGender}, #{personBirth}, #{personNumber}, #{personQq}, #{personAddress})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="personId" useGeneratedKeys="true">
+        insert into person(person_name, person_gender, person_birth, person_number, person_qq, person_address)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.personName}, #{entity.personGender}, #{entity.personBirth}, #{entity.personNumber}, #{entity.personQq}, #{entity.personAddress})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="personId" useGeneratedKeys="true">
+        insert into person(person_name, person_gender, person_birth, person_number, person_qq, person_address)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.personName}, #{entity.personGender}, #{entity.personBirth}, #{entity.personNumber}, #{entity.personQq}, #{entity.personAddress})
+        </foreach>
+        on duplicate key update
+        person_name = values(person_name),
+        person_gender = values(person_gender),
+        person_birth = values(person_birth),
+        person_number = values(person_number),
+        person_qq = values(person_qq),
+        person_address = values(person_address)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update person
+        <set>
+            <if test="personName != null and personName != ''">
+                person_name = #{personName},
+            </if>
+            <if test="personGender != null">
+                person_gender = #{personGender},
+            </if>
+            <if test="personBirth != null">
+                person_birth = #{personBirth},
+            </if>
+            <if test="personNumber != null and personNumber != ''">
+                person_number = #{personNumber},
+            </if>
+            <if test="personQq != null and personQq != ''">
+                person_qq = #{personQq},
+            </if>
+            <if test="personAddress != null and personAddress != ''">
+                person_address = #{personAddress},
+            </if>
+        </set>
+        where person_id = #{personId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from person where person_id = #{personId}
+    </delete>
+
+</mapper>
+

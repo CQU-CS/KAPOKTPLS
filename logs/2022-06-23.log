@@ -1,0 +1,227 @@
+[INFO]2022-06-23 17:29:24,278 - Starting KapoktplsApplication using Java 17 on DESKTOP-6ILCUMO with PID 36780 (D:\MyWorks\Java\smallTerm\kapoktpls\target\classes started by 18350 in D:\MyWorks\Java\smallTerm\kapoktpls)
+[INFO]2022-06-23 17:29:24,279 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-23 17:29:24,318 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-23 17:29:24,318 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[WARN]2022-06-23 17:29:24,984 - No MyBatis mapper was found in '[com.cqu.kapok.kapoktpls]' package. Please check your configuration.
+[INFO]2022-06-23 17:29:25,348 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-23 17:29:25,355 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-23 17:29:25,355 - Starting service [Tomcat]
+[INFO]2022-06-23 17:29:25,355 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-23 17:29:25,420 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-23 17:29:25,420 - Root WebApplicationContext: initialization completed in 1102 ms
+[INFO]2022-06-23 17:29:26,281 - LiveReload server is running on port 35729
+[INFO]2022-06-23 17:29:26,298 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-23 17:29:26,325 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-23 17:29:26,350 - Started KapoktplsApplication in 2.729 seconds (JVM running for 3.798)
+[INFO]2022-06-23 17:30:58,902 - Starting KapoktplsApplication using Java 17 on DESKTOP-6ILCUMO with PID 12360 (D:\MyWorks\Java\smallTerm\kapoktpls\target\classes started by 18350 in D:\MyWorks\Java\smallTerm\kapoktpls)
+[INFO]2022-06-23 17:30:58,903 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-23 17:30:58,942 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-23 17:30:58,942 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[WARN]2022-06-23 17:30:59,451 - No MyBatis mapper was found in '[com.cqu.kapok.kapoktpls]' package. Please check your configuration.
+[INFO]2022-06-23 17:30:59,802 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-23 17:30:59,810 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-23 17:30:59,810 - Starting service [Tomcat]
+[INFO]2022-06-23 17:30:59,811 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-23 17:30:59,882 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-23 17:30:59,882 - Root WebApplicationContext: initialization completed in 940 ms
+[WARN]2022-06-23 17:30:59,923 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'personController': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'personService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.cqu.kapok.kapoktpls.dao.PersonDao' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup="", name="", description="", authenticationType=CONTAINER, type=java.lang.Object.class, mappedName="")}
+[INFO]2022-06-23 17:30:59,925 - Stopping service [Tomcat]
+[ERROR]2022-06-23 17:30:59,962 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+A component required a bean of type 'com.cqu.kapok.kapoktpls.dao.PersonDao' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.cqu.kapok.kapoktpls.dao.PersonDao' in your configuration.
+
+[INFO]2022-06-23 17:31:41,229 - Starting KapoktplsApplication using Java 17 on DESKTOP-6ILCUMO with PID 15540 (D:\MyWorks\Java\smallTerm\kapoktpls\target\classes started by 18350 in D:\MyWorks\Java\smallTerm\kapoktpls)
+[INFO]2022-06-23 17:31:41,233 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-23 17:31:41,278 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-23 17:31:41,278 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[WARN]2022-06-23 17:31:41,797 - No MyBatis mapper was found in '[com.cqu.kapok.kapoktpls]' package. Please check your configuration.
+[INFO]2022-06-23 17:31:42,151 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-23 17:31:42,157 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-23 17:31:42,157 - Starting service [Tomcat]
+[INFO]2022-06-23 17:31:42,158 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-23 17:31:42,228 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-23 17:31:42,228 - Root WebApplicationContext: initialization completed in 949 ms
+[WARN]2022-06-23 17:31:42,267 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'personController': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'personService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.cqu.kapok.kapoktpls.dao.PersonDao' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@javax.annotation.Resource(shareable=true, lookup="", name="", description="", authenticationType=CONTAINER, type=java.lang.Object.class, mappedName="")}
+[INFO]2022-06-23 17:31:42,268 - Stopping service [Tomcat]
+[ERROR]2022-06-23 17:31:42,312 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+A component required a bean of type 'com.cqu.kapok.kapoktpls.dao.PersonDao' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.cqu.kapok.kapoktpls.dao.PersonDao' in your configuration.
+
+[INFO]2022-06-23 17:32:32,552 - Starting KapoktplsApplication using Java 17 on DESKTOP-6ILCUMO with PID 35988 (D:\MyWorks\Java\smallTerm\kapoktpls\target\classes started by 18350 in D:\MyWorks\Java\smallTerm\kapoktpls)
+[INFO]2022-06-23 17:32:32,553 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-23 17:32:32,593 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-23 17:32:32,593 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-23 17:32:33,408 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-23 17:32:33,414 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-23 17:32:33,415 - Starting service [Tomcat]
+[INFO]2022-06-23 17:32:33,415 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-23 17:32:33,481 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-23 17:32:33,482 - Root WebApplicationContext: initialization completed in 888 ms
+[INFO]2022-06-23 17:32:34,413 - LiveReload server is running on port 35729
+[INFO]2022-06-23 17:32:34,428 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-23 17:32:34,443 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-23 17:32:34,460 - Started KapoktplsApplication in 2.244 seconds (JVM running for 2.915)
+[INFO]2022-06-23 17:32:37,833 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO]2022-06-23 17:32:37,833 - Initializing Servlet 'dispatcherServlet'
+[INFO]2022-06-23 17:32:37,834 - Completed initialization in 1 ms
+[INFO]2022-06-23 17:32:37,889 - HikariPool-1 - Starting...
+[INFO]2022-06-23 17:32:38,385 - HikariPool-1 - Start completed.
+[ERROR]2022-06-23 17:32:38,492 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Table 'doc.person' doesn't exist
+### The error may exist in file [D:\MyWorks\Java\smallTerm\kapoktpls\target\classes\mapper\PersonDao.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select           person_id, person_name, person_gender, person_birth, person_number, person_qq, person_address         from person         where person_id = ?
+### Cause: java.sql.SQLSyntaxErrorException: Table 'doc.person' doesn't exist
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Table 'doc.person' doesn't exist] with root cause
+java.sql.SQLSyntaxErrorException: Table 'doc.person' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:916)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:354)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at jdk.proxy4/jdk.proxy4.$Proxy95.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:64)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:325)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at com.github.pagehelper.PageInterceptor.intercept(PageInterceptor.java:132)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:62)
+	at jdk.proxy2/jdk.proxy2.$Proxy93.query(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:151)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:145)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectOne(DefaultSqlSession.java:76)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427)
+	at jdk.proxy2/jdk.proxy2.$Proxy70.selectOne(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:160)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:87)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:145)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
+	at jdk.proxy3/jdk.proxy3.$Proxy71.queryById(Unknown Source)
+	at com.cqu.kapok.kapoktpls.service.impl.PersonServiceImpl.queryById(PersonServiceImpl.java:32)
+	at com.cqu.kapok.kapoktpls.controller.PersonController.queryById(PersonController.java:47)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+[INFO]2022-06-23 17:34:21,271 - Starting KapoktplsApplication using Java 17 on DESKTOP-6ILCUMO with PID 35104 (D:\MyWorks\Java\smallTerm\kapoktpls\target\classes started by 18350 in D:\MyWorks\Java\smallTerm\kapoktpls)
+[INFO]2022-06-23 17:34:21,272 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-23 17:34:21,308 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-23 17:34:21,308 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-23 17:34:22,148 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-23 17:34:22,153 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-23 17:34:22,154 - Starting service [Tomcat]
+[INFO]2022-06-23 17:34:22,154 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-23 17:34:22,218 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-23 17:34:22,218 - Root WebApplicationContext: initialization completed in 910 ms
+[INFO]2022-06-23 17:34:23,089 - LiveReload server is running on port 35729
+[INFO]2022-06-23 17:34:23,107 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-23 17:34:23,122 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-23 17:34:23,137 - Started KapoktplsApplication in 2.244 seconds (JVM running for 2.984)
+[INFO]2022-06-23 17:34:25,372 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO]2022-06-23 17:34:25,372 - Initializing Servlet 'dispatcherServlet'
+[INFO]2022-06-23 17:34:25,373 - Completed initialization in 1 ms
+[INFO]2022-06-23 17:34:25,417 - HikariPool-1 - Starting...
+[INFO]2022-06-23 17:34:25,885 - HikariPool-1 - Start completed.
+[INFO]2022-06-23 17:34:40,329 - Init duration for springdoc-openapi is: 171 ms
+[INFO]2022-06-23 21:49:34,857 - Starting KapoktplsApplication using Java 17 on DESKTOP-6ILCUMO with PID 29448 (D:\MyWorks\Java\smallTerm\kapoktpls\target\classes started by 18350 in D:\MyWorks\Java\smallTerm\kapoktpls)
+[INFO]2022-06-23 21:49:34,858 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-23 21:49:34,908 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-23 21:49:34,908 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-23 21:49:35,922 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-23 21:49:35,929 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-23 21:49:35,930 - Starting service [Tomcat]
+[INFO]2022-06-23 21:49:35,930 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-23 21:49:36,004 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-23 21:49:36,004 - Root WebApplicationContext: initialization completed in 1095 ms
+[INFO]2022-06-23 21:49:36,981 - LiveReload server is running on port 35729
+[INFO]2022-06-23 21:49:36,996 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-23 21:49:37,014 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-23 21:49:37,034 - Started KapoktplsApplication in 2.563 seconds (JVM running for 3.421)
+[INFO]2022-06-23 21:49:50,114 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO]2022-06-23 21:49:50,114 - Initializing Servlet 'dispatcherServlet'
+[INFO]2022-06-23 21:49:50,134 - Completed initialization in 20 ms
+[INFO]2022-06-23 21:49:50,182 - HikariPool-1 - Starting...
+[INFO]2022-06-23 21:49:53,241 - HikariPool-1 - Start completed.
+[INFO]2022-06-23 21:50:00,969 - Init duration for springdoc-openapi is: 166 ms
