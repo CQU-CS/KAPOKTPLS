@@ -100,7 +100,6 @@ public class DateUtil {
      * 将短时间格式时间转换为字符串 yyyy-MM-dd
      *
      * @param dateDate
-     * @param k
      * @return
      */
     public static String dateToStr(Date dateDate) {
