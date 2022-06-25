@@ -20,7 +20,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: "Zz12345@"
-    url: jdbc:mysql://1.14.106.156:3306/KAPOKTPLS?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://1.14.106.156:3306/TESTKAPOK?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
   devtools:
     #热部署生效,默认就是true
     restart:
