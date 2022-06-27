@@ -2,7 +2,7 @@ package com.cqu.kapok.kapoktpls.utils.result.code;
 
 public interface Code {
 	// 成功
-	int SUCCESS  = Errs.put(200, "成功");
+	int SUCCESS  = Errs.put(20000, "成功");
 	// 操作有误
 	int ERROR	 = Errs.put(-1, "操作有误");
 	// 未知错误

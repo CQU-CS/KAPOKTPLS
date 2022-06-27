@@ -1,5 +1,7 @@
 package com.cqu.kapok.kapoktpls.entity;
 
+import com.cqu.kapok.kapoktpls.utils.result.code.Token;
+
 import java.io.Serializable;
 
 /**
@@ -38,7 +40,6 @@ public class Account implements Serializable {
      * 账号对应的员工
      */
     private Integer personId;
-
 
     public Integer getAccountId() {
         return accountId;
