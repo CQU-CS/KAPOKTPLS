@@ -1,17 +1,15 @@
 package com.cqu.kapok.kapoktpls.entity;
 
-import com.cqu.kapok.kapoktpls.utils.result.code.Token;
-
 import java.io.Serializable;
 
 /**
  * (Account)实体类
  *
  * @author makejava
- * @since 2022-06-25 10:00:25
+ * @since 2022-06-27 22:23:22
  */
 public class Account implements Serializable {
-    private static final long serialVersionUID = 154551467553808217L;
+    private static final long serialVersionUID = -26526008959818376L;
     /**
      * 主键id
      */
@@ -40,6 +38,11 @@ public class Account implements Serializable {
      * 账号对应的员工
      */
     private Integer personId;
+    /**
+     * Token
+     */
+    private String accountToken;
+
 
     public Integer getAccountId() {
         return accountId;
@@ -95,6 +98,14 @@ public class Account implements Serializable {
 
     public void setPersonId(Integer personId) {
         this.personId = personId;
+    }
+
+    public String getAccountToken() {
+        return accountToken;
+    }
+
+    public void setAccountToken(String accountToken) {
+        this.accountToken = accountToken;
     }
 
 }

@@ -1,16 +1,12 @@
 package com.cqu.kapok.kapoktpls.controller;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.cqu.kapok.kapoktpls.entity.Account;
-import com.cqu.kapok.kapoktpls.service.AccountService;
-import com.cqu.kapok.kapoktpls.utils.JwtOperator;
 import com.cqu.kapok.kapoktpls.utils.JwtUtil;
 import com.cqu.kapok.kapoktpls.utils.MenuUtil;
 import com.cqu.kapok.kapoktpls.utils.Token;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import com.cqu.kapok.kapoktpls.utils.result.code.Code;
 import com.cqu.kapok.kapoktpls.vo.UserVo;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

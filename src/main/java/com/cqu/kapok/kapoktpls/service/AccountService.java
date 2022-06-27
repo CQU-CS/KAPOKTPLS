@@ -8,7 +8,7 @@ import org.springframework.data.domain.PageRequest;
  * (Account)表服务接口
  *
  * @author makejava
- * @since 2022-06-25 10:00:25
+ * @since 2022-06-27 22:23:22
  */
 public interface AccountService {
 
@@ -52,12 +52,5 @@ public interface AccountService {
      * @return 是否成功
      */
     boolean deleteById(Integer accountId);
-
-    /**
-     * 验证登录
-     * @param account
-     * @return
-     */
-    Account queryLogin(Account account);
 
 }

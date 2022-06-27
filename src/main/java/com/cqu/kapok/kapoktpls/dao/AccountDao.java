@@ -9,7 +9,7 @@ import java.util.List;
  * (Account)表数据库访问层
  *
  * @author makejava
- * @since 2022-06-25 10:00:25
+ * @since 2022-06-27 22:23:22
  */
 public interface AccountDao {
 
@@ -78,14 +78,6 @@ public interface AccountDao {
      * @return 影响行数
      */
     int deleteById(Integer accountId);
-
-
-    /**
-     * 验证登录
-     * @param account
-     * @return
-     */
-    Account queryLogin(Account account);
 
 }
 
