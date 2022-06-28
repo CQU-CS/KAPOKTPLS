@@ -30,7 +30,7 @@ public interface CarrierService {
      * @param pageRequest      分页对象
      * @return 查询结果
      */
-    Page<Carrier> queryByPage(Carrier carrier, PageRequest pageRequest);
+//    Page<Carrier> queryByPage(Carrier carrier, PageRequest pageRequest);
 
     /**
      * 新增数据

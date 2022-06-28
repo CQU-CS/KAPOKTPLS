@@ -41,11 +41,11 @@ public class CarrierServiceImpl implements CarrierService {
      * @param pageRequest      分页对象
      * @return 查询结果
      */
-    @Override
-    public Page<Carrier> queryByPage(Carrier carrier, PageRequest pageRequest) {
-        long total = this.carrierDao.count(carrier);
-        return new PageImpl<>(this.carrierDao.queryAllByLimit(carrier, pageRequest), pageRequest, total);
-    }
+//    @Override
+//    public Page<Carrier> queryByPage(Carrier carrier, PageRequest pageRequest) {
+//        long total = this.carrierDao.count(carrier);
+//        return new PageImpl<>(this.carrierDao.queryAllByLimit(carrier, pageRequest), pageRequest, total);
+//    }
 
     /**
      * 新增数据
