@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqu.kapok.kapoktpls.dao.EcdDao">
+
+    <resultMap type="com.cqu.kapok.kapoktpls.entity.Ecd" id="EcdMap">
+        <result property="ecdId" column="ecd_id" jdbcType="INTEGER"/>
+        <result property="ecdName" column="ecd_name" jdbcType="VARCHAR"/>
+        <result property="ecdSpecification" column="ecd_specification" jdbcType="VARCHAR"/>
+        <result property="ecdPrice" column="ecd_price" jdbcType="INTEGER"/>
+        <result property="ecdDate" column="ecd_date" jdbcType="TIMESTAMP"/>
+        <result property="ecdManufacturers" column="ecd_manufacturers" jdbcType="VARCHAR"/>
+        <result property="buildingId" column="building_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="EcdMap">
+        select
+          ecd_id, ecd_name, ecd_specification, ecd_price, ecd_date, ecd_manufacturers, building_id
+        from ecd
+        where ecd_id = #{ecdId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="EcdMap">
+        select
+          ecd_id, ecd_name, ecd_specification, ecd_price, ecd_date, ecd_manufacturers, building_id
+        from ecd
+        <where>
+            <if test="ecdId != null">
+                and ecd_id = #{ecdId}
+            </if>
+            <if test="ecdName != null and ecdName != ''">
+                and ecd_name = #{ecdName}
+            </if>
+            <if test="ecdSpecification != null and ecdSpecification != ''">
+                and ecd_specification = #{ecdSpecification}
+            </if>
+            <if test="ecdPrice != null">
+                and ecd_price = #{ecdPrice}
+            </if>
+            <if test="ecdDate != null">
+                and ecd_date = #{ecdDate}
+            </if>
+            <if test="ecdManufacturers != null and ecdManufacturers != ''">
+                and ecd_manufacturers = #{ecdManufacturers}
+            </if>
+            <if test="buildingId != null">
+                and building_id = #{buildingId}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+    <!--查询指定行数据-->
+    <select id="queryAll" resultMap="EcdMap" parameterType="com.cqu.kapok.kapoktpls.dto.EcdDTO">
+        select
+        ecd_id, ecd_name, ecd_specification, ecd_price, ecd_date, ecd_manufacturers, building_id
+        from ecd
+        <where>
+            <if test="ecdId != null">
+                and ecd_id = #{ecdId}
+            </if>
+            <if test="ecdName != null and ecdName != ''">
+                and ecd_name = #{ecdName}
+            </if>
+            <if test="ecdSpecification != null and ecdSpecification != ''">
+                and ecd_specification = #{ecdSpecification}
+            </if>
+            <if test="ecdPrice != null">
+                and ecd_price = #{ecdPrice}
+            </if>
+            <if test="ecdDate != null">
+                and ecd_date = #{ecdDate}
+            </if>
+            <if test="ecdManufacturers != null and ecdManufacturers != ''">
+                and ecd_manufacturers = #{ecdManufacturers}
+            </if>
+            <if test="buildingId != null">
+                and building_id = #{buildingId}
+            </if>
+        </where>
+        limit #{page}, #{limit}
+    </select>
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from ecd
+        <where>
+            <if test="ecdId != null">
+                and ecd_id = #{ecdId}
+            </if>
+            <if test="ecdName != null and ecdName != ''">
+                and ecd_name = #{ecdName}
+            </if>
+            <if test="ecdSpecification != null and ecdSpecification != ''">
+                and ecd_specification = #{ecdSpecification}
+            </if>
+            <if test="ecdPrice != null">
+                and ecd_price = #{ecdPrice}
+            </if>
+            <if test="ecdDate != null">
+                and ecd_date = #{ecdDate}
+            </if>
+            <if test="ecdManufacturers != null and ecdManufacturers != ''">
+                and ecd_manufacturers = #{ecdManufacturers}
+            </if>
+            <if test="buildingId != null">
+                and building_id = #{buildingId}
+            </if>
+        </where>
+    </select>
+    <!--统计总行数-->
+    <select id="getEcdByConditionCount" resultType="java.lang.Long">
+        select count(1)
+        from ecd
+        <where>
+            <if test="ecdId != null">
+                and ecd_id = #{ecdId}
+            </if>
+            <if test="ecdName != null and ecdName != ''">
+                and ecd_name = #{ecdName}
+            </if>
+            <if test="ecdSpecification != null and ecdSpecification != ''">
+                and ecd_specification = #{ecdSpecification}
+            </if>
+            <if test="ecdPrice != null">
+                and ecd_price = #{ecdPrice}
+            </if>
+            <if test="ecdDate != null">
+                and ecd_date = #{ecdDate}
+            </if>
+            <if test="ecdManufacturers != null and ecdManufacturers != ''">
+                and ecd_manufacturers = #{ecdManufacturers}
+            </if>
+            <if test="buildingId != null">
+                and building_id = #{buildingId}
+            </if>
+        </where>
+    </select>
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="ecdId" useGeneratedKeys="true">
+        insert into ecd(ecd_name, ecd_specification, ecd_price, ecd_date, ecd_manufacturers, building_id)
+        values (#{ecdName}, #{ecdSpecification}, #{ecdPrice}, #{ecdDate}, #{ecdManufacturers}, #{buildingId})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="ecdId" useGeneratedKeys="true">
+        insert into ecd(ecd_name, ecd_specification, ecd_price, ecd_date, ecd_manufacturers, building_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.ecdName}, #{entity.ecdSpecification}, #{entity.ecdPrice}, #{entity.ecdDate}, #{entity.ecdManufacturers}, #{entity.buildingId})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="ecdId" useGeneratedKeys="true">
+        insert into ecd(ecd_name, ecd_specification, ecd_price, ecd_date, ecd_manufacturers, building_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.ecdName}, #{entity.ecdSpecification}, #{entity.ecdPrice}, #{entity.ecdDate}, #{entity.ecdManufacturers}, #{entity.buildingId})
+        </foreach>
+        on duplicate key update
+        ecd_name = values(ecd_name),
+        ecd_specification = values(ecd_specification),
+        ecd_price = values(ecd_price),
+        ecd_date = values(ecd_date),
+        ecd_manufacturers = values(ecd_manufacturers),
+        building_id = values(building_id)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update ecd
+        <set>
+            <if test="ecdName != null and ecdName != ''">
+                ecd_name = #{ecdName},
+            </if>
+            <if test="ecdSpecification != null and ecdSpecification != ''">
+                ecd_specification = #{ecdSpecification},
+            </if>
+            <if test="ecdPrice != null">
+                ecd_price = #{ecdPrice},
+            </if>
+            <if test="ecdDate != null">
+                ecd_date = #{ecdDate},
+            </if>
+            <if test="ecdManufacturers != null and ecdManufacturers != ''">
+                ecd_manufacturers = #{ecdManufacturers},
+            </if>
+            <if test="buildingId != null">
+                building_id = #{buildingId},
+            </if>
+        </set>
+        where ecd_id = #{ecdId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from ecd where ecd_id = #{ecdId}
+    </delete>
+
+</mapper>
+
