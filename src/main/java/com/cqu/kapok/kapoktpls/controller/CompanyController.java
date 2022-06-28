@@ -88,7 +88,7 @@ public class CompanyController {
     /**
      * 通过CompanyDTO分页查询
      * @param companyDTO
-     * @return
+     * @return 查询结果列表和查询总数
      */
     @PostMapping("queryByCompany")
     DataResult queryByCompany(@RequestBody CompanyDTO companyDTO){

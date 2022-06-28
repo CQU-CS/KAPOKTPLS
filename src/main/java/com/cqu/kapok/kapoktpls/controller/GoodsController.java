@@ -88,7 +88,7 @@ public class GoodsController {
     /**
      * 通过GoodsDTO分页查询
      * @param goodsDTO
-     * @return
+     * @return 查询结果列表和查询总数
      */
     @PostMapping("queryByGoods")
     DataResult queryByGoods(@RequestBody GoodsDTO goodsDTO){

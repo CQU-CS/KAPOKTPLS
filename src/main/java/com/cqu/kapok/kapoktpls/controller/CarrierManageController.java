@@ -88,7 +88,7 @@ public class CarrierManageController {
     /**
      * 通过CarrierManageDTO分页查询
      * @param carrierManageDTO
-     * @return
+     * @return 查询结果列表和查询总数
      */
     @PostMapping("queryByCarrierManage")
     DataResult queryByCarrierManage(@RequestBody CarrierManageDTO carrierManageDTO){

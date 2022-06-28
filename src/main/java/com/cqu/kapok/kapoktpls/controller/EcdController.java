@@ -88,7 +88,7 @@ public class EcdController {
     /**
      * 通过EcdDTO分页查询
      * @param ecdDTO
-     * @return
+     * @return 查询结果列表和查询总数
      */
     @PostMapping("queryByEcd")
     DataResult queryByEcd(@RequestBody EcdDTO ecdDTO){

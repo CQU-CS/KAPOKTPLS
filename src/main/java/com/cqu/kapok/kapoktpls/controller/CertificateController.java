@@ -88,7 +88,7 @@ public class CertificateController {
     /**
      * 通过CertificateDTO分页查询
      * @param certificateDTO
-     * @return
+     * @return 查询结果列表和查询总数
      */
     @PostMapping("queryByCertificate")
     DataResult queryByCertificate(@RequestBody CertificateDTO certificateDTO){
