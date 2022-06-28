@@ -1,13 +1,16 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.entity.Account;
 import com.cqu.kapok.kapoktpls.entity.Address;
 import com.cqu.kapok.kapoktpls.service.AddressService;
+import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (Address)表控制层
@@ -78,6 +81,16 @@ public class AddressController {
     @DeleteMapping
     public ResponseEntity<Boolean> deleteById(Integer id) {
         return ResponseEntity.ok(this.addressService.deleteById(id));
+    }
+
+    /**
+     * 根据实体类查询
+     * @param address
+     * @return
+     */
+    @PostMapping("queryByAddress")
+    public DataResult<List<Address>> queryByAddress(Address address){
+        return this.addressService.queryByAddress(address);
     }
 
 }

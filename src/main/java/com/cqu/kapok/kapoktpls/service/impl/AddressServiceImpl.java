@@ -3,12 +3,14 @@ package com.cqu.kapok.kapoktpls.service.impl;
 import com.cqu.kapok.kapoktpls.entity.Address;
 import com.cqu.kapok.kapoktpls.dao.AddressDao;
 import com.cqu.kapok.kapoktpls.service.AddressService;
+import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (Address)表服务实现类
@@ -78,5 +80,15 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public boolean deleteById(Integer addressId) {
         return this.addressDao.deleteById(addressId) > 0;
+    }
+
+    /**
+     * 根据实体类查询
+     * @param address
+     * @return
+     */
+    @Override
+    public DataResult<List<Address>> queryByAddress(Address address) {
+        return this.addressDao.queryByAddress(address);
     }
 }

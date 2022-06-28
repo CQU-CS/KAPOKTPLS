@@ -1,8 +1,11 @@
 package com.cqu.kapok.kapoktpls.service;
 
 import com.cqu.kapok.kapoktpls.entity.Account;
+import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+
+import java.util.List;
 
 /**
  * (Account)表服务接口
@@ -53,4 +56,17 @@ public interface AccountService {
      */
     boolean deleteById(Integer accountId);
 
+    /**
+     * 验证账号是否存在
+     * @param account
+     * @return
+     */
+    Account queryLogin(Account account);
+
+    /**
+     * 根据实体类查询
+     * @param account
+     * @return
+     */
+    DataResult<List<Account>> queryByAccount(Account account);
 }

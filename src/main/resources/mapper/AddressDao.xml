@@ -58,6 +58,21 @@
             </if>
         </where>
     </select>
+    <select id="queryByAddress" resultType="java.util.List">
+        select *
+        from address
+        <where>
+            <if test="addressId != null">
+                and address_id = #{addressId}
+            </if>
+            <if test="addressContent != null and addressContent != ''">
+                and address_content = #{addressContent}
+            </if>
+            <if test="addressLevel != null">
+                and address_level = #{addressLevel}
+            </if>
+        </where>
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="addressId" useGeneratedKeys="true">

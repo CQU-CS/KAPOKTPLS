@@ -1,6 +1,7 @@
 package com.cqu.kapok.kapoktpls.dao;
 
 import com.cqu.kapok.kapoktpls.entity.Account;
+import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
@@ -79,5 +80,18 @@ public interface AccountDao {
      */
     int deleteById(Integer accountId);
 
+    /**
+     * 验证账号是否存在
+     * @param account
+     * @return
+     */
+    Account queryLogin(Account account);
+
+    /**
+     * 根据实体类查询
+     * @param account
+     * @return
+     */
+    DataResult<List<Account>> queryByAccount(Account account);
 }
 

@@ -3,12 +3,14 @@ package com.cqu.kapok.kapoktpls.service.impl;
 import com.cqu.kapok.kapoktpls.entity.Account;
 import com.cqu.kapok.kapoktpls.dao.AccountDao;
 import com.cqu.kapok.kapoktpls.service.AccountService;
+import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (Account)表服务实现类
@@ -78,5 +80,21 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public boolean deleteById(Integer accountId) {
         return this.accountDao.deleteById(accountId) > 0;
+    }
+
+
+    /**
+     * 验证账号是否存在
+     * @param account
+     * @return
+     */
+    @Override
+    public Account queryLogin(Account account) {
+        return this.accountDao.queryLogin(account);
+    }
+
+    @Override
+    public DataResult<List<Account>> queryByAccount(Account account) {
+        return this.accountDao.queryByAccount(account);
     }
 }

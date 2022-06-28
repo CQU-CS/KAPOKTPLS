@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqu.kapok.kapoktpls.dao.BuildingRentDao">
+
+    <resultMap id="BaseResultMap" type="com.cqu.kapok.kapoktpls.entity.BuildingRent">
+        <!--@Table building_rent-->
+        <result property="buildingRentId" column="building_rent_id" jdbcType="INTEGER"/>
+        <result property="buildingId" column="building_id" jdbcType="INTEGER"/>
+        <result property="companyId" column="company_id" jdbcType="INTEGER"/>
+        <result property="buildingRentStartTime" column="building_rent_start_time" jdbcType="TIMESTAMP"/>
+        <result property="buildingRentEndTime" column="building_rent_end_time" jdbcType="TIMESTAMP"/>
+        <result property="buildingRentPrice" column="building_rent_price" jdbcType="INTEGER"/>
+        <result property="payStatus" column="pay_status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          building_rent_id, building_id, company_id, building_rent_start_time, building_rent_end_time, building_rent_price, pay_status
+        from building_rent
+        where building_rent_id = #{buildingRentId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          building_rent_id, building_id, company_id, building_rent_start_time, building_rent_end_time, building_rent_price, pay_status
+        from building_rent
+        <where>
+            <if test="buildingRentId != null">
+                and building_rent_id = #{buildingRentId}
+            </if>
+            <if test="buildingId != null">
+                and building_id = #{buildingId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="buildingRentStartTime != null">
+                and building_rent_start_time = #{buildingRentStartTime}
+            </if>
+            <if test="buildingRentEndTime != null">
+                and building_rent_end_time = #{buildingRentEndTime}
+            </if>
+            <if test="buildingRentPrice != null">
+                and building_rent_price = #{buildingRentPrice}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          building_rent_id, building_id, company_id, building_rent_start_time, building_rent_end_time, building_rent_price, pay_status
+        from TESTKAPOK.building_rent
+    </select>
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from building_rent
+        <where>
+            <if test="buildingRentId != null">
+                and building_rent_id = #{buildingRentId}
+            </if>
+            <if test="buildingId != null">
+                and building_id = #{buildingId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="buildingRentStartTime != null">
+                and building_rent_start_time = #{buildingRentStartTime}
+            </if>
+            <if test="buildingRentEndTime != null">
+                and building_rent_end_time = #{buildingRentEndTime}
+            </if>
+            <if test="buildingRentPrice != null">
+                and building_rent_price = #{buildingRentPrice}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="buildingRentId" useGeneratedKeys="true">
+        insert into building_rent(building_id, company_id, building_rent_start_time, building_rent_end_time, building_rent_price, pay_status)
+        values (#{buildingId}, #{companyId}, #{buildingRentStartTime}, #{buildingRentEndTime}, #{buildingRentPrice}, #{payStatus})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="buildingRentId" useGeneratedKeys="true">
+        insert into building_rent(building_id, company_id, building_rent_start_time, building_rent_end_time, building_rent_price, pay_status)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.buildingId}, #{entity.companyId}, #{entity.buildingRentStartTime}, #{entity.buildingRentEndTime}, #{entity.buildingRentPrice}, #{entity.payStatus})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="buildingRentId" useGeneratedKeys="true">
+        insert into building_rent(building_id, company_id, building_rent_start_time, building_rent_end_time, building_rent_price, pay_status)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.buildingId}, #{entity.companyId}, #{entity.buildingRentStartTime}, #{entity.buildingRentEndTime}, #{entity.buildingRentPrice}, #{entity.payStatus})
+        </foreach>
+        on duplicate key update
+        building_id = values(building_id),
+        company_id = values(company_id),
+        building_rent_start_time = values(building_rent_start_time),
+        building_rent_end_time = values(building_rent_end_time),
+        building_rent_price = values(building_rent_price),
+        pay_status = values(pay_status)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update building_rent
+        <set>
+            <if test="buildingId != null">
+                building_id = #{buildingId},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId},
+            </if>
+            <if test="buildingRentStartTime != null">
+                building_rent_start_time = #{buildingRentStartTime},
+            </if>
+            <if test="buildingRentEndTime != null">
+                building_rent_end_time = #{buildingRentEndTime},
+            </if>
+            <if test="buildingRentPrice != null">
+                building_rent_price = #{buildingRentPrice},
+            </if>
+            <if test="payStatus != null">
+                pay_status = #{payStatus},
+            </if>
+        </set>
+        where building_rent_id = #{buildingRentId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from building_rent where building_rent_id = #{buildingRentId}
+    </delete>
+
+</mapper>
+

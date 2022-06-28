@@ -1,8 +1,11 @@
 package com.cqu.kapok.kapoktpls.service;
 
 import com.cqu.kapok.kapoktpls.entity.Address;
+import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+
+import java.util.List;
 
 /**
  * (Address)表服务接口
@@ -53,4 +56,10 @@ public interface AddressService {
      */
     boolean deleteById(Integer addressId);
 
+    /**
+     * 根据实体类查询
+     * @param address
+     * @return
+     */
+    DataResult<List<Address>> queryByAddress(Address address);
 }
