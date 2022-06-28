@@ -30,7 +30,7 @@ public interface CarrierDao {
      * @param pageable         分页对象
      * @return 对象列表
      */
-    List<Carrier> queryAllByLimit(Carrier carrier, @Param("pageable") Pageable pageable);
+//    List<Carrier> queryAllByLimit(Carrier carrier, @Param("pageable") Pageable pageable);
 
     /**
      * 统计总行数
@@ -38,7 +38,7 @@ public interface CarrierDao {
      * @param carrier 查询条件
      * @return 总行数
      */
-    long count(Carrier carrier);
+//    long count(Carrier carrier);
 
     /**
      * 新增数据
