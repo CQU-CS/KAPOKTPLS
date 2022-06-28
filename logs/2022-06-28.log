@@ -217,3 +217,762 @@ org.apache.ibatis.binding.BindingException: Invalid bound statement (not found):
 [INFO]2022-06-28 12:38:48,430 - HikariPool-1 - Start completed.
 [INFO]2022-06-28 12:39:04,395 - HikariPool-1 - Shutdown initiated...
 [INFO]2022-06-28 12:39:04,402 - HikariPool-1 - Shutdown completed.
+[INFO]2022-06-28 15:22:36,600 - Starting KapoktplsApplication using Java 17.0.3 on DESKTOP-NOJTH77 with PID 16828 (E:\logisticsSystem\Project\KAPOKTPLS\target\classes started by DELL in E:\logisticsSystem\Project\KAPOKTPLS)
+[INFO]2022-06-28 15:22:36,601 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-28 15:22:36,661 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-28 15:22:36,661 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-28 15:22:38,395 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-28 15:22:38,406 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 15:22:38,407 - Starting service [Tomcat]
+[INFO]2022-06-28 15:22:38,407 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-28 15:22:38,499 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-28 15:22:38,499 - Root WebApplicationContext: initialization completed in 1837 ms
+[INFO]2022-06-28 15:22:40,400 - LiveReload server is running on port 35729
+[INFO]2022-06-28 15:22:40,427 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 15:22:40,457 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-28 15:22:40,488 - Started KapoktplsApplication in 4.5 seconds (JVM running for 5.927)
+[INFO]2022-06-28 15:23:04,609 - Starting KapoktplsApplication using Java 17.0.3 on DESKTOP-NOJTH77 with PID 9860 (E:\logisticsSystem\Project\KAPOKTPLS\target\classes started by DELL in E:\logisticsSystem\Project\KAPOKTPLS)
+[INFO]2022-06-28 15:23:04,610 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-28 15:23:04,679 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-28 15:23:04,679 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-28 15:23:06,369 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-28 15:23:06,383 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 15:23:06,383 - Starting service [Tomcat]
+[INFO]2022-06-28 15:23:06,383 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-28 15:23:06,509 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-28 15:23:06,509 - Root WebApplicationContext: initialization completed in 1829 ms
+[INFO]2022-06-28 15:23:08,600 - LiveReload server is running on port 35729
+[INFO]2022-06-28 15:23:08,628 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 15:23:08,660 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-28 15:23:08,691 - Started KapoktplsApplication in 4.686 seconds (JVM running for 5.868)
+[INFO]2022-06-28 15:23:16,523 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO]2022-06-28 15:23:16,524 - Initializing Servlet 'dispatcherServlet'
+[INFO]2022-06-28 15:23:16,526 - Completed initialization in 2 ms
+[INFO]2022-06-28 15:23:18,123 - Init duration for springdoc-openapi is: 1057 ms
+[WARN]2022-06-28 15:24:59,604 - Resolved [org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 errors<EOL>Field error in object 'pageRequest' on field 'sort': rejected value [string]; codes [typeMismatch.pageRequest.sort,typeMismatch.sort,typeMismatch.org.springframework.data.domain.Sort,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [pageRequest.sort,sort]; arguments []; default message [sort]]; default message [Failed to convert value of type 'java.lang.String' to required type 'org.springframework.data.domain.Sort'; nested exception is java.lang.IllegalStateException: Cannot convert value of type 'java.lang.String' to required type 'org.springframework.data.domain.Sort': no matching editors or conversion strategy found]]
+[WARN]2022-06-28 15:25:30,451 - Resolved [org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 errors<EOL>Field error in object 'pageRequest' on field 'sort': rejected value [string]; codes [typeMismatch.pageRequest.sort,typeMismatch.sort,typeMismatch.org.springframework.data.domain.Sort,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [pageRequest.sort,sort]; arguments []; default message [sort]]; default message [Failed to convert value of type 'java.lang.String' to required type 'org.springframework.data.domain.Sort'; nested exception is java.lang.IllegalStateException: Cannot convert value of type 'java.lang.String' to required type 'org.springframework.data.domain.Sort': no matching editors or conversion strategy found]]
+[WARN]2022-06-28 15:25:34,513 - Resolved [org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 errors<EOL>Field error in object 'pageRequest' on field 'sort': rejected value [string]; codes [typeMismatch.pageRequest.sort,typeMismatch.sort,typeMismatch.org.springframework.data.domain.Sort,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [pageRequest.sort,sort]; arguments []; default message [sort]]; default message [Failed to convert value of type 'java.lang.String' to required type 'org.springframework.data.domain.Sort'; nested exception is java.lang.IllegalStateException: Cannot convert value of type 'java.lang.String' to required type 'org.springframework.data.domain.Sort': no matching editors or conversion strategy found]]
+[INFO]2022-06-28 15:26:41,576 - HikariPool-1 - Starting...
+[INFO]2022-06-28 15:26:43,533 - HikariPool-1 - Start completed.
+[ERROR]2022-06-28 15:30:02,595 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.domain.PageRequest]: Constructor threw exception; nested exception is java.lang.IllegalArgumentException: Sort must not be null!] with root cause
+java.lang.IllegalArgumentException: Sort must not be null!
+	at org.springframework.util.Assert.notNull(Assert.java:201)
+	at org.springframework.data.domain.PageRequest.<init>(PageRequest.java:47)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:211)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.constructAttribute(ModelAttributeMethodProcessor.java:332)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.createAttribute(ModelAttributeMethodProcessor.java:220)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletModelAttributeMethodProcessor.createAttribute(ServletModelAttributeMethodProcessor.java:85)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.resolveArgument(ModelAttributeMethodProcessor.java:147)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:179)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:146)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at javax.servlet.http.HttpFilter.doFilter(HttpFilter.java:97)
+	at com.cqu.kapok.kapoktpls.config.CorsFilter.doFilter(CorsFilter.java:64)
+	at javax.servlet.http.HttpFilter.doFilter(HttpFilter.java:57)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+[ERROR]2022-06-28 15:31:15,559 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.domain.PageRequest]: Constructor threw exception; nested exception is java.lang.IllegalArgumentException: Sort must not be null!] with root cause
+java.lang.IllegalArgumentException: Sort must not be null!
+	at org.springframework.util.Assert.notNull(Assert.java:201)
+	at org.springframework.data.domain.PageRequest.<init>(PageRequest.java:47)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:211)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.constructAttribute(ModelAttributeMethodProcessor.java:332)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.createAttribute(ModelAttributeMethodProcessor.java:220)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletModelAttributeMethodProcessor.createAttribute(ServletModelAttributeMethodProcessor.java:85)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.resolveArgument(ModelAttributeMethodProcessor.java:147)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:179)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:146)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at javax.servlet.http.HttpFilter.doFilter(HttpFilter.java:97)
+	at com.cqu.kapok.kapoktpls.config.CorsFilter.doFilter(CorsFilter.java:64)
+	at javax.servlet.http.HttpFilter.doFilter(HttpFilter.java:57)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+[ERROR]2022-06-28 15:32:05,575 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.domain.PageRequest]: Constructor threw exception; nested exception is java.lang.IllegalArgumentException: Sort must not be null!] with root cause
+java.lang.IllegalArgumentException: Sort must not be null!
+	at org.springframework.util.Assert.notNull(Assert.java:201)
+	at org.springframework.data.domain.PageRequest.<init>(PageRequest.java:47)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:211)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.constructAttribute(ModelAttributeMethodProcessor.java:332)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.createAttribute(ModelAttributeMethodProcessor.java:220)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletModelAttributeMethodProcessor.createAttribute(ServletModelAttributeMethodProcessor.java:85)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.resolveArgument(ModelAttributeMethodProcessor.java:147)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:179)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:146)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at javax.servlet.http.HttpFilter.doFilter(HttpFilter.java:97)
+	at com.cqu.kapok.kapoktpls.config.CorsFilter.doFilter(CorsFilter.java:64)
+	at javax.servlet.http.HttpFilter.doFilter(HttpFilter.java:57)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+[INFO]2022-06-28 15:48:52,893 - HikariPool-1 - Shutdown initiated...
+[INFO]2022-06-28 15:48:52,901 - HikariPool-1 - Shutdown completed.
+[INFO]2022-06-28 15:49:09,036 - Starting KapoktplsApplication using Java 17.0.3 on DESKTOP-NOJTH77 with PID 12808 (E:\logisticsSystem\Project\KAPOKTPLS\target\classes started by DELL in E:\logisticsSystem\Project\KAPOKTPLS)
+[INFO]2022-06-28 15:49:09,038 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-28 15:49:09,131 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-28 15:49:09,131 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-28 15:49:11,488 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-28 15:49:11,499 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 15:49:11,499 - Starting service [Tomcat]
+[INFO]2022-06-28 15:49:11,499 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-28 15:49:11,599 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-28 15:49:11,600 - Root WebApplicationContext: initialization completed in 2468 ms
+[INFO]2022-06-28 15:49:14,726 - LiveReload server is running on port 35729
+[INFO]2022-06-28 15:49:14,755 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 15:49:14,787 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-28 15:49:14,815 - Started KapoktplsApplication in 6.465 seconds (JVM running for 7.518)
+[INFO]2022-06-28 15:49:30,317 - Starting KapoktplsApplication using Java 17.0.3 on DESKTOP-NOJTH77 with PID 15372 (E:\logisticsSystem\Project\KAPOKTPLS\target\classes started by DELL in E:\logisticsSystem\Project\KAPOKTPLS)
+[INFO]2022-06-28 15:49:30,319 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-28 15:49:30,402 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-28 15:49:30,402 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-28 15:49:32,154 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-28 15:49:32,168 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 15:49:32,169 - Starting service [Tomcat]
+[INFO]2022-06-28 15:49:32,169 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-28 15:49:32,338 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-28 15:49:32,338 - Root WebApplicationContext: initialization completed in 1935 ms
+[INFO]2022-06-28 15:49:35,042 - LiveReload server is running on port 35729
+[INFO]2022-06-28 15:49:35,080 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 15:49:35,112 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-28 15:49:35,140 - Started KapoktplsApplication in 5.544 seconds (JVM running for 6.579)
+[INFO]2022-06-28 15:49:56,576 - Starting KapoktplsApplication using Java 17.0.3 on DESKTOP-NOJTH77 with PID 3936 (E:\logisticsSystem\Project\KAPOKTPLS\target\classes started by DELL in E:\logisticsSystem\Project\KAPOKTPLS)
+[INFO]2022-06-28 15:49:56,577 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-28 15:49:56,638 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-28 15:49:56,638 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-28 15:49:58,264 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-28 15:49:58,274 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 15:49:58,275 - Starting service [Tomcat]
+[INFO]2022-06-28 15:49:58,275 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-28 15:49:58,367 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-28 15:49:58,367 - Root WebApplicationContext: initialization completed in 1728 ms
+[INFO]2022-06-28 15:50:00,467 - LiveReload server is running on port 35729
+[INFO]2022-06-28 15:50:00,504 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 15:50:00,536 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-28 15:50:00,562 - Started KapoktplsApplication in 4.653 seconds (JVM running for 5.975)
+[INFO]2022-06-28 15:50:01,564 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO]2022-06-28 15:50:01,564 - Initializing Servlet 'dispatcherServlet'
+[INFO]2022-06-28 15:50:01,567 - Completed initialization in 3 ms
+[INFO]2022-06-28 15:50:03,159 - Init duration for springdoc-openapi is: 1039 ms
+[INFO]2022-06-28 15:51:01,780 - HikariPool-1 - Starting...
+[INFO]2022-06-28 15:51:03,647 - HikariPool-1 - Start completed.
+[ERROR]2022-06-28 15:53:55,510 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.domain.PageRequest]: Constructor threw exception; nested exception is java.lang.IllegalArgumentException: Sort must not be null!] with root cause
+java.lang.IllegalArgumentException: Sort must not be null!
+	at org.springframework.util.Assert.notNull(Assert.java:201)
+	at org.springframework.data.domain.PageRequest.<init>(PageRequest.java:47)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:211)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.constructAttribute(ModelAttributeMethodProcessor.java:332)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.createAttribute(ModelAttributeMethodProcessor.java:220)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletModelAttributeMethodProcessor.createAttribute(ServletModelAttributeMethodProcessor.java:85)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.resolveArgument(ModelAttributeMethodProcessor.java:147)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:179)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:146)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at javax.servlet.http.HttpFilter.doFilter(HttpFilter.java:97)
+	at com.cqu.kapok.kapoktpls.config.CorsFilter.doFilter(CorsFilter.java:64)
+	at javax.servlet.http.HttpFilter.doFilter(HttpFilter.java:57)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+[INFO]2022-06-28 16:05:50,773 - HikariPool-1 - Shutdown initiated...
+[INFO]2022-06-28 16:05:50,781 - HikariPool-1 - Shutdown completed.
+[INFO]2022-06-28 16:05:58,019 - Starting KapoktplsApplication using Java 17.0.3 on DESKTOP-NOJTH77 with PID 6392 (E:\logisticsSystem\Project\KAPOKTPLS\target\classes started by DELL in E:\logisticsSystem\Project\KAPOKTPLS)
+[INFO]2022-06-28 16:05:58,021 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-28 16:05:58,083 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-28 16:05:58,084 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-28 16:05:59,740 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-28 16:05:59,751 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 16:05:59,752 - Starting service [Tomcat]
+[INFO]2022-06-28 16:05:59,752 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-28 16:05:59,847 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-28 16:05:59,847 - Root WebApplicationContext: initialization completed in 1763 ms
+[INFO]2022-06-28 16:06:01,733 - LiveReload server is running on port 35729
+[INFO]2022-06-28 16:06:01,759 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 16:06:01,789 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-28 16:06:01,813 - Started KapoktplsApplication in 4.37 seconds (JVM running for 5.449)
+[INFO]2022-06-28 16:06:50,244 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO]2022-06-28 16:06:50,244 - Initializing Servlet 'dispatcherServlet'
+[INFO]2022-06-28 16:06:50,246 - Completed initialization in 2 ms
+[INFO]2022-06-28 16:06:52,225 - Init duration for springdoc-openapi is: 983 ms
+[ERROR]2022-06-28 16:08:44,760 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.domain.PageRequest]: Constructor threw exception; nested exception is java.lang.IllegalArgumentException: Sort must not be null!] with root cause
+java.lang.IllegalArgumentException: Sort must not be null!
+	at org.springframework.util.Assert.notNull(Assert.java:201)
+	at org.springframework.data.domain.PageRequest.<init>(PageRequest.java:47)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:211)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.constructAttribute(ModelAttributeMethodProcessor.java:332)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.createAttribute(ModelAttributeMethodProcessor.java:220)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletModelAttributeMethodProcessor.createAttribute(ServletModelAttributeMethodProcessor.java:85)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.resolveArgument(ModelAttributeMethodProcessor.java:147)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:179)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:146)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at javax.servlet.http.HttpFilter.doFilter(HttpFilter.java:97)
+	at com.cqu.kapok.kapoktpls.config.CorsFilter.doFilter(CorsFilter.java:64)
+	at javax.servlet.http.HttpFilter.doFilter(HttpFilter.java:57)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+[ERROR]2022-06-28 16:09:18,181 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.domain.PageRequest]: Constructor threw exception; nested exception is java.lang.IllegalArgumentException: Sort must not be null!] with root cause
+java.lang.IllegalArgumentException: Sort must not be null!
+	at org.springframework.util.Assert.notNull(Assert.java:201)
+	at org.springframework.data.domain.PageRequest.<init>(PageRequest.java:47)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:211)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.constructAttribute(ModelAttributeMethodProcessor.java:332)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.createAttribute(ModelAttributeMethodProcessor.java:220)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletModelAttributeMethodProcessor.createAttribute(ServletModelAttributeMethodProcessor.java:85)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.resolveArgument(ModelAttributeMethodProcessor.java:147)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:179)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:146)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at javax.servlet.http.HttpFilter.doFilter(HttpFilter.java:97)
+	at com.cqu.kapok.kapoktpls.config.CorsFilter.doFilter(CorsFilter.java:64)
+	at javax.servlet.http.HttpFilter.doFilter(HttpFilter.java:57)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+[INFO]2022-06-28 16:28:28,179 - Starting KapoktplsApplication using Java 17.0.3 on DESKTOP-NOJTH77 with PID 11740 (E:\logisticsSystem\Project\KAPOKTPLS\target\classes started by DELL in E:\logisticsSystem\Project\KAPOKTPLS)
+[INFO]2022-06-28 16:28:28,180 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-28 16:28:28,240 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-28 16:28:28,241 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-28 16:28:29,817 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-28 16:28:29,827 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 16:28:29,827 - Starting service [Tomcat]
+[INFO]2022-06-28 16:28:29,827 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-28 16:28:29,923 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-28 16:28:29,923 - Root WebApplicationContext: initialization completed in 1682 ms
+[INFO]2022-06-28 16:28:31,704 - LiveReload server is running on port 35729
+[INFO]2022-06-28 16:28:31,732 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 16:28:31,773 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-28 16:28:31,797 - Started KapoktplsApplication in 4.197 seconds (JVM running for 5.618)
+[INFO]2022-06-28 16:30:55,325 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO]2022-06-28 16:30:55,325 - Initializing Servlet 'dispatcherServlet'
+[INFO]2022-06-28 16:30:55,326 - Completed initialization in 1 ms
+[INFO]2022-06-28 16:30:57,504 - Init duration for springdoc-openapi is: 1040 ms
+[INFO]2022-06-28 16:32:54,639 - Starting KapoktplsApplication using Java 17.0.3 on DESKTOP-NOJTH77 with PID 20292 (E:\logisticsSystem\Project\KAPOKTPLS\target\classes started by DELL in E:\logisticsSystem\Project\KAPOKTPLS)
+[INFO]2022-06-28 16:32:54,641 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-28 16:32:54,702 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-28 16:32:54,702 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-28 16:32:56,630 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-28 16:32:56,645 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 16:32:56,645 - Starting service [Tomcat]
+[INFO]2022-06-28 16:32:56,646 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-28 16:32:56,806 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-28 16:32:56,807 - Root WebApplicationContext: initialization completed in 2104 ms
+[INFO]2022-06-28 16:32:58,699 - LiveReload server is running on port 35729
+[INFO]2022-06-28 16:32:58,722 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 16:32:58,765 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-28 16:32:58,792 - Started KapoktplsApplication in 4.701 seconds (JVM running for 5.831)
+[INFO]2022-06-28 16:33:00,284 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO]2022-06-28 16:33:00,284 - Initializing Servlet 'dispatcherServlet'
+[INFO]2022-06-28 16:33:00,286 - Completed initialization in 2 ms
+[INFO]2022-06-28 16:33:01,846 - Init duration for springdoc-openapi is: 1044 ms
+[INFO]2022-06-28 16:34:39,500 - HikariPool-1 - Starting...
+[INFO]2022-06-28 16:34:42,132 - HikariPool-1 - Start completed.
+[ERROR]2022-06-28 16:34:42,227 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.cqu.kapok.kapoktpls.dao.MaterialDao.getMaterialByConditionCount] with root cause
+org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.cqu.kapok.kapoktpls.dao.MaterialDao.getMaterialByConditionCount
+	at org.apache.ibatis.binding.MapperMethod$SqlCommand.<init>(MapperMethod.java:235)
+	at org.apache.ibatis.binding.MapperMethod.<init>(MapperMethod.java:53)
+	at org.apache.ibatis.binding.MapperProxy.lambda$cachedInvoker$0(MapperProxy.java:108)
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1708)
+	at org.apache.ibatis.util.MapUtil.computeIfAbsent(MapUtil.java:35)
+	at org.apache.ibatis.binding.MapperProxy.cachedInvoker(MapperProxy.java:95)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
+	at jdk.proxy3/jdk.proxy3.$Proxy87.getMaterialByConditionCount(Unknown Source)
+	at com.cqu.kapok.kapoktpls.service.impl.MaterialServiceImpl.getMaterialByConditionCount(MaterialServiceImpl.java:94)
+	at com.cqu.kapok.kapoktpls.controller.MaterialController.queryByGoods(MaterialController.java:96)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at javax.servlet.http.HttpFilter.doFilter(HttpFilter.java:97)
+	at com.cqu.kapok.kapoktpls.config.CorsFilter.doFilter(CorsFilter.java:64)
+	at javax.servlet.http.HttpFilter.doFilter(HttpFilter.java:57)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+[INFO]2022-06-28 16:36:15,901 - HikariPool-1 - Shutdown initiated...
+[INFO]2022-06-28 16:36:15,908 - HikariPool-1 - Shutdown completed.
+[INFO]2022-06-28 16:36:21,362 - Starting KapoktplsApplication using Java 17.0.3 on DESKTOP-NOJTH77 with PID 15764 (E:\logisticsSystem\Project\KAPOKTPLS\target\classes started by DELL in E:\logisticsSystem\Project\KAPOKTPLS)
+[INFO]2022-06-28 16:36:21,363 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-28 16:36:21,429 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-28 16:36:21,429 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-28 16:36:22,987 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-28 16:36:22,998 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 16:36:22,998 - Starting service [Tomcat]
+[INFO]2022-06-28 16:36:22,998 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-28 16:36:23,096 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-28 16:36:23,096 - Root WebApplicationContext: initialization completed in 1666 ms
+[INFO]2022-06-28 16:36:24,786 - LiveReload server is running on port 35729
+[INFO]2022-06-28 16:36:24,809 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 16:36:24,845 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-28 16:36:24,871 - Started KapoktplsApplication in 4.053 seconds (JVM running for 5.209)
+[INFO]2022-06-28 16:36:29,493 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO]2022-06-28 16:36:29,494 - Initializing Servlet 'dispatcherServlet'
+[INFO]2022-06-28 16:36:29,495 - Completed initialization in 1 ms
+[INFO]2022-06-28 16:36:31,674 - Init duration for springdoc-openapi is: 1064 ms
+[INFO]2022-06-28 16:36:56,819 - HikariPool-1 - Starting...
+[INFO]2022-06-28 16:36:59,471 - HikariPool-1 - Start completed.
+[INFO]2022-06-28 16:43:29,456 - HikariPool-1 - Shutdown initiated...
+[INFO]2022-06-28 16:43:29,476 - HikariPool-1 - Shutdown completed.
+[INFO]2022-06-28 16:43:40,251 - Starting KapoktplsApplication using Java 17.0.3 on DESKTOP-NOJTH77 with PID 19584 (E:\logisticsSystem\Project\KAPOKTPLS\target\classes started by DELL in E:\logisticsSystem\Project\KAPOKTPLS)
+[INFO]2022-06-28 16:43:40,252 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-28 16:43:40,326 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-28 16:43:40,326 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-28 16:43:41,923 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-28 16:43:41,934 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 16:43:41,934 - Starting service [Tomcat]
+[INFO]2022-06-28 16:43:41,934 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-28 16:43:42,031 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-28 16:43:42,032 - Root WebApplicationContext: initialization completed in 1705 ms
+[INFO]2022-06-28 16:43:43,784 - LiveReload server is running on port 35729
+[INFO]2022-06-28 16:43:43,816 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 16:43:43,851 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-28 16:43:43,875 - Started KapoktplsApplication in 4.198 seconds (JVM running for 5.661)
+[INFO]2022-06-28 16:44:32,567 - Starting KapoktplsApplication using Java 17.0.3 on DESKTOP-NOJTH77 with PID 4812 (E:\logisticsSystem\Project\KAPOKTPLS\target\classes started by DELL in E:\logisticsSystem\Project\KAPOKTPLS)
+[INFO]2022-06-28 16:44:32,569 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-28 16:44:32,628 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-28 16:44:32,628 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-28 16:44:34,218 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-28 16:44:34,230 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 16:44:34,231 - Starting service [Tomcat]
+[INFO]2022-06-28 16:44:34,231 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-28 16:44:34,331 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-28 16:44:34,331 - Root WebApplicationContext: initialization completed in 1703 ms
+[INFO]2022-06-28 16:44:36,158 - LiveReload server is running on port 35729
+[INFO]2022-06-28 16:44:36,191 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 16:44:36,220 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-28 16:44:36,246 - Started KapoktplsApplication in 4.238 seconds (JVM running for 5.731)
+[INFO]2022-06-28 16:44:36,487 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO]2022-06-28 16:44:36,488 - Initializing Servlet 'dispatcherServlet'
+[INFO]2022-06-28 16:44:36,489 - Completed initialization in 1 ms
+[INFO]2022-06-28 16:44:39,015 - Init duration for springdoc-openapi is: 1083 ms
+[INFO]2022-06-28 16:45:08,542 - HikariPool-1 - Starting...
+[INFO]2022-06-28 16:45:11,178 - HikariPool-1 - Start completed.
+[WARN]2022-06-28 16:55:55,268 - Resolved [org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 errors<EOL>Field error in object 'pageRequest' on field 'sort': rejected value [goods_inventory_id]; codes [typeMismatch.pageRequest.sort,typeMismatch.sort,typeMismatch.org.springframework.data.domain.Sort,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [pageRequest.sort,sort]; arguments []; default message [sort]]; default message [Failed to convert value of type 'java.lang.String' to required type 'org.springframework.data.domain.Sort'; nested exception is java.lang.IllegalStateException: Cannot convert value of type 'java.lang.String' to required type 'org.springframework.data.domain.Sort': no matching editors or conversion strategy found]]
+[WARN]2022-06-28 16:56:35,353 - Resolved [org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 errors<EOL>Field error in object 'pageRequest' on field 'sort': rejected value [goodsInventoryId]; codes [typeMismatch.pageRequest.sort,typeMismatch.sort,typeMismatch.org.springframework.data.domain.Sort,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [pageRequest.sort,sort]; arguments []; default message [sort]]; default message [Failed to convert value of type 'java.lang.String' to required type 'org.springframework.data.domain.Sort'; nested exception is java.lang.IllegalStateException: Cannot convert value of type 'java.lang.String' to required type 'org.springframework.data.domain.Sort': no matching editors or conversion strategy found]]
+[WARN]2022-06-28 16:56:48,106 - Resolved [org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 errors<EOL>Field error in object 'pageRequest' on field 'sort': rejected value [id]; codes [typeMismatch.pageRequest.sort,typeMismatch.sort,typeMismatch.org.springframework.data.domain.Sort,typeMismatch]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [pageRequest.sort,sort]; arguments []; default message [sort]]; default message [Failed to convert value of type 'java.lang.String' to required type 'org.springframework.data.domain.Sort'; nested exception is java.lang.IllegalStateException: Cannot convert value of type 'java.lang.String' to required type 'org.springframework.data.domain.Sort': no matching editors or conversion strategy found]]
+[ERROR]2022-06-28 16:56:54,585 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.domain.PageRequest]: Constructor threw exception; nested exception is java.lang.IllegalArgumentException: Sort must not be null!] with root cause
+java.lang.IllegalArgumentException: Sort must not be null!
+	at org.springframework.util.Assert.notNull(Assert.java:201)
+	at org.springframework.data.domain.PageRequest.<init>(PageRequest.java:47)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:211)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.constructAttribute(ModelAttributeMethodProcessor.java:332)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.createAttribute(ModelAttributeMethodProcessor.java:220)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletModelAttributeMethodProcessor.createAttribute(ServletModelAttributeMethodProcessor.java:85)
+	at org.springframework.web.method.annotation.ModelAttributeMethodProcessor.resolveArgument(ModelAttributeMethodProcessor.java:147)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:179)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:146)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at javax.servlet.http.HttpFilter.doFilter(HttpFilter.java:97)
+	at com.cqu.kapok.kapoktpls.config.CorsFilter.doFilter(CorsFilter.java:64)
+	at javax.servlet.http.HttpFilter.doFilter(HttpFilter.java:57)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+[INFO]2022-06-28 16:57:19,524 - HikariPool-1 - Shutdown initiated...
+[INFO]2022-06-28 16:57:19,532 - HikariPool-1 - Shutdown completed.
+[INFO]2022-06-28 21:03:08,210 - Starting KapoktplsApplication using Java 17.0.3 on DESKTOP-NOJTH77 with PID 13504 (E:\logisticsSystem\Project\KAPOKTPLS\target\classes started by DELL in E:\logisticsSystem\Project\KAPOKTPLS)
+[INFO]2022-06-28 21:03:08,236 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-28 21:03:08,300 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-28 21:03:08,300 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-28 21:03:11,510 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-28 21:03:11,568 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 21:03:11,569 - Starting service [Tomcat]
+[INFO]2022-06-28 21:03:11,569 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-28 21:03:11,670 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-28 21:03:11,670 - Root WebApplicationContext: initialization completed in 3370 ms
+[INFO]2022-06-28 21:03:14,291 - LiveReload server is running on port 35729
+[INFO]2022-06-28 21:03:14,324 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 21:03:14,376 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-28 21:03:14,412 - Started KapoktplsApplication in 6.9 seconds (JVM running for 8.626)
+[INFO]2022-06-28 21:03:18,617 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO]2022-06-28 21:03:18,617 - Initializing Servlet 'dispatcherServlet'
+[INFO]2022-06-28 21:03:18,619 - Completed initialization in 2 ms
+[INFO]2022-06-28 21:03:20,362 - Init duration for springdoc-openapi is: 1160 ms
+[INFO]2022-06-28 21:05:12,162 - HikariPool-1 - Starting...
+[INFO]2022-06-28 21:05:13,874 - HikariPool-1 - Start completed.
+[INFO]2022-06-28 21:08:19,075 - HikariPool-1 - Shutdown initiated...
+[INFO]2022-06-28 21:08:19,087 - HikariPool-1 - Shutdown completed.
