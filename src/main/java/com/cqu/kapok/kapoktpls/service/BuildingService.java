@@ -1,8 +1,11 @@
 package com.cqu.kapok.kapoktpls.service;
 
 import com.cqu.kapok.kapoktpls.entity.Building;
+import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+
+import java.util.List;
 
 /**
  * (Building)表服务接口
@@ -53,4 +56,10 @@ public interface BuildingService {
      */
     boolean deleteById(Integer buildingId);
 
+    /**
+     * 根据实体类查询
+     * @param building
+     * @return
+     */
+    DataResult<List<Building>> queryByBuilding(Building building);
 }

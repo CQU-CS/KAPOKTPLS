@@ -3,12 +3,14 @@ package com.cqu.kapok.kapoktpls.service.impl;
 import com.cqu.kapok.kapoktpls.entity.BuildingSale;
 import com.cqu.kapok.kapoktpls.dao.BuildingSaleDao;
 import com.cqu.kapok.kapoktpls.service.BuildingSaleService;
+import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (BuildingSale)表服务实现类
@@ -79,4 +81,16 @@ public class BuildingSaleServiceImpl implements BuildingSaleService {
     public boolean deleteById(Integer buildingSaleId) {
         return this.buildingSaleDao.deleteById(buildingSaleId) > 0;
     }
+
+    /**
+     * 根据实体类查询
+     * @param buildingSale
+     * @return
+     */
+    @Override
+    public DataResult<List<BuildingSale>> queryByBuildingSale(BuildingSale buildingSale) {
+        return this.buildingSaleDao.queryByBuildingSale(buildingSale);
+    }
+
+
 }
