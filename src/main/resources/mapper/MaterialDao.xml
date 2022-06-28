@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqu.kapok.kapoktpls.dao.MaterialDao">
+
+    <resultMap id="BaseResultMap" type="com.cqu.kapok.kapoktpls.entity.Material">
+        <!--@Table material-->
+        <result property="materialId" column="material_id" jdbcType="INTEGER"/>
+        <result property="materialName" column="material_name" jdbcType="VARCHAR"/>
+        <result property="materialType" column="material_type" jdbcType="VARCHAR"/>
+        <result property="materialPrice" column="material_price" jdbcType="INTEGER"/>
+        <result property="materialSize" column="material_size" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          material_id, material_name, material_type, material_price, material_size
+        from material
+        where material_id = #{materialId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          material_id, material_name, material_type, material_price, material_size
+        from material
+        <where>
+            <if test="materialId != null">
+                and material_id = #{materialId}
+            </if>
+            <if test="materialName != null and materialName != ''">
+                and material_name = #{materialName}
+            </if>
+            <if test="materialType != null and materialType != ''">
+                and material_type = #{materialType}
+            </if>
+            <if test="materialPrice != null">
+                and material_price = #{materialPrice}
+            </if>
+            <if test="materialSize != null">
+                and material_size = #{materialSize}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          material_id, material_name, material_type, material_price, material_size
+        from TESTKAPOK.material
+    </select>
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from material
+        <where>
+            <if test="materialId != null">
+                and material_id = #{materialId}
+            </if>
+            <if test="materialName != null and materialName != ''">
+                and material_name = #{materialName}
+            </if>
+            <if test="materialType != null and materialType != ''">
+                and material_type = #{materialType}
+            </if>
+            <if test="materialPrice != null">
+                and material_price = #{materialPrice}
+            </if>
+            <if test="materialSize != null">
+                and material_size = #{materialSize}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="materialId" useGeneratedKeys="true">
+        insert into material(material_name, material_type, material_price, material_size)
+        values (#{materialName}, #{materialType}, #{materialPrice}, #{materialSize})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="materialId" useGeneratedKeys="true">
+        insert into material(material_name, material_type, material_price, material_size)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.materialName}, #{entity.materialType}, #{entity.materialPrice}, #{entity.materialSize})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="materialId" useGeneratedKeys="true">
+        insert into material(material_name, material_type, material_price, material_size)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.materialName}, #{entity.materialType}, #{entity.materialPrice}, #{entity.materialSize})
+        </foreach>
+        on duplicate key update
+        material_name = values(material_name),
+        material_type = values(material_type),
+        material_price = values(material_price),
+        material_size = values(material_size)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update material
+        <set>
+            <if test="materialName != null and materialName != ''">
+                material_name = #{materialName},
+            </if>
+            <if test="materialType != null and materialType != ''">
+                material_type = #{materialType},
+            </if>
+            <if test="materialPrice != null">
+                material_price = #{materialPrice},
+            </if>
+            <if test="materialSize != null">
+                material_size = #{materialSize},
+            </if>
+        </set>
+        where material_id = #{materialId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from material where material_id = #{materialId}
+    </delete>
+
+</mapper>
+
