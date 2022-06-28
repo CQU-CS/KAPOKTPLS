@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqu.kapok.kapoktpls.dao.GoodsPurchaseDao">
+
+    <resultMap id="BaseResultMap" type="com.cqu.kapok.kapoktpls.entity.GoodsPurchase">
+        <!--@Table goods_purchase-->
+        <result property="goodsPurchaseId" column="goods_purchase_id" jdbcType="INTEGER"/>
+        <result property="goodsId" column="goods_id" jdbcType="INTEGER"/>
+        <result property="companyId" column="company_id" jdbcType="INTEGER"/>
+        <result property="goodsPurchaseNum" column="goods_purchase_num" jdbcType="INTEGER"/>
+        <result property="goodsPurchasePrice" column="goods_purchase_price" jdbcType="INTEGER"/>
+        <result property="goodsPurchaseDate" column="goods_purchase_date" jdbcType="TIMESTAMP"/>
+        <result property="payStatus" column="pay_status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          goods_purchase_id, goods_id, company_id, goods_purchase_num, goods_purchase_price, goods_purchase_date, pay_status
+        from goods_purchase
+        where goods_purchase_id = #{goodsPurchaseId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          goods_purchase_id, goods_id, company_id, goods_purchase_num, goods_purchase_price, goods_purchase_date, pay_status
+        from goods_purchase
+        <where>
+            <if test="goodsPurchaseId != null">
+                and goods_purchase_id = #{goodsPurchaseId}
+            </if>
+            <if test="goodsId != null">
+                and goods_id = #{goodsId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="goodsPurchaseNum != null">
+                and goods_purchase_num = #{goodsPurchaseNum}
+            </if>
+            <if test="goodsPurchasePrice != null">
+                and goods_purchase_price = #{goodsPurchasePrice}
+            </if>
+            <if test="goodsPurchaseDate != null">
+                and goods_purchase_date = #{goodsPurchaseDate}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+
+    <!--查询指定行数据-->
+    <select id="queryAll" resultMap="BaseResultMap" parameterType="com.cqu.kapok.kapoktpls.dto.GoodsPurchaseDTO">
+        select
+        goods_purchase_id, goods_id, company_id, goods_purchase_num, goods_purchase_price, goods_purchase_date, pay_status
+        from goods_purchase
+        <where>
+            <if test="goodsPurchaseId != null">
+                and goods_purchase_id = #{goodsPurchaseId}
+            </if>
+            <if test="goodsId != null">
+                and goods_id = #{goodsId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="goodsPurchaseNum != null">
+                and goods_purchase_num = #{goodsPurchaseNum}
+            </if>
+            <if test="goodsPurchasePrice != null">
+                and goods_purchase_price = #{goodsPurchasePrice}
+            </if>
+            <if test="goodsPurchaseDate != null">
+                and goods_purchase_date = #{goodsPurchaseDate}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+        limit #{page}, #{limit}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from goods_purchase
+        <where>
+            <if test="goodsPurchaseId != null">
+                and goods_purchase_id = #{goodsPurchaseId}
+            </if>
+            <if test="goodsId != null">
+                and goods_id = #{goodsId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="goodsPurchaseNum != null">
+                and goods_purchase_num = #{goodsPurchaseNum}
+            </if>
+            <if test="goodsPurchasePrice != null">
+                and goods_purchase_price = #{goodsPurchasePrice}
+            </if>
+            <if test="goodsPurchaseDate != null">
+                and goods_purchase_date = #{goodsPurchaseDate}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+    </select>
+
+    <!--统计总行数-->
+    <select id="getGoodsPurchaseByConditionCount" resultType="java.lang.Long">
+        select count(1)
+        from goods_purchase
+        <where>
+            <if test="goodsPurchaseId != null">
+                and goods_purchase_id = #{goodsPurchaseId}
+            </if>
+            <if test="goodsId != null">
+                and goods_id = #{goodsId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="goodsPurchaseNum != null">
+                and goods_purchase_num = #{goodsPurchaseNum}
+            </if>
+            <if test="goodsPurchasePrice != null">
+                and goods_purchase_price = #{goodsPurchasePrice}
+            </if>
+            <if test="goodsPurchaseDate != null">
+                and goods_purchase_date = #{goodsPurchaseDate}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+    </select>
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="goodsPurchaseId" useGeneratedKeys="true">
+        insert into goods_purchase(goods_id, company_id, goods_purchase_num, goods_purchase_price, goods_purchase_date, pay_status)
+        values (#{goodsId}, #{companyId}, #{goodsPurchaseNum}, #{goodsPurchasePrice}, #{goodsPurchaseDate}, #{payStatus})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="goodsPurchaseId" useGeneratedKeys="true">
+        insert into goods_purchase(goods_id, company_id, goods_purchase_num, goods_purchase_price, goods_purchase_date, pay_status)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.goodsId}, #{entity.companyId}, #{entity.goodsPurchaseNum}, #{entity.goodsPurchasePrice}, #{entity.goodsPurchaseDate}, #{entity.payStatus})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="goodsPurchaseId" useGeneratedKeys="true">
+        insert into goods_purchase(goods_id, company_id, goods_purchase_num, goods_purchase_price, goods_purchase_date, pay_status)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.goodsId}, #{entity.companyId}, #{entity.goodsPurchaseNum}, #{entity.goodsPurchasePrice}, #{entity.goodsPurchaseDate}, #{entity.payStatus})
+        </foreach>
+        on duplicate key update
+        goods_id = values(goods_id),
+        company_id = values(company_id),
+        goods_purchase_num = values(goods_purchase_num),
+        goods_purchase_price = values(goods_purchase_price),
+        goods_purchase_date = values(goods_purchase_date),
+        pay_status = values(pay_status)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update goods_purchase
+        <set>
+            <if test="goodsId != null">
+                goods_id = #{goodsId},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId},
+            </if>
+            <if test="goodsPurchaseNum != null">
+                goods_purchase_num = #{goodsPurchaseNum},
+            </if>
+            <if test="goodsPurchasePrice != null">
+                goods_purchase_price = #{goodsPurchasePrice},
+            </if>
+            <if test="goodsPurchaseDate != null">
+                goods_purchase_date = #{goodsPurchaseDate},
+            </if>
+            <if test="payStatus != null">
+                pay_status = #{payStatus},
+            </if>
+        </set>
+        where goods_purchase_id = #{goodsPurchaseId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from goods_purchase where goods_purchase_id = #{goodsPurchaseId}
+    </delete>
+
+</mapper>
+
