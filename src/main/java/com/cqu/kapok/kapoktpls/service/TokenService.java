@@ -1,56 +1,56 @@
 package com.cqu.kapok.kapoktpls.service;
 
-import com.cqu.kapok.kapoktpls.entity.Account;
+import com.cqu.kapok.kapoktpls.entity.Token;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 /**
- * (Account)表服务接口
+ * (Token)表服务接口
  *
  * @author makejava
- * @since 2022-06-27 22:23:22
+ * @since 2022-06-27 16:30:59
  */
-public interface AccountService {
+public interface TokenService {
 
     /**
      * 通过ID查询单条数据
      *
-     * @param accountId 主键
+     * @param tokenValue 主键
      * @return 实例对象
      */
-    Account queryById(Integer accountId);
+    Token queryById(String tokenValue);
 
     /**
      * 分页查询
      *
-     * @param account 筛选条件
+     * @param token 筛选条件
      * @param pageRequest      分页对象
      * @return 查询结果
      */
-    Page<Account> queryByPage(Account account, PageRequest pageRequest);
+    Page<Token> queryByPage(Token token, PageRequest pageRequest);
 
     /**
      * 新增数据
      *
-     * @param account 实例对象
+     * @param token 实例对象
      * @return 实例对象
      */
-    Account insert(Account account);
+    Token insert(Token token);
 
     /**
      * 修改数据
      *
-     * @param account 实例对象
+     * @param token 实例对象
      * @return 实例对象
      */
-    Account update(Account account);
+    Token update(Token token);
 
     /**
      * 通过主键删除数据
      *
-     * @param accountId 主键
+     * @param tokenValue 主键
      * @return 是否成功
      */
-    boolean deleteById(Integer accountId);
+    boolean deleteById(String tokenValue);
 
 }

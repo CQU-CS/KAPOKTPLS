@@ -1,18 +1,20 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.cqu.kapok.kapoktpls.entity.Account;
 import com.cqu.kapok.kapoktpls.service.AccountService;
+import com.cqu.kapok.kapoktpls.utils.JwtUtil;
 import com.cqu.kapok.kapoktpls.utils.MenuUtil;
+import com.cqu.kapok.kapoktpls.utils.Token;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import com.cqu.kapok.kapoktpls.utils.result.code.Code;
 import com.cqu.kapok.kapoktpls.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * ClassName: LoginController
@@ -23,6 +25,7 @@ import javax.servlet.http.HttpSession;
  * @since JDK 1.8
  */
 @RestController
+@CrossOrigin
 public class LoginController {
 
     @Autowired
@@ -62,5 +65,47 @@ public class LoginController {
     public DataResult loginOut(HttpSession session){
         session.removeAttribute("userInfo");
         return DataResult.errByErrCode(Code.LOGIN_OUT);
+    }
+
+    /**
+     * 测试登录
+     * @return
+     */
+    @PostMapping("vue-admin-template/user/login")
+    public DataResult testLogin(@RequestBody Account account){
+        //验证账号密码
+
+        //生成Token
+        Map<String, String> tokenMap = new HashMap<String, String>();
+        BeanUtil.copyProperties(account, tokenMap);
+        String token = JwtUtil.getToken(tokenMap);
+        //保存Token到数据库
+
+        //返回数据
+        Map<String,String> map = new HashMap<>();
+        map.put("token",token);
+        return DataResult.successByData(map);
+    }
+
+    /**
+     * 获取用户数据
+     * @return
+     */
+    @PostMapping("/vue-admin-template/user/info")
+    public DataResult getUserInfo(@RequestBody Token token){
+        System.out.println("tokensss:"+token);
+        //验证Token有效性
+        if(JwtUtil.verifyToken(token.getToken())){
+            //有效，返回name和avator
+            Map<String,String> map = new HashMap<>();
+            //去数据库找name和avator
+
+            //返回name和avator
+            map.put("name","I am name");
+            map.put("avator","I am avator");
+            return DataResult.successByData(map);
+        }else {
+            return DataResult.errByErrCode(50008);
+        }
     }
 }

@@ -14,7 +14,7 @@ import javax.annotation.Resource;
  * (Account)表服务实现类
  *
  * @author makejava
- * @since 2022-06-25 10:00:25
+ * @since 2022-06-27 22:23:22
  */
 @Service("accountService")
 public class AccountServiceImpl implements AccountService {
@@ -78,15 +78,5 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public boolean deleteById(Integer accountId) {
         return this.accountDao.deleteById(accountId) > 0;
-    }
-
-    /**
-     * 验证登录
-     * @param account
-     * @return
-     */
-    @Override
-    public Account queryLogin(Account account){
-        return this.accountDao.queryLogin(account);
     }
 }
