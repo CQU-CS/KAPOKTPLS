@@ -89,7 +89,7 @@ public class AccountController {
      */
     @PostMapping("queryByAccount")
     public DataResult<List<Account>> queryByAccount(Account account){
-        return this.accountService.queryByAccount(account);
+        return DataResult.successByDatas(this.accountService.queryByAccount(account));
     }
 
 }

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqu.kapok.kapoktpls.dao.TruckPurchaseDao">
+
+    <resultMap id="BaseResultMap" type="com.cqu.kapok.kapoktpls.entity.TruckPurchase">
+        <!--@Table truck_purchase-->
+        <result property="truckPurchaseId" column="truck_purchase_id" jdbcType="INTEGER"/>
+        <result property="truckId" column="truck_id" jdbcType="INTEGER"/>
+        <result property="truckPurchaseNum" column="truck_purchase_num" jdbcType="INTEGER"/>
+        <result property="truckPurchasePrice" column="truck_purchase_price" jdbcType="INTEGER"/>
+        <result property="companyId" column="company_id" jdbcType="INTEGER"/>
+        <result property="truckPurchaseDate" column="truck_purchase_date" jdbcType="TIMESTAMP"/>
+        <result property="payStatus" column="pay_status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          truck_purchase_id, truck_id, truck_purchase_num, truck_purchase_price, company_id, truck_purchase_date, pay_status
+        from truck_purchase
+        where truck_purchase_id = #{truckPurchaseId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          truck_purchase_id, truck_id, truck_purchase_num, truck_purchase_price, company_id, truck_purchase_date, pay_status
+        from truck_purchase
+        <where>
+            <if test="truckPurchaseId != null">
+                and truck_purchase_id = #{truckPurchaseId}
+            </if>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="truckPurchaseNum != null">
+                and truck_purchase_num = #{truckPurchaseNum}
+            </if>
+            <if test="truckPurchasePrice != null">
+                and truck_purchase_price = #{truckPurchasePrice}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="truckPurchaseDate != null">
+                and truck_purchase_date = #{truckPurchaseDate}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from truck_purchase
+        <where>
+            <if test="truckPurchaseId != null">
+                and truck_purchase_id = #{truckPurchaseId}
+            </if>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="truckPurchaseNum != null">
+                and truck_purchase_num = #{truckPurchaseNum}
+            </if>
+            <if test="truckPurchasePrice != null">
+                and truck_purchase_price = #{truckPurchasePrice}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="truckPurchaseDate != null">
+                and truck_purchase_date = #{truckPurchaseDate}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="truckPurchaseId" useGeneratedKeys="true">
+        insert into truck_purchase(truck_id, truck_purchase_num, truck_purchase_price, company_id, truck_purchase_date, pay_status)
+        values (#{truckId}, #{truckPurchaseNum}, #{truckPurchasePrice}, #{companyId}, #{truckPurchaseDate}, #{payStatus})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="truckPurchaseId" useGeneratedKeys="true">
+        insert into truck_purchase(truck_id, truck_purchase_num, truck_purchase_price, company_id, truck_purchase_date, pay_status)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.truckId}, #{entity.truckPurchaseNum}, #{entity.truckPurchasePrice}, #{entity.companyId}, #{entity.truckPurchaseDate}, #{entity.payStatus})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="truckPurchaseId" useGeneratedKeys="true">
+        insert into truck_purchase(truck_id, truck_purchase_num, truck_purchase_price, company_id, truck_purchase_date, pay_status)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.truckId}, #{entity.truckPurchaseNum}, #{entity.truckPurchasePrice}, #{entity.companyId}, #{entity.truckPurchaseDate}, #{entity.payStatus})
+        </foreach>
+        on duplicate key update
+        truck_id = values(truck_id),
+        truck_purchase_num = values(truck_purchase_num),
+        truck_purchase_price = values(truck_purchase_price),
+        company_id = values(company_id),
+        truck_purchase_date = values(truck_purchase_date),
+        pay_status = values(pay_status)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update truck_purchase
+        <set>
+            <if test="truckId != null">
+                truck_id = #{truckId},
+            </if>
+            <if test="truckPurchaseNum != null">
+                truck_purchase_num = #{truckPurchaseNum},
+            </if>
+            <if test="truckPurchasePrice != null">
+                truck_purchase_price = #{truckPurchasePrice},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId},
+            </if>
+            <if test="truckPurchaseDate != null">
+                truck_purchase_date = #{truckPurchaseDate},
+            </if>
+            <if test="payStatus != null">
+                pay_status = #{payStatus},
+            </if>
+        </set>
+        where truck_purchase_id = #{truckPurchaseId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from truck_purchase where truck_purchase_id = #{truckPurchaseId}
+    </delete>
+
+    <select id="queryByTruckPurchase" resultType="java.util.List">
+        select *
+        from truck_purchase
+        <where>
+            <if test="truckPurchaseId != null">
+                and truck_purchase_id = #{truckPurchaseId}
+            </if>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="truckPurchaseNum != null">
+                and truck_purchase_num = #{truckPurchaseNum}
+            </if>
+            <if test="truckPurchasePrice != null">
+                and truck_purchase_price = #{truckPurchasePrice}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="truckPurchaseDate != null">
+                and truck_purchase_date = #{truckPurchaseDate}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+    </select>
+</mapper>
+

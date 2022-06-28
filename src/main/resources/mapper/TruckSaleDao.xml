@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqu.kapok.kapoktpls.dao.TruckSaleDao">
+
+    <resultMap id="BaseResultMap" type="com.cqu.kapok.kapoktpls.entity.TruckSale">
+        <!--@Table truck_sale-->
+        <result property="truckSaleId" column="truck_sale_id" jdbcType="INTEGER"/>
+        <result property="truckId" column="truck_id" jdbcType="INTEGER"/>
+        <result property="companyId" column="company_id" jdbcType="INTEGER"/>
+        <result property="truckSaleNum" column="truck_sale_num" jdbcType="INTEGER"/>
+        <result property="truckSalePrice" column="truck_sale_price" jdbcType="INTEGER"/>
+        <result property="truckSaleDate" column="truck_sale_date" jdbcType="TIMESTAMP"/>
+        <result property="payStatus" column="pay_status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          truck_sale_id, truck_id, company_id, truck_sale_num, truck_sale_price, truck_sale_date, pay_status
+        from truck_sale
+        where truck_sale_id = #{truckSaleId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          truck_sale_id, truck_id, company_id, truck_sale_num, truck_sale_price, truck_sale_date, pay_status
+        from truck_sale
+        <where>
+            <if test="truckSaleId != null">
+                and truck_sale_id = #{truckSaleId}
+            </if>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="truckSaleNum != null">
+                and truck_sale_num = #{truckSaleNum}
+            </if>
+            <if test="truckSalePrice != null">
+                and truck_sale_price = #{truckSalePrice}
+            </if>
+            <if test="truckSaleDate != null">
+                and truck_sale_date = #{truckSaleDate}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from truck_sale
+        <where>
+            <if test="truckSaleId != null">
+                and truck_sale_id = #{truckSaleId}
+            </if>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="truckSaleNum != null">
+                and truck_sale_num = #{truckSaleNum}
+            </if>
+            <if test="truckSalePrice != null">
+                and truck_sale_price = #{truckSalePrice}
+            </if>
+            <if test="truckSaleDate != null">
+                and truck_sale_date = #{truckSaleDate}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="truckSaleId" useGeneratedKeys="true">
+        insert into truck_sale(truck_id, company_id, truck_sale_num, truck_sale_price, truck_sale_date, pay_status)
+        values (#{truckId}, #{companyId}, #{truckSaleNum}, #{truckSalePrice}, #{truckSaleDate}, #{payStatus})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="truckSaleId" useGeneratedKeys="true">
+        insert into truck_sale(truck_id, company_id, truck_sale_num, truck_sale_price, truck_sale_date, pay_status)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.truckId}, #{entity.companyId}, #{entity.truckSaleNum}, #{entity.truckSalePrice}, #{entity.truckSaleDate}, #{entity.payStatus})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="truckSaleId" useGeneratedKeys="true">
+        insert into truck_sale(truck_id, company_id, truck_sale_num, truck_sale_price, truck_sale_date, pay_status)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.truckId}, #{entity.companyId}, #{entity.truckSaleNum}, #{entity.truckSalePrice}, #{entity.truckSaleDate}, #{entity.payStatus})
+        </foreach>
+        on duplicate key update
+        truck_id = values(truck_id),
+        company_id = values(company_id),
+        truck_sale_num = values(truck_sale_num),
+        truck_sale_price = values(truck_sale_price),
+        truck_sale_date = values(truck_sale_date),
+        pay_status = values(pay_status)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update truck_sale
+        <set>
+            <if test="truckId != null">
+                truck_id = #{truckId},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId},
+            </if>
+            <if test="truckSaleNum != null">
+                truck_sale_num = #{truckSaleNum},
+            </if>
+            <if test="truckSalePrice != null">
+                truck_sale_price = #{truckSalePrice},
+            </if>
+            <if test="truckSaleDate != null">
+                truck_sale_date = #{truckSaleDate},
+            </if>
+            <if test="payStatus != null">
+                pay_status = #{payStatus},
+            </if>
+        </set>
+        where truck_sale_id = #{truckSaleId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from truck_sale where truck_sale_id = #{truckSaleId}
+    </delete>
+
+    <select id="queryByTruckSale" resultType="java.util.List">
+        select *
+        from truck_sale
+        <where>
+            <if test="truckSaleId != null">
+                and truck_sale_id = #{truckSaleId}
+            </if>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="truckSaleNum != null">
+                and truck_sale_num = #{truckSaleNum}
+            </if>
+            <if test="truckSalePrice != null">
+                and truck_sale_price = #{truckSalePrice}
+            </if>
+            <if test="truckSaleDate != null">
+                and truck_sale_date = #{truckSaleDate}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+    </select>
+</mapper>
+

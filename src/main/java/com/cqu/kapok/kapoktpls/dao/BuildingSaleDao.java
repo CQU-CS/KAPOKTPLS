@@ -1,6 +1,7 @@
 package com.cqu.kapok.kapoktpls.dao;
 
 import com.cqu.kapok.kapoktpls.entity.BuildingSale;
+import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
@@ -79,5 +80,11 @@ public interface BuildingSaleDao {
      */
     int deleteById(Integer buildingSaleId);
 
+    /**
+     * 根据实体类查询
+     * @param buildingSale
+     * @return
+     */
+    List<BuildingSale> queryByBuildingSale(BuildingSale buildingSale);
 }
 

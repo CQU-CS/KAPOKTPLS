@@ -72,7 +72,7 @@
             </if>
         </where>
     </select>
-    <select id="queryByAdvertisement" resultType="java.util.List">
+    <select id="queryByAdvertisement" resultType="com.cqu.kapok.kapoktpls.entity.Advertisement">
         select *
         from advertisement
         <where>

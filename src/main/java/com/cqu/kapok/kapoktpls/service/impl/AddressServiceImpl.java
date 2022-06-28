@@ -88,7 +88,7 @@ public class AddressServiceImpl implements AddressService {
      * @return
      */
     @Override
-    public DataResult<List<Address>> queryByAddress(Address address) {
+    public List<Address> queryByAddress(Address address) {
         return this.addressDao.queryByAddress(address);
     }
 }

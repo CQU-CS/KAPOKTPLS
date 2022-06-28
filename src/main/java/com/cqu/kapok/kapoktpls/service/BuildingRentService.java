@@ -1,8 +1,11 @@
 package com.cqu.kapok.kapoktpls.service;
 
 import com.cqu.kapok.kapoktpls.entity.BuildingRent;
+import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+
+import java.util.List;
 
 /**
  * (BuildingRent)表服务接口
@@ -53,4 +56,10 @@ public interface BuildingRentService {
      */
     boolean deleteById(Integer buildingRentId);
 
+    /**
+     * 根据实体类查询
+     * @param buildingRent
+     * @return
+     */
+    List<BuildingRent> queryByBuildingRent(BuildingRent buildingRent);
 }

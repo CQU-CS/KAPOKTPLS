@@ -3,12 +3,14 @@ package com.cqu.kapok.kapoktpls.service.impl;
 import com.cqu.kapok.kapoktpls.entity.BuildingRent;
 import com.cqu.kapok.kapoktpls.dao.BuildingRentDao;
 import com.cqu.kapok.kapoktpls.service.BuildingRentService;
+import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (BuildingRent)表服务实现类
@@ -78,5 +80,15 @@ public class BuildingRentServiceImpl implements BuildingRentService {
     @Override
     public boolean deleteById(Integer buildingRentId) {
         return this.buildingRentDao.deleteById(buildingRentId) > 0;
+    }
+
+    /**
+     * 根据实体类查询
+     * @param buildingRent
+     * @return
+     */
+    @Override
+    public List<BuildingRent> queryByBuildingRent(BuildingRent buildingRent) {
+        return this.buildingRentDao.queryByBuildingRent(buildingRent);
     }
 }

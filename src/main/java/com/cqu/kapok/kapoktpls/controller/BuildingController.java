@@ -1,13 +1,16 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.entity.Advertisement;
 import com.cqu.kapok.kapoktpls.entity.Building;
 import com.cqu.kapok.kapoktpls.service.BuildingService;
+import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (Building)表控制层
@@ -78,6 +81,16 @@ public class BuildingController {
     @DeleteMapping
     public ResponseEntity<Boolean> deleteById(Integer id) {
         return ResponseEntity.ok(this.buildingService.deleteById(id));
+    }
+
+    /**
+     * 根据实体类查询
+     * @param building
+     * @return
+     */
+    @PostMapping("queryByBuilding")
+    public DataResult<List<Building>> queryByBuilding(Building building){
+        return DataResult.successByDatas(this.buildingService.queryByBuilding(building));
     }
 
 }

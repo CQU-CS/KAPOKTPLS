@@ -1,5 +1,8 @@
 package com.cqu.kapok.kapoktpls.service.impl;
 
+import com.cqu.kapok.kapoktpls.dto.CertificateDTO;
+import com.cqu.kapok.kapoktpls.dto.CompanyDTO;
+import com.cqu.kapok.kapoktpls.entity.Certificate;
 import com.cqu.kapok.kapoktpls.entity.Company;
 import com.cqu.kapok.kapoktpls.dao.CompanyDao;
 import com.cqu.kapok.kapoktpls.service.CompanyService;
@@ -9,6 +12,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (Company)表服务实现类
@@ -78,5 +82,14 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public boolean deleteById(Integer companyId) {
         return this.companyDao.deleteById(companyId) > 0;
+    }
+    @Override
+    public List<Company> queryAll(CompanyDTO companyDTO) {
+        return this.companyDao.queryAll(companyDTO);
+    }
+
+    @Override
+    public Long getCompanyByConditionCount(Company company) {
+        return this.companyDao.getCompanyByConditionCount(company);
     }
 }

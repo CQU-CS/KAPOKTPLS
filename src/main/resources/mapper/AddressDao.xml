@@ -58,7 +58,7 @@
             </if>
         </where>
     </select>
-    <select id="queryByAddress" resultType="java.util.List">
+    <select id="queryByAddress" resultType="com.cqu.kapok.kapoktpls.entity.Address">
         select *
         from address
         <where>
@@ -73,6 +73,7 @@
             </if>
         </where>
     </select>
+
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="addressId" useGeneratedKeys="true">

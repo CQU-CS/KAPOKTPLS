@@ -100,7 +100,7 @@ public class AccountServiceImpl implements AccountService {
      * @return
      */
     @Override
-    public DataResult<List<Account>> queryByAccount(Account account) {
+    public List<Account> queryByAccount(Account account) {
         return this.accountDao.queryByAccount(account);
     }
 
