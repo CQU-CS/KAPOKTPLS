@@ -85,6 +85,11 @@ public class GoodsController {
     public ResponseEntity<Boolean> deleteById(Integer id) {
         return ResponseEntity.ok(this.goodsService.deleteById(id));
     }
+    /**
+     * 通过GoodsDTO分页查询
+     * @param goodsDTO
+     * @return
+     */
     @PostMapping("queryByGoods")
     DataResult queryByGoods(@RequestBody GoodsDTO goodsDTO){
         goodsDTO.setPage((goodsDTO.getPage() - 1) * goodsDTO.getLimit());

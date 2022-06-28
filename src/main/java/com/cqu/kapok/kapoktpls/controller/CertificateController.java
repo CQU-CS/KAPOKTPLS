@@ -85,6 +85,11 @@ public class CertificateController {
     public ResponseEntity<Boolean> deleteById(Integer id) {
         return ResponseEntity.ok(this.certificateService.deleteById(id));
     }
+    /**
+     * 通过CertificateDTO分页查询
+     * @param certificateDTO
+     * @return
+     */
     @PostMapping("queryByCertificate")
     DataResult queryByCertificate(@RequestBody CertificateDTO certificateDTO){
         certificateDTO.setPage((certificateDTO.getPage() - 1) * certificateDTO.getLimit());

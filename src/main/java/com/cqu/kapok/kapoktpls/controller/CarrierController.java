@@ -84,7 +84,7 @@ public class CarrierController {
         return ResponseEntity.ok(this.carrierService.deleteById(id));
     }
     /**
-     * 根据Carrier对象来查询Carrier
+     * 通过CarrierDTO分页查询
      * @param carrierDTO
      * @return
      */

@@ -85,7 +85,11 @@ public class CarrierManageController {
     public ResponseEntity<Boolean> deleteById(Integer id) {
         return ResponseEntity.ok(this.carrierManageService.deleteById(id));
     }
-
+    /**
+     * 通过CarrierManageDTO分页查询
+     * @param carrierManageDTO
+     * @return
+     */
     @PostMapping("queryByCarrierManage")
     DataResult queryByCarrierManage(@RequestBody CarrierManageDTO carrierManageDTO){
         carrierManageDTO.setPage((carrierManageDTO.getPage() - 1) * carrierManageDTO.getLimit());
