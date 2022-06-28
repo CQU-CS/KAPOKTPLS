@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqu.kapok.kapoktpls.dao.MaterialSaleDao">
+
+    <resultMap id="BaseResultMap" type="com.cqu.kapok.kapoktpls.entity.MaterialSale">
+        <!--@Table material_sale-->
+        <result property="materialSaleId" column="material_sale_id" jdbcType="INTEGER"/>
+        <result property="materialId" column="material_id" jdbcType="INTEGER"/>
+        <result property="companyId" column="company_id" jdbcType="INTEGER"/>
+        <result property="materialSaleDate" column="material_sale_date" jdbcType="TIMESTAMP"/>
+        <result property="materialSaleNum" column="material_sale_num" jdbcType="INTEGER"/>
+        <result property="materialSalePrice" column="material_sale_price" jdbcType="INTEGER"/>
+        <result property="payStatus" column="pay_status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          material_sale_id, material_id, company_id, material_sale_date, material_sale_num, material_sale_price, pay_status
+        from material_sale
+        where material_sale_id = #{materialSaleId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          material_sale_id, material_id, company_id, material_sale_date, material_sale_num, material_sale_price, pay_status
+        from material_sale
+        <where>
+            <if test="materialSaleId != null">
+                and material_sale_id = #{materialSaleId}
+            </if>
+            <if test="materialId != null">
+                and material_id = #{materialId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="materialSaleDate != null">
+                and material_sale_date = #{materialSaleDate}
+            </if>
+            <if test="materialSaleNum != null">
+                and material_sale_num = #{materialSaleNum}
+            </if>
+            <if test="materialSalePrice != null">
+                and material_sale_price = #{materialSalePrice}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          material_sale_id, material_id, company_id, material_sale_date, material_sale_num, material_sale_price, pay_status
+        from KAPOKTPLS.material_sale </select>
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from material_sale
+        <where>
+            <if test="materialSaleId != null">
+                and material_sale_id = #{materialSaleId}
+            </if>
+            <if test="materialId != null">
+                and material_id = #{materialId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="materialSaleDate != null">
+                and material_sale_date = #{materialSaleDate}
+            </if>
+            <if test="materialSaleNum != null">
+                and material_sale_num = #{materialSaleNum}
+            </if>
+            <if test="materialSalePrice != null">
+                and material_sale_price = #{materialSalePrice}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="materialSaleId" useGeneratedKeys="true">
+        insert into material_sale(material_id, company_id, material_sale_date, material_sale_num, material_sale_price, pay_status)
+        values (#{materialId}, #{companyId}, #{materialSaleDate}, #{materialSaleNum}, #{materialSalePrice}, #{payStatus})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="materialSaleId" useGeneratedKeys="true">
+        insert into material_sale(material_id, company_id, material_sale_date, material_sale_num, material_sale_price, pay_status)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.materialId}, #{entity.companyId}, #{entity.materialSaleDate}, #{entity.materialSaleNum}, #{entity.materialSalePrice}, #{entity.payStatus})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="materialSaleId" useGeneratedKeys="true">
+        insert into material_sale(material_id, company_id, material_sale_date, material_sale_num, material_sale_price, pay_status)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.materialId}, #{entity.companyId}, #{entity.materialSaleDate}, #{entity.materialSaleNum}, #{entity.materialSalePrice}, #{entity.payStatus})
+        </foreach>
+        on duplicate key update
+        material_id = values(material_id),
+        company_id = values(company_id),
+        material_sale_date = values(material_sale_date),
+        material_sale_num = values(material_sale_num),
+        material_sale_price = values(material_sale_price),
+        pay_status = values(pay_status)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update material_sale
+        <set>
+            <if test="materialId != null">
+                material_id = #{materialId},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId},
+            </if>
+            <if test="materialSaleDate != null">
+                material_sale_date = #{materialSaleDate},
+            </if>
+            <if test="materialSaleNum != null">
+                material_sale_num = #{materialSaleNum},
+            </if>
+            <if test="materialSalePrice != null">
+                material_sale_price = #{materialSalePrice},
+            </if>
+            <if test="payStatus != null">
+                pay_status = #{payStatus},
+            </if>
+        </set>
+        where material_sale_id = #{materialSaleId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from material_sale where material_sale_id = #{materialSaleId}
+    </delete>
+
+    <!--实体类条件查询-->
+    <select id="getByCondition" resultMap="BaseResultMap">
+        select * from material_sale
+        <where>
+            <if test="materialSaleId != null">
+                and material_sale_id = #{materialSaleId}
+            </if>
+            <if test="materialId != null">
+                and material_id = #{materialId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="materialSaleDate != null">
+                and material_sale_date = #{materialSaleDate}
+            </if>
+            <if test="materialSaleNum != null">
+                and material_sale_num = #{materialSaleNum}
+            </if>
+            <if test="materialSalePrice != null">
+                and material_sale_price = #{materialSalePrice}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+    </select>
+</mapper>
+

@@ -23,25 +23,25 @@ import javax.servlet.http.HttpSession;
 @Aspect
 @Component
 public class AroundCut {
-//    public static final String POINT_CUT = "execution(* com.cqu.kapok.kapoktpls.controller.PersonController.*(..)) || " +
-//            "execution(* com.cqu.kapok.kapoktpls.controller.AddressController.*(..))";
-//
-//
-//    /**
-//     * 判断用户的登录是否有效
-//     * @param pjp
-//     * @return
-//     * @throws Throwable
-//     */
-//    @Around(AroundCut.POINT_CUT)
-//    public DataResult checkSession(ProceedingJoinPoint pjp) throws Throwable {
-//        //获取session
-//        HttpSession session = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession();
-//        //判断用户登录是否有效
-//        if(VerifyUtil.isNull(session.getAttribute("userInfo"))){
-//            //返回登录失效
-//            return DataResult.errByErrCode(Code.LOGIN_OUT);
-//        }
-//        return (DataResult) pjp.proceed();
-//    }
+    public static final String POINT_CUT = "execution(* com.cqu.kapok.kapoktpls.controller.PersonController.*(..)) || " +
+            "execution(* com.cqu.kapok.kapoktpls.controller.AddressController.*(..))";
+
+
+    /**
+     * 判断用户的登录是否有效
+     * @param pjp
+     * @return
+     * @throws Throwable
+     */
+    @Around(AroundCut.POINT_CUT)
+    public DataResult checkSession(ProceedingJoinPoint pjp) throws Throwable {
+        //获取session
+        HttpSession session = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession();
+        //判断用户登录是否有效
+        if(VerifyUtil.isNull(session.getAttribute("userInfo"))){
+            //返回登录失效
+            return DataResult.errByErrCode(Code.LOGIN_OUT);
+        }
+        return (DataResult) pjp.proceed();
+    }
 }
