@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqu.kapok.kapoktpls.dao.RepairRecordDao">
+
+    <resultMap id="BaseResultMap" type="com.cqu.kapok.kapoktpls.entity.RepairRecord">
+        <!--@Table repair_record-->
+        <result property="repairRecordId" column="repair_record_id" jdbcType="INTEGER"/>
+        <result property="truckRepairRecordId" column="truck_repair_record_id" jdbcType="INTEGER"/>
+        <result property="personId" column="person_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          repair_record_id, truck_repair_record_id, person_id
+        from repair_record
+        where repair_record_id = #{repairRecordId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          repair_record_id, truck_repair_record_id, person_id
+        from repair_record
+        <where>
+            <if test="repairRecordId != null">
+                and repair_record_id = #{repairRecordId}
+            </if>
+            <if test="truckRepairRecordId != null">
+                and truck_repair_record_id = #{truckRepairRecordId}
+            </if>
+            <if test="personId != null">
+                and person_id = #{personId}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          repair_record_id, truck_repair_record_id, person_id
+        from KAPOKTPLS.repair_record</select>
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from repair_record
+        <where>
+            <if test="repairRecordId != null">
+                and repair_record_id = #{repairRecordId}
+            </if>
+            <if test="truckRepairRecordId != null">
+                and truck_repair_record_id = #{truckRepairRecordId}
+            </if>
+            <if test="personId != null">
+                and person_id = #{personId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="repairRecordId" useGeneratedKeys="true">
+        insert into repair_record(truck_repair_record_id, person_id)
+        values (#{truckRepairRecordId}, #{personId})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="repairRecordId" useGeneratedKeys="true">
+        insert into repair_record(truck_repair_record_id, person_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.truckRepairRecordId}, #{entity.personId})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="repairRecordId" useGeneratedKeys="true">
+        insert into repair_record(truck_repair_record_id, person_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.truckRepairRecordId}, #{entity.personId})
+        </foreach>
+        on duplicate key update
+        truck_repair_record_id = values(truck_repair_record_id),
+        person_id = values(person_id)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update repair_record
+        <set>
+            <if test="truckRepairRecordId != null">
+                truck_repair_record_id = #{truckRepairRecordId},
+            </if>
+            <if test="personId != null">
+                person_id = #{personId},
+            </if>
+        </set>
+        where repair_record_id = #{repairRecordId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from repair_record where repair_record_id = #{repairRecordId}
+    </delete>
+
+    <!--条件查询-->
+    <select id="getByCondition" resultMap="BaseResultMap">
+        select * from repair_record
+        <where>
+            <if test="repairRecordId != null">
+                and repair_record_id = #{repairRecordId}
+            </if>
+            <if test="truckRepairRecordId != null">
+                and truck_repair_record_id = #{truckRepairRecordId}
+            </if>
+            <if test="personId != null">
+                and person_id = #{personId}
+            </if>
+        </where>
+    </select>
+</mapper>
+
