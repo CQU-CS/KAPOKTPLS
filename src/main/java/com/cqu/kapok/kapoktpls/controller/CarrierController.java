@@ -35,10 +35,10 @@ public class CarrierController {
      * @param pageRequest      分页对象
      * @return 查询结果
      */
-    @GetMapping
-    public ResponseEntity<Page<Carrier>> queryByPage(Carrier carrier, PageRequest pageRequest) {
-        return ResponseEntity.ok(this.carrierService.queryByPage(carrier, pageRequest));
-    }
+//    @GetMapping
+//    public ResponseEntity<Page<Carrier>> queryByPage(Carrier carrier, PageRequest pageRequest) {
+//        return ResponseEntity.ok(this.carrierService.queryByPage(carrier, pageRequest));
+//    }
 
     /**
      * 通过主键查询单条数据
