@@ -67,6 +67,7 @@ public class AccountServiceImpl implements AccountService {
      */
     @Override
     public Account update(Account account) {
+        System.out.println("正确的:"+account.toString());
         this.accountDao.update(account);
         return this.queryById(account.getAccountId());
     }
@@ -93,8 +94,23 @@ public class AccountServiceImpl implements AccountService {
         return this.accountDao.queryLogin(account);
     }
 
+    /**
+     * 根据实体类查询
+     * @param account
+     * @return
+     */
     @Override
     public DataResult<List<Account>> queryByAccount(Account account) {
         return this.accountDao.queryByAccount(account);
+    }
+
+    /**
+     * 根据token查询account
+     * @param token
+     * @return
+     */
+    @Override
+    public Account queryByToken(String token) {
+        return this.accountDao.queryByToken(token);
     }
 }
