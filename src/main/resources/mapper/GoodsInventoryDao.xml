@@ -45,6 +45,7 @@
         select
           goods_inventory_id, goods_id, address_id, goods_inventory_num
         from TESTKAPOK.goods_inventory
+    </select>
     <!--统计总行数-->
     <select id="count" resultType="java.lang.Long">
         select count(1)
