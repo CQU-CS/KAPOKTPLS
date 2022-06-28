@@ -1,5 +1,8 @@
 package com.cqu.kapok.kapoktpls.dao;
 
+import com.cqu.kapok.kapoktpls.dto.CertificateDTO;
+import com.cqu.kapok.kapoktpls.dto.CompanyDTO;
+import com.cqu.kapok.kapoktpls.entity.Certificate;
 import com.cqu.kapok.kapoktpls.entity.Company;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
@@ -78,6 +81,8 @@ public interface CompanyDao {
      * @return 影响行数
      */
     int deleteById(Integer companyId);
+    List<Company> queryAll(CompanyDTO companyDTO);
 
+    Long getCompanyByConditionCount(Company company);
 }
 

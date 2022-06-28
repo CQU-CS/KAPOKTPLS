@@ -49,10 +49,31 @@
     </select>
 
     <!--通过实体作为筛选条件查询-->
-    <select id="queryAll" resultMap="BaseResultMap">
+    <select id="queryAll" resultMap="BaseResultMap" parameterType="com.cqu.kapok.kapoktpls.dto.CompanyDTO">
         select
-          company_id, company_name, company_phone, address_id, company_instruction, company_establishment_time
-        from KAPOKTPLS.company
+        company_id, company_name, company_phone, address_id, company_instruction, company_establishment_time
+        from company
+        <where>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="companyName != null and companyName != ''">
+                and company_name = #{companyName}
+            </if>
+            <if test="companyPhone != null and companyPhone != ''">
+                and company_phone = #{companyPhone}
+            </if>
+            <if test="addressId != null">
+                and address_id = #{addressId}
+            </if>
+            <if test="companyInstruction != null and companyInstruction != ''">
+                and company_instruction = #{companyInstruction}
+            </if>
+            <if test="companyEstablishmentTime != null">
+                and company_establishment_time = #{companyEstablishmentTime}
+            </if>
+        </where>
+        limit #{page}, #{limit}
     </select>
     <!--统计总行数-->
     <select id="count" resultType="java.lang.Long">
@@ -79,7 +100,30 @@
             </if>
         </where>
     </select>
-
+    <select id="getCompanyByConditionCount" resultType="java.lang.Long">
+        select count(1)
+        from company
+        <where>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="companyName != null and companyName != ''">
+                and company_name = #{companyName}
+            </if>
+            <if test="companyPhone != null and companyPhone != ''">
+                and company_phone = #{companyPhone}
+            </if>
+            <if test="addressId != null">
+                and address_id = #{addressId}
+            </if>
+            <if test="companyInstruction != null and companyInstruction != ''">
+                and company_instruction = #{companyInstruction}
+            </if>
+            <if test="companyEstablishmentTime != null">
+                and company_establishment_time = #{companyEstablishmentTime}
+            </if>
+        </where>
+    </select>
     <!--新增所有列-->
     <insert id="insert" keyProperty="companyId" useGeneratedKeys="true">
         insert into company(company_name, company_phone, address_id, company_instruction, company_establishment_time)

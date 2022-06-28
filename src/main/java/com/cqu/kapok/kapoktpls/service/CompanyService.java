@@ -1,8 +1,11 @@
 package com.cqu.kapok.kapoktpls.service;
 
+import com.cqu.kapok.kapoktpls.dto.CompanyDTO;
 import com.cqu.kapok.kapoktpls.entity.Company;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+
+import java.util.List;
 
 /**
  * (Company)表服务接口
@@ -53,4 +56,7 @@ public interface CompanyService {
      */
     boolean deleteById(Integer companyId);
 
+    List<Company> queryAll(CompanyDTO companyDTO);
+
+    Long getCompanyByConditionCount(Company company);
 }
