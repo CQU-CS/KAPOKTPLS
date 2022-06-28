@@ -88,6 +88,7 @@ public class CarrierManageController {
 
     @PostMapping("queryByCarrierManage")
     DataResult queryByCarrierManage(@RequestBody CarrierManageDTO carrierManageDTO){
+        carrierManageDTO.setPage((carrierManageDTO.getPage() - 1) * carrierManageDTO.getLimit());
         List<CarrierManage> carrierManages =this.carrierManageService.queryAll(carrierManageDTO);
         CarrierManage carrierManage = new CarrierManage();
         BeanUtils.copyProperties(carrierManageDTO,carrierManage);
