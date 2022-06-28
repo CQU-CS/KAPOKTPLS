@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqu.kapok.kapoktpls.dao.TruckDao">
+
+    <resultMap id="BaseResultMap" type="com.cqu.kapok.kapoktpls.entity.Truck">
+        <!--@Table truck-->
+        <result property="truckId" column="truck_id" jdbcType="INTEGER"/>
+        <result property="truckPlate" column="truck_plate" jdbcType="VARCHAR"/>
+        <result property="truckLoad" column="truck_load" jdbcType="INTEGER"/>
+        <result property="truckType" column="truck_type" jdbcType="VARCHAR"/>
+        <result property="personId" column="person_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          truck_id, truck_plate, truck_load, truck_type, person_id
+        from truck
+        where truck_id = #{truckId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          truck_id, truck_plate, truck_load, truck_type, person_id
+        from truck
+        <where>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="truckPlate != null and truckPlate != ''">
+                and truck_plate = #{truckPlate}
+            </if>
+            <if test="truckLoad != null">
+                and truck_load = #{truckLoad}
+            </if>
+            <if test="truckType != null and truckType != ''">
+                and truck_type = #{truckType}
+            </if>
+            <if test="personId != null">
+                and person_id = #{personId}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from truck
+        <where>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="truckPlate != null and truckPlate != ''">
+                and truck_plate = #{truckPlate}
+            </if>
+            <if test="truckLoad != null">
+                and truck_load = #{truckLoad}
+            </if>
+            <if test="truckType != null and truckType != ''">
+                and truck_type = #{truckType}
+            </if>
+            <if test="personId != null">
+                and person_id = #{personId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="truckId" useGeneratedKeys="true">
+        insert into truck(truck_plate, truck_load, truck_type, person_id)
+        values (#{truckPlate}, #{truckLoad}, #{truckType}, #{personId})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="truckId" useGeneratedKeys="true">
+        insert into truck(truck_plate, truck_load, truck_type, person_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.truckPlate}, #{entity.truckLoad}, #{entity.truckType}, #{entity.personId})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="truckId" useGeneratedKeys="true">
+        insert into truck(truck_plate, truck_load, truck_type, person_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.truckPlate}, #{entity.truckLoad}, #{entity.truckType}, #{entity.personId})
+        </foreach>
+        on duplicate key update
+        truck_plate = values(truck_plate),
+        truck_load = values(truck_load),
+        truck_type = values(truck_type),
+        person_id = values(person_id)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update truck
+        <set>
+            <if test="truckPlate != null and truckPlate != ''">
+                truck_plate = #{truckPlate},
+            </if>
+            <if test="truckLoad != null">
+                truck_load = #{truckLoad},
+            </if>
+            <if test="truckType != null and truckType != ''">
+                truck_type = #{truckType},
+            </if>
+            <if test="personId != null">
+                person_id = #{personId},
+            </if>
+        </set>
+        where truck_id = #{truckId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from truck where truck_id = #{truckId}
+    </delete>
+
+    <select id="queryByTruck" resultType="java.util.List">
+        select *
+        from truck
+        <where>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="truckPlate != null and truckPlate != ''">
+                and truck_plate = #{truckPlate}
+            </if>
+            <if test="truckLoad != null">
+                and truck_load = #{truckLoad}
+            </if>
+            <if test="truckType != null and truckType != ''">
+                and truck_type = #{truckType}
+            </if>
+            <if test="personId != null">
+                and person_id = #{personId}
+            </if>
+        </where>
+    </select>
+</mapper>
+

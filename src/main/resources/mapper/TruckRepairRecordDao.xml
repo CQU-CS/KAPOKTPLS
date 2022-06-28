@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqu.kapok.kapoktpls.dao.TruckRepairRecordDao">
+
+    <resultMap id="BaseResultMap" type="com.cqu.kapok.kapoktpls.entity.TruckRepairRecord">
+        <!--@Table truck_repair_record-->
+        <result property="truckRepairRecordId" column="truck_repair_record_id" jdbcType="INTEGER"/>
+        <result property="truckId" column="truck_id" jdbcType="INTEGER"/>
+        <result property="truckRepairRecordStartTime" column="truck_repair_record_start_time" jdbcType="TIMESTAMP"/>
+        <result property="truckRepairRecordEndTime" column="truck_repair_record_end_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          truck_repair_record_id, truck_id, truck_repair_record_start_time, truck_repair_record_end_time
+        from truck_repair_record
+        where truck_repair_record_id = #{truckRepairRecordId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          truck_repair_record_id, truck_id, truck_repair_record_start_time, truck_repair_record_end_time
+        from truck_repair_record
+        <where>
+            <if test="truckRepairRecordId != null">
+                and truck_repair_record_id = #{truckRepairRecordId}
+            </if>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="truckRepairRecordStartTime != null">
+                and truck_repair_record_start_time = #{truckRepairRecordStartTime}
+            </if>
+            <if test="truckRepairRecordEndTime != null">
+                and truck_repair_record_end_time = #{truckRepairRecordEndTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from truck_repair_record
+        <where>
+            <if test="truckRepairRecordId != null">
+                and truck_repair_record_id = #{truckRepairRecordId}
+            </if>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="truckRepairRecordStartTime != null">
+                and truck_repair_record_start_time = #{truckRepairRecordStartTime}
+            </if>
+            <if test="truckRepairRecordEndTime != null">
+                and truck_repair_record_end_time = #{truckRepairRecordEndTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="truckRepairRecordId" useGeneratedKeys="true">
+        insert into truck_repair_record(truck_id, truck_repair_record_start_time, truck_repair_record_end_time)
+        values (#{truckId}, #{truckRepairRecordStartTime}, #{truckRepairRecordEndTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="truckRepairRecordId" useGeneratedKeys="true">
+        insert into truck_repair_record(truck_id, truck_repair_record_start_time, truck_repair_record_end_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.truckId}, #{entity.truckRepairRecordStartTime}, #{entity.truckRepairRecordEndTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="truckRepairRecordId" useGeneratedKeys="true">
+        insert into truck_repair_record(truck_id, truck_repair_record_start_time, truck_repair_record_end_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.truckId}, #{entity.truckRepairRecordStartTime}, #{entity.truckRepairRecordEndTime})
+        </foreach>
+        on duplicate key update
+        truck_id = values(truck_id),
+        truck_repair_record_start_time = values(truck_repair_record_start_time),
+        truck_repair_record_end_time = values(truck_repair_record_end_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update truck_repair_record
+        <set>
+            <if test="truckId != null">
+                truck_id = #{truckId},
+            </if>
+            <if test="truckRepairRecordStartTime != null">
+                truck_repair_record_start_time = #{truckRepairRecordStartTime},
+            </if>
+            <if test="truckRepairRecordEndTime != null">
+                truck_repair_record_end_time = #{truckRepairRecordEndTime},
+            </if>
+        </set>
+        where truck_repair_record_id = #{truckRepairRecordId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from truck_repair_record where truck_repair_record_id = #{truckRepairRecordId}
+    </delete>
+
+    <select id="queryByTruckRepairRecord" resultType="java.util.List">
+        select *
+        from truck_repair_record
+        <where>
+            <if test="truckRepairRecordId != null">
+                and truck_repair_record_id = #{truckRepairRecordId}
+            </if>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="truckRepairRecordStartTime != null">
+                and truck_repair_record_start_time = #{truckRepairRecordStartTime}
+            </if>
+            <if test="truckRepairRecordEndTime != null">
+                and truck_repair_record_end_time = #{truckRepairRecordEndTime}
+            </if>
+        </where>
+    </select>
+</mapper>
+
