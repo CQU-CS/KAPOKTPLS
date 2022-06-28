@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqu.kapok.kapoktpls.dao.MaterialUseDao">
+
+    <resultMap id="BaseResultMap" type="com.cqu.kapok.kapoktpls.entity.MaterialUse">
+        <!--@Table material_use-->
+        <result property="materialUseId" column="material_use_id" jdbcType="INTEGER"/>
+        <result property="materialId" column="material_id" jdbcType="INTEGER"/>
+        <result property="personId" column="person_id" jdbcType="INTEGER"/>
+        <result property="materialUseNum" column="material_use_num" jdbcType="INTEGER"/>
+        <result property="materialUseStartTime" column="material_use_start_time" jdbcType="TIMESTAMP"/>
+        <result property="materialUseEndTime" column="material_use_end_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          material_use_id, material_id, person_id, material_use_num, material_use_start_time, material_use_end_time
+        from material_use
+        where material_use_id = #{materialUseId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          material_use_id, material_id, person_id, material_use_num, material_use_start_time, material_use_end_time
+        from material_use
+        <where>
+            <if test="materialUseId != null">
+                and material_use_id = #{materialUseId}
+            </if>
+            <if test="materialId != null">
+                and material_id = #{materialId}
+            </if>
+            <if test="personId != null">
+                and person_id = #{personId}
+            </if>
+            <if test="materialUseNum != null">
+                and material_use_num = #{materialUseNum}
+            </if>
+            <if test="materialUseStartTime != null">
+                and material_use_start_time = #{materialUseStartTime}
+            </if>
+            <if test="materialUseEndTime != null">
+                and material_use_end_time = #{materialUseEndTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          material_use_id, material_id, person_id, material_use_num, material_use_start_time, material_use_end_time
+        from KAPOKTPLS.material_use</select>
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from material_use
+        <where>
+            <if test="materialUseId != null">
+                and material_use_id = #{materialUseId}
+            </if>
+            <if test="materialId != null">
+                and material_id = #{materialId}
+            </if>
+            <if test="personId != null">
+                and person_id = #{personId}
+            </if>
+            <if test="materialUseNum != null">
+                and material_use_num = #{materialUseNum}
+            </if>
+            <if test="materialUseStartTime != null">
+                and material_use_start_time = #{materialUseStartTime}
+            </if>
+            <if test="materialUseEndTime != null">
+                and material_use_end_time = #{materialUseEndTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="materialUseId" useGeneratedKeys="true">
+        insert into material_use(material_id, person_id, material_use_num, material_use_start_time, material_use_end_time)
+        values (#{materialId}, #{personId}, #{materialUseNum}, #{materialUseStartTime}, #{materialUseEndTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="materialUseId" useGeneratedKeys="true">
+        insert into material_use(material_id, person_id, material_use_num, material_use_start_time, material_use_end_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.materialId}, #{entity.personId}, #{entity.materialUseNum}, #{entity.materialUseStartTime}, #{entity.materialUseEndTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="materialUseId" useGeneratedKeys="true">
+        insert into material_use(material_id, person_id, material_use_num, material_use_start_time, material_use_end_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.materialId}, #{entity.personId}, #{entity.materialUseNum}, #{entity.materialUseStartTime}, #{entity.materialUseEndTime})
+        </foreach>
+        on duplicate key update
+        material_id = values(material_id),
+        person_id = values(person_id),
+        material_use_num = values(material_use_num),
+        material_use_start_time = values(material_use_start_time),
+        material_use_end_time = values(material_use_end_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update material_use
+        <set>
+            <if test="materialId != null">
+                material_id = #{materialId},
+            </if>
+            <if test="personId != null">
+                person_id = #{personId},
+            </if>
+            <if test="materialUseNum != null">
+                material_use_num = #{materialUseNum},
+            </if>
+            <if test="materialUseStartTime != null">
+                material_use_start_time = #{materialUseStartTime},
+            </if>
+            <if test="materialUseEndTime != null">
+                material_use_end_time = #{materialUseEndTime},
+            </if>
+        </set>
+        where material_use_id = #{materialUseId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from material_use where material_use_id = #{materialUseId}
+    </delete>
+
+    <!--条件查询-->
+    <select id="getByCondition" resultMap="BaseResultMap">
+        select * from material_use
+        <where>
+            <if test="materialUseId != null">
+                and material_use_id = #{materialUseId}
+            </if>
+            <if test="materialId != null">
+                and material_id = #{materialId}
+            </if>
+            <if test="personId != null">
+                and person_id = #{personId}
+            </if>
+            <if test="materialUseNum != null">
+                and material_use_num = #{materialUseNum}
+            </if>
+            <if test="materialUseStartTime != null">
+                and material_use_start_time = #{materialUseStartTime}
+            </if>
+            <if test="materialUseEndTime != null">
+                and material_use_end_time = #{materialUseEndTime}
+            </if>
+        </where>
+    </select>
+</mapper>
+

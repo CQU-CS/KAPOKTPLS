@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqu.kapok.kapoktpls.dao.OfficeMaterialPurchaseDao">
+
+    <resultMap id="BaseResultMap" type="com.cqu.kapok.kapoktpls.entity.OfficeMaterialPurchase">
+        <!--@Table office_material_purchase-->
+        <result property="officeMaterialPurchaseId" column="office_material_purchase_id" jdbcType="INTEGER"/>
+        <result property="officeMaterialName" column="office_material_name" jdbcType="VARCHAR"/>
+        <result property="companyId" column="company_id" jdbcType="INTEGER"/>
+        <result property="officeMaterialPurchasePrice" column="office_material_purchase_price" jdbcType="INTEGER"/>
+        <result property="officeMaterialPurchaseDate" column="office_material_purchase_date" jdbcType="TIMESTAMP"/>
+        <result property="payState" column="pay_state" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          office_material_purchase_id, office_material_name, company_id, office_material_purchase_price, office_material_purchase_date, pay_state
+        from office_material_purchase
+        where office_material_purchase_id = #{officeMaterialPurchaseId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          office_material_purchase_id, office_material_name, company_id, office_material_purchase_price, office_material_purchase_date, pay_state
+        from office_material_purchase
+        <where>
+            <if test="officeMaterialPurchaseId != null">
+                and office_material_purchase_id = #{officeMaterialPurchaseId}
+            </if>
+            <if test="officeMaterialName != null and officeMaterialName != ''">
+                and office_material_name = #{officeMaterialName}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="officeMaterialPurchasePrice != null">
+                and office_material_purchase_price = #{officeMaterialPurchasePrice}
+            </if>
+            <if test="officeMaterialPurchaseDate != null">
+                and office_material_purchase_date = #{officeMaterialPurchaseDate}
+            </if>
+            <if test="payState != null">
+                and pay_state = #{payState}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          office_material_purchase_id, office_material_name, company_id, office_material_purchase_price, office_material_purchase_date, pay_state
+        from KAPOKTPLS.office_material_purchase</select>
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from office_material_purchase
+        <where>
+            <if test="officeMaterialPurchaseId != null">
+                and office_material_purchase_id = #{officeMaterialPurchaseId}
+            </if>
+            <if test="officeMaterialName != null and officeMaterialName != ''">
+                and office_material_name = #{officeMaterialName}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="officeMaterialPurchasePrice != null">
+                and office_material_purchase_price = #{officeMaterialPurchasePrice}
+            </if>
+            <if test="officeMaterialPurchaseDate != null">
+                and office_material_purchase_date = #{officeMaterialPurchaseDate}
+            </if>
+            <if test="payState != null">
+                and pay_state = #{payState}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="officeMaterialPurchaseId" useGeneratedKeys="true">
+        insert into office_material_purchase(office_material_name, company_id, office_material_purchase_price, office_material_purchase_date, pay_state)
+        values (#{officeMaterialName}, #{companyId}, #{officeMaterialPurchasePrice}, #{officeMaterialPurchaseDate}, #{payState})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="officeMaterialPurchaseId" useGeneratedKeys="true">
+        insert into office_material_purchase(office_material_name, company_id, office_material_purchase_price, office_material_purchase_date, pay_state)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.officeMaterialName}, #{entity.companyId}, #{entity.officeMaterialPurchasePrice}, #{entity.officeMaterialPurchaseDate}, #{entity.payState})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="officeMaterialPurchaseId" useGeneratedKeys="true">
+        insert into office_material_purchase(office_material_name, company_id, office_material_purchase_price, office_material_purchase_date, pay_state)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.officeMaterialName}, #{entity.companyId}, #{entity.officeMaterialPurchasePrice}, #{entity.officeMaterialPurchaseDate}, #{entity.payState})
+        </foreach>
+        on duplicate key update
+        office_material_name = values(office_material_name),
+        company_id = values(company_id),
+        office_material_purchase_price = values(office_material_purchase_price),
+        office_material_purchase_date = values(office_material_purchase_date),
+        pay_state = values(pay_state)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update office_material_purchase
+        <set>
+            <if test="officeMaterialName != null and officeMaterialName != ''">
+                office_material_name = #{officeMaterialName},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId},
+            </if>
+            <if test="officeMaterialPurchasePrice != null">
+                office_material_purchase_price = #{officeMaterialPurchasePrice},
+            </if>
+            <if test="officeMaterialPurchaseDate != null">
+                office_material_purchase_date = #{officeMaterialPurchaseDate},
+            </if>
+            <if test="payState != null">
+                pay_state = #{payState},
+            </if>
+        </set>
+        where office_material_purchase_id = #{officeMaterialPurchaseId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from office_material_purchase where office_material_purchase_id = #{officeMaterialPurchaseId}
+    </delete>
+
+    <!--条件查询-->
+    <select id="getByCondition" resultMap="BaseResultMap">
+        select * from office_material_purchase
+        <where>
+            <if test="officeMaterialPurchaseId != null">
+                and office_material_purchase_id = #{officeMaterialPurchaseId}
+            </if>
+            <if test="officeMaterialName != null and officeMaterialName != ''">
+                and office_material_name = #{officeMaterialName}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="officeMaterialPurchasePrice != null">
+                and office_material_purchase_price = #{officeMaterialPurchasePrice}
+            </if>
+            <if test="officeMaterialPurchaseDate != null">
+                and office_material_purchase_date = #{officeMaterialPurchaseDate}
+            </if>
+            <if test="payState != null">
+                and pay_state = #{payState}
+            </if>
+        </where>
+    </select>
+</mapper>
+
