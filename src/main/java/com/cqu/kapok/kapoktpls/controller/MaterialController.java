@@ -31,7 +31,7 @@ public class MaterialController {
      * @param pageRequest      分页对象
      * @return 查询结果
      */
-    @GetMapping
+    @GetMapping("queryByMaterial")
     public ResponseEntity<Page<Material>> queryByPage(Material material, PageRequest pageRequest) {
         return ResponseEntity.ok(this.materialService.queryByPage(material, pageRequest));
     }
