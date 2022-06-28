@@ -86,6 +86,6 @@ public interface BuildingDao {
      * @param building
      * @return
      */
-    DataResult<List<Building>> queryByBuilding(Building building);
+    List<Building> queryByBuilding(Building building);
 }
 
