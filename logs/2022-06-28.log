@@ -217,3 +217,44 @@ org.apache.ibatis.binding.BindingException: Invalid bound statement (not found):
 [INFO]2022-06-28 12:38:48,430 - HikariPool-1 - Start completed.
 [INFO]2022-06-28 12:39:04,395 - HikariPool-1 - Shutdown initiated...
 [INFO]2022-06-28 12:39:04,402 - HikariPool-1 - Shutdown completed.
+[INFO]2022-06-28 15:08:58,194 - Starting KapoktplsApplication using Java 17 on Y7000P-2019 with PID 20304 (D:\Program\JAVA\GraduationInternship\KAPOKTPLS\target\classes started by 11823 in D:\Program\JAVA\GraduationInternship\KAPOKTPLS)
+[INFO]2022-06-28 15:08:58,195 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-28 15:08:58,239 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-28 15:08:58,239 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-28 15:08:59,593 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-28 15:08:59,602 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 15:08:59,603 - Starting service [Tomcat]
+[INFO]2022-06-28 15:08:59,603 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-28 15:08:59,701 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-28 15:08:59,701 - Root WebApplicationContext: initialization completed in 1462 ms
+[INFO]2022-06-28 15:09:01,198 - LiveReload server is running on port 35729
+[INFO]2022-06-28 15:09:01,215 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 15:09:01,236 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-28 15:09:01,255 - Started KapoktplsApplication in 3.462 seconds (JVM running for 4.239)
+[INFO]2022-06-28 15:09:26,292 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO]2022-06-28 15:09:26,292 - Initializing Servlet 'dispatcherServlet'
+[INFO]2022-06-28 15:09:26,293 - Completed initialization in 1 ms
+[INFO]2022-06-28 15:09:27,439 - Init duration for springdoc-openapi is: 759 ms
+[INFO]2022-06-28 15:30:46,606 - HikariPool-1 - Starting...
+[INFO]2022-06-28 15:30:49,458 - HikariPool-1 - Start completed.
+[INFO]2022-06-28 15:31:51,778 - HikariPool-1 - Shutdown initiated...
+[INFO]2022-06-28 15:31:51,783 - HikariPool-1 - Shutdown completed.
+[INFO]2022-06-28 15:31:56,963 - Starting KapoktplsApplication using Java 17 on Y7000P-2019 with PID 18640 (D:\Program\JAVA\GraduationInternship\KAPOKTPLS\target\classes started by 11823 in D:\Program\JAVA\GraduationInternship\KAPOKTPLS)
+[INFO]2022-06-28 15:31:56,964 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-28 15:31:57,006 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-28 15:31:57,006 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-28 15:31:58,226 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-28 15:31:58,234 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 15:31:58,234 - Starting service [Tomcat]
+[INFO]2022-06-28 15:31:58,234 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-28 15:31:58,330 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-28 15:31:58,330 - Root WebApplicationContext: initialization completed in 1324 ms
+[INFO]2022-06-28 15:31:59,788 - LiveReload server is running on port 35729
+[INFO]2022-06-28 15:31:59,807 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 15:31:59,827 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-28 15:31:59,846 - Started KapoktplsApplication in 3.248 seconds (JVM running for 3.99)
+[INFO]2022-06-28 15:32:07,630 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO]2022-06-28 15:32:07,630 - Initializing Servlet 'dispatcherServlet'
+[INFO]2022-06-28 15:32:07,631 - Completed initialization in 1 ms
+[INFO]2022-06-28 15:32:10,053 - HikariPool-1 - Starting...
+[INFO]2022-06-28 15:32:10,472 - HikariPool-1 - Start completed.
