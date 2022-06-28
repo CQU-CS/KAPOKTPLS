@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqu.kapok.kapoktpls.dao.CertificateDao">
+
+    <resultMap type="com.cqu.kapok.kapoktpls.entity.Certificate" id="CertificateMap">
+        <result property="certificateId" column="certificate_id" jdbcType="INTEGER"/>
+        <result property="personId" column="person_id" jdbcType="INTEGER"/>
+        <result property="certificateType" column="certificate_type" jdbcType="VARCHAR"/>
+        <result property="certificateHandlingUnit" column="certificate_handling_unit" jdbcType="VARCHAR"/>
+        <result property="certificateHandlingTime" column="certificate_handling_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="CertificateMap">
+        select
+          certificate_id, person_id, certificate_type, certificate_handling_unit, certificate_handling_time
+        from certificate
+        where certificate_id = #{certificateId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="CertificateMap">
+        select
+          certificate_id, person_id, certificate_type, certificate_handling_unit, certificate_handling_time
+        from certificate
+        <where>
+            <if test="certificateId != null">
+                and certificate_id = #{certificateId}
+            </if>
+            <if test="personId != null">
+                and person_id = #{personId}
+            </if>
+            <if test="certificateType != null and certificateType != ''">
+                and certificate_type = #{certificateType}
+            </if>
+            <if test="certificateHandlingUnit != null and certificateHandlingUnit != ''">
+                and certificate_handling_unit = #{certificateHandlingUnit}
+            </if>
+            <if test="certificateHandlingTime != null">
+                and certificate_handling_time = #{certificateHandlingTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+    <!--查询指定行数据-->
+    <select id="queryAll" resultMap="CertificateMap" parameterType="com.cqu.kapok.kapoktpls.dto.CertificateDTO">
+        select
+        certificate_id, person_id, certificate_type, certificate_handling_unit, certificate_handling_time
+        from certificate
+        <where>
+            <if test="certificateId != null">
+                and certificate_id = #{certificateId}
+            </if>
+            <if test="personId != null">
+                and person_id = #{personId}
+            </if>
+            <if test="certificateType != null and certificateType != ''">
+                and certificate_type = #{certificateType}
+            </if>
+            <if test="certificateHandlingUnit != null and certificateHandlingUnit != ''">
+                and certificate_handling_unit = #{certificateHandlingUnit}
+            </if>
+            <if test="certificateHandlingTime != null">
+                and certificate_handling_time = #{certificateHandlingTime}
+            </if>
+        </where>
+        limit #{page}, #{limit}
+    </select>
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from certificate
+        <where>
+            <if test="certificateId != null">
+                and certificate_id = #{certificateId}
+            </if>
+            <if test="personId != null">
+                and person_id = #{personId}
+            </if>
+            <if test="certificateType != null and certificateType != ''">
+                and certificate_type = #{certificateType}
+            </if>
+            <if test="certificateHandlingUnit != null and certificateHandlingUnit != ''">
+                and certificate_handling_unit = #{certificateHandlingUnit}
+            </if>
+            <if test="certificateHandlingTime != null">
+                and certificate_handling_time = #{certificateHandlingTime}
+            </if>
+        </where>
+    </select>
+    <select id="getCertificateByConditionCount" resultType="java.lang.Long">
+        select count(1)
+        from certificate
+        <where>
+            <if test="certificateId != null">
+                and certificate_id = #{certificateId}
+            </if>
+            <if test="personId != null">
+                and person_id = #{personId}
+            </if>
+            <if test="certificateType != null and certificateType != ''">
+                and certificate_type = #{certificateType}
+            </if>
+            <if test="certificateHandlingUnit != null and certificateHandlingUnit != ''">
+                and certificate_handling_unit = #{certificateHandlingUnit}
+            </if>
+            <if test="certificateHandlingTime != null">
+                and certificate_handling_time = #{certificateHandlingTime}
+            </if>
+        </where>
+    </select>
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="certificateId" useGeneratedKeys="true">
+        insert into certificate(person_id, certificate_type, certificate_handling_unit, certificate_handling_time)
+        values (#{personId}, #{certificateType}, #{certificateHandlingUnit}, #{certificateHandlingTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="certificateId" useGeneratedKeys="true">
+        insert into certificate(person_id, certificate_type, certificate_handling_unit, certificate_handling_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.personId}, #{entity.certificateType}, #{entity.certificateHandlingUnit}, #{entity.certificateHandlingTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="certificateId" useGeneratedKeys="true">
+        insert into certificate(person_id, certificate_type, certificate_handling_unit, certificate_handling_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.personId}, #{entity.certificateType}, #{entity.certificateHandlingUnit}, #{entity.certificateHandlingTime})
+        </foreach>
+        on duplicate key update
+        person_id = values(person_id),
+        certificate_type = values(certificate_type),
+        certificate_handling_unit = values(certificate_handling_unit),
+        certificate_handling_time = values(certificate_handling_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update certificate
+        <set>
+            <if test="personId != null">
+                person_id = #{personId},
+            </if>
+            <if test="certificateType != null and certificateType != ''">
+                certificate_type = #{certificateType},
+            </if>
+            <if test="certificateHandlingUnit != null and certificateHandlingUnit != ''">
+                certificate_handling_unit = #{certificateHandlingUnit},
+            </if>
+            <if test="certificateHandlingTime != null">
+                certificate_handling_time = #{certificateHandlingTime},
+            </if>
+        </set>
+        where certificate_id = #{certificateId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from certificate where certificate_id = #{certificateId}
+    </delete>
+
+</mapper>
+
