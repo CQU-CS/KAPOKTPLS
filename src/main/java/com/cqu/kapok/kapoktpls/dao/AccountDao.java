@@ -93,5 +93,12 @@ public interface AccountDao {
      * @return
      */
     DataResult<List<Account>> queryByAccount(Account account);
+
+    /**
+     * 根据token查询account
+     * @param token
+     * @return
+     */
+    Account queryByToken(String token);
 }
 
