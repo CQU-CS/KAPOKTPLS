@@ -128,6 +128,11 @@
             </if>
         </where>
     </select>
+    <select id="queryByToken" resultType="com.cqu.kapok.kapoktpls.entity.Account">
+        select *
+        from account
+        where account_token = #{token}
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="accountId" useGeneratedKeys="true">

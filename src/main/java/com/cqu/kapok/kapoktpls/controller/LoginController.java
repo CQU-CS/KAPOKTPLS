@@ -74,13 +74,17 @@ public class LoginController {
     @PostMapping("vue-admin-template/user/login")
     public DataResult testLogin(@RequestBody Account account){
         //验证账号密码
-
+        Account loginAccount = accountService.queryLogin(account);
+        if(null == loginAccount){//用户不存在
+            return DataResult.errByErrCode(50008);
+        }
         //生成Token
         Map<String, String> tokenMap = new HashMap<String, String>();
         BeanUtil.copyProperties(account, tokenMap);
         String token = JwtUtil.getToken(tokenMap);
         //保存Token到数据库
-
+        loginAccount.setAccountToken(token);
+        this.accountService.update(loginAccount);
         //返回数据
         Map<String,String> map = new HashMap<>();
         map.put("token",token);
@@ -99,10 +103,14 @@ public class LoginController {
             //有效，返回name和avator
             Map<String,String> map = new HashMap<>();
             //去数据库找name和avator
-
+            Account accountTmp = this.accountService.queryByToken(token.getToken());
+            //判断是否存在token和对应的用户
+            if(null == accountTmp){//用户不存在
+                return DataResult.errByErrCode(50008);
+            }
             //返回name和avator
-            map.put("name","I am name");
-            map.put("avator","I am avator");
+            map.put("name",accountTmp.getAccountNickname());
+            map.put("avatar",accountTmp.getAccountPicture());
             return DataResult.successByData(map);
         }else {
             return DataResult.errByErrCode(50008);
