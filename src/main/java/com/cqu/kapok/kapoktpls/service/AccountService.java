@@ -68,7 +68,7 @@ public interface AccountService {
      * @param account
      * @return
      */
-    DataResult<List<Account>> queryByAccount(Account account);
+    List<Account> queryByAccount(Account account);
 
     /**
      * 根据token查询account

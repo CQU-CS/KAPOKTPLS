@@ -88,7 +88,7 @@ public class BuildingSaleServiceImpl implements BuildingSaleService {
      * @return
      */
     @Override
-    public DataResult<List<BuildingSale>> queryByBuildingSale(BuildingSale buildingSale) {
+    public List<BuildingSale> queryByBuildingSale(BuildingSale buildingSale) {
         return this.buildingSaleDao.queryByBuildingSale(buildingSale);
     }
 

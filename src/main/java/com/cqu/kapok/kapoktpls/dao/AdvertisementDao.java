@@ -85,6 +85,6 @@ public interface AdvertisementDao {
      * @param advertisement
      * @return
      */
-    DataResult<List<Advertisement>> queryByAdvertisement(Advertisement advertisement);
+    List<Advertisement> queryByAdvertisement(Advertisement advertisement);
 }
 

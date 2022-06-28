@@ -85,6 +85,6 @@ public interface BuildingSaleDao {
      * @param buildingSale
      * @return
      */
-    DataResult<List<BuildingSale>> queryByBuildingSale(BuildingSale buildingSale);
+    List<BuildingSale> queryByBuildingSale(BuildingSale buildingSale);
 }
 

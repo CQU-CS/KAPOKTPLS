@@ -61,5 +61,5 @@ public interface BuildingRentService {
      * @param buildingRent
      * @return
      */
-    DataResult<List<BuildingRent>> queryByBuildingRent(BuildingRent buildingRent);
+    List<BuildingRent> queryByBuildingRent(BuildingRent buildingRent);
 }

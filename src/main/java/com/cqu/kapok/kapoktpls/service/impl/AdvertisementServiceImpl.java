@@ -89,7 +89,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
      * @return
      */
     @Override
-    public DataResult<List<Advertisement>> queryByAdvertisement(Advertisement advertisement) {
+    public List<Advertisement> queryByAdvertisement(Advertisement advertisement) {
         return this.advertisementDao.queryByAdvertisement(advertisement);
     }
 }

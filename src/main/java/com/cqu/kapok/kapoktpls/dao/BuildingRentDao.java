@@ -86,6 +86,6 @@ public interface BuildingRentDao {
      * @param buildingRent
      * @return
      */
-    DataResult<List<BuildingRent>> queryByBuildingRent(BuildingRent buildingRent);
+    List<BuildingRent> queryByBuildingRent(BuildingRent buildingRent);
 }
 

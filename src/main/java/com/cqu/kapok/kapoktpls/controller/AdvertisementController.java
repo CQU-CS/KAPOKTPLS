@@ -91,7 +91,7 @@ public class AdvertisementController {
      */
     @PostMapping("queryByAdvertisement")
     public DataResult<List<Advertisement>> queryByAdvertisement(Advertisement advertisement){
-        return this.advertisementService.queryByAdvertisement(advertisement);
+        return  DataResult.successByDatas(this.advertisementService.queryByAdvertisement(advertisement));
     }
 
 }

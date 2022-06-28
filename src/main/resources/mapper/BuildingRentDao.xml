@@ -86,7 +86,7 @@
             </if>
         </where>
     </select>
-    <select id="queryByBuildingRent" resultType="java.util.List">
+    <select id="queryByBuildingRent" resultType="com.cqu.kapok.kapoktpls.entity.BuildingRent">
         select *
         from building_rent
         <where>

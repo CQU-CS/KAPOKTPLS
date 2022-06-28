@@ -85,6 +85,6 @@ public interface AddressDao {
      * @param address
      * @return
      */
-    DataResult<List<Address>> queryByAddress(Address address);
+    List<Address> queryByAddress(Address address);
 }
 

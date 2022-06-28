@@ -89,7 +89,7 @@ public class BuildingServiceImpl implements BuildingService {
      * @return
      */
     @Override
-    public DataResult<List<Building>> queryByBuilding(Building building) {
+    public List<Building> queryByBuilding(Building building) {
         return this.buildingDao.queryByBuilding(building);
     }
 }
