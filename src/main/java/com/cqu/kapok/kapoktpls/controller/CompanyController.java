@@ -85,6 +85,11 @@ public class CompanyController {
     public ResponseEntity<Boolean> deleteById(Integer id) {
         return ResponseEntity.ok(this.companyService.deleteById(id));
     }
+    /**
+     * 通过CompanyDTO分页查询
+     * @param companyDTO
+     * @return 查询结果列表和查询总数
+     */
     @PostMapping("queryByCompany")
     DataResult queryByCompany(@RequestBody CompanyDTO companyDTO){
         companyDTO.setPage((companyDTO.getPage() - 1) * companyDTO.getLimit());
