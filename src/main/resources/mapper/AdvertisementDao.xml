@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqu.kapok.kapoktpls.dao.AdvertisementDao">
+
+    <resultMap id="BaseResultMap" type="com.cqu.kapok.kapoktpls.entity.Advertisement">
+        <!--@Table advertisement-->
+        <result property="advertisementId" column="advertisement_id" jdbcType="INTEGER"/>
+        <result property="advertisementContent" column="advertisement_content" jdbcType="VARCHAR"/>
+        <result property="advertisementPicture" column="advertisement_picture" jdbcType="VARCHAR"/>
+        <result property="advertisementStartTime" column="advertisement_start_time" jdbcType="TIMESTAMP"/>
+        <result property="advertisementEndTime" column="advertisement_end_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          advertisement_id, advertisement_content, advertisement_picture, advertisement_start_time, advertisement_end_time
+        from advertisement
+        where advertisement_id = #{advertisementId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          advertisement_id, advertisement_content, advertisement_picture, advertisement_start_time, advertisement_end_time
+        from advertisement
+        <where>
+            <if test="advertisementId != null">
+                and advertisement_id = #{advertisementId}
+            </if>
+            <if test="advertisementContent != null and advertisementContent != ''">
+                and advertisement_content = #{advertisementContent}
+            </if>
+            <if test="advertisementPicture != null and advertisementPicture != ''">
+                and advertisement_picture = #{advertisementPicture}
+            </if>
+            <if test="advertisementStartTime != null">
+                and advertisement_start_time = #{advertisementStartTime}
+            </if>
+            <if test="advertisementEndTime != null">
+                and advertisement_end_time = #{advertisementEndTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          advertisement_id, advertisement_content, advertisement_picture, advertisement_start_time, advertisement_end_time
+        from TESTKAPOK.advertisement
+    </select>
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from advertisement
+        <where>
+            <if test="advertisementId != null">
+                and advertisement_id = #{advertisementId}
+            </if>
+            <if test="advertisementContent != null and advertisementContent != ''">
+                and advertisement_content = #{advertisementContent}
+            </if>
+            <if test="advertisementPicture != null and advertisementPicture != ''">
+                and advertisement_picture = #{advertisementPicture}
+            </if>
+            <if test="advertisementStartTime != null">
+                and advertisement_start_time = #{advertisementStartTime}
+            </if>
+            <if test="advertisementEndTime != null">
+                and advertisement_end_time = #{advertisementEndTime}
+            </if>
+        </where>
+    </select>
+    <select id="queryByAdvertisement" resultType="java.util.List">
+        select *
+        from advertisement
+        <where>
+            <if test="advertisementId != null">
+                and advertisement_id = #{advertisementId}
+            </if>
+            <if test="advertisementContent != null and advertisementContent != ''">
+                and advertisement_content = #{advertisementContent}
+            </if>
+            <if test="advertisementPicture != null and advertisementPicture != ''">
+                and advertisement_picture = #{advertisementPicture}
+            </if>
+            <if test="advertisementStartTime != null">
+                and advertisement_start_time = #{advertisementStartTime}
+            </if>
+            <if test="advertisementEndTime != null">
+                and advertisement_end_time = #{advertisementEndTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="advertisementId" useGeneratedKeys="true">
+        insert into advertisement(advertisement_content, advertisement_picture, advertisement_start_time, advertisement_end_time)
+        values (#{advertisementContent}, #{advertisementPicture}, #{advertisementStartTime}, #{advertisementEndTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="advertisementId" useGeneratedKeys="true">
+        insert into advertisement(advertisement_content, advertisement_picture, advertisement_start_time, advertisement_end_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.advertisementContent}, #{entity.advertisementPicture}, #{entity.advertisementStartTime}, #{entity.advertisementEndTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="advertisementId" useGeneratedKeys="true">
+        insert into advertisement(advertisement_content, advertisement_picture, advertisement_start_time, advertisement_end_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.advertisementContent}, #{entity.advertisementPicture}, #{entity.advertisementStartTime}, #{entity.advertisementEndTime})
+        </foreach>
+        on duplicate key update
+        advertisement_content = values(advertisement_content),
+        advertisement_picture = values(advertisement_picture),
+        advertisement_start_time = values(advertisement_start_time),
+        advertisement_end_time = values(advertisement_end_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update advertisement
+        <set>
+            <if test="advertisementContent != null and advertisementContent != ''">
+                advertisement_content = #{advertisementContent},
+            </if>
+            <if test="advertisementPicture != null and advertisementPicture != ''">
+                advertisement_picture = #{advertisementPicture},
+            </if>
+            <if test="advertisementStartTime != null">
+                advertisement_start_time = #{advertisementStartTime},
+            </if>
+            <if test="advertisementEndTime != null">
+                advertisement_end_time = #{advertisementEndTime},
+            </if>
+        </set>
+        where advertisement_id = #{advertisementId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from advertisement where advertisement_id = #{advertisementId}
+    </delete>
+
+</mapper>
+
