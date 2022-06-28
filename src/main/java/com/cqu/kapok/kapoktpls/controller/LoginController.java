@@ -125,4 +125,16 @@ public class LoginController {
             return DataResult.errByErrCode(50008);
         }
     }
+
+    /**
+     * 退出登录
+     * @return
+     */
+    @PostMapping("/vue-admin-template/user/logout")
+    public DataResult logout(HttpSession session){
+
+        return DataResult.succ();
+    }
+
+
 }
