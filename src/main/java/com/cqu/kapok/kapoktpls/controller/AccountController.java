@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cqu.kapok.kapoktpls.entity.Account;
 import com.cqu.kapok.kapoktpls.service.AccountService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
@@ -34,8 +35,8 @@ public class AccountController {
      * @return 查询结果
      */
     @GetMapping
-    public ResponseEntity<Page<Account>> queryByPage(Account account, PageRequest pageRequest) {
-        return ResponseEntity.ok(this.accountService.queryByPage(account, pageRequest));
+    public DataResult<Page<Account>> queryByPage(Account account, PageRequest pageRequest) {
+        return DataResult.successByDatas(this.accountService.queryByPage(account, pageRequest));
     }
 
     /**
@@ -45,8 +46,8 @@ public class AccountController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public ResponseEntity<Account> queryById(@PathVariable("id") Integer id) {
-        return ResponseEntity.ok(this.accountService.queryById(id));
+    public DataResult<JSONObject> queryById(@PathVariable("id") Integer id) {
+        return DataResult.successByData(this.accountService.queryById(id));
     }
 
     /**
@@ -56,8 +57,8 @@ public class AccountController {
      * @return 新增结果
      */
     @PostMapping
-    public ResponseEntity<Account> add(Account account) {
-        return ResponseEntity.ok(this.accountService.insert(account));
+    public DataResult<JSONObject> add(Account account) {
+        return DataResult.successByData(this.accountService.insert(account));
     }
 
     /**
@@ -67,8 +68,8 @@ public class AccountController {
      * @return 编辑结果
      */
     @PutMapping
-    public ResponseEntity<Account> edit(Account account) {
-        return ResponseEntity.ok(this.accountService.update(account));
+    public DataResult<JSONObject> edit(Account account) {
+        return DataResult.successByData(this.accountService.update(account));
     }
 
     /**
@@ -78,8 +79,8 @@ public class AccountController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.accountService.deleteById(id));
+    public DataResult<JSONObject> deleteById(Integer id) {
+        return DataResult.successByData(this.accountService.deleteById(id));
     }
 
     /**

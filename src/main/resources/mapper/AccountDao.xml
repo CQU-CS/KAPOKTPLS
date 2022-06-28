@@ -98,7 +98,13 @@
         from account
         where account_account = #{accountAccount} and account_password = #{accountPassword}
     </select>
-    <select id="queryByAccount" resultType="java.util.List">
+
+    <select id="queryByToken" resultType="com.cqu.kapok.kapoktpls.entity.Account">
+        select *
+        from account
+        where account_token = #{token}
+    </select>
+    <select id="queryByAccount" resultType="com.cqu.kapok.kapoktpls.entity.Account">
         select *
         from account
         <where>
@@ -127,11 +133,6 @@
                 and account_token = #{accountToken}
             </if>
         </where>
-    </select>
-    <select id="queryByToken" resultType="com.cqu.kapok.kapoktpls.entity.Account">
-        select *
-        from account
-        where account_token = #{token}
     </select>
 
     <!--新增所有列-->
