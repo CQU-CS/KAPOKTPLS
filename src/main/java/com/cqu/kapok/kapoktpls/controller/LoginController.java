@@ -72,12 +72,13 @@ public class LoginController {
      * @return
      */
     @PostMapping("vue-admin-template/user/login")
-    public DataResult testLogin(@RequestBody Account account){
+    public DataResult testLogin(@RequestBody Account account, HttpSession session){
         //验证账号密码
         Account loginAccount = accountService.queryLogin(account);
         if(null == loginAccount){//用户不存在
             return DataResult.errByErrCode(50008);
         }
+
         //生成Token
         Map<String, String> tokenMap = new HashMap<String, String>();
         BeanUtil.copyProperties(account, tokenMap);
@@ -85,6 +86,14 @@ public class LoginController {
         //保存Token到数据库
         loginAccount.setAccountToken(token);
         this.accountService.update(loginAccount);
+
+        //2.封装返回的数据,返回账号, 用户类型
+        UserVo userVo = new UserVo();
+        userVo.setUserAccount(loginAccount.getAccountAccount());
+        //3.将用户数据放入session
+        session.setAttribute("userInfo", userVo);
+
+
         //返回数据
         Map<String,String> map = new HashMap<>();
         map.put("token",token);
@@ -116,4 +125,16 @@ public class LoginController {
             return DataResult.errByErrCode(50008);
         }
     }
+
+    /**
+     * 退出登录
+     * @return
+     */
+    @PostMapping("/vue-admin-template/user/logout")
+    public DataResult logout(HttpSession session){
+
+        return DataResult.succ();
+    }
+
+
 }
