@@ -1,5 +1,8 @@
 package com.cqu.kapok.kapoktpls.service.impl;
 
+import com.cqu.kapok.kapoktpls.dto.GoodsDTO;
+import com.cqu.kapok.kapoktpls.dto.MaterialDTO;
+import com.cqu.kapok.kapoktpls.entity.Goods;
 import com.cqu.kapok.kapoktpls.entity.Material;
 import com.cqu.kapok.kapoktpls.dao.MaterialDao;
 import com.cqu.kapok.kapoktpls.service.MaterialService;
@@ -9,6 +12,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (Material)表服务实现类
@@ -78,5 +82,15 @@ public class MaterialServiceImpl implements MaterialService {
     @Override
     public boolean deleteById(Integer materialId) {
         return this.materialDao.deleteById(materialId) > 0;
+    }
+
+    @Override
+    public List<Material> queryAllByCondition(MaterialDTO materialDTO) {
+        return this.materialDao.queryAllByCondition(materialDTO);
+    }
+
+    @Override
+    public Long getMaterialByConditionCount(Material material) {
+        return this.materialDao.getMaterialByConditionCount(material);
     }
 }

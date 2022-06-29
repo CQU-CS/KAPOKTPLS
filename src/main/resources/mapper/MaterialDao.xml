@@ -20,7 +20,7 @@
     </select>
 
     <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="BaseResultMap">
+    <select id="queryAllByCondition" resultMap="BaseResultMap" parameterType="com.cqu.kapok.kapoktpls.dto.MaterialDTO">
         select
           material_id, material_name, material_type, material_price, material_size
         from material
@@ -41,7 +41,7 @@
                 and material_size = #{materialSize}
             </if>
         </where>
-        limit #{pageable.offset}, #{pageable.pageSize}
+        limit #{page}, #{limit}
     </select>
 
     <!--通过实体作为筛选条件查询-->
@@ -51,7 +51,7 @@
         from TESTKAPOK.material
     </select>
     <!--统计总行数-->
-    <select id="count" resultType="java.lang.Long">
+    <select id="getMaterialByConditionCount" resultType="java.lang.Long">
         select count(1)
         from material
         <where>

@@ -1,8 +1,12 @@
 package com.cqu.kapok.kapoktpls.service;
 
+import com.cqu.kapok.kapoktpls.dto.MaterialDTO;
+import com.cqu.kapok.kapoktpls.entity.Goods;
 import com.cqu.kapok.kapoktpls.entity.Material;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+
+import java.util.List;
 
 /**
  * (Material)表服务接口
@@ -53,4 +57,7 @@ public interface MaterialService {
      */
     boolean deleteById(Integer materialId);
 
+	  List<Material> queryAllByCondition(MaterialDTO materialDTO);
+
+    Long getMaterialByConditionCount(Material material);
 }

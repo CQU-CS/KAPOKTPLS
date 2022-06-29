@@ -1,5 +1,8 @@
 package com.cqu.kapok.kapoktpls.service.impl;
 
+import com.cqu.kapok.kapoktpls.dto.GoodsDTO;
+import com.cqu.kapok.kapoktpls.dto.GoodsInventoryDTO;
+import com.cqu.kapok.kapoktpls.entity.Goods;
 import com.cqu.kapok.kapoktpls.entity.GoodsInventory;
 import com.cqu.kapok.kapoktpls.dao.GoodsInventoryDao;
 import com.cqu.kapok.kapoktpls.service.GoodsInventoryService;
@@ -9,12 +12,13 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (GoodsInventory)表服务实现类
  *
  * @author makejava
- * @since 2022-06-28 09:37:21
+ * @since 2022-06-28 17:21:14
  */
 @Service("goodsInventoryService")
 public class GoodsInventoryServiceImpl implements GoodsInventoryService {
@@ -78,5 +82,15 @@ public class GoodsInventoryServiceImpl implements GoodsInventoryService {
     @Override
     public boolean deleteById(Integer goodsInventoryId) {
         return this.goodsInventoryDao.deleteById(goodsInventoryId) > 0;
+    }
+
+    @Override
+    public List<GoodsInventory> queryAll(GoodsInventoryDTO goodsInventoryDTO) {
+        return this.goodsInventoryDao.queryAll(goodsInventoryDTO);
+    }
+
+    @Override
+    public Long getGoodsByConditionCount(GoodsInventory goodsInventory) {
+        return this.goodsInventoryDao.getGoodsByConditionCount(goodsInventory);
     }
 }

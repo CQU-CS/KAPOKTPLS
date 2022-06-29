@@ -6,10 +6,10 @@ import java.io.Serializable;
  * (GoodsInventory)实体类
  *
  * @author makejava
- * @since 2022-06-28 09:36:56
+ * @since 2022-06-28 17:21:08
  */
 public class GoodsInventory implements Serializable {
-    private static final long serialVersionUID = 815410938260154332L;
+    private static final long serialVersionUID = 236018616445731951L;
     /**
      * 货物库存ID
      */

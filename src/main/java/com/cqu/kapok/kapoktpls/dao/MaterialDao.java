@@ -1,5 +1,8 @@
 package com.cqu.kapok.kapoktpls.dao;
 
+import com.cqu.kapok.kapoktpls.dto.GoodsDTO;
+import com.cqu.kapok.kapoktpls.dto.MaterialDTO;
+import com.cqu.kapok.kapoktpls.entity.Goods;
 import com.cqu.kapok.kapoktpls.entity.Material;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
@@ -79,5 +82,8 @@ public interface MaterialDao {
      */
     int deleteById(Integer materialId);
 
+    List<Material> queryAllByCondition(MaterialDTO materialDTO);
+
+    Long getMaterialByConditionCount(Material material);
 }
 

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqu.kapok.kapoktpls.dao.GoodsSaleDao">
+
+    <resultMap id="BaseResultMap" type="com.cqu.kapok.kapoktpls.entity.GoodsSale">
+        <!--@Table goods_sale-->
+        <result property="goodsSaleId" column="goods_sale_id" jdbcType="INTEGER"/>
+        <result property="goodsId" column="goods_id" jdbcType="INTEGER"/>
+        <result property="companyId" column="company_id" jdbcType="INTEGER"/>
+        <result property="goodsSaleNum" column="goods_sale_num" jdbcType="INTEGER"/>
+        <result property="goodsSalePrice" column="goods_sale_price" jdbcType="INTEGER"/>
+        <result property="goodsSaleDate" column="goods_sale_date" jdbcType="TIMESTAMP"/>
+        <result property="payStatus" column="pay_status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          goods_sale_id, goods_id, company_id, goods_sale_num, goods_sale_price, goods_sale_date, pay_status
+        from goods_sale
+        where goods_sale_id = #{goodsSaleId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          goods_sale_id, goods_id, company_id, goods_sale_num, goods_sale_price, goods_sale_date, pay_status
+        from goods_sale
+        <where>
+            <if test="goodsSaleId != null">
+                and goods_sale_id = #{goodsSaleId}
+            </if>
+            <if test="goodsId != null">
+                and goods_id = #{goodsId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="goodsSaleNum != null">
+                and goods_sale_num = #{goodsSaleNum}
+            </if>
+            <if test="goodsSalePrice != null">
+                and goods_sale_price = #{goodsSalePrice}
+            </if>
+            <if test="goodsSaleDate != null">
+                and goods_sale_date = #{goodsSaleDate}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAll" resultMap="BaseResultMap" parameterType="com.cqu.kapok.kapoktpls.dto.GoodsSaleDTO">
+        select
+        goods_sale_id, goods_id, company_id, goods_sale_num, goods_sale_price, goods_sale_date, pay_status
+        from goods_sale
+        <where>
+            <if test="goodsSaleId != null">
+                and goods_sale_id = #{goodsSaleId}
+            </if>
+            <if test="goodsId != null">
+                and goods_id = #{goodsId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="goodsSaleNum != null">
+                and goods_sale_num = #{goodsSaleNum}
+            </if>
+            <if test="goodsSalePrice != null">
+                and goods_sale_price = #{goodsSalePrice}
+            </if>
+            <if test="goodsSaleDate != null">
+                and goods_sale_date = #{goodsSaleDate}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+        limit #{page}, #{limit}
+    </select>
+
+    <!--统计总行数-->
+    <select id="getGoodsSaleByConditionCount" resultType="java.lang.Long">
+        select count(1)
+        from goods_sale
+        <where>
+            <if test="goodsSaleId != null">
+                and goods_sale_id = #{goodsSaleId}
+            </if>
+            <if test="goodsId != null">
+                and goods_id = #{goodsId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="goodsSaleNum != null">
+                and goods_sale_num = #{goodsSaleNum}
+            </if>
+            <if test="goodsSalePrice != null">
+                and goods_sale_price = #{goodsSalePrice}
+            </if>
+            <if test="goodsSaleDate != null">
+                and goods_sale_date = #{goodsSaleDate}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from goods_sale
+        <where>
+            <if test="goodsSaleId != null">
+                and goods_sale_id = #{goodsSaleId}
+            </if>
+            <if test="goodsId != null">
+                and goods_id = #{goodsId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="goodsSaleNum != null">
+                and goods_sale_num = #{goodsSaleNum}
+            </if>
+            <if test="goodsSalePrice != null">
+                and goods_sale_price = #{goodsSalePrice}
+            </if>
+            <if test="goodsSaleDate != null">
+                and goods_sale_date = #{goodsSaleDate}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+    </select>
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="goodsSaleId" useGeneratedKeys="true">
+        insert into goods_sale(goods_id, company_id, goods_sale_num, goods_sale_price, goods_sale_date, pay_status)
+        values (#{goodsId}, #{companyId}, #{goodsSaleNum}, #{goodsSalePrice}, #{goodsSaleDate}, #{payStatus})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="goodsSaleId" useGeneratedKeys="true">
+        insert into goods_sale(goods_id, company_id, goods_sale_num, goods_sale_price, goods_sale_date, pay_status)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.goodsId}, #{entity.companyId}, #{entity.goodsSaleNum}, #{entity.goodsSalePrice}, #{entity.goodsSaleDate}, #{entity.payStatus})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="goodsSaleId" useGeneratedKeys="true">
+        insert into goods_sale(goods_id, company_id, goods_sale_num, goods_sale_price, goods_sale_date, pay_status)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.goodsId}, #{entity.companyId}, #{entity.goodsSaleNum}, #{entity.goodsSalePrice}, #{entity.goodsSaleDate}, #{entity.payStatus})
+        </foreach>
+        on duplicate key update
+        goods_id = values(goods_id),
+        company_id = values(company_id),
+        goods_sale_num = values(goods_sale_num),
+        goods_sale_price = values(goods_sale_price),
+        goods_sale_date = values(goods_sale_date),
+        pay_status = values(pay_status)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update goods_sale
+        <set>
+            <if test="goodsId != null">
+                goods_id = #{goodsId},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId},
+            </if>
+            <if test="goodsSaleNum != null">
+                goods_sale_num = #{goodsSaleNum},
+            </if>
+            <if test="goodsSalePrice != null">
+                goods_sale_price = #{goodsSalePrice},
+            </if>
+            <if test="goodsSaleDate != null">
+                goods_sale_date = #{goodsSaleDate},
+            </if>
+            <if test="payStatus != null">
+                pay_status = #{payStatus},
+            </if>
+        </set>
+        where goods_sale_id = #{goodsSaleId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from goods_sale where goods_sale_id = #{goodsSaleId}
+    </delete>
+
+</mapper>
+

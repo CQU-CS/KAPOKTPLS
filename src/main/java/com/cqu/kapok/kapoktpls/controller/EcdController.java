@@ -85,6 +85,11 @@ public class EcdController {
     public ResponseEntity<Boolean> deleteById(Integer id) {
         return ResponseEntity.ok(this.ecdService.deleteById(id));
     }
+    /**
+     * 通过EcdDTO分页查询
+     * @param ecdDTO
+     * @return 查询结果列表和查询总数
+     */
     @PostMapping("queryByEcd")
     DataResult queryByEcd(@RequestBody EcdDTO ecdDTO){
         ecdDTO.setPage((ecdDTO.getPage() - 1) * ecdDTO.getLimit());

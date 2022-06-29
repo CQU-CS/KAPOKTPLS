@@ -1,14 +1,17 @@
 package com.cqu.kapok.kapoktpls.service;
 
+import com.cqu.kapok.kapoktpls.dto.GoodsInventoryDTO;
 import com.cqu.kapok.kapoktpls.entity.GoodsInventory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+
+import java.util.List;
 
 /**
  * (GoodsInventory)表服务接口
  *
  * @author makejava
- * @since 2022-06-28 09:37:21
+ * @since 2022-06-28 17:21:14
  */
 public interface GoodsInventoryService {
 
@@ -53,4 +56,7 @@ public interface GoodsInventoryService {
      */
     boolean deleteById(Integer goodsInventoryId);
 
+	List<GoodsInventory> queryAll(GoodsInventoryDTO goodsInventoryDTO);
+
+    Long getGoodsByConditionCount(GoodsInventory goodsInventory);
 }

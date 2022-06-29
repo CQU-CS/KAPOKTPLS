@@ -9,7 +9,7 @@ import java.util.List;
  * (GoodsInventory)表数据库访问层
  *
  * @author makejava
- * @since 2022-06-28 09:36:56
+ * @since 2022-06-28 17:21:08
  */
 public interface GoodsInventoryDao {
 
@@ -79,5 +79,8 @@ public interface GoodsInventoryDao {
      */
     int deleteById(Integer goodsInventoryId);
 
+	List<GoodsInventory> queryAll(GoodsInventory goodsInventory);
+
+    Long getGoodsByConditionCount(GoodsInventory goodsInventory);
 }
 

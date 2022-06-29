@@ -1,13 +1,19 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.dto.GoodsDTO;
+import com.cqu.kapok.kapoktpls.dto.MaterialDTO;
+import com.cqu.kapok.kapoktpls.entity.Goods;
 import com.cqu.kapok.kapoktpls.entity.Material;
 import com.cqu.kapok.kapoktpls.service.MaterialService;
+import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (Material)表控制层
@@ -53,7 +59,7 @@ public class MaterialController {
      * @param material 实体
      * @return 新增结果
      */
-    @PostMapping
+    @PostMapping("addMaterial")
     public ResponseEntity<Material> add(Material material) {
         return ResponseEntity.ok(this.materialService.insert(material));
     }
@@ -64,7 +70,7 @@ public class MaterialController {
      * @param material 实体
      * @return 编辑结果
      */
-    @PutMapping
+    @PutMapping("editMaterial")
     public ResponseEntity<Material> edit(Material material) {
         return ResponseEntity.ok(this.materialService.update(material));
     }
@@ -75,10 +81,20 @@ public class MaterialController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
+    @DeleteMapping("deleteMaterial")
     public ResponseEntity<Boolean> deleteById(Integer id) {
         return ResponseEntity.ok(this.materialService.deleteById(id));
     }
 
+
+    @PostMapping("queryByMaterial")
+    DataResult queryByGoods(@RequestBody MaterialDTO materialDTO){
+        materialDTO.setPage((materialDTO.getPage() - 1) * materialDTO.getLimit());
+        List<Material> materials = this.materialService.queryAllByCondition(materialDTO);
+        Material material = new Material();
+        BeanUtils.copyProperties(materialDTO,materials);
+        Long total = this.materialService.getMaterialByConditionCount(material);
+        return DataResult.successByTotalData(materials, total);
+    }
 }
 
