@@ -7,6 +7,7 @@ import com.cqu.kapok.kapoktpls.entity.Address;
 import com.cqu.kapok.kapoktpls.entity.Goods;
 import com.cqu.kapok.kapoktpls.service.AddressService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.utils.result.code.Code;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -82,9 +83,14 @@ public class AddressController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
+    @PostMapping("deleteAddress")
     public DataResult deleteById(Integer id) {
-        return DataResult.successByData(this.addressService.deleteById(id));
+        try {
+            boolean b = this.addressService.deleteById(id);
+        } catch (Exception e) {
+            return DataResult.errByErrCode(Code.ADDRESS_DELETE_ERROR);
+        }
+        return DataResult.errByErrCode(Code.SUCCESS);
     }
 
     /**

@@ -13,4 +13,6 @@ public interface Code {
 	int LOGIN_SUCCESS  = Errs.put(201, "登录成功");
 	//地址不存在
 	int ADDRESS_NOT_EXIST = Errs.put(-4, "地址不存在");
+	//删除地址出错
+	int ADDRESS_DELETE_ERROR = Errs.put(-5,"操作有误，删除的地址被其他表格使用");
 }
