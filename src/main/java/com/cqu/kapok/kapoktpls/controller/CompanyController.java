@@ -125,7 +125,7 @@ public class CompanyController {
     @PostMapping("deleteByCompanyId")
     public DataResult deleteById(Integer id) {
         try {
-            boolean b = this.addressService.deleteById(id);
+            boolean b = this.companyService.deleteById(id);
         } catch (Exception e) {
             return DataResult.errByErrCode(Code.COMPANY_DELETE_ERROR);
         }
