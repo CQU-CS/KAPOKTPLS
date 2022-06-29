@@ -1207,3 +1207,24 @@ Caused by: org.xml.sax.SAXParseException: 元素类型 "select" 必须由匹配�
 [INFO]2022-06-28 22:43:22,593 - HikariPool-1 - Start completed.
 [INFO]2022-06-28 22:43:39,270 - HikariPool-1 - Shutdown initiated...
 [INFO]2022-06-28 22:43:39,280 - HikariPool-1 - Shutdown completed.
+[INFO]2022-06-28 23:54:46,915 - Starting KapoktplsApplication using Java 17.0.3 on DESKTOP-NOJTH77 with PID 6728 (E:\logisticsSystem\Project\KAPOKTPLS\target\classes started by DELL in E:\logisticsSystem\Project\KAPOKTPLS)
+[INFO]2022-06-28 23:54:46,916 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-28 23:54:46,989 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-28 23:54:46,989 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-28 23:54:48,658 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-28 23:54:48,669 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 23:54:48,669 - Starting service [Tomcat]
+[INFO]2022-06-28 23:54:48,670 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-28 23:54:48,768 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-28 23:54:48,768 - Root WebApplicationContext: initialization completed in 1778 ms
+[INFO]2022-06-28 23:54:50,717 - LiveReload server is running on port 35729
+[INFO]2022-06-28 23:54:50,741 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 23:54:50,771 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-28 23:54:50,797 - Started KapoktplsApplication in 4.606 seconds (JVM running for 6.127)
+[INFO]2022-06-28 23:55:48,328 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO]2022-06-28 23:55:48,328 - Initializing Servlet 'dispatcherServlet'
+[INFO]2022-06-28 23:55:48,329 - Completed initialization in 1 ms
+[INFO]2022-06-28 23:55:48,391 - HikariPool-1 - Starting...
+[INFO]2022-06-28 23:55:50,247 - HikariPool-1 - Start completed.
+[INFO]2022-06-28 23:57:25,990 - HikariPool-1 - Shutdown initiated...
+[INFO]2022-06-28 23:57:25,998 - HikariPool-1 - Shutdown completed.
