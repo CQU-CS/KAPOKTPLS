@@ -1,9 +1,12 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.dto.TruckPurchaseDTO;
+import com.cqu.kapok.kapoktpls.dto.TruckRepairRecordDTO;
 import com.cqu.kapok.kapoktpls.entity.TruckPurchase;
 import com.cqu.kapok.kapoktpls.entity.TruckRepairRecord;
 import com.cqu.kapok.kapoktpls.service.TruckRepairRecordService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -51,13 +54,14 @@ public class TruckRepairRecordController {
     }
 
     /**
+     * 通过实体类查询
      *
      * @param truckRepairRecord
      * @return
      */
     @PostMapping("queryByTruckRepairRecord")
     public DataResult<List<TruckRepairRecord>> queryByTruckRepairRecord(TruckRepairRecord truckRepairRecord){
-        return this.truckRepairRecordService.queryByTruckRepairRecord(truckRepairRecord);
+        return DataResult.successByDatas(this.truckRepairRecordService.queryByTruckRepairRecord(truckRepairRecord));
     }
 
     /**
@@ -93,5 +97,20 @@ public class TruckRepairRecordController {
         return ResponseEntity.ok(this.truckRepairRecordService.deleteById(id));
     }
 
+    /**
+     * 通过queryByTruckRepairRecordDTO分页查询
+     *
+     * @param truckRepairRecordDTO
+     * @return
+     */
+    @PostMapping("queryByTruckRepairRecordDTO")
+    DataResult queryByTruckRepairRecordDTO(@RequestBody TruckRepairRecordDTO truckRepairRecordDTO){
+        truckRepairRecordDTO.setPage((truckRepairRecordDTO.getPage() - 1) * truckRepairRecordDTO.getLimit());
+        List<TruckRepairRecord> truckRepairRecords =this.truckRepairRecordService.queryByTruckRepairRecordDTO(truckRepairRecordDTO);
+        TruckRepairRecord truckRepairRecord = new TruckRepairRecord();
+        BeanUtils.copyProperties(truckRepairRecordDTO,truckRepairRecord);
+        Long total = this.truckRepairRecordService.getTruckRepairRecordByConditionCount(truckRepairRecord);
+        return DataResult.successByTotalData(truckRepairRecords, total);
+    }
 }
 

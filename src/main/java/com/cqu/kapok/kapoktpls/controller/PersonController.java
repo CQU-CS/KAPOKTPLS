@@ -1,7 +1,11 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.entity.Company;
+import com.cqu.kapok.kapoktpls.entity.MaterialSale;
 import com.cqu.kapok.kapoktpls.entity.Person;
+import com.cqu.kapok.kapoktpls.service.CompanyService;
 import com.cqu.kapok.kapoktpls.service.PersonService;
+import com.cqu.kapok.kapoktpls.service.impl.CompanyServiceImpl;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -9,7 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (Person)表控制层
@@ -27,15 +34,30 @@ public class PersonController {
     private PersonService personService;
 
     /**
-     * 分页查询
-     *
-     * @param person 筛选条件
-     * @param pageRequest      分页对象
-     * @return 查询结果
+     * 公司
      */
-    @GetMapping
-    public ResponseEntity<Page<Person>> queryByPage(Person person, PageRequest pageRequest) {
-        return ResponseEntity.ok(this.personService.queryByPage(person, pageRequest));
+    @Resource
+    private CompanyService companyService;
+
+    /**
+     * 分页查询
+     * @param page
+     * @param size
+     * @return
+     */
+    @GetMapping("queryByPage")
+    public DataResult queryByPage(@RequestParam Integer page,@RequestParam Integer size) {
+        PageRequest pageRequest = PageRequest.of(page-1,size);
+        Person person = new Person();
+        Map<String,Object> map = new HashMap<>();
+        List<Person> persons = this.personService.queryByPage(person, pageRequest).getContent();
+        List<String> companies = new ArrayList<>();
+        map.put("persons",persons);
+        for(int i=0;i<persons.size();i++) {
+            companies.add(this.companyService.queryById(persons.get(i).getCompanyId()).getCompanyName());
+        }
+        map.put("companies",companies);
+        return DataResult.successByData(map);
     }
 
     /**
@@ -56,8 +78,8 @@ public class PersonController {
      * @return 新增结果
      */
     @PostMapping
-    public ResponseEntity<Person> add(Person person) {
-        return ResponseEntity.ok(this.personService.insert(person));
+    public DataResult add(@RequestBody Person person) {
+        return DataResult.successByData(this.personService.insert(person));
     }
 
     /**
@@ -67,8 +89,8 @@ public class PersonController {
      * @return 编辑结果
      */
     @PutMapping
-    public ResponseEntity<Person> edit(Person person) {
-        return ResponseEntity.ok(this.personService.update(person));
+    public DataResult edit(@RequestBody Person person) {
+        return DataResult.successByData(this.personService.update(person));
     }
 
     /**
@@ -78,8 +100,8 @@ public class PersonController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.personService.deleteById(id));
+    public DataResult deleteById(Integer id) {
+        return DataResult.successByData(this.personService.deleteById(id));
     }
 
     /**
@@ -88,9 +110,8 @@ public class PersonController {
      * @return
      */
     @PostMapping("queryByPerson")
-    DataResult<List<Person>> queryByPerson(Person person){
-
-        return DataResult.successByDatas(this.personService.queryByPerson(person)) ;
+    DataResult queryByPerson(@RequestBody Person person){
+        return DataResult.successByData(this.personService.queryByPerson(person)) ;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.entity.MaterialSale;
 import com.cqu.kapok.kapoktpls.entity.MaterialUse;
 import com.cqu.kapok.kapoktpls.service.MaterialUseService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
@@ -27,14 +28,15 @@ public class MaterialUseController {
 
     /**
      * 分页查询
-     *
-     * @param materialUse 筛选条件
-     * @param pageRequest      分页对象
-     * @return 查询结果
+     * @param page
+     * @param size
+     * @return
      */
-    @GetMapping
-    public ResponseEntity<Page<MaterialUse>> queryByPage(MaterialUse materialUse, PageRequest pageRequest) {
-        return ResponseEntity.ok(this.materialUseService.queryByPage(materialUse, pageRequest));
+    @GetMapping("queryByPage")
+    public DataResult queryByPage(@RequestParam Integer page,@RequestParam Integer size) {
+        PageRequest pageRequest = PageRequest.of(page-1,size);
+        MaterialUse materialUse = new MaterialUse();
+        return DataResult.successByData(this.materialUseService.queryByPage(materialUse, pageRequest));
     }
 
     /**

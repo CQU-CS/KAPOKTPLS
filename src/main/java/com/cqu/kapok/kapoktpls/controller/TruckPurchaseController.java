@@ -1,9 +1,12 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.dto.TruckDTO;
+import com.cqu.kapok.kapoktpls.dto.TruckPurchaseDTO;
 import com.cqu.kapok.kapoktpls.entity.Truck;
 import com.cqu.kapok.kapoktpls.entity.TruckPurchase;
 import com.cqu.kapok.kapoktpls.service.TruckPurchaseService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -51,13 +54,14 @@ public class TruckPurchaseController {
     }
 
     /**
+     * 通过实体类查询
      *
      * @param truckPurchase
      * @return
      */
     @PostMapping("queryByTruckPurchase")
     public DataResult<List<TruckPurchase>> queryByTruckPurchase(TruckPurchase truckPurchase){
-        return this.truckPurchaseService.queryByTruck(truckPurchase);
+        return DataResult.successByDatas(this.truckPurchaseService.queryByTruck(truckPurchase));
     }
 
     /**
@@ -93,5 +97,20 @@ public class TruckPurchaseController {
         return ResponseEntity.ok(this.truckPurchaseService.deleteById(id));
     }
 
+    /**
+     * 通过truckPurchaseDTO分类查询
+     *
+     * @param truckPurchaseDTO
+     * @return
+     */
+    @PostMapping("queryByTruckPurchaseDTO")
+    DataResult queryByTruckPurchaseDTO(@RequestBody TruckPurchaseDTO truckPurchaseDTO){
+        truckPurchaseDTO.setPage((truckPurchaseDTO.getPage() - 1) * truckPurchaseDTO.getLimit());
+        List<TruckPurchase> truckPurchases =this.truckPurchaseService.queryByTruckPurchaseDTO(truckPurchaseDTO);
+        TruckPurchase truckPurchase = new TruckPurchase();
+        BeanUtils.copyProperties(truckPurchaseDTO,truckPurchase);
+        Long total = this.truckPurchaseService.getTruckPurchaseByConditionCount(truckPurchase);
+        return DataResult.successByTotalData(truckPurchases, total);
+    }
 }
 

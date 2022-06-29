@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.service.impl;
 
+import com.cqu.kapok.kapoktpls.dto.TruckRepairRecordDTO;
 import com.cqu.kapok.kapoktpls.entity.TruckRepairRecord;
 import com.cqu.kapok.kapoktpls.dao.TruckRepairRecordDao;
 import com.cqu.kapok.kapoktpls.service.TruckRepairRecordService;
@@ -88,7 +89,27 @@ public class TruckRepairRecordServiceImpl implements TruckRepairRecordService {
      * @return
      */
     @Override
-    public DataResult<List<TruckRepairRecord>> queryByTruckRepairRecord(TruckRepairRecord truckRepairRecord) {
+    public List<TruckRepairRecord> queryByTruckRepairRecord(TruckRepairRecord truckRepairRecord) {
         return this.truckRepairRecordDao.queryByTruckRepairRecord(truckRepairRecord);
+    }
+
+    /**
+     *
+     * @param truckRepairRecordDTO
+     * @return
+     */
+    @Override
+    public List<TruckRepairRecord> queryByTruckRepairRecordDTO(TruckRepairRecordDTO truckRepairRecordDTO) {
+        return this.truckRepairRecordDao.queryByTruckRepairRecordDTO(truckRepairRecordDTO);
+    }
+
+    /**
+     *
+     * @param truckRepairRecord
+     * @return
+     */
+    @Override
+    public Long getTruckRepairRecordByConditionCount(TruckRepairRecord truckRepairRecord) {
+        return this.truckRepairRecordDao.getTruckRepairRecordByConditionCount(truckRepairRecord);
     }
 }

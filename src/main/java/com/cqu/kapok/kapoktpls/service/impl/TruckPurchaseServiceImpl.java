@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.service.impl;
 
+import com.cqu.kapok.kapoktpls.dto.TruckPurchaseDTO;
 import com.cqu.kapok.kapoktpls.entity.TruckPurchase;
 import com.cqu.kapok.kapoktpls.dao.TruckPurchaseDao;
 import com.cqu.kapok.kapoktpls.service.TruckPurchaseService;
@@ -82,8 +83,33 @@ public class TruckPurchaseServiceImpl implements TruckPurchaseService {
         return this.truckPurchaseDao.deleteById(truckPurchaseId) > 0;
     }
 
+    /**
+     *
+     * @param truckPurchase
+     * @return
+     */
     @Override
-    public DataResult<List<TruckPurchase>> queryByTruck(TruckPurchase truckPurchase) {
+    public List<TruckPurchase> queryByTruck(TruckPurchase truckPurchase) {
         return this.truckPurchaseDao.queryByTruckPurchase(truckPurchase);
+    }
+
+    /**
+     *
+     * @param truckPurchaseDTO
+     * @return
+     */
+    @Override
+    public List<TruckPurchase> queryByTruckPurchaseDTO(TruckPurchaseDTO truckPurchaseDTO) {
+        return this.truckPurchaseDao.queryByTruckPurchaseDTO(truckPurchaseDTO);
+    }
+
+    /**
+     *
+     * @param truckPurchase
+     * @return
+     */
+    @Override
+    public Long getTruckPurchaseByConditionCount(TruckPurchase truckPurchase) {
+        return this.truckPurchaseDao.getTruckPurchaseByConditionCount(truckPurchase);
     }
 }

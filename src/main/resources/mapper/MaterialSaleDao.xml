@@ -27,26 +27,26 @@
           material_sale_id, material_id, company_id, material_sale_date, material_sale_num, material_sale_price, pay_status
         from material_sale
         <where>
-            <if test="materialSaleId != null">
-                and material_sale_id = #{materialSaleId}
+            <if test="materialSale.materialSaleId != null">
+                and material_sale_id = #{materialSale.materialSaleId}
             </if>
-            <if test="materialId != null">
-                and material_id = #{materialId}
+            <if test="materialSale.materialId != null">
+                and material_id = #{materialSale.materialId}
             </if>
-            <if test="companyId != null">
-                and company_id = #{companyId}
+            <if test="materialSale.companyId != null">
+                and company_id = #{materialSale.companyId}
             </if>
-            <if test="materialSaleDate != null">
-                and material_sale_date = #{materialSaleDate}
+            <if test="materialSale.materialSaleDate != null">
+                and material_sale_date = #{materialSale.materialSaleDate}
             </if>
-            <if test="materialSaleNum != null">
-                and material_sale_num = #{materialSaleNum}
+            <if test="materialSale.materialSaleNum != null">
+                and material_sale_num = #{materialSale.materialSaleNum}
             </if>
-            <if test="materialSalePrice != null">
-                and material_sale_price = #{materialSalePrice}
+            <if test="materialSale.materialSalePrice != null">
+                and material_sale_price = #{materialSale.materialSalePrice}
             </if>
-            <if test="payStatus != null">
-                and pay_status = #{payStatus}
+            <if test="materialSale.payStatus != null">
+                and pay_status = #{materialSale.payStatus}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}

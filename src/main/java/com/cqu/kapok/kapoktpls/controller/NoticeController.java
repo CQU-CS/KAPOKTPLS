@@ -1,6 +1,7 @@
 package com.cqu.kapok.kapoktpls.controller;
 
 import com.cqu.kapok.kapoktpls.dao.NoticeDao;
+import com.cqu.kapok.kapoktpls.entity.MaterialSale;
 import com.cqu.kapok.kapoktpls.entity.Notice;
 import com.cqu.kapok.kapoktpls.service.NoticeService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
@@ -28,14 +29,15 @@ public class NoticeController {
 
     /**
      * 分页查询
-     *
-     * @param notice 筛选条件
-     * @param pageRequest      分页对象
-     * @return 查询结果
+     * @param page
+     * @param size
+     * @return
      */
-    @GetMapping
-    public ResponseEntity<Page<Notice>> queryByPage(Notice notice, PageRequest pageRequest) {
-        return ResponseEntity.ok(this.noticeService.queryByPage(notice, pageRequest));
+    @GetMapping("queryByPage")
+    public DataResult queryByPage(@RequestParam Integer page,@RequestParam Integer size) {
+        PageRequest pageRequest = PageRequest.of(page-1,size);
+        Notice notice = new Notice();
+        return DataResult.successByData(this.noticeService.queryByPage(notice, pageRequest));
     }
 
     /**

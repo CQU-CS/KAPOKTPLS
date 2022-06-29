@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.dao;
 
+import com.cqu.kapok.kapoktpls.dto.TruckRepairRecordDTO;
 import com.cqu.kapok.kapoktpls.entity.TruckRepairRecord;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.apache.ibatis.annotations.Param;
@@ -85,6 +86,21 @@ public interface TruckRepairRecordDao {
      * @param truckRepairRecord
      * @return
      */
-    DataResult<List<TruckRepairRecord>> queryByTruckRepairRecord(TruckRepairRecord truckRepairRecord);
+   List<TruckRepairRecord> queryByTruckRepairRecord(TruckRepairRecord truckRepairRecord);
+
+    /**
+     *
+     * @param truckRepairRecordDTO
+     * @return
+     */
+    List<TruckRepairRecord> queryByTruckRepairRecordDTO(TruckRepairRecordDTO truckRepairRecordDTO);
+
+    /**
+     *
+     * @param truckRepairRecord
+     * @return
+     */
+    Long getTruckRepairRecordByConditionCount(TruckRepairRecord truckRepairRecord);
+
 }
 
