@@ -124,12 +124,13 @@ public class CompanyController {
      */
     @PostMapping("deleteByCompanyId")
     public DataResult deleteById(Integer id) {
-        try {
-            boolean b = this.companyService.deleteById(id);
-        } catch (Exception e) {
-            return DataResult.errByErrCode(Code.COMPANY_DELETE_ERROR);
+        System.out.println("id:"+id);
+        if(this.companyService.deleteById(id)){
+            return DataResult.succ();
+        }else{
+            return DataResult.errByErrCode(20001);
         }
-        return DataResult.errByErrCode(Code.SUCCESS);
+
     }
     /**
      * 通过CompanyDTO分页查询
