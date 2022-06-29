@@ -40,14 +40,51 @@
         limit #{pageable.offset}, #{pageable.pageSize}
     </select>
 
-    <!--通过实体作为筛选条件查询-->
-    <select id="queryAll" resultMap="BaseResultMap">
+
+    <!--查询指定行数据-->
+    <select id="queryAll" resultMap="BaseResultMap" parameterType="com.cqu.kapok.kapoktpls.dto.GoodsInventoryDTO">
         select
-          goods_inventory_id, goods_id, address_id, goods_inventory_num
-        from TESTKAPOK.goods_inventory
+        goods_inventory_id, goods_id, address_id, goods_inventory_num
+        from goods_inventory
+        <where>
+            <if test="goodsInventoryId != null">
+                and goods_inventory_id = #{goodsInventoryId}
+            </if>
+            <if test="goodsId != null">
+                and goods_id = #{goodsId}
+            </if>
+            <if test="addressId != null">
+                and address_id = #{addressId}
+            </if>
+            <if test="goodsInventoryNum != null">
+                and goods_inventory_num = #{goodsInventoryNum}
+            </if>
+        </where>
+        limit #{page}, #{limit}
     </select>
+
     <!--统计总行数-->
     <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from goods_inventory
+        <where>
+            <if test="goodsInventoryId != null">
+                and goods_inventory_id = #{goodsInventoryId}
+            </if>
+            <if test="goodsId != null">
+                and goods_id = #{goodsId}
+            </if>
+            <if test="addressId != null">
+                and address_id = #{addressId}
+            </if>
+            <if test="goodsInventoryNum != null">
+                and goods_inventory_num = #{goodsInventoryNum}
+            </if>
+        </where>
+    </select>
+
+    <!--统计总行数-->
+    <select id="getGoodsByConditionCount" resultType="java.lang.Long">
         select count(1)
         from goods_inventory
         <where>

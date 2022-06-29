@@ -1,19 +1,25 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.dto.GoodsDTO;
+import com.cqu.kapok.kapoktpls.dto.GoodsInventoryDTO;
+import com.cqu.kapok.kapoktpls.entity.Goods;
 import com.cqu.kapok.kapoktpls.entity.GoodsInventory;
 import com.cqu.kapok.kapoktpls.service.GoodsInventoryService;
+import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (GoodsInventory)表控制层
  *
  * @author makejava
- * @since 2022-06-28 09:36:56
+ * @since 2022-06-28 17:21:08
  */
 @RestController
 @RequestMapping("goodsInventory")
@@ -53,7 +59,7 @@ public class GoodsInventoryController {
      * @param goodsInventory 实体
      * @return 新增结果
      */
-    @PostMapping
+    @PostMapping("addGoodsInventory")
     public ResponseEntity<GoodsInventory> add(GoodsInventory goodsInventory) {
         return ResponseEntity.ok(this.goodsInventoryService.insert(goodsInventory));
     }
@@ -64,7 +70,7 @@ public class GoodsInventoryController {
      * @param goodsInventory 实体
      * @return 编辑结果
      */
-    @PutMapping
+    @PutMapping("editGoodsInventory")
     public ResponseEntity<GoodsInventory> edit(GoodsInventory goodsInventory) {
         return ResponseEntity.ok(this.goodsInventoryService.update(goodsInventory));
     }
@@ -75,9 +81,19 @@ public class GoodsInventoryController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
+    @DeleteMapping("deleteGoodsInventory")
     public ResponseEntity<Boolean> deleteById(Integer id) {
         return ResponseEntity.ok(this.goodsInventoryService.deleteById(id));
+    }
+
+    @PostMapping("queryByGoodsInventory")
+    DataResult queryByGoods(@RequestBody GoodsInventoryDTO goodsInventoryDTO){
+        goodsInventoryDTO.setPage((goodsInventoryDTO.getPage() - 1) * goodsInventoryDTO.getLimit());
+        List<GoodsInventory> goodsInventorys =this.goodsInventoryService.queryAll(goodsInventoryDTO);
+        GoodsInventory goodsInventory = new GoodsInventory();
+        BeanUtils.copyProperties(goodsInventoryDTO,goodsInventory);
+        Long total = this.goodsInventoryService.getGoodsByConditionCount(goodsInventory);
+        return DataResult.successByTotalData(goodsInventorys, total);
     }
 
 }

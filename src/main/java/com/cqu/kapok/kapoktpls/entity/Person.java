@@ -1,5 +1,8 @@
 package com.cqu.kapok.kapoktpls.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -26,6 +29,8 @@ public class Person implements Serializable {
     /**
      * 出生日期
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date personBirth;
     /**
      * 移动电话号码
