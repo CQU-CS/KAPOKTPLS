@@ -1,6 +1,8 @@
 package com.cqu.kapok.kapoktpls.service;
 
+import com.cqu.kapok.kapoktpls.dto.AddressDTO;
 import com.cqu.kapok.kapoktpls.entity.Address;
+import com.cqu.kapok.kapoktpls.entity.Goods;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -62,4 +64,18 @@ public interface AddressService {
      * @return
      */
     List<Address> queryByAddress(Address address);
+
+    /**
+     * 分页查询数量
+     * @param address
+     * @return
+     */
+    Long getAddressByConditionCount(Address address);
+
+    /**
+     * 分页查询
+     * @param addressDTO
+     * @return
+     */
+    List<Address> queryByAddressDTO(AddressDTO addressDTO);
 }

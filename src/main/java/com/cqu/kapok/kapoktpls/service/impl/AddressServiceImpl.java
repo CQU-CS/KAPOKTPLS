@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.service.impl;
 
+import com.cqu.kapok.kapoktpls.dto.AddressDTO;
 import com.cqu.kapok.kapoktpls.entity.Address;
 import com.cqu.kapok.kapoktpls.dao.AddressDao;
 import com.cqu.kapok.kapoktpls.service.AddressService;
@@ -91,4 +92,23 @@ public class AddressServiceImpl implements AddressService {
     public List<Address> queryByAddress(Address address) {
         return this.addressDao.queryByAddress(address);
     }
+
+    /**
+     * 分页查询数量
+     * @param address
+     * @return
+     */
+    @Override
+    public Long getAddressByConditionCount(Address address) {
+        return this.addressDao.getAddressByConditionCount(address);
+    }
+
+    /**
+     *     分页查询
+     */
+    @Override
+    public List<Address> queryByAddressDTO(AddressDTO addressDTO) {
+        return this.addressDao.queryByAddressDTO(addressDTO);
+    }
+
 }

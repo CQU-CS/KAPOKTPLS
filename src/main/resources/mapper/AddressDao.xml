@@ -73,6 +73,37 @@
             </if>
         </where>
     </select>
+    <select id="getAddressByConditionCount" resultType="java.lang.Long">
+        select count(1)
+        from address
+        <where>
+            <if test="addressId != null">
+                and address_id = #{addressId}
+            </if>
+            <if test="addressContent != null and addressContent != ''">
+                and address_content = #{addressContent}
+            </if>
+            <if test="addressLevel != null">
+                and address_level = #{addressLevel}
+            </if>
+        </where>
+    </select>
+    <select id="queryByAddressDTO" resultType="com.cqu.kapok.kapoktpls.entity.Address">
+        select *
+        from address
+        <where>
+            <if test="addressId != null">
+                and address_id = #{addressId}
+            </if>
+            <if test="addressContent != null and addressContent != ''">
+                and address_content = #{addressContent}
+            </if>
+            <if test="addressLevel != null">
+                and address_level = #{addressLevel}
+            </if>
+        </where>
+        limit #{page}, #{limit}
+    </select>
 
 
     <!--新增所有列-->
