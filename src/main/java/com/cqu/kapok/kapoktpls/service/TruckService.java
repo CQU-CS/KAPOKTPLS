@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.service;
 
+import com.cqu.kapok.kapoktpls.dto.TruckDTO;
 import com.cqu.kapok.kapoktpls.entity.Truck;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.data.domain.Page;
@@ -62,5 +63,19 @@ public interface TruckService {
      * @param truck
      * @return
      */
-    DataResult<List<Truck>> queryByTruck(Truck truck);
+    List<Truck> queryByTruck(Truck truck);
+
+    /**
+     *
+     * @param truckDTO
+     * @return
+     */
+    List<Truck> queryByTruckDTO(TruckDTO truckDTO);
+
+    /**
+     *
+     * @param truck
+     * @return
+     */
+    Long getTruckByConditionCount(Truck truck);
 }

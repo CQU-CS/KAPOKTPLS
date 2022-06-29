@@ -119,8 +119,53 @@
         delete from truck where truck_id = #{truckId}
     </delete>
 
-    <select id="queryByTruck" resultType="java.util.List">
+    <select id="queryByTruck" resultType="com.cqu.kapok.kapoktpls.entity.Truck">
         select *
+        from truck
+        <where>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="truckPlate != null and truckPlate != ''">
+                and truck_plate = #{truckPlate}
+            </if>
+            <if test="truckLoad != null">
+                and truck_load = #{truckLoad}
+            </if>
+            <if test="truckType != null and truckType != ''">
+                and truck_type = #{truckType}
+            </if>
+            <if test="personId != null">
+                and person_id = #{personId}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryByTruckDTO" resultMap="BaseResultMap">
+        select *
+        from truck
+        <where>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="truckPlate != null and truckPlate != ''">
+                and truck_plate = #{truckPlate}
+            </if>
+            <if test="truckLoad != null">
+                and truck_load = #{truckLoad}
+            </if>
+            <if test="truckType != null and truckType != ''">
+                and truck_type = #{truckType}
+            </if>
+            <if test="personId != null">
+                and person_id = #{personId}
+            </if>
+        </where>
+        limit #{page}, #{limit}
+    </select>
+
+    <select id="getTruckByConditionCount" resultType="java.lang.Long">
+        select count(1)
         from truck
         <where>
             <if test="truckId != null">

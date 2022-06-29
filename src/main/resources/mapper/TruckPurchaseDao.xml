@@ -141,8 +141,65 @@
         delete from truck_purchase where truck_purchase_id = #{truckPurchaseId}
     </delete>
 
-    <select id="queryByTruckPurchase" resultType="java.util.List">
+    <select id="queryByTruckPurchase" resultType="com.cqu.kapok.kapoktpls.entity.TruckPurchase">
         select *
+        from truck_purchase
+        <where>
+            <if test="truckPurchaseId != null">
+                and truck_purchase_id = #{truckPurchaseId}
+            </if>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="truckPurchaseNum != null">
+                and truck_purchase_num = #{truckPurchaseNum}
+            </if>
+            <if test="truckPurchasePrice != null">
+                and truck_purchase_price = #{truckPurchasePrice}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="truckPurchaseDate != null">
+                and truck_purchase_date = #{truckPurchaseDate}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryByTruckPurchaseDTO" resultMap="BaseResultMap">
+        select *
+        from truck_purchase
+        <where>
+            <if test="truckPurchaseId != null">
+                and truck_purchase_id = #{truckPurchaseId}
+            </if>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="truckPurchaseNum != null">
+                and truck_purchase_num = #{truckPurchaseNum}
+            </if>
+            <if test="truckPurchasePrice != null">
+                and truck_purchase_price = #{truckPurchasePrice}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="truckPurchaseDate != null">
+                and truck_purchase_date = #{truckPurchaseDate}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+        limit #{page}, #{limit}
+    </select>
+
+    <select id="getTruckPurchaseByConditionCount" resultType="java.lang.Long">
+        select count(1)
         from truck_purchase
         <where>
             <if test="truckPurchaseId != null">

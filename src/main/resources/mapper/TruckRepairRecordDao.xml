@@ -108,8 +108,47 @@
         delete from truck_repair_record where truck_repair_record_id = #{truckRepairRecordId}
     </delete>
 
-    <select id="queryByTruckRepairRecord" resultType="java.util.List">
+    <select id="queryByTruckRepairRecord" resultType="com.cqu.kapok.kapoktpls.entity.TruckRepairRecord">
         select *
+        from truck_repair_record
+        <where>
+            <if test="truckRepairRecordId != null">
+                and truck_repair_record_id = #{truckRepairRecordId}
+            </if>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="truckRepairRecordStartTime != null">
+                and truck_repair_record_start_time = #{truckRepairRecordStartTime}
+            </if>
+            <if test="truckRepairRecordEndTime != null">
+                and truck_repair_record_end_time = #{truckRepairRecordEndTime}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryByTruckRepairRecordDTO" resultMap="BaseResultMap">
+        select *
+        from truck_repair_record
+        <where>
+            <if test="truckRepairRecordId != null">
+                and truck_repair_record_id = #{truckRepairRecordId}
+            </if>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="truckRepairRecordStartTime != null">
+                and truck_repair_record_start_time = #{truckRepairRecordStartTime}
+            </if>
+            <if test="truckRepairRecordEndTime != null">
+                and truck_repair_record_end_time = #{truckRepairRecordEndTime}
+            </if>
+        </where>
+        limit #{page}, #{limit}
+    </select>
+
+    <select id="getTruckRepairRecordByConditionCount" resultType="java.lang.Long">
+        select count(1)
         from truck_repair_record
         <where>
             <if test="truckRepairRecordId != null">
