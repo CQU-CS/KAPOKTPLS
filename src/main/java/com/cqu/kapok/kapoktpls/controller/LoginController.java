@@ -97,6 +97,8 @@ public class LoginController {
         //返回数据
         Map<String,String> map = new HashMap<>();
         map.put("token",token);
+        map.put("nickname",loginAccount.getAccountNickname());
+//        localStorage.setItem("user", JSON.stringify(res.data))// 存储用户信息到浏览器
         return DataResult.successByData(map);
     }
 
