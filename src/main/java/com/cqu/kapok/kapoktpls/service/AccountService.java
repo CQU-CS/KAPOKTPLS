@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.service;
 
+import com.cqu.kapok.kapoktpls.dto.AccountDTO;
 import com.cqu.kapok.kapoktpls.entity.Account;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.data.domain.Page;
@@ -76,4 +77,18 @@ public interface AccountService {
      * @return
      */
     Account queryByToken(String token);
+
+    /**
+     * 分页查询
+     * @param accountDTO
+     * @return
+     */
+    List<Account> queryByAccountDTO(AccountDTO accountDTO);
+
+    /**
+     * 分页查询数量
+     * @param account1
+     * @return
+     */
+    Long getAccountByConditionCount(Account account1);
 }

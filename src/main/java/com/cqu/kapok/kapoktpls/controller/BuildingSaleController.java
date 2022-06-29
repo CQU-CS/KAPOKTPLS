@@ -1,9 +1,13 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.dto.BuildingDTO;
+import com.cqu.kapok.kapoktpls.dto.BuildingSaleDTO;
+import com.cqu.kapok.kapoktpls.entity.Building;
 import com.cqu.kapok.kapoktpls.entity.BuildingRent;
 import com.cqu.kapok.kapoktpls.entity.BuildingSale;
 import com.cqu.kapok.kapoktpls.service.BuildingSaleService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -91,6 +95,21 @@ public class BuildingSaleController {
     @PostMapping("queryByBuildingSale")
     public DataResult<List<BuildingSale>> queryByBuildingSale(BuildingSale buildingSale){
         return DataResult.successByDatas(this.buildingSaleService.queryByBuildingSale(buildingSale));
+    }
+
+    /**
+     * 通过BuildingSaleDTO分页查询
+     * @param buildingSaleDTO
+     * @return 查询结果列表和查询总数
+     */
+    @PostMapping("queryByBuildingSaleDTO")
+    DataResult queryByBuildingSaleDTO(@RequestBody BuildingSaleDTO buildingSaleDTO){
+        buildingSaleDTO.setPage((buildingSaleDTO.getPage() - 1) * buildingSaleDTO.getLimit());
+        List<BuildingSale> buildingSales =this.buildingSaleService.queryByBuildingSaleDTO(buildingSaleDTO);
+        BuildingSale buildingSale = new BuildingSale();
+        BeanUtils.copyProperties(buildingSaleDTO,buildingSale);
+        Long total = this.buildingSaleService.getBuildingSaleByConditionCount(buildingSale);
+        return DataResult.successByTotalData(buildingSales, total);
     }
 
 }

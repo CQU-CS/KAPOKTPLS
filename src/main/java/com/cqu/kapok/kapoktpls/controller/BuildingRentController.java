@@ -1,9 +1,12 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.dto.BuildingDTO;
+import com.cqu.kapok.kapoktpls.dto.BuildingRentDTO;
 import com.cqu.kapok.kapoktpls.entity.Building;
 import com.cqu.kapok.kapoktpls.entity.BuildingRent;
 import com.cqu.kapok.kapoktpls.service.BuildingRentService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -91,6 +94,21 @@ public class BuildingRentController {
     @PostMapping("queryByBuildingRent")
     public DataResult<List<BuildingRent>> queryByBuildingRent(BuildingRent buildingRent){
         return DataResult.successByDatas(this.buildingRentService.queryByBuildingRent(buildingRent));
+    }
+
+    /**
+     * 通过BuildingRentDTO分页查询
+     * @param buildingRentDTO
+     * @return 查询结果列表和查询总数
+     */
+    @PostMapping("queryByBuildingRentDTO")
+    DataResult queryByBuildingRentDTO(@RequestBody BuildingRentDTO buildingRentDTO){
+        buildingRentDTO.setPage((buildingRentDTO.getPage() - 1) * buildingRentDTO.getLimit());
+        List<BuildingRent> buildingRents =this.buildingRentService.queryByBuildingRentDTO(buildingRentDTO);
+        BuildingRent buildingRent = new BuildingRent();
+        BeanUtils.copyProperties(buildingRentDTO,buildingRent);
+        Long total = this.buildingRentService.getBuildingRentByConditionCount(buildingRent);
+        return DataResult.successByTotalData(buildingRents, total);
     }
 
 }

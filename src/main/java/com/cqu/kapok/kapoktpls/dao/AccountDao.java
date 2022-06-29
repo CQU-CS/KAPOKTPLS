@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.dao;
 
+import com.cqu.kapok.kapoktpls.dto.AccountDTO;
 import com.cqu.kapok.kapoktpls.entity.Account;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.apache.ibatis.annotations.Param;
@@ -100,5 +101,19 @@ public interface AccountDao {
      * @return
      */
     Account queryByToken(String token);
+
+    /**
+     * 分页查询
+     * @param accountDTO
+     * @return
+     */
+    List<Account> queryByAccountDTO(AccountDTO accountDTO);
+
+    /**
+     * 分页数量
+     * @param account
+     * @return
+     */
+    Long getAccountByConditionCount(Account account);
 }
 

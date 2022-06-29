@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.service.impl;
 
+import com.cqu.kapok.kapoktpls.dto.AdvertisementDTO;
 import com.cqu.kapok.kapoktpls.entity.Advertisement;
 import com.cqu.kapok.kapoktpls.dao.AdvertisementDao;
 import com.cqu.kapok.kapoktpls.service.AdvertisementService;
@@ -91,5 +92,25 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     @Override
     public List<Advertisement> queryByAdvertisement(Advertisement advertisement) {
         return this.advertisementDao.queryByAdvertisement(advertisement);
+    }
+
+    /**
+     * 分页查询
+     * @param advertisementDTO
+     * @return
+     */
+    @Override
+    public List<Advertisement> queryByAdvertisementDTO(AdvertisementDTO advertisementDTO) {
+        return this.advertisementDao.queryByAdvertisementDTO(advertisementDTO);
+    }
+
+    /**
+     * 分页查询数量
+     * @param advertisement
+     * @return
+     */
+    @Override
+    public Long getAdvertisementByConditionCount(Advertisement advertisement) {
+        return this.advertisementDao.getAdvertisementByConditionCount(advertisement);
     }
 }

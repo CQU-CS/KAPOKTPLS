@@ -1,9 +1,13 @@
 package com.cqu.kapok.kapoktpls.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cqu.kapok.kapoktpls.dto.AccountDTO;
+import com.cqu.kapok.kapoktpls.dto.AddressDTO;
 import com.cqu.kapok.kapoktpls.entity.Account;
+import com.cqu.kapok.kapoktpls.entity.Address;
 import com.cqu.kapok.kapoktpls.service.AccountService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -92,6 +96,24 @@ public class AccountController {
     public DataResult<List<Account>> queryByAccount(Account account){
         return DataResult.successByDatas(this.accountService.queryByAccount(account));
     }
+
+
+    /**
+     * 通过AccountDTO分页查询
+     * @param accountDTO
+     * @return 查询结果列表和查询总数
+     */
+    @PostMapping("queryByAccountDTO")
+    DataResult queryByAccountDTO(@RequestBody AccountDTO accountDTO){
+        accountDTO.setPage((accountDTO.getPage() - 1) * accountDTO.getLimit());
+        List<Account> accounts =this.accountService.queryByAccountDTO(accountDTO);
+        Account account1 = new Account();
+        BeanUtils.copyProperties(accountDTO,account1);
+        Long total = this.accountService.getAccountByConditionCount(account1);
+        return DataResult.successByTotalData(accounts, total);
+    }
+
+
 
 }
 

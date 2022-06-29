@@ -103,7 +103,7 @@ public class AddressController {
      * @return 查询结果列表和查询总数
      */
     @PostMapping("queryByAddressDTO")
-    DataResult queryByGoods(@RequestBody AddressDTO addressDTO){
+    DataResult queryByAddressDTO(@RequestBody AddressDTO addressDTO){
         addressDTO.setPage((addressDTO.getPage() - 1) * addressDTO.getLimit());
         List<Address> addresses =this.addressService.queryByAddressDTO(addressDTO);
         Address address1 = new Address();

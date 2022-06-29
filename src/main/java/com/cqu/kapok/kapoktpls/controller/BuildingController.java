@@ -1,9 +1,13 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.dto.AddressDTO;
+import com.cqu.kapok.kapoktpls.dto.BuildingDTO;
+import com.cqu.kapok.kapoktpls.entity.Address;
 import com.cqu.kapok.kapoktpls.entity.Advertisement;
 import com.cqu.kapok.kapoktpls.entity.Building;
 import com.cqu.kapok.kapoktpls.service.BuildingService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -91,6 +95,21 @@ public class BuildingController {
     @PostMapping("queryByBuilding")
     public DataResult<List<Building>> queryByBuilding(Building building){
         return DataResult.successByDatas(this.buildingService.queryByBuilding(building));
+    }
+
+    /**
+     * 通过BuildingDTO分页查询
+     * @param buildingDTO
+     * @return 查询结果列表和查询总数
+     */
+    @PostMapping("queryByBuildingDTO")
+    DataResult queryByBuildingDTO(@RequestBody BuildingDTO buildingDTO){
+        buildingDTO.setPage((buildingDTO.getPage() - 1) * buildingDTO.getLimit());
+        List<Building> buildings =this.buildingService.queryByBuildingDTO(buildingDTO);
+        Building building = new Building();
+        BeanUtils.copyProperties(buildingDTO,building);
+        Long total = this.buildingService.getBuildingByConditionCount(building);
+        return DataResult.successByTotalData(buildings, total);
     }
 
 }

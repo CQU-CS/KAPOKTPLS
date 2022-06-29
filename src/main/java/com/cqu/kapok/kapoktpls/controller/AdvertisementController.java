@@ -1,9 +1,13 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.dto.AccountDTO;
+import com.cqu.kapok.kapoktpls.dto.AdvertisementDTO;
+import com.cqu.kapok.kapoktpls.entity.Account;
 import com.cqu.kapok.kapoktpls.entity.Address;
 import com.cqu.kapok.kapoktpls.entity.Advertisement;
 import com.cqu.kapok.kapoktpls.service.AdvertisementService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -92,6 +96,22 @@ public class AdvertisementController {
     @PostMapping("queryByAdvertisement")
     public DataResult<List<Advertisement>> queryByAdvertisement(Advertisement advertisement){
         return  DataResult.successByDatas(this.advertisementService.queryByAdvertisement(advertisement));
+    }
+
+    
+    /**
+     * 通过AdvertisementDTO分页查询
+     * @param advertisementDTO
+     * @return 查询结果列表和查询总数
+     */
+    @PostMapping("queryByAdvertisementDTO")
+    DataResult queryByAdvertisementDTO(@RequestBody AdvertisementDTO advertisementDTO){
+        advertisementDTO.setPage((advertisementDTO.getPage() - 1) * advertisementDTO.getLimit());
+        List<Advertisement> advertisements =this.advertisementService.queryByAdvertisementDTO(advertisementDTO);
+        Advertisement advertisement = new Advertisement();
+        BeanUtils.copyProperties(advertisementDTO,advertisement);
+        Long total = this.advertisementService.getAdvertisementByConditionCount(advertisement);
+        return DataResult.successByTotalData(advertisements, total);
     }
 
 }
