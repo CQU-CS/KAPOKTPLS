@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.service.impl;
 
+import com.cqu.kapok.kapoktpls.dto.BuildingRentDTO;
 import com.cqu.kapok.kapoktpls.entity.BuildingRent;
 import com.cqu.kapok.kapoktpls.dao.BuildingRentDao;
 import com.cqu.kapok.kapoktpls.service.BuildingRentService;
@@ -90,5 +91,20 @@ public class BuildingRentServiceImpl implements BuildingRentService {
     @Override
     public List<BuildingRent> queryByBuildingRent(BuildingRent buildingRent) {
         return this.buildingRentDao.queryByBuildingRent(buildingRent);
+    }
+
+    /**
+     * 分页查询
+     * @param buildingRentDTO
+     * @return
+     */
+    @Override
+    public List<BuildingRent> queryByBuildingRentDTO(BuildingRentDTO buildingRentDTO) {
+        return this.buildingRentDao.queryByBuildingRentDTO(buildingRentDTO);
+    }
+
+    @Override
+    public Long getBuildingRentByConditionCount(BuildingRent buildingRent) {
+        return this.buildingRentDao.getBuildingRentByConditionCount(buildingRent);
     }
 }

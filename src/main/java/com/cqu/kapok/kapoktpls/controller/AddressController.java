@@ -50,8 +50,8 @@ public class AddressController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public ResponseEntity<Address> queryById(@PathVariable("id") Integer id) {
-        return ResponseEntity.ok(this.addressService.queryById(id));
+    public DataResult queryById(@PathVariable("id") Integer id) {
+        return DataResult.successByData(this.addressService.queryById(id));
     }
 
     /**
@@ -61,8 +61,8 @@ public class AddressController {
      * @return 新增结果
      */
     @PostMapping
-    public ResponseEntity<Address> add(Address address) {
-        return ResponseEntity.ok(this.addressService.insert(address));
+    public DataResult add(Address address) {
+        return DataResult.successByData(this.addressService.insert(address));
     }
 
     /**
@@ -72,8 +72,8 @@ public class AddressController {
      * @return 编辑结果
      */
     @PutMapping
-    public ResponseEntity<Address> edit(Address address) {
-        return ResponseEntity.ok(this.addressService.update(address));
+    public DataResult edit(Address address) {
+        return DataResult.successByData(this.addressService.update(address));
     }
 
     /**
@@ -83,8 +83,8 @@ public class AddressController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.addressService.deleteById(id));
+    public DataResult deleteById(Integer id) {
+        return DataResult.successByData(this.addressService.deleteById(id));
     }
 
     /**
@@ -93,8 +93,8 @@ public class AddressController {
      * @return
      */
     @PostMapping("queryByAddress")
-    public DataResult<List<Address>> queryByAddress(Address address){
-        return DataResult.successByDatas(this.addressService.queryByAddress(address));
+    public DataResult queryByAddress(Address address){
+        return DataResult.successByData(this.addressService.queryByAddress(address));
     }
 
     /**
@@ -103,7 +103,7 @@ public class AddressController {
      * @return 查询结果列表和查询总数
      */
     @PostMapping("queryByAddressDTO")
-    DataResult queryByGoods(@RequestBody AddressDTO addressDTO){
+    DataResult queryByAddressDTO(@RequestBody AddressDTO addressDTO){
         addressDTO.setPage((addressDTO.getPage() - 1) * addressDTO.getLimit());
         List<Address> addresses =this.addressService.queryByAddressDTO(addressDTO);
         Address address1 = new Address();

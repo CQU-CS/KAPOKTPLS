@@ -11,4 +11,6 @@ public interface Code {
 	int LOGIN_NOT_EXIST	 = Errs.put(-3, "账号或密码错误");
 	//登录成功
 	int LOGIN_SUCCESS  = Errs.put(201, "登录成功");
+	//地址不存在
+	int ADDRESS_NOT_EXIST = Errs.put(-4, "地址不存在");
 }

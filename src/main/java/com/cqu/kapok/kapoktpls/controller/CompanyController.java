@@ -2,11 +2,13 @@ package com.cqu.kapok.kapoktpls.controller;
 
 import com.cqu.kapok.kapoktpls.dto.CarrierDTO;
 import com.cqu.kapok.kapoktpls.dto.CompanyDTO;
+import com.cqu.kapok.kapoktpls.entity.Address;
 import com.cqu.kapok.kapoktpls.entity.Carrier;
 import com.cqu.kapok.kapoktpls.entity.Company;
 import com.cqu.kapok.kapoktpls.service.AddressService;
 import com.cqu.kapok.kapoktpls.service.CompanyService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.utils.result.code.Code;
 import com.cqu.kapok.kapoktpls.vo.CompanyVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -61,23 +63,49 @@ public class CompanyController {
     /**
      * 新增数据
      *
-     * @param company 实体
+     * @param companyVo 实体
      * @return 新增结果
      */
     @PostMapping("addByCompany")
-    public ResponseEntity<Company> add(Company company) {
-        return ResponseEntity.ok(this.companyService.insert(company));
+    public DataResult add(@RequestBody CompanyVo companyVo) {
+        Company company = new Company();
+        Address address = new Address();
+        BeanUtils.copyProperties(companyVo, company);
+        if(companyVo.getAddressContent()!=null){
+            address.setAddressContent(companyVo.getAddressContent());
+            List<Address> addresses = this.addressService.queryByAddress(address);
+            if(addresses.size()==0){
+                return DataResult.errByErrCode(Code.ADDRESS_NOT_EXIST);
+            }
+            for (Address address1 : addresses) {
+                company.setAddressId(address1.getAddressId());
+            }
+        }
+        return  DataResult.successByData(this.companyService.insert(company));
     }
 
     /**
      * 编辑数据
      *
-     * @param company 实体
+     * @param companyVo 实体
      * @return 编辑结果
      */
     @PostMapping("editByCompany")
-    public ResponseEntity<Company> edit(Company company) {
-        return ResponseEntity.ok(this.companyService.update(company));
+    public DataResult edit(@RequestBody CompanyVo companyVo) {
+        Company company = new Company();
+        Address address = new Address();
+        BeanUtils.copyProperties(companyVo, company);
+        if(companyVo.getAddressContent()!=null){
+            address.setAddressContent(companyVo.getAddressContent());
+            List<Address> addresses = this.addressService.queryByAddress(address);
+            if(addresses.size()==0){
+                return DataResult.errByErrCode(Code.ADDRESS_NOT_EXIST);
+            }
+            for (Address address1 : addresses) {
+                company.setAddressId(address1.getAddressId());
+            }
+        }
+        return DataResult.successByData(this.companyService.update(company));
     }
 
     /**

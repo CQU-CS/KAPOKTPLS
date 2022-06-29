@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.service.impl;
 
+import com.cqu.kapok.kapoktpls.dto.TransportationTaskDTO;
 import com.cqu.kapok.kapoktpls.entity.TransportationTask;
 import com.cqu.kapok.kapoktpls.dao.TransportationTaskDao;
 import com.cqu.kapok.kapoktpls.service.TransportationTaskService;
@@ -83,7 +84,27 @@ public class TransportationTaskServiceImpl implements TransportationTaskService 
     }
 
     @Override
-    public DataResult<List<TransportationTask>> queryByTransportationTask(TransportationTask transportationTask) {
+    public List<TransportationTask> queryByTransportationTask(TransportationTask transportationTask) {
         return this.transportationTaskDao.queryByTransportationTask(transportationTask);
+    }
+
+    /**
+     *
+     * @param transportationTaskDTO
+     * @return
+     */
+    @Override
+    public List<TransportationTask> queryByTransportationTaskDTO(TransportationTaskDTO transportationTaskDTO) {
+        return this.transportationTaskDao.queryByTransportationTaskDTO(transportationTaskDTO);
+    }
+
+    /**
+     *
+     * @param transportationTask
+     * @return
+     */
+    @Override
+    public Long getTransportationTaskByConditionCount(TransportationTask transportationTask) {
+        return this.transportationTaskDao.getTransportationTaskByConditionCount(transportationTask);
     }
 }

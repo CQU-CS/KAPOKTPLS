@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.dao;
 
+import com.cqu.kapok.kapoktpls.dto.TruckSaleDTO;
 import com.cqu.kapok.kapoktpls.entity.TruckSale;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.apache.ibatis.annotations.Param;
@@ -85,6 +86,21 @@ public interface TruckSaleDao {
      * @param truckSale
      * @return
      */
-    DataResult<List<TruckSale>> queryByTruckSale(TruckSale truckSale);
+    List<TruckSale> queryByTruckSale(TruckSale truckSale);
+
+    /**
+     *
+     * @param truckSaleDTO
+     * @return
+     */
+    List<TruckSale> queryByTruckSaleDTO(TruckSaleDTO truckSaleDTO);
+
+    /**
+     *
+     * @param truckSale
+     * @return
+     */
+    Long getTruckSaleByConditionCount(TruckSale truckSale);
+
 }
 

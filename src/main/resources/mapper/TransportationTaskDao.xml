@@ -175,8 +175,83 @@
         delete from transportation_task where transportation_task_id = #{transportationTaskId}
     </delete>
 
-    <select id="queryByTransportationTask" resultType="java.util.List">
+    <select id="queryByTransportationTask" resultType="com.cqu.kapok.kapoktpls.entity.TransportationTask">
         select *
+        from transportation_task
+        <where>
+            <if test="transportationTaskId != null">
+                and transportation_task_id = #{transportationTaskId}
+            </if>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="goodsId != null">
+                and goods_id = #{goodsId}
+            </if>
+            <if test="transportationTaskGoodsNum != null">
+                and transportation_task_goods_num = #{transportationTaskGoodsNum}
+            </if>
+            <if test="addressId != null">
+                and address_id = #{addressId}
+            </if>
+            <if test="transportationTaskDestination != null and transportationTaskDestination != ''">
+                and transportation_task_destination = #{transportationTaskDestination}
+            </if>
+            <if test="transportationTaskStartTime != null">
+                and transportation_task_start_time = #{transportationTaskStartTime}
+            </if>
+            <if test="transportationTaskEndTime != null">
+                and transportation_task_end_time = #{transportationTaskEndTime}
+            </if>
+            <if test="transportationTaskPrice != null">
+                and transportation_task_price = #{transportationTaskPrice}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryByTransportationTaskDTO" resultMap="BaseResultMap">
+        select *
+        from transportation_task
+        <where>
+            <if test="transportationTaskId != null">
+                and transportation_task_id = #{transportationTaskId}
+            </if>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="goodsId != null">
+                and goods_id = #{goodsId}
+            </if>
+            <if test="transportationTaskGoodsNum != null">
+                and transportation_task_goods_num = #{transportationTaskGoodsNum}
+            </if>
+            <if test="addressId != null">
+                and address_id = #{addressId}
+            </if>
+            <if test="transportationTaskDestination != null and transportationTaskDestination != ''">
+                and transportation_task_destination = #{transportationTaskDestination}
+            </if>
+            <if test="transportationTaskStartTime != null">
+                and transportation_task_start_time = #{transportationTaskStartTime}
+            </if>
+            <if test="transportationTaskEndTime != null">
+                and transportation_task_end_time = #{transportationTaskEndTime}
+            </if>
+            <if test="transportationTaskPrice != null">
+                and transportation_task_price = #{transportationTaskPrice}
+            </if>
+        </where>
+        limit #{page}, #{limit}
+    </select>
+
+    <select id="getTransportationTaskByConditionCount" resultType="java.lang.Long">
+        select count(1)
         from transportation_task
         <where>
             <if test="transportationTaskId != null">

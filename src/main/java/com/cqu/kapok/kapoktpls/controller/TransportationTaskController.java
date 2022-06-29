@@ -1,9 +1,11 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.dto.TransportationTaskDTO;
 import com.cqu.kapok.kapoktpls.entity.RepairRecord;
 import com.cqu.kapok.kapoktpls.entity.TransportationTask;
 import com.cqu.kapok.kapoktpls.service.TransportationTaskService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -51,13 +53,14 @@ public class TransportationTaskController {
     }
 
     /**
+     * 根据实体类查询
      *
      * @param transportationTask
      * @return
      */
     @PostMapping("queryByTransportationTask")
     public DataResult<List<TransportationTask>> queryByTransportationTask(TransportationTask transportationTask){
-        return this.transportationTaskService.queryByTransportationTask(transportationTask);
+        return DataResult.successByDatas(this.transportationTaskService.queryByTransportationTask(transportationTask));
     }
 
     /**
@@ -91,6 +94,22 @@ public class TransportationTaskController {
     @DeleteMapping
     public ResponseEntity<Boolean> deleteById(Integer id) {
         return ResponseEntity.ok(this.transportationTaskService.deleteById(id));
+    }
+
+    /**
+     * 通过TransportationTaskDTO分页查询
+     *
+     * @param transportationTaskDTO
+     * @return
+     */
+    @PostMapping("queryByTransportationTaskDTO")
+    DataResult queryByTransportationTaskDTO(@RequestBody TransportationTaskDTO transportationTaskDTO){
+        transportationTaskDTO.setPage((transportationTaskDTO.getPage() - 1) * transportationTaskDTO.getLimit());
+        List<TransportationTask> transportationTasks =this.transportationTaskService.queryByTransportationTaskDTO(transportationTaskDTO);
+        TransportationTask transportationTask = new TransportationTask();
+        BeanUtils.copyProperties(transportationTaskDTO,transportationTask);
+        Long total = this.transportationTaskService.getTransportationTaskByConditionCount(transportationTask);
+        return DataResult.successByTotalData(transportationTasks, total);
     }
 
 }

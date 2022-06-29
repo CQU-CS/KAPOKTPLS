@@ -134,6 +134,68 @@
             </if>
         </where>
     </select>
+    <!--    分页查询-->
+    <select id="queryByAccountDTO" resultType="com.cqu.kapok.kapoktpls.entity.Account">
+        select *
+        from account
+        <where>
+            <if test="accountId != null">
+                and account_id = #{accountId}
+            </if>
+            <if test="accountAccount != null and accountAccount != ''">
+                and account_account = #{accountAccount}
+            </if>
+            <if test="accountPassword != null and accountPassword != ''">
+                and account_password = #{accountPassword}
+            </if>
+            <if test="accountPicture != null and accountPicture != ''">
+                and account_picture = #{accountPicture}
+            </if>
+            <if test="accountType != null and accountType != ''">
+                and account_type = #{accountType}
+            </if>
+            <if test="accountNickname != null and accountNickname != ''">
+                and account_nickname = #{accountNickname}
+            </if>
+            <if test="personId != null">
+                and person_id = #{personId}
+            </if>
+            <if test="accountToken != null and accountToken != ''">
+                and account_token = #{accountToken}
+            </if>
+        </where>
+        limit #{page}, #{limit}
+    </select>
+    <select id="getAccountByConditionCount" resultType="java.lang.Long">
+        select count(1)
+        from account
+        <where>
+            <if test="accountId != null">
+                and account_id = #{accountId}
+            </if>
+            <if test="accountAccount != null and accountAccount != ''">
+                and account_account = #{accountAccount}
+            </if>
+            <if test="accountPassword != null and accountPassword != ''">
+                and account_password = #{accountPassword}
+            </if>
+            <if test="accountPicture != null and accountPicture != ''">
+                and account_picture = #{accountPicture}
+            </if>
+            <if test="accountType != null and accountType != ''">
+                and account_type = #{accountType}
+            </if>
+            <if test="accountNickname != null and accountNickname != ''">
+                and account_nickname = #{accountNickname}
+            </if>
+            <if test="personId != null">
+                and person_id = #{personId}
+            </if>
+            <if test="accountToken != null and accountToken != ''">
+                and account_token = #{accountToken}
+            </if>
+        </where>
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="accountId" useGeneratedKeys="true">
