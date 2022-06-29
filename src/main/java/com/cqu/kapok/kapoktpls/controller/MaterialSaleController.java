@@ -3,6 +3,7 @@ package com.cqu.kapok.kapoktpls.controller;
 import com.cqu.kapok.kapoktpls.entity.MaterialSale;
 import com.cqu.kapok.kapoktpls.service.MaterialSaleService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -28,14 +29,15 @@ public class MaterialSaleController {
 
     /**
      * 分页查询
-     *
-     * @param materialSale 筛选条件
-     * @param pageRequest      分页对象
-     * @return 查询结果
+     * @param page
+     * @param size
+     * @return
      */
-    @GetMapping
-    public ResponseEntity<Page<MaterialSale>> queryByPage(MaterialSale materialSale, PageRequest pageRequest) {
-        return ResponseEntity.ok(this.materialSaleService.queryByPage(materialSale, pageRequest));
+    @GetMapping("queryByPage")
+    public DataResult queryByPage(@RequestParam Integer page,@RequestParam Integer size) {
+        PageRequest pageRequest = PageRequest.of(page,size);
+        MaterialSale materialSale = new MaterialSale();
+        return DataResult.successByData(this.materialSaleService.queryByPage(materialSale, pageRequest));
     }
 
     /**

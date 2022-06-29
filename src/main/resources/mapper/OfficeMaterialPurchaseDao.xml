@@ -26,23 +26,23 @@
           office_material_purchase_id, office_material_name, company_id, office_material_purchase_price, office_material_purchase_date, pay_state
         from office_material_purchase
         <where>
-            <if test="officeMaterialPurchaseId != null">
-                and office_material_purchase_id = #{officeMaterialPurchaseId}
+            <if test="officeMaterialPurchase.officeMaterialPurchaseId != null">
+                and office_material_purchase_id = #{officeMaterialPurchase.officeMaterialPurchaseId}
             </if>
-            <if test="officeMaterialName != null and officeMaterialName != ''">
-                and office_material_name = #{officeMaterialName}
+            <if test="officeMaterialPurchase.officeMaterialName != null and officeMaterialPurchase.officeMaterialName != ''">
+                and office_material_name = #{officeMaterialPurchase.officeMaterialName}
             </if>
-            <if test="companyId != null">
-                and company_id = #{companyId}
+            <if test="officeMaterialPurchase.companyId != null">
+                and company_id = #{officeMaterialPurchase.companyId}
             </if>
-            <if test="officeMaterialPurchasePrice != null">
-                and office_material_purchase_price = #{officeMaterialPurchasePrice}
+            <if test="officeMaterialPurchase.officeMaterialPurchasePrice != null">
+                and office_material_purchase_price = #{officeMaterialPurchase.officeMaterialPurchasePrice}
             </if>
-            <if test="officeMaterialPurchaseDate != null">
-                and office_material_purchase_date = #{officeMaterialPurchaseDate}
+            <if test="officeMaterialPurchase.officeMaterialPurchaseDate != null">
+                and office_material_purchase_date = #{officeMaterialPurchase.officeMaterialPurchaseDate}
             </if>
-            <if test="payState != null">
-                and pay_state = #{payState}
+            <if test="officeMaterialPurchase.payState != null">
+                and pay_state = #{officeMaterialPurchase.payState}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}
