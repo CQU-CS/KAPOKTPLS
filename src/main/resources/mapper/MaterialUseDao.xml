@@ -26,23 +26,23 @@
           material_use_id, material_id, person_id, material_use_num, material_use_start_time, material_use_end_time
         from material_use
         <where>
-            <if test="materialUseId != null">
-                and material_use_id = #{materialUseId}
+            <if test="materialUse.materialUseId != null">
+                and material_use_id = #{materialUse.materialUseId}
             </if>
-            <if test="materialId != null">
-                and material_id = #{materialId}
+            <if test="materialUse.materialId != null">
+                and material_id = #{materialUse.materialId}
             </if>
-            <if test="personId != null">
-                and person_id = #{personId}
+            <if test="materialUse.personId != null">
+                and person_id = #{materialUse.personId}
             </if>
-            <if test="materialUseNum != null">
-                and material_use_num = #{materialUseNum}
+            <if test="materialUse.materialUseNum != null">
+                and material_use_num = #{materialUse.materialUseNum}
             </if>
-            <if test="materialUseStartTime != null">
-                and material_use_start_time = #{materialUseStartTime}
+            <if test="materialUse.materialUseStartTime != null">
+                and material_use_start_time = #{materialUse.materialUseStartTime}
             </if>
-            <if test="materialUseEndTime != null">
-                and material_use_end_time = #{materialUseEndTime}
+            <if test="materialUse.materialUseEndTime != null">
+                and material_use_end_time = #{materialUse.materialUseEndTime}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}

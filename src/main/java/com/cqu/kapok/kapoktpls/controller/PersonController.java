@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.entity.MaterialSale;
 import com.cqu.kapok.kapoktpls.entity.Person;
 import com.cqu.kapok.kapoktpls.service.PersonService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
@@ -28,14 +29,15 @@ public class PersonController {
 
     /**
      * 分页查询
-     *
-     * @param person 筛选条件
-     * @param pageRequest      分页对象
-     * @return 查询结果
+     * @param page
+     * @param size
+     * @return
      */
-    @GetMapping
-    public ResponseEntity<Page<Person>> queryByPage(Person person, PageRequest pageRequest) {
-        return ResponseEntity.ok(this.personService.queryByPage(person, pageRequest));
+    @GetMapping("queryByPage")
+    public DataResult queryByPage(@RequestParam Integer page,@RequestParam Integer size) {
+        PageRequest pageRequest = PageRequest.of(page,size);
+        Person person = new Person();
+        return DataResult.successByData(this.personService.queryByPage(person, pageRequest));
     }
 
     /**

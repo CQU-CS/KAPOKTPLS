@@ -23,14 +23,14 @@
           repair_record_id, truck_repair_record_id, person_id
         from repair_record
         <where>
-            <if test="repairRecordId != null">
-                and repair_record_id = #{repairRecordId}
+            <if test="repairRecord.repairRecordId != null">
+                and repair_record_id = #{repairRecord.repairRecordId}
             </if>
-            <if test="truckRepairRecordId != null">
-                and truck_repair_record_id = #{truckRepairRecordId}
+            <if test="repairRecord.truckRepairRecordId != null">
+                and truck_repair_record_id = #{repairRecord.truckRepairRecordId}
             </if>
-            <if test="personId != null">
-                and person_id = #{personId}
+            <if test="repairRecord.personId != null">
+                and person_id = #{repairRecord.personId}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}

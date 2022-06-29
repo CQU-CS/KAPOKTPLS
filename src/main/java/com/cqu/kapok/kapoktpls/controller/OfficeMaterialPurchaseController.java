@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.entity.MaterialSale;
 import com.cqu.kapok.kapoktpls.entity.OfficeMaterialPurchase;
 import com.cqu.kapok.kapoktpls.service.OfficeMaterialPurchaseService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
@@ -27,14 +28,15 @@ public class OfficeMaterialPurchaseController {
 
     /**
      * 分页查询
-     *
-     * @param officeMaterialPurchase 筛选条件
-     * @param pageRequest      分页对象
-     * @return 查询结果
+     * @param page
+     * @param size
+     * @return
      */
-    @GetMapping
-    public ResponseEntity<Page<OfficeMaterialPurchase>> queryByPage(OfficeMaterialPurchase officeMaterialPurchase, PageRequest pageRequest) {
-        return ResponseEntity.ok(this.officeMaterialPurchaseService.queryByPage(officeMaterialPurchase, pageRequest));
+    @GetMapping("queryByPage")
+    public DataResult queryByPage(@RequestParam Integer page,@RequestParam Integer size) {
+        PageRequest pageRequest = PageRequest.of(page,size);
+        OfficeMaterialPurchase officeMaterialPurchase = new OfficeMaterialPurchase();
+        return DataResult.successByData(this.officeMaterialPurchaseService.queryByPage(officeMaterialPurchase, pageRequest));
     }
 
     /**

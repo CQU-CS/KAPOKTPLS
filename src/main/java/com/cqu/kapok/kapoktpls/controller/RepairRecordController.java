@@ -1,6 +1,7 @@
 package com.cqu.kapok.kapoktpls.controller;
 
 import com.cqu.kapok.kapoktpls.entity.Advertisement;
+import com.cqu.kapok.kapoktpls.entity.MaterialSale;
 import com.cqu.kapok.kapoktpls.entity.RepairRecord;
 import com.cqu.kapok.kapoktpls.service.RepairRecordService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
@@ -29,14 +30,15 @@ public class RepairRecordController {
 
     /**
      * 分页查询
-     *
-     * @param repairRecord 筛选条件
-     * @param pageRequest      分页对象
-     * @return 查询结果
+     * @param page
+     * @param size
+     * @return
      */
-    @GetMapping
-    public ResponseEntity<Page<RepairRecord>> queryByPage(RepairRecord repairRecord, PageRequest pageRequest) {
-        return ResponseEntity.ok(this.repairRecordService.queryByPage(repairRecord, pageRequest));
+    @GetMapping("queryByPage")
+    public DataResult queryByPage(@RequestParam Integer page,@RequestParam Integer size) {
+        PageRequest pageRequest = PageRequest.of(page,size);
+        RepairRecord repairRecord = new RepairRecord();
+        return DataResult.successByData(this.repairRecordService.queryByPage(repairRecord, pageRequest));
     }
 
     /**

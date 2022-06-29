@@ -57,7 +57,7 @@ public class CarrierController {
      * @param carrier 实体
      * @return 新增结果
      */
-    @PostMapping
+    @PostMapping("addByCarrier")
     public ResponseEntity<Carrier> add(Carrier carrier) {
         return ResponseEntity.ok(this.carrierService.insert(carrier));
     }
@@ -68,7 +68,7 @@ public class CarrierController {
      * @param carrier 实体
      * @return 编辑结果
      */
-    @PutMapping
+    @PostMapping("editByCarrier")
     public ResponseEntity<Carrier> edit(Carrier carrier) {
         return ResponseEntity.ok(this.carrierService.update(carrier));
     }
@@ -79,7 +79,7 @@ public class CarrierController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
+    @PostMapping("deleteByCarrierId")
     public ResponseEntity<Boolean> deleteById(Integer id) {
         return ResponseEntity.ok(this.carrierService.deleteById(id));
     }
