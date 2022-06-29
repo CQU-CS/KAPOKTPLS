@@ -71,14 +71,17 @@ public class CompanyController {
         Company company = new Company();
         Address address = new Address();
         BeanUtils.copyProperties(companyVo, company);
-        if(companyVo.getAddressContent()!=null){
+        if(companyVo.getAddressContent()!=null) {
             address.setAddressContent(companyVo.getAddressContent());
             List<Address> addresses = this.addressService.queryByAddress(address);
-            if(addresses.size()==0){
-                return DataResult.errByErrCode(Code.ADDRESS_NOT_EXIST);
-            }
-            for (Address address1 : addresses) {
-                company.setAddressId(address1.getAddressId());
+            if (addresses.size() == 0) {
+                address.setAddressLevel(1);
+                Address insert = this.addressService.insert(address);
+                company.setAddressId(insert.getAddressId());
+            } else {
+                for (Address address1 : addresses) {
+                    company.setAddressId(address1.getAddressId());
+                }
             }
         }
         return  DataResult.successByData(this.companyService.insert(company));
@@ -99,11 +102,16 @@ public class CompanyController {
             address.setAddressContent(companyVo.getAddressContent());
             List<Address> addresses = this.addressService.queryByAddress(address);
             if(addresses.size()==0){
-                return DataResult.errByErrCode(Code.ADDRESS_NOT_EXIST);
+                address.setAddressLevel(1);
+                Address insert = this.addressService.insert(address);
+                company.setAddressId(insert.getAddressId());
             }
-            for (Address address1 : addresses) {
-                company.setAddressId(address1.getAddressId());
+            else{
+                for (Address address1 : addresses) {
+                    company.setAddressId(address1.getAddressId());
+                }
             }
+
         }
         return DataResult.successByData(this.companyService.update(company));
     }
