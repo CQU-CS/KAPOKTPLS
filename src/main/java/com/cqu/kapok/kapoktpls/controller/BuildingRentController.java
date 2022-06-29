@@ -92,8 +92,8 @@ public class BuildingRentController {
      * @return
      */
     @PostMapping("queryByBuildingRent")
-    public DataResult<List<BuildingRent>> queryByBuildingRent(BuildingRent buildingRent){
-        return DataResult.successByDatas(this.buildingRentService.queryByBuildingRent(buildingRent));
+    public DataResult queryByBuildingRent(BuildingRent buildingRent){
+        return DataResult.successByData(this.buildingRentService.queryByBuildingRent(buildingRent));
     }
 
     /**

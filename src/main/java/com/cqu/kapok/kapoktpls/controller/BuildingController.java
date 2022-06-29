@@ -93,8 +93,8 @@ public class BuildingController {
      * @return
      */
     @PostMapping("queryByBuilding")
-    public DataResult<List<Building>> queryByBuilding(Building building){
-        return DataResult.successByDatas(this.buildingService.queryByBuilding(building));
+    public DataResult queryByBuilding(Building building){
+        return DataResult.successByData(this.buildingService.queryByBuilding(building));
     }
 
     /**

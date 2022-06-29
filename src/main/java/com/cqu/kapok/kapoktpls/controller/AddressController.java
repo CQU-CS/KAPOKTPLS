@@ -93,8 +93,8 @@ public class AddressController {
      * @return
      */
     @PostMapping("queryByAddress")
-    public DataResult<List<Address>> queryByAddress(Address address){
-        return DataResult.successByDatas(this.addressService.queryByAddress(address));
+    public DataResult queryByAddress(Address address){
+        return DataResult.successByData(this.addressService.queryByAddress(address));
     }
 
     /**
