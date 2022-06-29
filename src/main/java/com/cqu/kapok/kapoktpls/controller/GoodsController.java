@@ -49,8 +49,8 @@ public class GoodsController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public ResponseEntity<Goods> queryById(@PathVariable("id") Integer id) {
-        return ResponseEntity.ok(this.goodsService.queryById(id));
+    public  DataResult queryById(@PathVariable("id") Integer id) {
+        return DataResult.successByData(this.goodsService.queryById(id));
     }
 
     /**
@@ -59,7 +59,7 @@ public class GoodsController {
      * @param goods 实体
      * @return 新增结果
      */
-    @PostMapping
+    @PostMapping("addByGoods")
     public ResponseEntity<Goods> add(Goods goods) {
         return ResponseEntity.ok(this.goodsService.insert(goods));
     }
@@ -70,7 +70,7 @@ public class GoodsController {
      * @param goods 实体
      * @return 编辑结果
      */
-    @PutMapping
+    @PostMapping("editByGoods")
     public ResponseEntity<Goods> edit(Goods goods) {
         return ResponseEntity.ok(this.goodsService.update(goods));
     }
@@ -81,7 +81,7 @@ public class GoodsController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
+    @PostMapping("deleteByGoodsId")
     public ResponseEntity<Boolean> deleteById(Integer id) {
         return ResponseEntity.ok(this.goodsService.deleteById(id));
     }

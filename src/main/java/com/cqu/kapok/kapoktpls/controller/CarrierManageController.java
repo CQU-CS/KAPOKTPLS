@@ -5,7 +5,10 @@ import com.cqu.kapok.kapoktpls.dto.CarrierManageDTO;
 import com.cqu.kapok.kapoktpls.entity.Carrier;
 import com.cqu.kapok.kapoktpls.entity.CarrierManage;
 import com.cqu.kapok.kapoktpls.service.CarrierManageService;
+import com.cqu.kapok.kapoktpls.service.CarrierService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.vo.CarrierManageVo;
+import com.cqu.kapok.kapoktpls.vo.CompanyVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,7 +33,8 @@ public class CarrierManageController {
      */
     @Resource
     private CarrierManageService carrierManageService;
-
+    @Resource
+    private CarrierService carrierService;
     /**
      * 分页查询
      *
@@ -59,7 +64,7 @@ public class CarrierManageController {
      * @param carrierManage 实体
      * @return 新增结果
      */
-    @PostMapping
+    @PostMapping("addByCarrierManage")
     public ResponseEntity<CarrierManage> add(CarrierManage carrierManage) {
         return ResponseEntity.ok(this.carrierManageService.insert(carrierManage));
     }
@@ -70,7 +75,7 @@ public class CarrierManageController {
      * @param carrierManage 实体
      * @return 编辑结果
      */
-    @PutMapping
+    @PostMapping("editByCarrierManage")
     public ResponseEntity<CarrierManage> edit(CarrierManage carrierManage) {
         return ResponseEntity.ok(this.carrierManageService.update(carrierManage));
     }
@@ -81,7 +86,7 @@ public class CarrierManageController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
+    @PostMapping("deleteByCarrierManageId")
     public ResponseEntity<Boolean> deleteById(Integer id) {
         return ResponseEntity.ok(this.carrierManageService.deleteById(id));
     }
@@ -92,12 +97,20 @@ public class CarrierManageController {
      */
     @PostMapping("queryByCarrierManage")
     DataResult queryByCarrierManage(@RequestBody CarrierManageDTO carrierManageDTO){
+        ArrayList<CarrierManageVo> carrierManageVos = new ArrayList<>();
         carrierManageDTO.setPage((carrierManageDTO.getPage() - 1) * carrierManageDTO.getLimit());
         List<CarrierManage> carrierManages =this.carrierManageService.queryAll(carrierManageDTO);
         CarrierManage carrierManage = new CarrierManage();
         BeanUtils.copyProperties(carrierManageDTO,carrierManage);
         Long total = this.carrierManageService.getCarrierMangeByConditionCount(carrierManage);
-        return DataResult.successByTotalData(carrierManages, total);
+        for(CarrierManage carrierManage1:carrierManages){
+            String carrierName = this.carrierService.queryById(carrierManage1.getCarrierId()).getCarrierName();
+            CarrierManageVo carrierManageVo = new CarrierManageVo();
+            BeanUtils.copyProperties(carrierManage1,carrierManageVo);
+            carrierManageVo.setCarrierName(carrierName);
+            carrierManageVos.add(carrierManageVo);
+        }
+        return DataResult.successByTotalData(carrierManageVos, total);
     }
 
 }

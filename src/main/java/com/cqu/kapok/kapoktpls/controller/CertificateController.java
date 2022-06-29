@@ -4,8 +4,12 @@ import com.cqu.kapok.kapoktpls.dto.CarrierManageDTO;
 import com.cqu.kapok.kapoktpls.dto.CertificateDTO;
 import com.cqu.kapok.kapoktpls.entity.CarrierManage;
 import com.cqu.kapok.kapoktpls.entity.Certificate;
+import com.cqu.kapok.kapoktpls.entity.Person;
 import com.cqu.kapok.kapoktpls.service.CertificateService;
+import com.cqu.kapok.kapoktpls.service.PersonService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.vo.CertificateVo;
+import com.cqu.kapok.kapoktpls.vo.CompanyVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,7 +34,8 @@ public class CertificateController {
      */
     @Resource
     private CertificateService certificateService;
-
+    @Resource
+    private PersonService personService;
     /**
      * 分页查询
      *
@@ -59,7 +65,7 @@ public class CertificateController {
      * @param certificate 实体
      * @return 新增结果
      */
-    @PostMapping
+    @PostMapping("addByCertificate")
     public ResponseEntity<Certificate> add(Certificate certificate) {
         return ResponseEntity.ok(this.certificateService.insert(certificate));
     }
@@ -70,7 +76,7 @@ public class CertificateController {
      * @param certificate 实体
      * @return 编辑结果
      */
-    @PutMapping
+    @PostMapping("editByCertificate")
     public ResponseEntity<Certificate> edit(Certificate certificate) {
         return ResponseEntity.ok(this.certificateService.update(certificate));
     }
@@ -81,7 +87,7 @@ public class CertificateController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
+    @PostMapping("deleteByCertificateId")
     public ResponseEntity<Boolean> deleteById(Integer id) {
         return ResponseEntity.ok(this.certificateService.deleteById(id));
     }
@@ -92,12 +98,21 @@ public class CertificateController {
      */
     @PostMapping("queryByCertificate")
     DataResult queryByCertificate(@RequestBody CertificateDTO certificateDTO){
+        ArrayList<CertificateVo> certificateVos = new ArrayList<>();
         certificateDTO.setPage((certificateDTO.getPage() - 1) * certificateDTO.getLimit());
         List<Certificate> certificates =this.certificateService.queryAll(certificateDTO);
         Certificate certificate = new Certificate();
         BeanUtils.copyProperties(certificateDTO,certificate);
         Long total = this.certificateService.getCertificateByConditionCount(certificate);
-        return DataResult.successByTotalData(certificates, total);
+        for(Certificate certificate1:certificates){
+            //查询人的名字
+            String personName = this.personService.queryById(certificate1.getPersonId()).getPersonName();
+            CertificateVo certificateVo = new CertificateVo();
+            BeanUtils.copyProperties(certificate1,certificateVo);
+            certificateVo.setPersonName(personName);
+            certificateVos.add(certificateVo);
+        }
+        return DataResult.successByTotalData(certificateVos, total);
     }
 }
 

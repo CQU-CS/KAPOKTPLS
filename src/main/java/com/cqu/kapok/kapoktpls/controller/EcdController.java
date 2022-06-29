@@ -4,8 +4,11 @@ import com.cqu.kapok.kapoktpls.dto.CompanyDTO;
 import com.cqu.kapok.kapoktpls.dto.EcdDTO;
 import com.cqu.kapok.kapoktpls.entity.Company;
 import com.cqu.kapok.kapoktpls.entity.Ecd;
+import com.cqu.kapok.kapoktpls.service.BuildingService;
 import com.cqu.kapok.kapoktpls.service.EcdService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.vo.CompanyVo;
+import com.cqu.kapok.kapoktpls.vo.EcdVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +33,9 @@ public class EcdController {
      */
     @Resource
     private EcdService ecdService;
+    @Resource
+    private BuildingService buildingService;
+
 
     /**
      * 分页查询
@@ -59,7 +66,7 @@ public class EcdController {
      * @param ecd 实体
      * @return 新增结果
      */
-    @PostMapping
+    @PostMapping("addByEcd")
     public ResponseEntity<Ecd> add(Ecd ecd) {
         return ResponseEntity.ok(this.ecdService.insert(ecd));
     }
@@ -70,7 +77,7 @@ public class EcdController {
      * @param ecd 实体
      * @return 编辑结果
      */
-    @PutMapping
+    @PostMapping("editByEcd")
     public ResponseEntity<Ecd> edit(Ecd ecd) {
         return ResponseEntity.ok(this.ecdService.update(ecd));
     }
@@ -81,7 +88,7 @@ public class EcdController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
+    @PostMapping("deleteByEcdId")
     public ResponseEntity<Boolean> deleteById(Integer id) {
         return ResponseEntity.ok(this.ecdService.deleteById(id));
     }
@@ -92,12 +99,20 @@ public class EcdController {
      */
     @PostMapping("queryByEcd")
     DataResult queryByEcd(@RequestBody EcdDTO ecdDTO){
+        ArrayList<EcdVo> ecdVos = new ArrayList<>();
         ecdDTO.setPage((ecdDTO.getPage() - 1) * ecdDTO.getLimit());
         List<Ecd> ecds =this.ecdService.queryAll(ecdDTO);
         Ecd ecd = new Ecd();
         BeanUtils.copyProperties(ecdDTO,ecd);
         Long total = this.ecdService.getEcdByConditionCount(ecd);
-        return DataResult.successByTotalData(ecds, total);
+        for(Ecd ecd1:ecds){
+            String buildingName = this.buildingService.queryById(ecd1.getBuildingId()).getBuildingName();
+            EcdVo ecdVo = new EcdVo();
+            BeanUtils.copyProperties(ecd1,ecdVo);
+            ecdVo.setBuildingName(buildingName);
+            ecdVos.add(ecdVo);
+        }
+        return DataResult.successByTotalData(ecdVos, total);
     }
 }
 

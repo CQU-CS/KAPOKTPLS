@@ -4,8 +4,10 @@ import com.cqu.kapok.kapoktpls.dto.CarrierDTO;
 import com.cqu.kapok.kapoktpls.dto.CompanyDTO;
 import com.cqu.kapok.kapoktpls.entity.Carrier;
 import com.cqu.kapok.kapoktpls.entity.Company;
+import com.cqu.kapok.kapoktpls.service.AddressService;
 import com.cqu.kapok.kapoktpls.service.CompanyService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.vo.CompanyVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +32,8 @@ public class CompanyController {
      */
     @Resource
     private CompanyService companyService;
+    @Resource
+    private AddressService addressService;
 
     /**
      * 分页查询
@@ -59,7 +64,7 @@ public class CompanyController {
      * @param company 实体
      * @return 新增结果
      */
-    @PostMapping
+    @PostMapping("addByCompany")
     public ResponseEntity<Company> add(Company company) {
         return ResponseEntity.ok(this.companyService.insert(company));
     }
@@ -70,7 +75,7 @@ public class CompanyController {
      * @param company 实体
      * @return 编辑结果
      */
-    @PutMapping
+    @PostMapping("editByCompany")
     public ResponseEntity<Company> edit(Company company) {
         return ResponseEntity.ok(this.companyService.update(company));
     }
@@ -81,7 +86,7 @@ public class CompanyController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
+    @PostMapping("deleteByCompanyId")
     public ResponseEntity<Boolean> deleteById(Integer id) {
         return ResponseEntity.ok(this.companyService.deleteById(id));
     }
@@ -92,12 +97,31 @@ public class CompanyController {
      */
     @PostMapping("queryByCompany")
     DataResult queryByCompany(@RequestBody CompanyDTO companyDTO){
+        ArrayList<CompanyVo> companyVos = new ArrayList<CompanyVo>();
         companyDTO.setPage((companyDTO.getPage() - 1) * companyDTO.getLimit());
         List<Company> companies =this.companyService.queryAll(companyDTO);
         Company company = new Company();
         BeanUtils.copyProperties(companyDTO,company);
         Long total = this.companyService.getCompanyByConditionCount(company);
-        return DataResult.successByTotalData(companies, total);
+        for(Company company1:companies){
+            //查询地址名称
+            String addressContent = this.addressService.queryById(company1.getAddressId()).getAddressContent();
+            CompanyVo companyVo = new CompanyVo();
+            BeanUtils.copyProperties(company1,companyVo);
+            companyVo.setAddressContent(addressContent);
+            companyVos.add(companyVo);
+
+        }
+        return DataResult.successByTotalData(companyVos, total);
     }
+//    @PostMapping("queryByCompany")
+//    DataResult queryByCompany(@RequestBody CompanyDTO companyDTO){
+//        companyDTO.setPage((companyDTO.getPage() - 1) * companyDTO.getLimit());
+//        List<Company> companies =this.companyService.queryAll(companyDTO);
+//        Company company = new Company();
+//        BeanUtils.copyProperties(companyDTO,company);
+//        Long total = this.companyService.getCompanyByConditionCount(company);
+//        return DataResult.successByTotalData(companies, total);
+//    }
 }
 
