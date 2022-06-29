@@ -51,10 +51,10 @@ public class PersonController {
         Person person = new Person();
         Map<String,Object> map = new HashMap<>();
         List<Person> persons = this.personService.queryByPage(person, pageRequest).getContent();
-        List<Company> companies = new ArrayList<>();
+        List<String> companies = new ArrayList<>();
         map.put("persons",persons);
         for(int i=0;i<persons.size();i++) {
-            companies.add(this.companyService.queryById(persons.get(i).getCompanyId()));
+            companies.add(this.companyService.queryById(persons.get(i).getCompanyId()).getCompanyName());
         }
         map.put("companies",companies);
         return DataResult.successByData(map);
