@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.service;
 
+import com.cqu.kapok.kapoktpls.dto.TransportationTaskDTO;
 import com.cqu.kapok.kapoktpls.entity.TransportationTask;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.data.domain.Page;
@@ -63,5 +64,19 @@ public interface TransportationTaskService {
      * @param transportationTask
      * @return
      */
-    DataResult<List<TransportationTask>> queryByTransportationTask(TransportationTask transportationTask);
+    List<TransportationTask> queryByTransportationTask(TransportationTask transportationTask);
+
+    /**
+     *
+     * @param transportationTaskDTO
+     * @return
+     */
+    List<TransportationTask> queryByTransportationTaskDTO(TransportationTaskDTO transportationTaskDTO);
+
+    /**
+     *
+     * @param transportationTask
+     * @return
+     */
+    Long getTransportationTaskByConditionCount(TransportationTask transportationTask);
 }

@@ -34,7 +34,7 @@ public class OfficeMaterialPurchaseController {
      */
     @GetMapping("queryByPage")
     public DataResult queryByPage(@RequestParam Integer page,@RequestParam Integer size) {
-        PageRequest pageRequest = PageRequest.of(page,size);
+        PageRequest pageRequest = PageRequest.of(page-1,size);
         OfficeMaterialPurchase officeMaterialPurchase = new OfficeMaterialPurchase();
         return DataResult.successByData(this.officeMaterialPurchaseService.queryByPage(officeMaterialPurchase, pageRequest));
     }

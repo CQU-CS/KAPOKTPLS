@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.service.impl;
 
+import com.cqu.kapok.kapoktpls.dto.TruckSaleDTO;
 import com.cqu.kapok.kapoktpls.entity.TruckSale;
 import com.cqu.kapok.kapoktpls.dao.TruckSaleDao;
 import com.cqu.kapok.kapoktpls.service.TruckSaleService;
@@ -88,7 +89,27 @@ public class TruckSaleServiceImpl implements TruckSaleService {
      * @return
      */
     @Override
-    public DataResult<List<TruckSale>> queryByTruckSale(TruckSale truckSale) {
+    public List<TruckSale> queryByTruckSale(TruckSale truckSale) {
         return this.truckSaleDao.queryByTruckSale(truckSale);
+    }
+
+    /**
+     *
+     * @param truckSaleDTO
+     * @return
+     */
+    @Override
+    public List<TruckSale> queryByTruckSaleDTO(TruckSaleDTO truckSaleDTO) {
+        return this.truckSaleDao.queryByTruckSaleDTO(truckSaleDTO);
+    }
+
+    /**
+     *
+     * @param truckSale
+     * @return
+     */
+    @Override
+    public Long getTruckSaleByConditionCount(TruckSale truckSale) {
+        return this.truckSaleDao.getTruckSaleByConditionCount(truckSale);
     }
 }

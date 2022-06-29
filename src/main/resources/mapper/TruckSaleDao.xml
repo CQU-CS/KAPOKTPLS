@@ -141,8 +141,65 @@
         delete from truck_sale where truck_sale_id = #{truckSaleId}
     </delete>
 
-    <select id="queryByTruckSale" resultType="java.util.List">
+    <select id="queryByTruckSale" resultType="com.cqu.kapok.kapoktpls.entity.TruckSale">
         select *
+        from truck_sale
+        <where>
+            <if test="truckSaleId != null">
+                and truck_sale_id = #{truckSaleId}
+            </if>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="truckSaleNum != null">
+                and truck_sale_num = #{truckSaleNum}
+            </if>
+            <if test="truckSalePrice != null">
+                and truck_sale_price = #{truckSalePrice}
+            </if>
+            <if test="truckSaleDate != null">
+                and truck_sale_date = #{truckSaleDate}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryByTruckSaleDTO" resultMap="BaseResultMap">
+        select *
+        from truck_sale
+        <where>
+            <if test="truckSaleId != null">
+                and truck_sale_id = #{truckSaleId}
+            </if>
+            <if test="truckId != null">
+                and truck_id = #{truckId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="truckSaleNum != null">
+                and truck_sale_num = #{truckSaleNum}
+            </if>
+            <if test="truckSalePrice != null">
+                and truck_sale_price = #{truckSalePrice}
+            </if>
+            <if test="truckSaleDate != null">
+                and truck_sale_date = #{truckSaleDate}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+        limit #{page}, #{limit}
+    </select>
+
+    <select id="getTruckSaleByConditionCount" resultType="java.lang.Long">
+        select count(1)
         from truck_sale
         <where>
             <if test="truckSaleId != null">

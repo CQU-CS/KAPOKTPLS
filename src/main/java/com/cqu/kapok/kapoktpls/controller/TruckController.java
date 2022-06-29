@@ -1,10 +1,13 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.dto.TransportationTaskDTO;
+import com.cqu.kapok.kapoktpls.dto.TruckDTO;
 import com.cqu.kapok.kapoktpls.entity.RepairRecord;
 import com.cqu.kapok.kapoktpls.entity.TransportationTask;
 import com.cqu.kapok.kapoktpls.entity.Truck;
 import com.cqu.kapok.kapoktpls.service.TruckService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -52,13 +55,14 @@ public class TruckController {
     }
 
     /**
+     * 通过实体类查询
      *
      * @param truck
      * @return
      */
     @PostMapping("queryByTruck")
     public DataResult<List<Truck>> queryByTruck(Truck truck){
-        return this.truckService.queryByTruck(truck);
+        return DataResult.successByDatas(this.truckService.queryByTruck(truck));
     }
 
     /**
@@ -92,6 +96,22 @@ public class TruckController {
     @DeleteMapping
     public ResponseEntity<Boolean> deleteById(Integer id) {
         return ResponseEntity.ok(this.truckService.deleteById(id));
+    }
+
+    /**
+     * 通过queryByTruckDTO分页查询
+     *
+     * @param truckDTO
+     * @return
+     */
+    @PostMapping("queryByTruckDTO")
+    DataResult queryByTruckDTO(@RequestBody TruckDTO truckDTO){
+        truckDTO.setPage((truckDTO.getPage() - 1) * truckDTO.getLimit());
+        List<Truck> trucks =this.truckService.queryByTruckDTO(truckDTO);
+        Truck truck = new Truck();
+        BeanUtils.copyProperties(truckDTO,truck);
+        Long total = this.truckService.getTruckByConditionCount(truck);
+        return DataResult.successByTotalData(trucks, total);
     }
 
 }
