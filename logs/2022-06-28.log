@@ -258,3 +258,26 @@ org.apache.ibatis.binding.BindingException: Invalid bound statement (not found):
 [INFO]2022-06-28 15:32:07,631 - Completed initialization in 1 ms
 [INFO]2022-06-28 15:32:10,053 - HikariPool-1 - Starting...
 [INFO]2022-06-28 15:32:10,472 - HikariPool-1 - Start completed.
+[INFO]2022-06-28 15:43:46,652 - HikariPool-1 - Shutdown initiated...
+[INFO]2022-06-28 15:43:46,659 - HikariPool-1 - Shutdown completed.
+[INFO]2022-06-28 15:43:51,905 - Starting KapoktplsApplication using Java 17 on Y7000P-2019 with PID 12944 (D:\Program\JAVA\GraduationInternship\KAPOKTPLS\target\classes started by 11823 in D:\Program\JAVA\GraduationInternship\KAPOKTPLS)
+[INFO]2022-06-28 15:43:51,906 - No active profile set, falling back to 1 default profile: "default"
+[INFO]2022-06-28 15:43:51,954 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[INFO]2022-06-28 15:43:51,954 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[INFO]2022-06-28 15:43:53,125 - Tomcat initialized with port(s): 8080 (http)
+[INFO]2022-06-28 15:43:53,131 - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 15:43:53,131 - Starting service [Tomcat]
+[INFO]2022-06-28 15:43:53,131 - Starting Servlet engine: [Apache Tomcat/9.0.63]
+[INFO]2022-06-28 15:43:53,232 - Initializing Spring embedded WebApplicationContext
+[INFO]2022-06-28 15:43:53,233 - Root WebApplicationContext: initialization completed in 1278 ms
+[INFO]2022-06-28 15:43:54,611 - LiveReload server is running on port 35729
+[INFO]2022-06-28 15:43:54,629 - Starting ProtocolHandler ["http-nio-8080"]
+[INFO]2022-06-28 15:43:54,646 - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO]2022-06-28 15:43:54,663 - Started KapoktplsApplication in 3.121 seconds (JVM running for 3.885)
+[INFO]2022-06-28 15:44:00,467 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO]2022-06-28 15:44:00,467 - Initializing Servlet 'dispatcherServlet'
+[INFO]2022-06-28 15:44:00,468 - Completed initialization in 1 ms
+[INFO]2022-06-28 15:44:07,271 - HikariPool-1 - Starting...
+[INFO]2022-06-28 15:44:09,996 - HikariPool-1 - Start completed.
+[INFO]2022-06-28 17:22:44,602 - HikariPool-1 - Shutdown initiated...
+[INFO]2022-06-28 17:22:44,606 - HikariPool-1 - Shutdown completed.
