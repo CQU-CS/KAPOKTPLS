@@ -86,7 +86,7 @@ public class MaterialSaleController {
 
     @PostMapping("getByCondition")
     public DataResult getByCondition(@RequestBody MaterialSale materialSale) {
-        return DataResult.successByData(this.materialSaleService.getByCondition(materialSale));
+        return DataResult.successByDatas(this.materialSaleService.getByCondition(materialSale));
     }
 
 }

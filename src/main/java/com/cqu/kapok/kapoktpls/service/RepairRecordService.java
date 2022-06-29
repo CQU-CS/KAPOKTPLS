@@ -56,11 +56,11 @@ public interface RepairRecordService {
      */
     boolean deleteById(Integer repairRecordId);
 
-
     /**
-     *
+     * 条件查询
      * @param repairRecord
      * @return
      */
-    DataResult<List<RepairRecord>> queryByRepairRecord(RepairRecord repairRecord);
+    List<RepairRecord> getByCondition(RepairRecord repairRecord);
+
 }

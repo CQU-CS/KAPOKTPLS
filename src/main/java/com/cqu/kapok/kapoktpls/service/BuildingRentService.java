@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.service;
 
+import com.cqu.kapok.kapoktpls.dto.BuildingRentDTO;
 import com.cqu.kapok.kapoktpls.entity.BuildingRent;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.data.domain.Page;
@@ -62,4 +63,12 @@ public interface BuildingRentService {
      * @return
      */
     List<BuildingRent> queryByBuildingRent(BuildingRent buildingRent);
+
+    /**
+     * 分页查询
+     * @param buildingRentDTO
+     * @return
+     */
+    List<BuildingRent> queryByBuildingRentDTO(BuildingRentDTO buildingRentDTO);
+    Long getBuildingRentByConditionCount(BuildingRent buildingRent);
 }

@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.service.impl;
 
+import com.cqu.kapok.kapoktpls.dto.AccountDTO;
 import com.cqu.kapok.kapoktpls.entity.Account;
 import com.cqu.kapok.kapoktpls.dao.AccountDao;
 import com.cqu.kapok.kapoktpls.service.AccountService;
@@ -112,5 +113,25 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Account queryByToken(String token) {
         return this.accountDao.queryByToken(token);
+    }
+
+    /**
+     * 分页查询
+     * @param accountDTO
+     * @return
+     */
+    @Override
+    public List<Account> queryByAccountDTO(AccountDTO accountDTO) {
+        return this.accountDao.queryByAccountDTO(accountDTO);
+    }
+
+    /**
+     * 分页数量
+     * @param account
+     * @return
+     */
+    @Override
+    public Long getAccountByConditionCount(Account account) {
+        return this.accountDao.getAccountByConditionCount(account);
     }
 }

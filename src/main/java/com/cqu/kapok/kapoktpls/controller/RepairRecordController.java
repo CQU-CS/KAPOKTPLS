@@ -53,15 +53,6 @@ public class RepairRecordController {
     }
 
     /**
-     *
-     * @param repairRecord
-     * @return
-     */
-    @PostMapping("queryByRepairRecord")
-    public DataResult<List<RepairRecord>> queryByRepairRecord(RepairRecord repairRecord){
-        return this.repairRecordService.queryByRepairRecord(repairRecord);
-    }
-    /**
      * 新增数据
      *
      * @param repairRecord 实体
@@ -94,6 +85,14 @@ public class RepairRecordController {
         return ResponseEntity.ok(this.repairRecordService.deleteById(id));
     }
 
-
+    /**
+     * 条件查询
+     * @param repairRecord
+     * @return
+     */
+    @PostMapping("getByCondition")
+    public DataResult getByCondition(@RequestBody RepairRecord repairRecord) {
+        return DataResult.successByDatas(this.repairRecordService.getByCondition(repairRecord));
+    }
 }
 

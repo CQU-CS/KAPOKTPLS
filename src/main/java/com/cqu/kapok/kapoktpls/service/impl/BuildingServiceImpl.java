@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.service.impl;
 
+import com.cqu.kapok.kapoktpls.dto.BuildingDTO;
 import com.cqu.kapok.kapoktpls.entity.Building;
 import com.cqu.kapok.kapoktpls.dao.BuildingDao;
 import com.cqu.kapok.kapoktpls.service.BuildingService;
@@ -91,5 +92,20 @@ public class BuildingServiceImpl implements BuildingService {
     @Override
     public List<Building> queryByBuilding(Building building) {
         return this.buildingDao.queryByBuilding(building);
+    }
+
+    /**
+     * 分页查询
+     * @param buildingDTO
+     * @return
+     */
+    @Override
+    public List<Building> queryByBuildingDTO(BuildingDTO buildingDTO) {
+        return this.buildingDao.queryByBuildingDTO(buildingDTO);
+    }
+
+    @Override
+    public Long getBuildingByConditionCount(Building building) {
+        return this.buildingDao.getBuildingByConditionCount(building);
     }
 }

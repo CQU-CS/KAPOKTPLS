@@ -93,6 +93,49 @@
             </if>
         </where>
     </select>
+    <select id="queryByAdvertisementDTO" resultType="com.cqu.kapok.kapoktpls.entity.Advertisement">
+        select *
+        from advertisement
+        <where>
+            <if test="advertisementId != null">
+                and advertisement_id = #{advertisementId}
+            </if>
+            <if test="advertisementContent != null and advertisementContent != ''">
+                and advertisement_content = #{advertisementContent}
+            </if>
+            <if test="advertisementPicture != null and advertisementPicture != ''">
+                and advertisement_picture = #{advertisementPicture}
+            </if>
+            <if test="advertisementStartTime != null">
+                and advertisement_start_time = #{advertisementStartTime}
+            </if>
+            <if test="advertisementEndTime != null">
+                and advertisement_end_time = #{advertisementEndTime}
+            </if>
+        </where>
+        limit #{page}, #{limit}
+    </select>
+    <select id="getAdvertisementByConditionCount" resultType="java.lang.Long">
+        select count(1)
+        from advertisement
+        <where>
+            <if test="advertisementId != null">
+                and advertisement_id = #{advertisementId}
+            </if>
+            <if test="advertisementContent != null and advertisementContent != ''">
+                and advertisement_content = #{advertisementContent}
+            </if>
+            <if test="advertisementPicture != null and advertisementPicture != ''">
+                and advertisement_picture = #{advertisementPicture}
+            </if>
+            <if test="advertisementStartTime != null">
+                and advertisement_start_time = #{advertisementStartTime}
+            </if>
+            <if test="advertisementEndTime != null">
+                and advertisement_end_time = #{advertisementEndTime}
+            </if>
+        </where>
+    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="advertisementId" useGeneratedKeys="true">

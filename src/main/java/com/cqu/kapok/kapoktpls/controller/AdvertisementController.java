@@ -1,9 +1,13 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.dto.AccountDTO;
+import com.cqu.kapok.kapoktpls.dto.AdvertisementDTO;
+import com.cqu.kapok.kapoktpls.entity.Account;
 import com.cqu.kapok.kapoktpls.entity.Address;
 import com.cqu.kapok.kapoktpls.entity.Advertisement;
 import com.cqu.kapok.kapoktpls.service.AdvertisementService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -46,8 +50,8 @@ public class AdvertisementController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public ResponseEntity<Advertisement> queryById(@PathVariable("id") Integer id) {
-        return ResponseEntity.ok(this.advertisementService.queryById(id));
+    public DataResult queryById(@PathVariable("id") Integer id) {
+        return DataResult.successByData(this.advertisementService.queryById(id));
     }
 
     /**
@@ -57,8 +61,8 @@ public class AdvertisementController {
      * @return 新增结果
      */
     @PostMapping
-    public ResponseEntity<Advertisement> add(Advertisement advertisement) {
-        return ResponseEntity.ok(this.advertisementService.insert(advertisement));
+    public DataResult add(Advertisement advertisement) {
+        return DataResult.successByData(this.advertisementService.insert(advertisement));
     }
 
     /**
@@ -68,8 +72,8 @@ public class AdvertisementController {
      * @return 编辑结果
      */
     @PutMapping
-    public ResponseEntity<Advertisement> edit(Advertisement advertisement) {
-        return ResponseEntity.ok(this.advertisementService.update(advertisement));
+    public DataResult edit(Advertisement advertisement) {
+        return DataResult.successByData(this.advertisementService.update(advertisement));
     }
 
     /**
@@ -79,8 +83,8 @@ public class AdvertisementController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.advertisementService.deleteById(id));
+    public DataResult deleteById(Integer id) {
+        return DataResult.successByData(this.advertisementService.deleteById(id));
     }
 
 
@@ -90,8 +94,24 @@ public class AdvertisementController {
      * @return
      */
     @PostMapping("queryByAdvertisement")
-    public DataResult<List<Advertisement>> queryByAdvertisement(Advertisement advertisement){
-        return  DataResult.successByDatas(this.advertisementService.queryByAdvertisement(advertisement));
+    public DataResult queryByAdvertisement(Advertisement advertisement){
+        return  DataResult.successByData(this.advertisementService.queryByAdvertisement(advertisement));
+    }
+
+    
+    /**
+     * 通过AdvertisementDTO分页查询
+     * @param advertisementDTO
+     * @return 查询结果列表和查询总数
+     */
+    @PostMapping("queryByAdvertisementDTO")
+    DataResult queryByAdvertisementDTO(@RequestBody AdvertisementDTO advertisementDTO){
+        advertisementDTO.setPage((advertisementDTO.getPage() - 1) * advertisementDTO.getLimit());
+        List<Advertisement> advertisements =this.advertisementService.queryByAdvertisementDTO(advertisementDTO);
+        Advertisement advertisement = new Advertisement();
+        BeanUtils.copyProperties(advertisementDTO,advertisement);
+        Long total = this.advertisementService.getAdvertisementByConditionCount(advertisement);
+        return DataResult.successByTotalData(advertisements, total);
     }
 
 }

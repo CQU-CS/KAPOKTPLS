@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.dao;
 
+import com.cqu.kapok.kapoktpls.dto.BuildingSaleDTO;
 import com.cqu.kapok.kapoktpls.entity.BuildingSale;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.apache.ibatis.annotations.Param;
@@ -86,5 +87,14 @@ public interface BuildingSaleDao {
      * @return
      */
     List<BuildingSale> queryByBuildingSale(BuildingSale buildingSale);
+
+    /**
+     * 分页查询
+     * @param buildingSaleDTO
+     * @return
+     */
+    List<BuildingSale> queryByBuildingSaleDTO(BuildingSaleDTO buildingSaleDTO);
+
+    Long getBuildingSaleByConditionCount(BuildingSale buildingSale);
 }
 

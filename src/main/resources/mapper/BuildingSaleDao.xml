@@ -113,6 +113,61 @@
             </if>
         </where>
     </select>
+    <select id="queryByBuildingSaleDTO" resultType="com.cqu.kapok.kapoktpls.entity.BuildingSale">
+        select *
+        from building_sale
+        <where>
+            <if test="buildingSaleId != null">
+                and building_sale_id = #{buildingSaleId}
+            </if>
+            <if test="buildingId != null">
+                and building_id = #{buildingId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="buildingSaleNum != null">
+                and building_sale_num = #{buildingSaleNum}
+            </if>
+            <if test="buildingSalePrice != null">
+                and building_sale_price = #{buildingSalePrice}
+            </if>
+            <if test="buildingSaleDate != null">
+                and building_sale_date = #{buildingSaleDate}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+        limit #{page}, #{limit}
+    </select>
+    <select id="getBuildingSaleByConditionCount" resultType="java.lang.Long">
+        select count(1)
+        from building_sale
+        <where>
+            <if test="buildingSaleId != null">
+                and building_sale_id = #{buildingSaleId}
+            </if>
+            <if test="buildingId != null">
+                and building_id = #{buildingId}
+            </if>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="buildingSaleNum != null">
+                and building_sale_num = #{buildingSaleNum}
+            </if>
+            <if test="buildingSalePrice != null">
+                and building_sale_price = #{buildingSalePrice}
+            </if>
+            <if test="buildingSaleDate != null">
+                and building_sale_date = #{buildingSaleDate}
+            </if>
+            <if test="payStatus != null">
+                and pay_status = #{payStatus}
+            </if>
+        </where>
+    </select>
 
 
     <!--新增所有列-->

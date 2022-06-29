@@ -81,6 +81,11 @@ public interface RepairRecordDao {
      */
     int deleteById(Integer repairRecordId);
 
-    DataResult<List<RepairRecord>> queryByRepairRecord(RepairRecord repairRecord);
+    /**
+     * 条件查询
+     * @param repairRecord
+     * @return
+     */
+    List<RepairRecord> getByCondition(RepairRecord repairRecord);
 }
 

@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.service;
 
+import com.cqu.kapok.kapoktpls.dto.BuildingDTO;
 import com.cqu.kapok.kapoktpls.entity.Building;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.data.domain.Page;
@@ -62,4 +63,12 @@ public interface BuildingService {
      * @return
      */
     List<Building> queryByBuilding(Building building);
+
+    /**
+     * 分页查询
+     * @param buildingDTO
+     * @return
+     */
+    List<Building> queryByBuildingDTO(BuildingDTO buildingDTO);
+    Long getBuildingByConditionCount(Building building);
 }

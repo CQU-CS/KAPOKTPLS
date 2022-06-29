@@ -1,9 +1,13 @@
 package com.cqu.kapok.kapoktpls.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cqu.kapok.kapoktpls.dto.AccountDTO;
+import com.cqu.kapok.kapoktpls.dto.AddressDTO;
 import com.cqu.kapok.kapoktpls.entity.Account;
+import com.cqu.kapok.kapoktpls.entity.Address;
 import com.cqu.kapok.kapoktpls.service.AccountService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +50,7 @@ public class AccountController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public DataResult<JSONObject> queryById(@PathVariable("id") Integer id) {
+    public DataResult queryById(@PathVariable("id") Integer id) {
         return DataResult.successByData(this.accountService.queryById(id));
     }
 
@@ -57,7 +61,7 @@ public class AccountController {
      * @return 新增结果
      */
     @PostMapping
-    public DataResult<JSONObject> add(Account account) {
+    public DataResult add(Account account) {
         return DataResult.successByData(this.accountService.insert(account));
     }
 
@@ -68,7 +72,7 @@ public class AccountController {
      * @return 编辑结果
      */
     @PutMapping
-    public DataResult<JSONObject> edit(Account account) {
+    public DataResult edit(Account account) {
         return DataResult.successByData(this.accountService.update(account));
     }
 
@@ -79,7 +83,7 @@ public class AccountController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public DataResult<JSONObject> deleteById(Integer id) {
+    public DataResult deleteById(Integer id) {
         return DataResult.successByData(this.accountService.deleteById(id));
     }
 
@@ -89,9 +93,27 @@ public class AccountController {
      * @return
      */
     @PostMapping("queryByAccount")
-    public DataResult<List<Account>> queryByAccount(Account account){
-        return DataResult.successByDatas(this.accountService.queryByAccount(account));
+    public DataResult queryByAccount(Account account){
+        return DataResult.successByData(this.accountService.queryByAccount(account));
     }
+
+
+    /**
+     * 通过AccountDTO分页查询
+     * @param accountDTO
+     * @return 查询结果列表和查询总数
+     */
+    @PostMapping("queryByAccountDTO")
+    DataResult queryByAccountDTO(@RequestBody AccountDTO accountDTO){
+        accountDTO.setPage((accountDTO.getPage() - 1) * accountDTO.getLimit());
+        List<Account> accounts =this.accountService.queryByAccountDTO(accountDTO);
+        Account account1 = new Account();
+        BeanUtils.copyProperties(accountDTO,account1);
+        Long total = this.accountService.getAccountByConditionCount(account1);
+        return DataResult.successByTotalData(accounts, total);
+    }
+
+
 
 }
 

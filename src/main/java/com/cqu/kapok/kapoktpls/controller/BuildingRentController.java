@@ -1,9 +1,12 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.dto.BuildingDTO;
+import com.cqu.kapok.kapoktpls.dto.BuildingRentDTO;
 import com.cqu.kapok.kapoktpls.entity.Building;
 import com.cqu.kapok.kapoktpls.entity.BuildingRent;
 import com.cqu.kapok.kapoktpls.service.BuildingRentService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -46,8 +49,8 @@ public class BuildingRentController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public ResponseEntity<BuildingRent> queryById(@PathVariable("id") Integer id) {
-        return ResponseEntity.ok(this.buildingRentService.queryById(id));
+    public DataResult queryById(@PathVariable("id") Integer id) {
+        return DataResult.successByData(this.buildingRentService.queryById(id));
     }
 
     /**
@@ -57,8 +60,8 @@ public class BuildingRentController {
      * @return 新增结果
      */
     @PostMapping
-    public ResponseEntity<BuildingRent> add(BuildingRent buildingRent) {
-        return ResponseEntity.ok(this.buildingRentService.insert(buildingRent));
+    public DataResult add(BuildingRent buildingRent) {
+        return DataResult.successByData(this.buildingRentService.insert(buildingRent));
     }
 
     /**
@@ -68,8 +71,8 @@ public class BuildingRentController {
      * @return 编辑结果
      */
     @PutMapping
-    public ResponseEntity<BuildingRent> edit(BuildingRent buildingRent) {
-        return ResponseEntity.ok(this.buildingRentService.update(buildingRent));
+    public DataResult edit(BuildingRent buildingRent) {
+        return DataResult.successByData(this.buildingRentService.update(buildingRent));
     }
 
     /**
@@ -79,8 +82,8 @@ public class BuildingRentController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.buildingRentService.deleteById(id));
+    public DataResult deleteById(Integer id) {
+        return DataResult.successByData(this.buildingRentService.deleteById(id));
     }
 
     /**
@@ -89,8 +92,23 @@ public class BuildingRentController {
      * @return
      */
     @PostMapping("queryByBuildingRent")
-    public DataResult<List<BuildingRent>> queryByBuildingRent(BuildingRent buildingRent){
-        return DataResult.successByDatas(this.buildingRentService.queryByBuildingRent(buildingRent));
+    public DataResult queryByBuildingRent(BuildingRent buildingRent){
+        return DataResult.successByData(this.buildingRentService.queryByBuildingRent(buildingRent));
+    }
+
+    /**
+     * 通过BuildingRentDTO分页查询
+     * @param buildingRentDTO
+     * @return 查询结果列表和查询总数
+     */
+    @PostMapping("queryByBuildingRentDTO")
+    DataResult queryByBuildingRentDTO(@RequestBody BuildingRentDTO buildingRentDTO){
+        buildingRentDTO.setPage((buildingRentDTO.getPage() - 1) * buildingRentDTO.getLimit());
+        List<BuildingRent> buildingRents =this.buildingRentService.queryByBuildingRentDTO(buildingRentDTO);
+        BuildingRent buildingRent = new BuildingRent();
+        BeanUtils.copyProperties(buildingRentDTO,buildingRent);
+        Long total = this.buildingRentService.getBuildingRentByConditionCount(buildingRent);
+        return DataResult.successByTotalData(buildingRents, total);
     }
 
 }

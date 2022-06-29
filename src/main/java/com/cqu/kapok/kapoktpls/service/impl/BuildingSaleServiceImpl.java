@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.service.impl;
 
+import com.cqu.kapok.kapoktpls.dto.BuildingSaleDTO;
 import com.cqu.kapok.kapoktpls.entity.BuildingSale;
 import com.cqu.kapok.kapoktpls.dao.BuildingSaleDao;
 import com.cqu.kapok.kapoktpls.service.BuildingSaleService;
@@ -90,6 +91,21 @@ public class BuildingSaleServiceImpl implements BuildingSaleService {
     @Override
     public List<BuildingSale> queryByBuildingSale(BuildingSale buildingSale) {
         return this.buildingSaleDao.queryByBuildingSale(buildingSale);
+    }
+
+    /**
+     * 分页查询
+     * @param buildingSaleDTO
+     * @return
+     */
+    @Override
+    public List<BuildingSale> queryByBuildingSaleDTO(BuildingSaleDTO buildingSaleDTO) {
+        return this.buildingSaleDao.queryByBuildingSaleDTO(buildingSaleDTO);
+    }
+
+    @Override
+    public Long getBuildingSaleByConditionCount(BuildingSale buildingSale) {
+        return this.buildingSaleDao.getBuildingSaleByConditionCount(buildingSale);
     }
 
 

@@ -99,9 +99,9 @@
         delete from repair_record where repair_record_id = #{repairRecordId}
     </delete>
 
-    <select id="queryByRepairRecord" resultType="java.util.List">
-        select *
-        from repair_record
+    <!--条件查询-->
+    <select id="getByCondition" resultMap="BaseResultMap">
+        select * from repair_record
         <where>
             <if test="repairRecordId != null">
                 and repair_record_id = #{repairRecordId}

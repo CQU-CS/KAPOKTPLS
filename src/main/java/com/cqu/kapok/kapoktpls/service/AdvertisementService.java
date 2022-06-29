@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.service;
 
+import com.cqu.kapok.kapoktpls.dto.AdvertisementDTO;
 import com.cqu.kapok.kapoktpls.entity.Advertisement;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.data.domain.Page;
@@ -62,4 +63,18 @@ public interface AdvertisementService {
      * @return
      */
     List<Advertisement> queryByAdvertisement(Advertisement advertisement);
+
+    /**
+     * 分页查询
+     * @param advertisementDTO
+     * @return
+     */
+    List<Advertisement> queryByAdvertisementDTO(AdvertisementDTO advertisementDTO);
+
+    /**
+     * 分页查询数量
+     * @param advertisement
+     * @return
+     */
+    Long getAdvertisementByConditionCount(Advertisement advertisement);
 }

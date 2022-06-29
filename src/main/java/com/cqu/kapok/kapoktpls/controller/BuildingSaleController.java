@@ -1,9 +1,13 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.dto.BuildingDTO;
+import com.cqu.kapok.kapoktpls.dto.BuildingSaleDTO;
+import com.cqu.kapok.kapoktpls.entity.Building;
 import com.cqu.kapok.kapoktpls.entity.BuildingRent;
 import com.cqu.kapok.kapoktpls.entity.BuildingSale;
 import com.cqu.kapok.kapoktpls.service.BuildingSaleService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -46,8 +50,8 @@ public class BuildingSaleController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public ResponseEntity<BuildingSale> queryById(@PathVariable("id") Integer id) {
-        return ResponseEntity.ok(this.buildingSaleService.queryById(id));
+    public DataResult queryById(@PathVariable("id") Integer id) {
+        return DataResult.successByData(this.buildingSaleService.queryById(id));
     }
 
     /**
@@ -57,8 +61,8 @@ public class BuildingSaleController {
      * @return 新增结果
      */
     @PostMapping
-    public ResponseEntity<BuildingSale> add(BuildingSale buildingSale) {
-        return ResponseEntity.ok(this.buildingSaleService.insert(buildingSale));
+    public DataResult add(BuildingSale buildingSale) {
+        return DataResult.successByData(this.buildingSaleService.insert(buildingSale));
     }
 
     /**
@@ -68,8 +72,8 @@ public class BuildingSaleController {
      * @return 编辑结果
      */
     @PutMapping
-    public ResponseEntity<BuildingSale> edit(BuildingSale buildingSale) {
-        return ResponseEntity.ok(this.buildingSaleService.update(buildingSale));
+    public DataResult edit(BuildingSale buildingSale) {
+        return DataResult.successByData(this.buildingSaleService.update(buildingSale));
     }
 
     /**
@@ -79,8 +83,8 @@ public class BuildingSaleController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.buildingSaleService.deleteById(id));
+    public DataResult deleteById(Integer id) {
+        return DataResult.successByData(this.buildingSaleService.deleteById(id));
     }
 
     /**
@@ -89,8 +93,23 @@ public class BuildingSaleController {
      * @return
      */
     @PostMapping("queryByBuildingSale")
-    public DataResult<List<BuildingSale>> queryByBuildingSale(BuildingSale buildingSale){
-        return DataResult.successByDatas(this.buildingSaleService.queryByBuildingSale(buildingSale));
+    public DataResult queryByBuildingSale(BuildingSale buildingSale){
+        return DataResult.successByData(this.buildingSaleService.queryByBuildingSale(buildingSale));
+    }
+
+    /**
+     * 通过BuildingSaleDTO分页查询
+     * @param buildingSaleDTO
+     * @return 查询结果列表和查询总数
+     */
+    @PostMapping("queryByBuildingSaleDTO")
+    DataResult queryByBuildingSaleDTO(@RequestBody BuildingSaleDTO buildingSaleDTO){
+        buildingSaleDTO.setPage((buildingSaleDTO.getPage() - 1) * buildingSaleDTO.getLimit());
+        List<BuildingSale> buildingSales =this.buildingSaleService.queryByBuildingSaleDTO(buildingSaleDTO);
+        BuildingSale buildingSale = new BuildingSale();
+        BeanUtils.copyProperties(buildingSaleDTO,buildingSale);
+        Long total = this.buildingSaleService.getBuildingSaleByConditionCount(buildingSale);
+        return DataResult.successByTotalData(buildingSales, total);
     }
 
 }
