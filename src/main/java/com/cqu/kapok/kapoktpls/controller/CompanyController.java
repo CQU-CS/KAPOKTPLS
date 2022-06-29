@@ -67,7 +67,7 @@ public class CompanyController {
      * @return 新增结果
      */
     @PostMapping("addByCompany")
-    public DataResult add(CompanyVo companyVo) {
+    public DataResult add(@RequestBody CompanyVo companyVo) {
         Company company = new Company();
         Address address = new Address();
         BeanUtils.copyProperties(companyVo, company);
@@ -91,7 +91,7 @@ public class CompanyController {
      * @return 编辑结果
      */
     @PostMapping("editByCompany")
-    public DataResult edit(CompanyVo companyVo) {
+    public DataResult edit(@RequestBody CompanyVo companyVo) {
         Company company = new Company();
         Address address = new Address();
         BeanUtils.copyProperties(companyVo, company);
