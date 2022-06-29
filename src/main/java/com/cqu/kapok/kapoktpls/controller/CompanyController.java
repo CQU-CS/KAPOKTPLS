@@ -115,8 +115,14 @@ public class CompanyController {
      * @return 删除是否成功
      */
     @PostMapping("deleteByCompanyId")
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.companyService.deleteById(id));
+    public DataResult deleteById(Integer id) {
+        System.out.println("id:"+id);
+        if(this.companyService.deleteById(id)){
+            return DataResult.succ();
+        }else{
+            return DataResult.errByErrCode(20001);
+        }
+
     }
     /**
      * 通过CompanyDTO分页查询
