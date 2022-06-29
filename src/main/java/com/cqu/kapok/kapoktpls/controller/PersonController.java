@@ -1,8 +1,11 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.entity.Company;
 import com.cqu.kapok.kapoktpls.entity.MaterialSale;
 import com.cqu.kapok.kapoktpls.entity.Person;
+import com.cqu.kapok.kapoktpls.service.CompanyService;
 import com.cqu.kapok.kapoktpls.service.PersonService;
+import com.cqu.kapok.kapoktpls.service.impl.CompanyServiceImpl;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,7 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (Person)表控制层
@@ -28,6 +34,12 @@ public class PersonController {
     private PersonService personService;
 
     /**
+     * 公司
+     */
+    @Resource
+    private CompanyService companyService;
+
+    /**
      * 分页查询
      * @param page
      * @param size
@@ -37,7 +49,15 @@ public class PersonController {
     public DataResult queryByPage(@RequestParam Integer page,@RequestParam Integer size) {
         PageRequest pageRequest = PageRequest.of(page,size);
         Person person = new Person();
-        return DataResult.successByData(this.personService.queryByPage(person, pageRequest));
+        Map<String,Object> map = new HashMap<>();
+        List<Person> persons = this.personService.queryByPage(person, pageRequest).getContent();
+        List<Company> companies = new ArrayList<>();
+        map.put("persons",persons);
+        for(int i=0;i<persons.size();i++) {
+            companies.add(this.companyService.queryById(persons.get(i).getCompanyId()));
+        }
+        map.put("companies",companies);
+        return DataResult.successByData(map);
     }
 
     /**
