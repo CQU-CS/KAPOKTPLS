@@ -78,8 +78,8 @@ public class PersonController {
      * @return 新增结果
      */
     @PostMapping
-    public ResponseEntity<Person> add(Person person) {
-        return ResponseEntity.ok(this.personService.insert(person));
+    public DataResult add(@RequestBody Person person) {
+        return DataResult.successByData(this.personService.insert(person));
     }
 
     /**
@@ -89,8 +89,8 @@ public class PersonController {
      * @return 编辑结果
      */
     @PutMapping
-    public ResponseEntity<Person> edit(Person person) {
-        return ResponseEntity.ok(this.personService.update(person));
+    public DataResult edit(@RequestBody Person person) {
+        return DataResult.successByData(this.personService.update(person));
     }
 
     /**
@@ -100,8 +100,8 @@ public class PersonController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.personService.deleteById(id));
+    public DataResult deleteById(Integer id) {
+        return DataResult.successByData(this.personService.deleteById(id));
     }
 
     /**
@@ -110,9 +110,8 @@ public class PersonController {
      * @return
      */
     @PostMapping("queryByPerson")
-    DataResult<List<Person>> queryByPerson(Person person){
-
-        return DataResult.successByDatas(this.personService.queryByPerson(person)) ;
+    DataResult queryByPerson(@RequestBody Person person){
+        return DataResult.successByData(this.personService.queryByPerson(person)) ;
     }
 
 }
