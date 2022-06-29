@@ -35,7 +35,7 @@ public class NoticeController {
      */
     @GetMapping("queryByPage")
     public DataResult queryByPage(@RequestParam Integer page,@RequestParam Integer size) {
-        PageRequest pageRequest = PageRequest.of(page,size);
+        PageRequest pageRequest = PageRequest.of(page-1,size);
         Notice notice = new Notice();
         return DataResult.successByData(this.noticeService.queryByPage(notice, pageRequest));
     }

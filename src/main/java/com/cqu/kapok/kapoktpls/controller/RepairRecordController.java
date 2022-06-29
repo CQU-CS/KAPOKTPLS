@@ -36,7 +36,7 @@ public class RepairRecordController {
      */
     @GetMapping("queryByPage")
     public DataResult queryByPage(@RequestParam Integer page,@RequestParam Integer size) {
-        PageRequest pageRequest = PageRequest.of(page,size);
+        PageRequest pageRequest = PageRequest.of(page-1,size);
         RepairRecord repairRecord = new RepairRecord();
         return DataResult.successByData(this.repairRecordService.queryByPage(repairRecord, pageRequest));
     }

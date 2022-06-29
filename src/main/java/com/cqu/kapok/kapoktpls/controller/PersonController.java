@@ -47,7 +47,7 @@ public class PersonController {
      */
     @GetMapping("queryByPage")
     public DataResult queryByPage(@RequestParam Integer page,@RequestParam Integer size) {
-        PageRequest pageRequest = PageRequest.of(page,size);
+        PageRequest pageRequest = PageRequest.of(page-1,size);
         Person person = new Person();
         Map<String,Object> map = new HashMap<>();
         List<Person> persons = this.personService.queryByPage(person, pageRequest).getContent();

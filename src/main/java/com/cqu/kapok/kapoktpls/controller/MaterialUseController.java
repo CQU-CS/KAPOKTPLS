@@ -34,7 +34,7 @@ public class MaterialUseController {
      */
     @GetMapping("queryByPage")
     public DataResult queryByPage(@RequestParam Integer page,@RequestParam Integer size) {
-        PageRequest pageRequest = PageRequest.of(page,size);
+        PageRequest pageRequest = PageRequest.of(page-1,size);
         MaterialUse materialUse = new MaterialUse();
         return DataResult.successByData(this.materialUseService.queryByPage(materialUse, pageRequest));
     }
