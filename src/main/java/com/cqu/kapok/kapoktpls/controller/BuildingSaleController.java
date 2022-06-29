@@ -50,8 +50,8 @@ public class BuildingSaleController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public ResponseEntity<BuildingSale> queryById(@PathVariable("id") Integer id) {
-        return ResponseEntity.ok(this.buildingSaleService.queryById(id));
+    public DataResult queryById(@PathVariable("id") Integer id) {
+        return DataResult.successByData(this.buildingSaleService.queryById(id));
     }
 
     /**
@@ -61,8 +61,8 @@ public class BuildingSaleController {
      * @return 新增结果
      */
     @PostMapping
-    public ResponseEntity<BuildingSale> add(BuildingSale buildingSale) {
-        return ResponseEntity.ok(this.buildingSaleService.insert(buildingSale));
+    public DataResult add(BuildingSale buildingSale) {
+        return DataResult.successByData(this.buildingSaleService.insert(buildingSale));
     }
 
     /**
@@ -72,8 +72,8 @@ public class BuildingSaleController {
      * @return 编辑结果
      */
     @PutMapping
-    public ResponseEntity<BuildingSale> edit(BuildingSale buildingSale) {
-        return ResponseEntity.ok(this.buildingSaleService.update(buildingSale));
+    public DataResult edit(BuildingSale buildingSale) {
+        return DataResult.successByData(this.buildingSaleService.update(buildingSale));
     }
 
     /**
@@ -83,8 +83,8 @@ public class BuildingSaleController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.buildingSaleService.deleteById(id));
+    public DataResult deleteById(Integer id) {
+        return DataResult.successByData(this.buildingSaleService.deleteById(id));
     }
 
     /**

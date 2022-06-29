@@ -50,8 +50,8 @@ public class AdvertisementController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public ResponseEntity<Advertisement> queryById(@PathVariable("id") Integer id) {
-        return ResponseEntity.ok(this.advertisementService.queryById(id));
+    public DataResult queryById(@PathVariable("id") Integer id) {
+        return DataResult.successByData(this.advertisementService.queryById(id));
     }
 
     /**
@@ -61,8 +61,8 @@ public class AdvertisementController {
      * @return 新增结果
      */
     @PostMapping
-    public ResponseEntity<Advertisement> add(Advertisement advertisement) {
-        return ResponseEntity.ok(this.advertisementService.insert(advertisement));
+    public DataResult add(Advertisement advertisement) {
+        return DataResult.successByData(this.advertisementService.insert(advertisement));
     }
 
     /**
@@ -72,8 +72,8 @@ public class AdvertisementController {
      * @return 编辑结果
      */
     @PutMapping
-    public ResponseEntity<Advertisement> edit(Advertisement advertisement) {
-        return ResponseEntity.ok(this.advertisementService.update(advertisement));
+    public DataResult edit(Advertisement advertisement) {
+        return DataResult.successByData(this.advertisementService.update(advertisement));
     }
 
     /**
@@ -83,8 +83,8 @@ public class AdvertisementController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.advertisementService.deleteById(id));
+    public DataResult deleteById(Integer id) {
+        return DataResult.successByData(this.advertisementService.deleteById(id));
     }
 
 

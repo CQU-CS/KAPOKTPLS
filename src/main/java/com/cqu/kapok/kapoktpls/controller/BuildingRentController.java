@@ -49,8 +49,8 @@ public class BuildingRentController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public ResponseEntity<BuildingRent> queryById(@PathVariable("id") Integer id) {
-        return ResponseEntity.ok(this.buildingRentService.queryById(id));
+    public DataResult queryById(@PathVariable("id") Integer id) {
+        return DataResult.successByData(this.buildingRentService.queryById(id));
     }
 
     /**
@@ -60,8 +60,8 @@ public class BuildingRentController {
      * @return 新增结果
      */
     @PostMapping
-    public ResponseEntity<BuildingRent> add(BuildingRent buildingRent) {
-        return ResponseEntity.ok(this.buildingRentService.insert(buildingRent));
+    public DataResult add(BuildingRent buildingRent) {
+        return DataResult.successByData(this.buildingRentService.insert(buildingRent));
     }
 
     /**
@@ -71,8 +71,8 @@ public class BuildingRentController {
      * @return 编辑结果
      */
     @PutMapping
-    public ResponseEntity<BuildingRent> edit(BuildingRent buildingRent) {
-        return ResponseEntity.ok(this.buildingRentService.update(buildingRent));
+    public DataResult edit(BuildingRent buildingRent) {
+        return DataResult.successByData(this.buildingRentService.update(buildingRent));
     }
 
     /**
@@ -82,8 +82,8 @@ public class BuildingRentController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.buildingRentService.deleteById(id));
+    public DataResult deleteById(Integer id) {
+        return DataResult.successByData(this.buildingRentService.deleteById(id));
     }
 
     /**

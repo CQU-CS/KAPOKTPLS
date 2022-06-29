@@ -50,7 +50,7 @@ public class AccountController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public DataResult<JSONObject> queryById(@PathVariable("id") Integer id) {
+    public DataResult queryById(@PathVariable("id") Integer id) {
         return DataResult.successByData(this.accountService.queryById(id));
     }
 
@@ -61,7 +61,7 @@ public class AccountController {
      * @return 新增结果
      */
     @PostMapping
-    public DataResult<JSONObject> add(Account account) {
+    public DataResult add(Account account) {
         return DataResult.successByData(this.accountService.insert(account));
     }
 
@@ -72,7 +72,7 @@ public class AccountController {
      * @return 编辑结果
      */
     @PutMapping
-    public DataResult<JSONObject> edit(Account account) {
+    public DataResult edit(Account account) {
         return DataResult.successByData(this.accountService.update(account));
     }
 
@@ -83,7 +83,7 @@ public class AccountController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public DataResult<JSONObject> deleteById(Integer id) {
+    public DataResult deleteById(Integer id) {
         return DataResult.successByData(this.accountService.deleteById(id));
     }
 
