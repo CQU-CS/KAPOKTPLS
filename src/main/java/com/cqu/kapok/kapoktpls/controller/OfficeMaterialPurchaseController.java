@@ -90,7 +90,7 @@ public class OfficeMaterialPurchaseController {
      */
     @PostMapping("getByCondition")
     public DataResult getByCondition(@RequestBody  OfficeMaterialPurchase officeMaterialPurchase) {
-        return DataResult.successByData(this.officeMaterialPurchaseService.getByCondition(officeMaterialPurchase));
+        return DataResult.successByDatas(this.officeMaterialPurchaseService.getByCondition(officeMaterialPurchase));
     }
 
 }

@@ -91,7 +91,7 @@ public class NoticeController {
      */
     @PostMapping("getByCondition")
     public DataResult getByCondition(@RequestBody Notice notice) {
-        return DataResult.successByData(this.noticeService.getByCondition(notice));
+        return DataResult.successByDatas(this.noticeService.getByCondition(notice));
     }
 
 }

@@ -90,7 +90,7 @@ public class MaterialUseController {
      */
     @PostMapping("getByCondition")
     public DataResult getByCondition(@RequestBody MaterialUse materialUse) {
-        return DataResult.successByData(this.materialUseService.getByCondition(materialUse));
+        return DataResult.successByDatas(this.materialUseService.getByCondition(materialUse));
     }
 
 }

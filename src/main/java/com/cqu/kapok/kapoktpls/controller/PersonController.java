@@ -111,7 +111,7 @@ public class PersonController {
      */
     @PostMapping("queryByPerson")
     DataResult queryByPerson(@RequestBody Person person){
-        return DataResult.successByData(this.personService.queryByPerson(person)) ;
+        return DataResult.successByDatas(this.personService.queryByPerson(person)) ;
     }
 
 }
