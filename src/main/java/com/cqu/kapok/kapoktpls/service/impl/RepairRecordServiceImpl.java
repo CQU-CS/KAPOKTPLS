@@ -83,8 +83,13 @@ public class RepairRecordServiceImpl implements RepairRecordService {
         return this.repairRecordDao.deleteById(repairRecordId) > 0;
     }
 
+    /**
+     * 条件查询
+     * @param repairRecord
+     * @return
+     */
     @Override
-    public DataResult<List<RepairRecord>> queryByRepairRecord(RepairRecord repairRecord) {
-        return this.repairRecordDao.queryByRepairRecord(repairRecord);
+    public List<RepairRecord> getByCondition(RepairRecord repairRecord) {
+        return this.repairRecordDao.getByCondition(repairRecord);
     }
 }
