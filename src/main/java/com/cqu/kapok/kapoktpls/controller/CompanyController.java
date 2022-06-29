@@ -124,12 +124,12 @@ public class CompanyController {
      */
     @PostMapping("deleteByCompanyId")
     public DataResult deleteById(Integer id) {
-        System.out.println("id:"+id);
-        if(this.companyService.deleteById(id)){
-            return DataResult.succ();
-        }else{
-            return DataResult.errByErrCode(20001);
+        try {
+            boolean b = this.addressService.deleteById(id);
+        } catch (Exception e) {
+            return DataResult.errByErrCode(Code.COMPANY_DELETE_ERROR);
         }
+        return DataResult.errByErrCode(Code.SUCCESS);
 
     }
     /**
