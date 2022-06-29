@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.dao;
 
+import com.cqu.kapok.kapoktpls.dto.AddressDTO;
 import com.cqu.kapok.kapoktpls.entity.Address;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.apache.ibatis.annotations.Param;
@@ -86,5 +87,19 @@ public interface AddressDao {
      * @return
      */
     List<Address> queryByAddress(Address address);
+
+    /**
+     * 分页查询数量
+     * @param address
+     * @return
+     */
+    Long getAddressByConditionCount(Address address);
+
+    /**
+     * 分页查询
+     * @param addressDTO
+     * @return
+     */
+    List<Address> queryByAddressDTO(AddressDTO addressDTO);
 }
 

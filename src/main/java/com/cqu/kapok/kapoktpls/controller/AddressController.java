@@ -1,9 +1,13 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.dto.AddressDTO;
+import com.cqu.kapok.kapoktpls.dto.GoodsDTO;
 import com.cqu.kapok.kapoktpls.entity.Account;
 import com.cqu.kapok.kapoktpls.entity.Address;
+import com.cqu.kapok.kapoktpls.entity.Goods;
 import com.cqu.kapok.kapoktpls.service.AddressService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -91,6 +95,21 @@ public class AddressController {
     @PostMapping("queryByAddress")
     public DataResult<List<Address>> queryByAddress(Address address){
         return DataResult.successByDatas(this.addressService.queryByAddress(address));
+    }
+
+    /**
+     * 通过AddressDTO分页查询
+     * @param addressDTO
+     * @return 查询结果列表和查询总数
+     */
+    @PostMapping("queryByAddressDTO")
+    DataResult queryByGoods(@RequestBody AddressDTO addressDTO){
+        addressDTO.setPage((addressDTO.getPage() - 1) * addressDTO.getLimit());
+        List<Address> addresses =this.addressService.queryByAddressDTO(addressDTO);
+        Address address1 = new Address();
+        BeanUtils.copyProperties(addressDTO,address1);
+        Long total = this.addressService.getAddressByConditionCount(address1);
+        return DataResult.successByTotalData(addresses, total);
     }
 
 }
