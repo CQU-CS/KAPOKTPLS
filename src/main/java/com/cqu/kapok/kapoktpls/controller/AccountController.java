@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -113,6 +114,21 @@ public class AccountController {
         return DataResult.successByTotalData(accounts, total);
     }
 
+    /**
+     * 通过nickname获取头像
+     */
+
+    @PostMapping("getPictureByNickname")
+    public DataResult getPictureByNickname(@RequestBody Account account){
+//        ArrayList<Account> arrayList = new ArrayList<>();
+        List<Account> accounts = this.accountService.getPictureByNickname(account);
+//        for(Account a: accounts){
+//            arrayList.add(a);
+//        }
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("infor",accounts);
+        return DataResult.successByData(jsonObject);
+    }
 
 
 }

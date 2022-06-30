@@ -134,4 +134,13 @@ public class AccountServiceImpl implements AccountService {
     public Long getAccountByConditionCount(Account account) {
         return this.accountDao.getAccountByConditionCount(account);
     }
+
+
+    /**
+     * 获取图片地址
+     */
+    @Override
+    public List<Account> getPictureByNickname(Account account) {
+        return this.accountDao.getPictureByNickname(account);
+    }
 }
