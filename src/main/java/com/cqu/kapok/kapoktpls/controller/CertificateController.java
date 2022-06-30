@@ -2,12 +2,11 @@ package com.cqu.kapok.kapoktpls.controller;
 
 import com.cqu.kapok.kapoktpls.dto.CarrierManageDTO;
 import com.cqu.kapok.kapoktpls.dto.CertificateDTO;
-import com.cqu.kapok.kapoktpls.entity.CarrierManage;
-import com.cqu.kapok.kapoktpls.entity.Certificate;
-import com.cqu.kapok.kapoktpls.entity.Person;
+import com.cqu.kapok.kapoktpls.entity.*;
 import com.cqu.kapok.kapoktpls.service.CertificateService;
 import com.cqu.kapok.kapoktpls.service.PersonService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.utils.result.code.Code;
 import com.cqu.kapok.kapoktpls.vo.CertificateVo;
 import com.cqu.kapok.kapoktpls.vo.CompanyVo;
 import org.springframework.beans.BeanUtils;
@@ -62,23 +61,58 @@ public class CertificateController {
     /**
      * 新增数据
      *
-     * @param certificate 实体
+     * @param certificateVo 实体
      * @return 新增结果
      */
     @PostMapping("addByCertificate")
-    public ResponseEntity<Certificate> add(Certificate certificate) {
-        return ResponseEntity.ok(this.certificateService.insert(certificate));
+    public DataResult add(@RequestBody CertificateVo certificateVo) {
+        Certificate certificate = new Certificate();
+        Person person= new Person();
+        BeanUtils.copyProperties(certificateVo, certificate);
+        if(certificateVo.getPersonName()!=null) {
+            person.setPersonName(certificateVo.getPersonName());
+            List<Person> persons = this.personService.queryByPerson(person);
+            if (persons.size() == 0) {
+                person.setCompanyId(666);
+                Person insert = this.personService.insert(person);
+                certificate.setPersonId(insert.getPersonId());
+            } else {
+                for (Person person1:persons) {
+                    certificate.setPersonId(person1.getPersonId());
+                }
+            }
+        }
+        return  DataResult.successByData(this.certificateService.insert(certificate));
     }
 
     /**
      * 编辑数据
      *
-     * @param certificate 实体
+     * @param certificateVo 实体
      * @return 编辑结果
      */
     @PostMapping("editByCertificate")
-    public ResponseEntity<Certificate> edit(Certificate certificate) {
-        return ResponseEntity.ok(this.certificateService.update(certificate));
+    public  DataResult edit(@RequestBody CertificateVo certificateVo) {
+        System.out.println("2898479842");
+        System.out.println(certificateVo.getCertificateId());
+        Certificate certificate = new Certificate();
+        Person person= new Person();
+        BeanUtils.copyProperties(certificateVo, certificate);
+        if(certificateVo.getPersonName()!=null) {
+            person.setPersonName(certificateVo.getPersonName());
+            List<Person> persons = this.personService.queryByPerson(person);
+            if (persons.size() == 0) {
+                person.setCompanyId(666);
+                Person insert = this.personService.insert(person);
+                certificate.setPersonId(insert.getPersonId());
+            } else {
+                for (Person person1:persons) {
+                    certificate.setPersonId(person1.getPersonId());
+                }
+            }
+        }
+
+        return  DataResult.successByData(this.certificateService.update(certificate));
     }
 
     /**
@@ -88,8 +122,9 @@ public class CertificateController {
      * @return 删除是否成功
      */
     @PostMapping("deleteByCertificateId")
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.certificateService.deleteById(id));
+    public DataResult deleteById(Integer id) {
+        boolean b = this.certificateService.deleteById(id);
+        return DataResult.errByErrCode(Code.SUCCESS);
     }
     /**
      * 通过CertificateDTO分页查询
