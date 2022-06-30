@@ -2,11 +2,16 @@ package com.cqu.kapok.kapoktpls.controller;
 
 import com.cqu.kapok.kapoktpls.dto.TransportationTaskDTO;
 import com.cqu.kapok.kapoktpls.dto.TruckDTO;
+import com.cqu.kapok.kapoktpls.entity.Person;
 import com.cqu.kapok.kapoktpls.entity.RepairRecord;
 import com.cqu.kapok.kapoktpls.entity.TransportationTask;
 import com.cqu.kapok.kapoktpls.entity.Truck;
+import com.cqu.kapok.kapoktpls.service.PersonService;
 import com.cqu.kapok.kapoktpls.service.TruckService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.utils.result.code.Code;
+import com.cqu.kapok.kapoktpls.vo.CompanyVo;
+import com.cqu.kapok.kapoktpls.vo.TruckVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +19,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.xml.crypto.Data;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,6 +37,8 @@ public class TruckController {
      */
     @Resource
     private TruckService truckService;
+    @Resource
+    private PersonService personService;
 
     /**
      * 分页查询
@@ -68,23 +77,55 @@ public class TruckController {
     /**
      * 新增数据
      *
-     * @param truck 实体
+     * @param truckVo 实体
      * @return 新增结果
      */
-    @PostMapping
-    public ResponseEntity<Truck> add(Truck truck) {
-        return ResponseEntity.ok(this.truckService.insert(truck));
+    @PostMapping("addByTruck")
+    public DataResult add(@RequestBody TruckVo truckVo) {
+        Truck truck = new Truck();
+        Person person = new Person();
+        BeanUtils.copyProperties(truckVo,truck);
+        if(truckVo.getPersonName()!=null){
+            person.setPersonName(truckVo.getPersonName());
+            List<Person> people = this.personService.queryByPerson(person);
+            if(people.size()!=0){
+                for(Person person1:people){
+                    truck.setPersonId(person1.getPersonId());
+                }
+            }else{
+                person.setCompanyId(1);
+                Person insert = this.personService.insert(person);
+                truck.setPersonId(insert.getPersonId());
+            }
+        }
+        return DataResult.successByData(this.truckService.insert(truck));
     }
 
     /**
      * 编辑数据
      *
-     * @param truck 实体
+     * @param truckVo 实体
      * @return 编辑结果
      */
-    @PutMapping
-    public ResponseEntity<Truck> edit(Truck truck) {
-        return ResponseEntity.ok(this.truckService.update(truck));
+    @PostMapping("editByTruck")
+    public DataResult edit(@RequestBody TruckVo truckVo) {
+        Truck truck = new Truck();
+        Person person = new Person();
+        BeanUtils.copyProperties(truckVo,truck);
+        if(truckVo.getPersonName()!=null){
+            person.setPersonName(truckVo.getPersonName());
+            List<Person> people = this.personService.queryByPerson(person);
+            if(people.size()!=0){
+                for (Person person1:people){
+                    truck.setPersonId(person1.getPersonId());
+                }
+            }else{
+                person.setCompanyId(1);
+                Person insert = this.personService.insert(person);
+                truck.setPersonId(insert.getPersonId());
+            }
+        }
+        return DataResult.successByData(this.truckService.update(truck));
     }
 
     /**
@@ -93,9 +134,14 @@ public class TruckController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.truckService.deleteById(id));
+    @PostMapping("deleteByTruckId")
+    public DataResult deleteById(Integer id) {
+        try{
+            boolean b = this.truckService.deleteById(id);
+        } catch (Exception e){
+            return DataResult.errByErrCode(Code.TRUCK_DELETE_ERROR);
+        }
+        return DataResult.errByErrCode(Code.SUCCESS);
     }
 
     /**
@@ -106,12 +152,20 @@ public class TruckController {
      */
     @PostMapping("queryByTruckDTO")
     DataResult queryByTruckDTO(@RequestBody TruckDTO truckDTO){
+        ArrayList<TruckVo> truckVos = new ArrayList<TruckVo>();
         truckDTO.setPage((truckDTO.getPage() - 1) * truckDTO.getLimit());
         List<Truck> trucks =this.truckService.queryByTruckDTO(truckDTO);
         Truck truck = new Truck();
         BeanUtils.copyProperties(truckDTO,truck);
         Long total = this.truckService.getTruckByConditionCount(truck);
-        return DataResult.successByTotalData(trucks, total);
+        for(Truck truck1:trucks){
+            String personName = this.personService.queryById(truck1.getPersonId()).getPersonName();
+            TruckVo truckVo = new TruckVo();
+            BeanUtils.copyProperties(truck1,truckVo);
+            truckVo.setPersonName(personName);
+            truckVos.add(truckVo);
+        }
+        return DataResult.successByTotalData(truckVos, total);
     }
 
 }

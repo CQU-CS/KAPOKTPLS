@@ -17,4 +17,6 @@ public interface Code {
 	int ADDRESS_DELETE_ERROR = Errs.put(-5,"操作有误，删除的地址被其他表格使用");
 	//公司删除出错
 	int COMPANY_DELETE_ERROR = Errs.put(-5,"操作有误，删除的公司被其他表格使用");
+	// 汽车删除出错
+	int TRUCK_DELETE_ERROR = Errs.put(-5,"操作有误，删除的汽车被其他表格使用");
 }
