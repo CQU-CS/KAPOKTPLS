@@ -13,6 +13,6 @@ public class CarrierManageVo extends CarrierManage {
     private String companyName;//发布任务公司名
     private String goodsName;//货物名
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date taskTime;
 }

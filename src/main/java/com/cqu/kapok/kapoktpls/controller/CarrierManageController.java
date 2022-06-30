@@ -2,11 +2,10 @@ package com.cqu.kapok.kapoktpls.controller;
 
 import com.cqu.kapok.kapoktpls.dto.CarrierDTO;
 import com.cqu.kapok.kapoktpls.dto.CarrierManageDTO;
-import com.cqu.kapok.kapoktpls.entity.Carrier;
-import com.cqu.kapok.kapoktpls.entity.CarrierManage;
-import com.cqu.kapok.kapoktpls.entity.Goods;
+import com.cqu.kapok.kapoktpls.entity.*;
 import com.cqu.kapok.kapoktpls.service.*;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.utils.result.code.Code;
 import com.cqu.kapok.kapoktpls.vo.CarrierManageVo;
 import com.cqu.kapok.kapoktpls.vo.CompanyVo;
 import org.springframework.beans.BeanUtils;
@@ -68,23 +67,130 @@ public class CarrierManageController {
     /**
      * 新增数据
      *
-     * @param carrierManage 实体
+     * @param carrierManageVo 实体
      * @return 新增结果
      */
     @PostMapping("addByCarrierManage")
-    public ResponseEntity<CarrierManage> add(CarrierManage carrierManage) {
-        return ResponseEntity.ok(this.carrierManageService.insert(carrierManage));
+    public DataResult add(@RequestBody CarrierManageVo carrierManageVo) {
+        CarrierManage carrierManage = new CarrierManage();
+        Company company = new Company();
+        Goods goods = new Goods();
+        TransportationTask transportationTask = new TransportationTask();
+        Carrier carrier = new Carrier();
+        BeanUtils.copyProperties(carrierManageVo,carrierManage);
+        if(carrierManageVo.getCarrierName()!=null){
+            carrier.setCarrierName(carrierManageVo.getCarrierName());
+            List<Carrier> carriers = this.carrierService.queryByCarrier(carrier);
+            if(carriers.size()==0){
+                carrier.setCarrierInformation("new carrier");
+                Carrier insert = this.carrierService.insert(carrier);
+                carrierManage.setCarrierId(insert.getCarrierId());
+            }else{
+                for(Carrier carrier1:carriers){
+                    carrierManage.setCarrierId(carrier1.getCarrierId());
+                }
+            }
+        }
+        if(carrierManageVo.getCompanyName()!=null){
+            company.setCompanyName(carrierManageVo.getCompanyName());
+            List<Company> companies = this.companyService.queryCompany(company);
+            if(companies.size()==0){
+                company.setAddressId(666);
+                Company insert = this.companyService.insert(company);
+                transportationTask.setCompanyId(insert.getCompanyId());
+            }else{
+                for(Company company1:companies){
+                    transportationTask.setCompanyId(company1.getCompanyId());
+                }
+            }
+
+        }
+        if(carrierManageVo.getGoodsName()!=null){
+            goods.setGoodsName(carrierManageVo.getGoodsName());
+            List<Goods> goods1 = this.goodsService.queryByGoods(goods);
+            if(goods1.size()==0){
+                goods.setGoodsType("new goods");
+                Goods insert = this.goodsService.insert(goods);
+                transportationTask.setGoodsId(insert.getGoodsId());
+
+            }else{
+                for(Goods goods2:goods1){
+                    transportationTask.setGoodsId(goods2.getGoodsId());;
+                }
+            }
+
+        }
+        transportationTask.setTransportationTaskEndTime(carrierManageVo.getTaskTime());
+        transportationTask.setTruckId(666);
+        transportationTask.setAddressId(666);
+        TransportationTask insert = this.transportationTaskService.insert(transportationTask);
+        carrierManage.setTransportationTaskId(insert.getTransportationTaskId());;
+        return DataResult.successByData(this.carrierManageService.insert(carrierManage));
     }
 
     /**
      * 编辑数据
      *
-     * @param carrierManage 实体
+     * @param carrierManageVo 实体
      * @return 编辑结果
      */
     @PostMapping("editByCarrierManage")
-    public ResponseEntity<CarrierManage> edit(CarrierManage carrierManage) {
-        return ResponseEntity.ok(this.carrierManageService.update(carrierManage));
+    public DataResult edit(@RequestBody CarrierManageVo carrierManageVo) {
+        System.out.println(carrierManageVo.getCarrierName());
+        CarrierManage carrierManage = new CarrierManage();
+        Company company = new Company();
+        Goods goods = new Goods();
+        TransportationTask transportationTask = new TransportationTask();
+        Carrier carrier = new Carrier();
+        BeanUtils.copyProperties(carrierManageVo,carrierManage);
+        if(carrierManageVo.getCarrierName()!=null){
+            carrier.setCarrierName(carrierManageVo.getCarrierName());
+            List<Carrier> carriers = this.carrierService.queryByCarrier(carrier);
+            if(carriers.size()==0){
+                carrier.setCarrierInformation("new carrier");
+                Carrier insert = this.carrierService.insert(carrier);
+                carrierManage.setCarrierId(insert.getCarrierId());
+            }else{
+                for(Carrier carrier1:carriers){
+                    carrierManage.setCarrierId(carrier1.getCarrierId());
+                }
+            }
+        }
+        if(carrierManageVo.getCompanyName()!=null){
+            company.setCompanyName(carrierManageVo.getCompanyName());
+            List<Company> companies = this.companyService.queryCompany(company);
+            if(companies.size()==0){
+                company.setAddressId(666);
+                Company insert = this.companyService.insert(company);
+                transportationTask.setCompanyId(insert.getCompanyId());
+            }else{
+                for(Company company1:companies){
+                    transportationTask.setCompanyId(company1.getCompanyId());
+                }
+            }
+
+        }
+        if(carrierManageVo.getGoodsName()!=null){
+            goods.setGoodsName(carrierManageVo.getGoodsName());
+            List<Goods> goods1 = this.goodsService.queryByGoods(goods);
+            if(goods1.size()==0){
+                goods.setGoodsType("new goods");
+                Goods insert = this.goodsService.insert(goods);
+                transportationTask.setGoodsId(insert.getGoodsId());
+
+            }else{
+                for(Goods goods2:goods1){
+                    transportationTask.setGoodsId(goods2.getGoodsId());;
+                }
+            }
+
+        }
+        transportationTask.setTransportationTaskEndTime(carrierManageVo.getTaskTime());
+        transportationTask.setTruckId(666);
+        transportationTask.setAddressId(666);
+        TransportationTask insert = this.transportationTaskService.insert(transportationTask);
+        carrierManage.setTransportationTaskId(insert.getTransportationTaskId());;
+        return DataResult.successByData(this.carrierManageService.update(carrierManage));
     }
 
     /**
@@ -94,8 +200,9 @@ public class CarrierManageController {
      * @return 删除是否成功
      */
     @PostMapping("deleteByCarrierManageId")
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.carrierManageService.deleteById(id));
+    public DataResult deleteById(Integer id) {
+        boolean b = this.carrierManageService.deleteById(id);
+        return DataResult.errByErrCode(Code.SUCCESS);
     }
     /**
      * 通过CarrierManageDTO分页查询

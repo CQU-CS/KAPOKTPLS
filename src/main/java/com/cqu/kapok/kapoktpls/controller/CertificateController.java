@@ -93,8 +93,7 @@ public class CertificateController {
      */
     @PostMapping("editByCertificate")
     public  DataResult edit(@RequestBody CertificateVo certificateVo) {
-        System.out.println("2898479842");
-        System.out.println(certificateVo.getCertificateId());
+
         Certificate certificate = new Certificate();
         Person person= new Person();
         BeanUtils.copyProperties(certificateVo, certificate);

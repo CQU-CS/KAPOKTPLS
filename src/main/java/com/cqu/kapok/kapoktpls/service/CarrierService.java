@@ -59,5 +59,5 @@ public interface CarrierService {
     List<Carrier> queryAll(CarrierDTO carrierDTO);
 
     Long getCarrierByConditionCount(Carrier carrier);
-
+    List<Carrier> queryByCarrier(Carrier carrier);
 }

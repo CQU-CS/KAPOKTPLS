@@ -38,7 +38,26 @@
         </where>
         limit #{page}, #{limit}
     </select>
-
+    <!--查询指定行数据-->
+    <select id="queryByCarrier" resultMap="CarrierMap" >
+        select
+        carrier_id, carrier_name, carrier_account, carrier_information
+        from carrier
+        <where>
+            <if test="carrierId != null">
+                and carrier_id = #{carrierId}
+            </if>
+            <if test="carrierName != null and carrierName != ''">
+                and carrier_name = #{carrierName}
+            </if>
+            <if test="carrierAccount != null and carrierAccount != ''">
+                and carrier_account = #{carrierAccount}
+            </if>
+            <if test="carrierInformation != null and carrierInformation != ''">
+                and carrier_information = #{carrierInformation}
+            </if>
+        </where>
+    </select>
     <!--统计总行数-->
     <select id="getCarrierByConditionCount" resultType="java.lang.Long">
         select count(1)
