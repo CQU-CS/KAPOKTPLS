@@ -4,8 +4,8 @@ import com.cqu.kapok.kapoktpls.dto.CarrierDTO;
 import com.cqu.kapok.kapoktpls.dto.CarrierManageDTO;
 import com.cqu.kapok.kapoktpls.entity.Carrier;
 import com.cqu.kapok.kapoktpls.entity.CarrierManage;
-import com.cqu.kapok.kapoktpls.service.CarrierManageService;
-import com.cqu.kapok.kapoktpls.service.CarrierService;
+import com.cqu.kapok.kapoktpls.entity.Goods;
+import com.cqu.kapok.kapoktpls.service.*;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import com.cqu.kapok.kapoktpls.vo.CarrierManageVo;
 import com.cqu.kapok.kapoktpls.vo.CompanyVo;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,6 +36,12 @@ public class CarrierManageController {
     private CarrierManageService carrierManageService;
     @Resource
     private CarrierService carrierService;
+    @Resource
+    private CompanyService companyService;
+    @Resource
+    private TransportationTaskService transportationTaskService;
+    @Resource
+    private GoodsService goodsService;
     /**
      * 分页查询
      *
@@ -104,10 +111,23 @@ public class CarrierManageController {
         BeanUtils.copyProperties(carrierManageDTO,carrierManage);
         Long total = this.carrierManageService.getCarrierMangeByConditionCount(carrierManage);
         for(CarrierManage carrierManage1:carrierManages){
+            //查询承运商名称
             String carrierName = this.carrierService.queryById(carrierManage1.getCarrierId()).getCarrierName();
             CarrierManageVo carrierManageVo = new CarrierManageVo();
+            //查询发布任务公司名
+            Integer companyId = this.transportationTaskService.queryById(carrierManage1.getTransportationTaskId()).getCompanyId();
+            String companyName = this.companyService.queryById(companyId).getCompanyName();
+            //查询货物名
+            Integer goodsId = this.transportationTaskService.queryById(carrierManage1.getTransportationTaskId()).getGoodsId();
+            String goodsName = this.goodsService.queryById(goodsId).getGoodsName();
+           //查询运输开始时间
+            Date transportationTaskEndTime = this.transportationTaskService.queryById(carrierManage1.getTransportationTaskId()).getTransportationTaskEndTime();
+
             BeanUtils.copyProperties(carrierManage1,carrierManageVo);
             carrierManageVo.setCarrierName(carrierName);
+            carrierManageVo.setCompanyName(companyName);
+            carrierManageVo.setGoodsName(goodsName);
+            carrierManageVo.setTaskTime(transportationTaskEndTime);
             carrierManageVos.add(carrierManageVo);
         }
         return DataResult.successByTotalData(carrierManageVos, total);
