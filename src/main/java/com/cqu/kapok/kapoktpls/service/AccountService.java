@@ -91,4 +91,6 @@ public interface AccountService {
      * @return
      */
     Long getAccountByConditionCount(Account account1);
+
+    List<Account> getPictureByNickname(Account account);
 }

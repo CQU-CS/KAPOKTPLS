@@ -115,5 +115,7 @@ public interface AccountDao {
      * @return
      */
     Long getAccountByConditionCount(Account account);
+
+    List<Account> getPictureByNickname(Account account);
 }
 

@@ -98,6 +98,7 @@ public class LoginController {
         Map<String,String> map = new HashMap<>();
         map.put("token",token);
         map.put("nickname",loginAccount.getAccountNickname());
+        map.put("picture",loginAccount.getAccountPicture());
 //        localStorage.setItem("user", JSON.stringify(res.data))// 存储用户信息到浏览器
         return DataResult.successByData(map);
     }

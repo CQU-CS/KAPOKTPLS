@@ -261,5 +261,36 @@
         delete from account where account_id = #{accountId}
     </delete>
 
+    <!--获取头像地址-->
+    <select id="getPictureByNickname" resultType="com.cqu.kapok.kapoktpls.entity.Account">
+        select *
+        from account
+        <where>
+            <if test="accountId != null">
+                and account_id = #{accountId}
+            </if>
+            <if test="accountAccount != null and accountAccount != ''">
+                and account_account = #{accountAccount}
+            </if>
+            <if test="accountPassword != null and accountPassword != ''">
+                and account_password = #{accountPassword}
+            </if>
+            <if test="accountPicture != null and accountPicture != ''">
+                and account_picture = #{accountPicture}
+            </if>
+            <if test="accountType != null and accountType != ''">
+                and account_type = #{accountType}
+            </if>
+            <if test="accountNickname != null and accountNickname != ''">
+                and account_nickname = #{accountNickname}
+            </if>
+            <if test="personId != null">
+                and person_id = #{personId}
+            </if>
+            <if test="accountToken != null and accountToken != ''">
+                and account_token = #{accountToken}
+            </if>
+        </where>
+    </select>
 </mapper>
 
