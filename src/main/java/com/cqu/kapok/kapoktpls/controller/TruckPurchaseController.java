@@ -94,7 +94,7 @@ public class TruckPurchaseController {
                     truckPurchase.setTruckId(truck1.getTruckId());
                 }
             }else{
-                truck.setTruckPlate("114514");
+                truck.setTruckType("-------");
                 Truck insert = this.truckService.insert(truck);
                 truckPurchase.setTruckId(insert.getTruckId());
             }
@@ -136,7 +136,7 @@ public class TruckPurchaseController {
                     truckPurchase.setTruckId(truck1.getTruckId());
                 }
             }else{
-                truck.setTruckPlate("114514");
+                truck.setTruckType("--------");
                 Truck insert = this.truckService.insert(truck);
                 truckPurchase.setTruckId(insert.getTruckId());
             }
@@ -168,7 +168,6 @@ public class TruckPurchaseController {
         try{
             boolean b = this.truckPurchaseService.deleteById(id);
         } catch (Exception e){
-            return DataResult.errByErrCode(Code.TRUCK_DELETE_ERROR);
         }
         return DataResult.errByErrCode(Code.SUCCESS);
     }

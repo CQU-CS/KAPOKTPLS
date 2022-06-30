@@ -2,10 +2,14 @@ package com.cqu.kapok.kapoktpls.controller;
 
 import com.cqu.kapok.kapoktpls.dto.TruckPurchaseDTO;
 import com.cqu.kapok.kapoktpls.dto.TruckRepairRecordDTO;
+import com.cqu.kapok.kapoktpls.entity.Truck;
 import com.cqu.kapok.kapoktpls.entity.TruckPurchase;
 import com.cqu.kapok.kapoktpls.entity.TruckRepairRecord;
 import com.cqu.kapok.kapoktpls.service.TruckRepairRecordService;
+import com.cqu.kapok.kapoktpls.service.TruckService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.utils.result.code.Code;
+import com.cqu.kapok.kapoktpls.vo.TruckRepairRecordVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -29,7 +33,8 @@ public class TruckRepairRecordController {
      */
     @Resource
     private TruckRepairRecordService truckRepairRecordService;
-
+    @Resource
+    private TruckService truckService;
     /**
      * 分页查询
      *
@@ -67,23 +72,55 @@ public class TruckRepairRecordController {
     /**
      * 新增数据
      *
-     * @param truckRepairRecord 实体
+     * @param truckRepairRecordVo 实体
      * @return 新增结果
      */
-    @PostMapping
-    public ResponseEntity<TruckRepairRecord> add(TruckRepairRecord truckRepairRecord) {
-        return ResponseEntity.ok(this.truckRepairRecordService.insert(truckRepairRecord));
+    @PostMapping("addByTruckRepairRecord")
+    public DataResult add(@RequestBody TruckRepairRecordVo truckRepairRecordVo) {
+        TruckRepairRecord truckRepairRecord = new TruckRepairRecord();
+        Truck truck = new Truck();
+        BeanUtils.copyProperties(truckRepairRecordVo,truckRepairRecord);
+        if(truckRepairRecordVo.getTruckPlate()!=null){
+            truck.setTruckPlate(truckRepairRecordVo.getTruckPlate());
+            List<Truck> trucks = this.truckService.queryByTruck(truck);
+            if(trucks.size()!=0){
+                for(Truck truck1:trucks){
+                    truckRepairRecord.setTruckId(truck1.getTruckId());
+                }
+            }else{
+                truck.setTruckType("--------");
+                Truck insert = this.truckService.insert(truck);
+                truckRepairRecord.setTruckId(insert.getTruckId());
+            }
+        }
+        return DataResult.successByData(this.truckRepairRecordService.insert(truckRepairRecord));
     }
 
     /**
      * 编辑数据
      *
-     * @param truckRepairRecord 实体
+     * @param truckRepairRecordVo 实体
      * @return 编辑结果
      */
-    @PutMapping
-    public ResponseEntity<TruckRepairRecord> edit(TruckRepairRecord truckRepairRecord) {
-        return ResponseEntity.ok(this.truckRepairRecordService.update(truckRepairRecord));
+    @PostMapping("editByTruckRepairRecord")
+    public DataResult edit(@RequestBody TruckRepairRecordVo truckRepairRecordVo) {
+        TruckRepairRecord truckRepairRecord = new TruckRepairRecord();
+        Truck truck = new Truck();
+        BeanUtils.copyProperties(truckRepairRecordVo,truckRepairRecord);
+        if(truckRepairRecordVo.getTruckPlate()!=null){
+            truck.setTruckPlate(truckRepairRecordVo.getTruckPlate());
+            List<Truck> trucks = this.truckService.queryByTruck(truck);
+            if(trucks.size()!=0){
+                for(Truck truck1:trucks){
+                    truckRepairRecord.setTruckId(truck1.getTruckId());
+                }
+            }else{
+                truck.setTruckType("--------");
+                Truck insert = this.truckService.insert(truck);
+                truckRepairRecord.setTruckId(insert.getTruckId());
+            }
+        }
+        return DataResult.successByData(this.truckRepairRecordService.update(truckRepairRecord));
     }
 
     /**
@@ -92,9 +129,14 @@ public class TruckRepairRecordController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.truckRepairRecordService.deleteById(id));
+    @PostMapping("deleteByTruckRepairRecord")
+    public DataResult deleteById(Integer id) {
+        try{
+            boolean b = this.truckRepairRecordService.deleteById(id);
+        } catch (Exception e){
+            return DataResult.errByErrCode(Code.TRUCK_REPAIR_RECORD_ERROR);
+        }
+        return DataResult.errByErrCode(Code.SUCCESS);
     }
 
     /**
