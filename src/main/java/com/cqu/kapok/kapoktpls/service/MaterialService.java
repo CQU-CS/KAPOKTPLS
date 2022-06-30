@@ -57,7 +57,7 @@ public interface MaterialService {
      */
     boolean deleteById(Integer materialId);
 
-	  List<Material> queryAllByCondition(MaterialDTO materialDTO);
+    List<Material> queryAllByCondition(MaterialDTO materialDTO);
 
     Long getMaterialByConditionCount(Material material);
 }

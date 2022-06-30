@@ -81,6 +81,7 @@ public class MaterialServiceImpl implements MaterialService {
      */
     @Override
     public boolean deleteById(Integer materialId) {
+        System.out.println("删除 "+materialId);
         return this.materialDao.deleteById(materialId) > 0;
     }
 
