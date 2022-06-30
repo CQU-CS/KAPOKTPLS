@@ -94,7 +94,7 @@ public class TruckPurchaseController {
                     truckPurchase.setTruckId(truck1.getTruckId());
                 }
             }else{
-                truck.setTruckType("-------");
+                truck.setPersonId(1);
                 Truck insert = this.truckService.insert(truck);
                 truckPurchase.setTruckId(insert.getTruckId());
             }
@@ -107,7 +107,7 @@ public class TruckPurchaseController {
                     truckPurchase.setCompanyId(company1.getCompanyId());
                 }
             }else{
-                company.setCompanyInstruction("未知业");
+                company.setAddressId(1);
                 Company insert = this.companyService.insert(company);
                 truckPurchase.setCompanyId(insert.getCompanyId());
             }
@@ -136,7 +136,7 @@ public class TruckPurchaseController {
                     truckPurchase.setTruckId(truck1.getTruckId());
                 }
             }else{
-                truck.setTruckType("--------");
+                truck.setPersonId(1);
                 Truck insert = this.truckService.insert(truck);
                 truckPurchase.setTruckId(insert.getTruckId());
             }
@@ -149,7 +149,7 @@ public class TruckPurchaseController {
                     truckPurchase.setCompanyId(company1.getCompanyId());
                 }
             }else{
-                company.setCompanyInstruction("未知业");
+                company.setAddressId(1);
                 Company insert = this.companyService.insert(company);
                 truckPurchase.setCompanyId(insert.getCompanyId());
             }

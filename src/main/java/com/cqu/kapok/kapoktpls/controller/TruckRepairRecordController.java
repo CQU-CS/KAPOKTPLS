@@ -88,7 +88,7 @@ public class TruckRepairRecordController {
                     truckRepairRecord.setTruckId(truck1.getTruckId());
                 }
             }else{
-                truck.setTruckType("--------");
+                truck.setPersonId(1);
                 Truck insert = this.truckService.insert(truck);
                 truckRepairRecord.setTruckId(insert.getTruckId());
             }
@@ -115,7 +115,7 @@ public class TruckRepairRecordController {
                     truckRepairRecord.setTruckId(truck1.getTruckId());
                 }
             }else{
-                truck.setTruckType("--------");
+                truck.setPersonId(1);
                 Truck insert = this.truckService.insert(truck);
                 truckRepairRecord.setTruckId(insert.getTruckId());
             }

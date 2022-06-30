@@ -1,10 +1,11 @@
 package com.cqu.kapok.kapoktpls.controller;
 
 import com.cqu.kapok.kapoktpls.dto.TransportationTaskDTO;
-import com.cqu.kapok.kapoktpls.entity.RepairRecord;
-import com.cqu.kapok.kapoktpls.entity.TransportationTask;
-import com.cqu.kapok.kapoktpls.service.TransportationTaskService;
+import com.cqu.kapok.kapoktpls.entity.*;
+import com.cqu.kapok.kapoktpls.service.*;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.utils.result.code.Code;
+import com.cqu.kapok.kapoktpls.vo.TransportationTaskVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,7 +29,14 @@ public class TransportationTaskController {
      */
     @Resource
     private TransportationTaskService transportationTaskService;
-
+    @Resource
+    private TruckService truckService;
+    @Resource
+    private CompanyService companyService;
+    @Resource
+    private GoodsService goodsService;
+    @Resource
+    private AddressService addressService;
     /**
      * 分页查询
      *
@@ -66,23 +74,139 @@ public class TransportationTaskController {
     /**
      * 新增数据
      *
-     * @param transportationTask 实体
+     * @param transportationTaskVo 实体
      * @return 新增结果
      */
-    @PostMapping
-    public ResponseEntity<TransportationTask> add(TransportationTask transportationTask) {
-        return ResponseEntity.ok(this.transportationTaskService.insert(transportationTask));
+    @PostMapping("addByTransportationTask")
+    public DataResult add(TransportationTaskVo transportationTaskVo) {
+        TransportationTask transportationTask = new TransportationTask();
+        Truck truck = new Truck();
+        Company company = new Company();
+        Goods goods = new Goods();
+        Address address = new Address();
+        BeanUtils.copyProperties(transportationTaskVo,transportationTask);
+        if(transportationTaskVo.getTruckPlate()!=null){
+            truck.setTruckPlate(transportationTaskVo.getTruckPlate());
+            List<Truck> trucks = this.truckService.queryByTruck(truck);
+            if(trucks.size()!=0){
+                for (Truck truck1:trucks){
+                    transportationTask.setTruckId(truck1.getTruckId());
+                }
+            }else{
+                truck.setPersonId(1);
+                Truck insert = this.truckService.insert(truck);
+                transportationTask.setTruckId(insert.getTruckId());
+            }
+        }
+        if(transportationTaskVo.getAddressContent()!=null){
+            address.setAddressContent(transportationTaskVo.getAddressContent());
+            List<Address> addresses = this.addressService.queryByAddress(address);
+            if(addresses.size()!=0){
+                for(Address address1:addresses){
+                    transportationTask.setAddressId(address1.getAddressId());
+                }
+            }else{
+                address.setAddressLevel(1);
+                Address insert = this.addressService.insert(address);
+                transportationTask.setAddressId(insert.getAddressId());
+            }
+        }
+        if(transportationTaskVo.getCompanyName()!=null){
+            company.setCompanyName(transportationTaskVo.getCompanyName());
+            List<Company> companies = this.companyService.queryCompany(company);
+            if(companies.size()!=0){
+                for (Company company1:companies){
+                    transportationTask.setCompanyId(company1.getCompanyId());
+                }
+            }else{
+                company.setAddressId(1);
+                Company insert = this.companyService.insert(company);
+                transportationTask.setCompanyId(insert.getCompanyId());
+            }
+        }
+        if(transportationTaskVo.getGoodsName()!=null){
+            goods.setGoodsName(transportationTaskVo.getGoodsName());
+            List<Goods> goods1 = this.goodsService.queryByGoods(goods);
+            if(goods1.size()!=0){
+                for (Goods goods2:goods1){
+                    transportationTask.setGoodsId(goods2.getGoodsId());
+                }
+            }else{
+                goods.setGoodsUnit("--------");
+                Goods insert = this.goodsService.insert(goods);
+                transportationTask.setGoodsId(insert.getGoodsId());
+            }
+        }
+        return DataResult.successByData(this.transportationTaskService.insert(transportationTask));
     }
 
     /**
      * 编辑数据
      *
-     * @param transportationTask 实体
+     * @param transportationTaskVo 实体
      * @return 编辑结果
      */
-    @PutMapping
-    public ResponseEntity<TransportationTask> edit(TransportationTask transportationTask) {
-        return ResponseEntity.ok(this.transportationTaskService.update(transportationTask));
+    @PostMapping("editByTransportationTask")
+    public DataResult edit(@RequestBody TransportationTaskVo transportationTaskVo) {
+        TransportationTask transportationTask = new TransportationTask();
+        Truck truck = new Truck();
+        Company company = new Company();
+        Goods goods = new Goods();
+        Address address = new Address();
+        BeanUtils.copyProperties(transportationTaskVo,transportationTask);
+        if(transportationTaskVo.getTruckPlate()!=null){
+            truck.setTruckPlate(transportationTaskVo.getTruckPlate());
+            List<Truck> trucks = this.truckService.queryByTruck(truck);
+            if(trucks.size()!=0){
+                for (Truck truck1:trucks){
+                    transportationTask.setTruckId(truck1.getTruckId());
+                }
+            }else{
+                truck.setPersonId(1);
+                Truck insert = this.truckService.insert(truck);
+                transportationTask.setTruckId(insert.getTruckId());
+            }
+        }
+        if(transportationTaskVo.getAddressContent()!=null){
+            address.setAddressContent(transportationTaskVo.getAddressContent());
+            List<Address> addresses = this.addressService.queryByAddress(address);
+            if(addresses.size()!=0){
+                for(Address address1:addresses){
+                    transportationTask.setAddressId(address1.getAddressId());
+                }
+            }else{
+                address.setAddressLevel(1);
+                Address insert = this.addressService.insert(address);
+                transportationTask.setAddressId(insert.getAddressId());
+            }
+        }
+        if(transportationTaskVo.getCompanyName()!=null){
+            company.setCompanyName(transportationTaskVo.getCompanyName());
+            List<Company> companies = this.companyService.queryCompany(company);
+            if(companies.size()!=0){
+                for (Company company1:companies){
+                    transportationTask.setCompanyId(company1.getCompanyId());
+                }
+            }else{
+                company.setAddressId(1);
+                Company insert = this.companyService.insert(company);
+                transportationTask.setCompanyId(insert.getCompanyId());
+            }
+        }
+        if(transportationTaskVo.getGoodsName()!=null){
+            goods.setGoodsName(transportationTaskVo.getGoodsName());
+            List<Goods> goods1 = this.goodsService.queryByGoods(goods);
+            if(goods1.size()!=0){
+                for (Goods goods2:goods1){
+                    transportationTask.setGoodsId(goods2.getGoodsId());
+                }
+            }else{
+                goods.setGoodsUnit("--------");
+                Goods insert = this.goodsService.insert(goods);
+                transportationTask.setGoodsId(insert.getGoodsId());
+            }
+        }
+        return DataResult.successByData(this.transportationTaskService.update(transportationTask));
     }
 
     /**
@@ -91,9 +215,14 @@ public class TransportationTaskController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.transportationTaskService.deleteById(id));
+    @PostMapping("deleteByTransportationTask")
+    public DataResult deleteById(Integer id) {
+        try{
+            boolean b = this.transportationTaskService.deleteById(id);
+        } catch (Exception e){
+            return DataResult.errByErrCode(Code.TRANSPORTATIONtASK_ERROR);
+        }
+        return DataResult.errByErrCode(Code.SUCCESS);
     }
 
     /**
