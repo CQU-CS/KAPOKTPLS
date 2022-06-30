@@ -96,5 +96,6 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public List<Company> queryCompany(Company company) {
         return this.companyDao.queryCompany(company);
+
     }
 }

@@ -162,6 +162,7 @@ public class CompanyController {
     public DataResult<List<Company>> queryCompany(Company company){
         return DataResult.successByDatas(this.companyService.queryCompany(company));
     }
+
 //    @PostMapping("queryByCompany")
 //    DataResult queryByCompany(@RequestBody CompanyDTO companyDTO){
 //        companyDTO.setPage((companyDTO.getPage() - 1) * companyDTO.getLimit());

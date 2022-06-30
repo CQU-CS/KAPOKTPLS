@@ -61,4 +61,5 @@ public interface CompanyService {
     Long getCompanyByConditionCount(Company company);
 
     List<Company> queryCompany(Company company);
+
 }
