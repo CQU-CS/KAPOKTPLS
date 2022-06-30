@@ -2,11 +2,13 @@ package com.cqu.kapok.kapoktpls.controller;
 
 import com.cqu.kapok.kapoktpls.dto.CompanyDTO;
 import com.cqu.kapok.kapoktpls.dto.EcdDTO;
+import com.cqu.kapok.kapoktpls.entity.Building;
 import com.cqu.kapok.kapoktpls.entity.Company;
 import com.cqu.kapok.kapoktpls.entity.Ecd;
 import com.cqu.kapok.kapoktpls.service.BuildingService;
 import com.cqu.kapok.kapoktpls.service.EcdService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.utils.result.code.Code;
 import com.cqu.kapok.kapoktpls.vo.CompanyVo;
 import com.cqu.kapok.kapoktpls.vo.EcdVo;
 import org.springframework.beans.BeanUtils;
@@ -63,23 +65,59 @@ public class EcdController {
     /**
      * 新增数据
      *
-     * @param ecd 实体
+     * @param ecdVo 实体
      * @return 新增结果
      */
     @PostMapping("addByEcd")
-    public ResponseEntity<Ecd> add(Ecd ecd) {
-        return ResponseEntity.ok(this.ecdService.insert(ecd));
+    public DataResult add(@RequestBody EcdVo ecdVo) {
+        Ecd ecd = new Ecd();
+        Building building = new Building();
+        BeanUtils.copyProperties(ecdVo,ecd);
+        if(ecdVo.getBuildingName()!=null){
+            building.setBuildingName(ecdVo.getBuildingName());
+            List<Building> buildings = this.buildingService.queryByBuilding(building);
+            if(buildings.size()==0){
+                building.setAddressId(1);
+                Building insert = this.buildingService.insert(building);
+                ecd.setBuildingId(insert.getBuildingId());
+            }
+            else{
+                for(Building building1:buildings){
+                    ecd.setBuildingId(building1.getBuildingId());
+                }
+            }
+        }
+
+        return DataResult.successByData(this.ecdService.insert(ecd));
     }
 
     /**
      * 编辑数据
      *
-     * @param ecd 实体
+     * @param ecdVo 实体
      * @return 编辑结果
      */
     @PostMapping("editByEcd")
-    public ResponseEntity<Ecd> edit(Ecd ecd) {
-        return ResponseEntity.ok(this.ecdService.update(ecd));
+    public DataResult edit(@RequestBody EcdVo ecdVo) {
+
+        Ecd ecd = new Ecd();
+        Building building = new Building();
+        BeanUtils.copyProperties(ecdVo,ecd);
+        if(ecdVo.getBuildingName()!=null){
+            building.setBuildingName(ecdVo.getBuildingName());
+            List<Building> buildings = this.buildingService.queryByBuilding(building);
+            if(buildings.size()==0){
+                building.setAddressId(1);
+                Building insert = this.buildingService.insert(building);
+                ecd.setBuildingId(insert.getBuildingId());
+            }
+            else{
+                for(Building building1:buildings){
+                    ecd.setBuildingId(building1.getBuildingId());
+                }
+            }
+        }
+        return DataResult.successByData(this.ecdService.update(ecd));
     }
 
     /**
@@ -89,8 +127,9 @@ public class EcdController {
      * @return 删除是否成功
      */
     @PostMapping("deleteByEcdId")
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.ecdService.deleteById(id));
+    public DataResult deleteById(Integer id) {
+        boolean b = this.ecdService.deleteById(id);
+        return DataResult.errByErrCode(Code.SUCCESS);
     }
     /**
      * 通过EcdDTO分页查询
