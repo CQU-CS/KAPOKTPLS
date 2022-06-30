@@ -92,4 +92,9 @@ public class CompanyServiceImpl implements CompanyService {
     public Long getCompanyByConditionCount(Company company) {
         return this.companyDao.getCompanyByConditionCount(company);
     }
+
+    @Override
+    public List<Company> queryCompany(Company company) {
+        return this.companyDao.queryCompany(company);
+    }
 }

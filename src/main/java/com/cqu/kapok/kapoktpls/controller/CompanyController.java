@@ -5,6 +5,7 @@ import com.cqu.kapok.kapoktpls.dto.CompanyDTO;
 import com.cqu.kapok.kapoktpls.entity.Address;
 import com.cqu.kapok.kapoktpls.entity.Carrier;
 import com.cqu.kapok.kapoktpls.entity.Company;
+import com.cqu.kapok.kapoktpls.entity.TruckPurchase;
 import com.cqu.kapok.kapoktpls.service.AddressService;
 import com.cqu.kapok.kapoktpls.service.CompanyService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
@@ -155,6 +156,11 @@ public class CompanyController {
 
         }
         return DataResult.successByTotalData(companyVos, total);
+    }
+
+    @PostMapping("queryCompany")
+    public DataResult<List<Company>> queryCompany(Company company){
+        return DataResult.successByDatas(this.companyService.queryCompany(company));
     }
 //    @PostMapping("queryByCompany")
 //    DataResult queryByCompany(@RequestBody CompanyDTO companyDTO){
