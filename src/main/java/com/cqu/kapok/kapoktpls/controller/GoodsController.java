@@ -2,6 +2,7 @@ package com.cqu.kapok.kapoktpls.controller;
 
 import com.cqu.kapok.kapoktpls.dto.EcdDTO;
 import com.cqu.kapok.kapoktpls.dto.GoodsDTO;
+import com.cqu.kapok.kapoktpls.entity.Address;
 import com.cqu.kapok.kapoktpls.entity.Ecd;
 import com.cqu.kapok.kapoktpls.entity.Goods;
 import com.cqu.kapok.kapoktpls.service.GoodsService;
@@ -86,12 +87,21 @@ public class GoodsController {
         return ResponseEntity.ok(this.goodsService.deleteById(id));
     }
     /**
+     * 根据实体类查询
+     * @param goods
+     * @return
+     */
+    @PostMapping("queryByGoods")
+    public DataResult queryByGoods(Goods goods){
+        return DataResult.successByDatas(this.goodsService.queryByGoods(goods));
+    }
+    /**
      * 通过GoodsDTO分页查询
      * @param goodsDTO
      * @return 查询结果列表和查询总数
      */
-    @PostMapping("queryByGoods")
-    DataResult queryByGoods(@RequestBody GoodsDTO goodsDTO){
+    @PostMapping("queryByGoodsDTO")
+    DataResult queryByGoodsDTO(@RequestBody GoodsDTO goodsDTO){
         goodsDTO.setPage((goodsDTO.getPage() - 1) * goodsDTO.getLimit());
         List<Goods> goods =this.goodsService.queryAll(goodsDTO);
         Goods goods1 = new Goods();
