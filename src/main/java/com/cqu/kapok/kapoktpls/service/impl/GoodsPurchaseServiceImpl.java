@@ -1,6 +1,7 @@
 package com.cqu.kapok.kapoktpls.service.impl;
 
 import com.cqu.kapok.kapoktpls.dto.GoodsPurchaseDTO;
+import com.cqu.kapok.kapoktpls.dto.ProfitDTO;
 import com.cqu.kapok.kapoktpls.entity.GoodsPurchase;
 import com.cqu.kapok.kapoktpls.dao.GoodsPurchaseDao;
 import com.cqu.kapok.kapoktpls.service.GoodsPurchaseService;
@@ -90,5 +91,9 @@ public class GoodsPurchaseServiceImpl implements GoodsPurchaseService {
     @Override
     public Long getGoodsPurchaseByConditionCount(GoodsPurchase goodsPurchase) {
         return this.goodsPurchaseDao.getGoodsPurchaseByConditionCount(goodsPurchase);
+    }
+    @Override
+    public Long getGoodsPurchaseProfit(ProfitDTO profitDTO){
+        return  this.goodsPurchaseDao.getGoodsPurchaseProfit(profitDTO);
     }
 }

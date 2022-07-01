@@ -1,12 +1,14 @@
 package com.cqu.kapok.kapoktpls.controller;
 
 import com.cqu.kapok.kapoktpls.dto.MaterialSaleDTO;
+import com.cqu.kapok.kapoktpls.dto.ProfitDTO;
 import com.cqu.kapok.kapoktpls.entity.MaterialSale;
 import com.cqu.kapok.kapoktpls.service.CompanyService;
 import com.cqu.kapok.kapoktpls.service.MaterialSaleService;
 import com.cqu.kapok.kapoktpls.service.MaterialService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import com.cqu.kapok.kapoktpls.vo.MaterialSaleVo;
+import com.cqu.kapok.kapoktpls.vo.ProfitVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -110,6 +112,18 @@ public class MaterialSaleController {
     public DataResult getByCondition(@RequestBody MaterialSale materialSale) {
         return DataResult.successByDatas(this.materialSaleService.getByCondition(materialSale));
     }
-
+    /**
+     * 通过ProfitDTO查询利润
+     *
+     * @param profitDTO
+     * @return
+     */
+    @PostMapping("getMaterialSaleProfit")
+    public DataResult getMaterialSaleProfit(@RequestBody ProfitDTO profitDTO){
+        ProfitVo profitVo = new ProfitVo();
+        Long materialSaleProfit = this.materialSaleService.getMaterialSaleProfit(profitDTO);
+        profitVo.setProfit(materialSaleProfit);
+        return DataResult.successByData(profitVo);
+    }
 }
 

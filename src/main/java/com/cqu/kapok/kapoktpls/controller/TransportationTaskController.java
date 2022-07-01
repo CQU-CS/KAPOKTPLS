@@ -1,10 +1,12 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.dto.ProfitDTO;
 import com.cqu.kapok.kapoktpls.dto.TransportationTaskDTO;
 import com.cqu.kapok.kapoktpls.entity.*;
 import com.cqu.kapok.kapoktpls.service.*;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import com.cqu.kapok.kapoktpls.utils.result.code.Code;
+import com.cqu.kapok.kapoktpls.vo.ProfitVo;
 import com.cqu.kapok.kapoktpls.vo.TransportationTaskVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -255,6 +257,18 @@ public class TransportationTaskController {
         }
         return DataResult.successByTotalData(transportationTasks, total);
     }
-
+    /**
+     * 通过ProfitDTO查询利润
+     *
+     * @param profitDTO
+     * @return
+     */
+    @PostMapping("getMonthProfit")
+    DataResult getMonthProfit(@RequestBody ProfitDTO profitDTO){
+        ProfitVo profitVo = new ProfitVo();
+        Long monthProfit = this.transportationTaskService.getMonthProfit(profitDTO);
+        profitVo.setProfit(monthProfit);
+        return DataResult.successByData(profitVo);
+    }
 }
 

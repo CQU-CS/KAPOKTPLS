@@ -1,6 +1,7 @@
 package com.cqu.kapok.kapoktpls.service;
 
 import com.cqu.kapok.kapoktpls.dto.MaterialPurchaseDTO;
+import com.cqu.kapok.kapoktpls.dto.ProfitDTO;
 import com.cqu.kapok.kapoktpls.entity.MaterialPurchase;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -59,4 +60,5 @@ public interface MaterialPurchaseService {
     List<MaterialPurchase> queryAll(MaterialPurchaseDTO materialPurchaseDTO);
 
     Long getMaterialPurchaseByConditionCount(MaterialPurchase materialPurchase);
+    Long getMaterialPurchaseProfit(ProfitDTO profitDTO);
 }

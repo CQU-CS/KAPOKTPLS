@@ -1,6 +1,7 @@
 package com.cqu.kapok.kapoktpls.controller;
 
 import com.cqu.kapok.kapoktpls.dto.MaterialPurchaseDTO;
+import com.cqu.kapok.kapoktpls.dto.ProfitDTO;
 import com.cqu.kapok.kapoktpls.entity.*;
 import com.cqu.kapok.kapoktpls.entity.MaterialPurchase;
 import com.cqu.kapok.kapoktpls.service.CompanyService;
@@ -10,6 +11,7 @@ import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import com.cqu.kapok.kapoktpls.utils.result.code.Code;
 import com.cqu.kapok.kapoktpls.vo.MaterialPurchaseVo;
 import com.cqu.kapok.kapoktpls.vo.MaterialPurchaseVo;
+import com.cqu.kapok.kapoktpls.vo.ProfitVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -198,6 +200,19 @@ public class MaterialPurchaseController {
             materialPurchaseVos.add(materialPurchaseVo);
         }
         return DataResult.successByTotalData(materialPurchaseVos, total);
+    }
+    /**
+     * 通过ProfitDTO查询利润
+     *
+     * @param profitDTO
+     * @return
+     */
+    @PostMapping("getMaterialPurchaseProfit")
+    DataResult getMaterialPurchaseProfit(@RequestBody ProfitDTO profitDTO){
+        ProfitVo profitVo = new ProfitVo();
+        Long materialPurchaseProfit = this.materialPurchaseService.getMaterialPurchaseProfit(profitDTO);
+        profitVo.setProfit(materialPurchaseProfit);
+        return DataResult.successByData(profitVo);
     }
 
 }
