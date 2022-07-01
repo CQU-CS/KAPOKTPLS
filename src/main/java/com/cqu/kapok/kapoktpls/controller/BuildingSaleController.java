@@ -3,10 +3,15 @@ package com.cqu.kapok.kapoktpls.controller;
 import com.cqu.kapok.kapoktpls.dto.BuildingDTO;
 import com.cqu.kapok.kapoktpls.dto.BuildingSaleDTO;
 import com.cqu.kapok.kapoktpls.entity.Building;
-import com.cqu.kapok.kapoktpls.entity.BuildingRent;
 import com.cqu.kapok.kapoktpls.entity.BuildingSale;
+import com.cqu.kapok.kapoktpls.entity.BuildingSale;
+import com.cqu.kapok.kapoktpls.service.AddressService;
 import com.cqu.kapok.kapoktpls.service.BuildingSaleService;
+import com.cqu.kapok.kapoktpls.service.BuildingService;
+import com.cqu.kapok.kapoktpls.service.CompanyService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.utils.result.code.Code;
+import com.cqu.kapok.kapoktpls.vo.BuildingSaleVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,6 +36,15 @@ public class BuildingSaleController {
      */
     @Resource
     private BuildingSaleService buildingSaleService;
+
+    @Resource
+    private CompanyService companyService;
+
+    @Resource
+    private BuildingService buildingService;
+
+    @Resource
+    private AddressService addressService;
 
     /**
      * 分页查询
@@ -60,8 +75,8 @@ public class BuildingSaleController {
      * @param buildingSale 实体
      * @return 新增结果
      */
-    @PostMapping
-    public DataResult add(BuildingSale buildingSale) {
+    @PostMapping("addByBuildingSale")
+    public DataResult add(@RequestBody BuildingSale buildingSale) {
         return DataResult.successByData(this.buildingSaleService.insert(buildingSale));
     }
 
@@ -71,8 +86,8 @@ public class BuildingSaleController {
      * @param buildingSale 实体
      * @return 编辑结果
      */
-    @PutMapping
-    public DataResult edit(BuildingSale buildingSale) {
+    @PostMapping("editByBuildingSale")
+    public DataResult edit(@RequestBody BuildingSale buildingSale) {
         return DataResult.successByData(this.buildingSaleService.update(buildingSale));
     }
 
@@ -82,9 +97,16 @@ public class BuildingSaleController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
+    @PostMapping("deleteById")
     public DataResult deleteById(Integer id) {
-        return DataResult.successByData(this.buildingSaleService.deleteById(id));
+        try {
+            boolean b = this.buildingSaleService.deleteById(id);
+        } catch (Exception e) {
+            System.out.println("异常");
+            return DataResult.errByErrCode(Code.BUILDINGSALE_DELETE_ERROR);
+        }
+        System.out.println("正常");
+        return DataResult.errByErrCode(Code.SUCCESS);
     }
 
     /**
@@ -104,12 +126,27 @@ public class BuildingSaleController {
      */
     @PostMapping("queryByBuildingSaleDTO")
     DataResult queryByBuildingSaleDTO(@RequestBody BuildingSaleDTO buildingSaleDTO){
+        List<BuildingSaleVo> buildingSaleVos = new ArrayList<>();
+        //1.获取主要数据
         buildingSaleDTO.setPage((buildingSaleDTO.getPage() - 1) * buildingSaleDTO.getLimit());
         List<BuildingSale> buildingSales =this.buildingSaleService.queryByBuildingSaleDTO(buildingSaleDTO);
         BuildingSale buildingSale = new BuildingSale();
         BeanUtils.copyProperties(buildingSaleDTO,buildingSale);
         Long total = this.buildingSaleService.getBuildingSaleByConditionCount(buildingSale);
-        return DataResult.successByTotalData(buildingSales, total);
+        //添加次要数据
+        for(BuildingSale buildingSale1:buildingSales){
+            String companyName = this.companyService.queryById(buildingSale1.getCompanyId()).getCompanyName();
+            Building building = this.buildingService.queryById(buildingSale1.getBuildingId());
+            String buildingType = building.getBuildingType();
+            String addressContent = this.addressService.queryById(building.getAddressId()).getAddressContent();
+            BuildingSaleVo buildingSaleVo = new BuildingSaleVo();
+            BeanUtils.copyProperties(buildingSale1,buildingSaleVo);
+            buildingSaleVo.setBuildingType(buildingType);
+            buildingSaleVo.setCompanyName(companyName);
+            buildingSaleVo.setAddressContent(addressContent);
+            buildingSaleVos.add(buildingSaleVo);
+        }
+        return DataResult.successByTotalData(buildingSaleVos, total);
     }
 
 }

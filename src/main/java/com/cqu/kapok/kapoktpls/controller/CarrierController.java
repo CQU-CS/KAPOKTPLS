@@ -88,7 +88,7 @@ public class CarrierController {
      * @param carrierDTO
      * @return 查询结果列表和查询总数
      */
-    @PostMapping("queryByCarrier")
+    @PostMapping("queryByCarrierDTO")
     DataResult queryByCarrier(@RequestBody CarrierDTO carrierDTO){
         carrierDTO.setPage((carrierDTO.getPage() - 1) * carrierDTO.getLimit());
         List<Carrier> carriers =this.carrierService.queryAll(carrierDTO);
@@ -96,6 +96,10 @@ public class CarrierController {
         BeanUtils.copyProperties(carrierDTO,carrier);
         Long total = this.carrierService.getCarrierByConditionCount(carrier);
         return DataResult.successByTotalData(carriers, total);
+    }
+    @PostMapping("queryByCarrier")
+    DataResult queryByCarrier(Carrier carrier){
+        return DataResult.successByDatas(this.carrierService.queryByCarrier(carrier));
     }
 }
 

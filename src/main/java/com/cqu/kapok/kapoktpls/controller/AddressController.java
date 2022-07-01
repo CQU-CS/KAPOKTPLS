@@ -61,8 +61,9 @@ public class AddressController {
      * @param address 实体
      * @return 新增结果
      */
-    @PostMapping
-    public DataResult add(Address address) {
+    @PostMapping("addByAddress")
+    public DataResult add(@RequestBody Address address) {
+        System.out.println("con:----------------"+address.getAddressContent());
         return DataResult.successByData(this.addressService.insert(address));
     }
 
@@ -72,8 +73,8 @@ public class AddressController {
      * @param address 实体
      * @return 编辑结果
      */
-    @PutMapping
-    public DataResult edit(Address address) {
+    @PostMapping("editByAddress")
+    public DataResult edit(@RequestBody Address address) {
         return DataResult.successByData(this.addressService.update(address));
     }
 
@@ -83,13 +84,15 @@ public class AddressController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @PostMapping("deleteAddress")
+    @PostMapping("deleteById")
     public DataResult deleteById(Integer id) {
         try {
             boolean b = this.addressService.deleteById(id);
         } catch (Exception e) {
+            System.out.println("异常");
             return DataResult.errByErrCode(Code.ADDRESS_DELETE_ERROR);
         }
+        System.out.println("正常");
         return DataResult.errByErrCode(Code.SUCCESS);
     }
 

@@ -5,8 +5,13 @@ import com.cqu.kapok.kapoktpls.dto.AccountDTO;
 import com.cqu.kapok.kapoktpls.dto.AddressDTO;
 import com.cqu.kapok.kapoktpls.entity.Account;
 import com.cqu.kapok.kapoktpls.entity.Address;
+import com.cqu.kapok.kapoktpls.entity.Building;
 import com.cqu.kapok.kapoktpls.service.AccountService;
+import com.cqu.kapok.kapoktpls.service.PersonService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.utils.result.code.Code;
+import com.cqu.kapok.kapoktpls.vo.AccountVo;
+import com.cqu.kapok.kapoktpls.vo.BuildingVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -32,6 +37,8 @@ public class AccountController {
     @Resource
     private AccountService accountService;
 
+    @Resource
+    private PersonService personService;
     /**
      * 分页查询
      *
@@ -61,9 +68,14 @@ public class AccountController {
      * @param account 实体
      * @return 新增结果
      */
-    @PostMapping
-    public DataResult add(Account account) {
-        return DataResult.successByData(this.accountService.insert(account));
+    @PostMapping("addByAccount")
+    public DataResult add(@RequestBody Account account) {
+        if(account!=null){
+            return DataResult.successByData(this.accountService.insert(account));
+        }else{
+            return DataResult.errByErrCode(Code.ACCOUNTROOT_DELETE_ERROR);
+        }
+
     }
 
     /**
@@ -72,9 +84,15 @@ public class AccountController {
      * @param account 实体
      * @return 编辑结果
      */
-    @PutMapping
-    public DataResult edit(Account account) {
-        return DataResult.successByData(this.accountService.update(account));
+    @PostMapping("editByAccount")
+    public DataResult edit(@RequestBody Account account) {
+        Account account1 = this.accountService.queryById(account.getAccountId());
+        if(!account1.getAccountType().equals("root")){
+            return DataResult.successByData(this.accountService.update(account));
+        }else{
+            return DataResult.errByErrCode(Code.ACCOUNTROOT_DELETE_ERROR);
+        }
+
     }
 
     /**
@@ -83,9 +101,21 @@ public class AccountController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
+    @PostMapping("deleteById")
     public DataResult deleteById(Integer id) {
-        return DataResult.successByData(this.accountService.deleteById(id));
+        try {
+            Account account1 = this.accountService.queryById(id);
+            if(!account1.getAccountType().equals("root")){
+                boolean b = this.accountService.deleteById(id);
+            }else{
+                return DataResult.errByErrCode(Code.ACCOUNTROOT_DELETE_ERROR);
+            }
+        } catch (Exception e) {
+            System.out.println("异常");
+            return DataResult.errByErrCode(Code.ACCOUNTROOT_DELETE_ERROR);
+        }
+        System.out.println("正常");
+        return DataResult.errByErrCode(Code.SUCCESS);
     }
 
     /**
@@ -106,12 +136,23 @@ public class AccountController {
      */
     @PostMapping("queryByAccountDTO")
     DataResult queryByAccountDTO(@RequestBody AccountDTO accountDTO){
+
+        List<AccountVo> accountVos = new ArrayList<>();
+        //1.获取主要数据
         accountDTO.setPage((accountDTO.getPage() - 1) * accountDTO.getLimit());
         List<Account> accounts =this.accountService.queryByAccountDTO(accountDTO);
-        Account account1 = new Account();
-        BeanUtils.copyProperties(accountDTO,account1);
-        Long total = this.accountService.getAccountByConditionCount(account1);
-        return DataResult.successByTotalData(accounts, total);
+        Account account = new Account();
+        BeanUtils.copyProperties(accountDTO,account);
+        Long total = this.accountService.getAccountByConditionCount(account);
+        //添加次要数据
+        for(Account account1:accounts){
+            String personName = this.personService.queryById(account1.getPersonId()).getPersonName();
+            AccountVo accountVo = new AccountVo();
+            BeanUtils.copyProperties(account1,accountVo);
+            accountVo.setPersonName(personName);
+            accountVos.add(accountVo);
+        }
+        return DataResult.successByTotalData(accountVos, total);
     }
 
     /**

@@ -7,6 +7,7 @@ import com.cqu.kapok.kapoktpls.entity.Address;
 import com.cqu.kapok.kapoktpls.entity.Advertisement;
 import com.cqu.kapok.kapoktpls.service.AdvertisementService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.utils.result.code.Code;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -60,8 +61,8 @@ public class AdvertisementController {
      * @param advertisement 实体
      * @return 新增结果
      */
-    @PostMapping
-    public DataResult add(Advertisement advertisement) {
+    @PostMapping("addByAdvertisement")
+    public DataResult add(@RequestBody Advertisement advertisement) {
         return DataResult.successByData(this.advertisementService.insert(advertisement));
     }
 
@@ -71,8 +72,8 @@ public class AdvertisementController {
      * @param advertisement 实体
      * @return 编辑结果
      */
-    @PutMapping
-    public DataResult edit(Advertisement advertisement) {
+    @PostMapping("editByAdvertisement")
+    public DataResult edit(@RequestBody Advertisement advertisement) {
         return DataResult.successByData(this.advertisementService.update(advertisement));
     }
 
@@ -82,9 +83,16 @@ public class AdvertisementController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
+    @PostMapping("deleteById")
     public DataResult deleteById(Integer id) {
-        return DataResult.successByData(this.advertisementService.deleteById(id));
+        try {
+            boolean b = this.advertisementService.deleteById(id);
+        } catch (Exception e) {
+            System.out.println("异常");
+            return DataResult.errByErrCode(Code.ADVERTISEMENT_DELETE_ERROR);
+        }
+        System.out.println("正常");
+        return DataResult.errByErrCode(Code.SUCCESS);
     }
 
 

@@ -85,5 +85,7 @@ public interface MaterialDao {
     List<Material> queryAllByCondition(MaterialDTO materialDTO);
 
     Long getMaterialByConditionCount(Material material);
+
+	List<Material> queryByMaterial(Material material);
 }
 

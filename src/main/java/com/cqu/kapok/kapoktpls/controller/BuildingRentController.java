@@ -4,8 +4,14 @@ import com.cqu.kapok.kapoktpls.dto.BuildingDTO;
 import com.cqu.kapok.kapoktpls.dto.BuildingRentDTO;
 import com.cqu.kapok.kapoktpls.entity.Building;
 import com.cqu.kapok.kapoktpls.entity.BuildingRent;
+import com.cqu.kapok.kapoktpls.service.AddressService;
 import com.cqu.kapok.kapoktpls.service.BuildingRentService;
+import com.cqu.kapok.kapoktpls.service.BuildingService;
+import com.cqu.kapok.kapoktpls.service.CompanyService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.utils.result.code.Code;
+import com.cqu.kapok.kapoktpls.vo.BuildingRentVo;
+import com.cqu.kapok.kapoktpls.vo.BuildingVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +36,15 @@ public class BuildingRentController {
      */
     @Resource
     private BuildingRentService buildingRentService;
+
+    @Resource
+    private CompanyService companyService;
+
+    @Resource
+    private BuildingService buildingService;
+
+    @Resource
+    private AddressService addressService;
 
     /**
      * 分页查询
@@ -59,8 +75,8 @@ public class BuildingRentController {
      * @param buildingRent 实体
      * @return 新增结果
      */
-    @PostMapping
-    public DataResult add(BuildingRent buildingRent) {
+    @PostMapping("addByBuildingRent")
+    public DataResult add(@RequestBody BuildingRent buildingRent) {
         return DataResult.successByData(this.buildingRentService.insert(buildingRent));
     }
 
@@ -70,8 +86,8 @@ public class BuildingRentController {
      * @param buildingRent 实体
      * @return 编辑结果
      */
-    @PutMapping
-    public DataResult edit(BuildingRent buildingRent) {
+    @PostMapping("editByBuildingRent")
+    public DataResult edit(@RequestBody BuildingRent buildingRent) {
         return DataResult.successByData(this.buildingRentService.update(buildingRent));
     }
 
@@ -81,9 +97,16 @@ public class BuildingRentController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
+    @PostMapping("deleteById")
     public DataResult deleteById(Integer id) {
-        return DataResult.successByData(this.buildingRentService.deleteById(id));
+        try {
+            boolean b = this.buildingRentService.deleteById(id);
+        } catch (Exception e) {
+            System.out.println("异常");
+            return DataResult.errByErrCode(Code.BUILDINGRENT_DELETE_ERROR);
+        }
+        System.out.println("正常");
+        return DataResult.errByErrCode(Code.SUCCESS);
     }
 
     /**
@@ -103,12 +126,29 @@ public class BuildingRentController {
      */
     @PostMapping("queryByBuildingRentDTO")
     DataResult queryByBuildingRentDTO(@RequestBody BuildingRentDTO buildingRentDTO){
+
+        List<BuildingRentVo> buildingRentVos = new ArrayList<>();
+        //1.获取主要数据
         buildingRentDTO.setPage((buildingRentDTO.getPage() - 1) * buildingRentDTO.getLimit());
         List<BuildingRent> buildingRents =this.buildingRentService.queryByBuildingRentDTO(buildingRentDTO);
         BuildingRent buildingRent = new BuildingRent();
         BeanUtils.copyProperties(buildingRentDTO,buildingRent);
         Long total = this.buildingRentService.getBuildingRentByConditionCount(buildingRent);
-        return DataResult.successByTotalData(buildingRents, total);
+        //添加次要数据
+        for(BuildingRent buildingRent1:buildingRents){
+            String companyName = this.companyService.queryById(buildingRent1.getCompanyId()).getCompanyName();
+            Building building = this.buildingService.queryById(buildingRent1.getBuildingId());
+            String buildingType = building.getBuildingType();
+            String addressContent = this.addressService.queryById(building.getAddressId()).getAddressContent();
+            BuildingRentVo buildingRentVo = new BuildingRentVo();
+            BeanUtils.copyProperties(buildingRent1,buildingRentVo);
+            buildingRentVo.setBuildingType(buildingType);
+            buildingRentVo.setCompanyName(companyName);
+            buildingRentVo.setAddressContent(addressContent);
+            buildingRentVos.add(buildingRentVo);
+        }
+
+        return DataResult.successByTotalData(buildingRentVos, total);
     }
 
 }
