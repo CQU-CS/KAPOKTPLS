@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.service.BuildingSaleService;
 import com.cqu.kapok.kapoktpls.service.CarrierManageService;
 import com.cqu.kapok.kapoktpls.service.TransportationTaskService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * @
@@ -26,6 +28,8 @@ public class StatisticController {
     private TransportationTaskService transportationTaskService;
     @Resource
     private CarrierManageService carrierManageService;
+    @Resource
+    private BuildingSaleService buildingSaleService;
 
     /**
      * 获取首页数据
@@ -33,6 +37,7 @@ public class StatisticController {
      */
     @PostMapping("getIndexStatistic")
     public DataResult getIndexStatistic(){
+        Long buildingSalePrice = this.buildingSaleService.getMonthPrice(new Date());
         return DataResult.successByData(Code.SUCCESS);
     }
 

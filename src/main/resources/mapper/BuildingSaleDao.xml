@@ -168,6 +168,11 @@
             </if>
         </where>
     </select>
+    <!--    获取本月建筑出售总收入-->
+    <select id="getMonthPrice" resultType="java.lang.Long">
+        SELECT * FROM building_sale
+        WHERE DATE_FORMAT( building_sale_price, '%Y%m' ) = DATE_FORMAT( #{date} , '%Y%m' )
+    </select>
 
 
     <!--新增所有列-->

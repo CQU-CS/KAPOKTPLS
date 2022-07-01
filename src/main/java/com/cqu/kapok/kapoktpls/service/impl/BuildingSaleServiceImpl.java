@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -106,6 +107,11 @@ public class BuildingSaleServiceImpl implements BuildingSaleService {
     @Override
     public Long getBuildingSaleByConditionCount(BuildingSale buildingSale) {
         return this.buildingSaleDao.getBuildingSaleByConditionCount(buildingSale);
+    }
+
+    @Override
+    public Long getMonthPrice(Date date) {
+        return this.buildingSaleDao.getMonthPrice(date);
     }
 
 

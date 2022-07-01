@@ -154,6 +154,7 @@ public class LoginController {
 
             String str = JSON.toJSONString(stringList);
             map.put("map",str);
+            map.put("role",accountTmp.getAccountType());
             return DataResult.successByData(map);
         }else {
             return DataResult.errByErrCode(50008);

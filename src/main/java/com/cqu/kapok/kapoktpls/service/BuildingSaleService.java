@@ -6,6 +6,7 @@ import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -71,4 +72,10 @@ public interface BuildingSaleService {
      */
     List<BuildingSale> queryByBuildingSaleDTO(BuildingSaleDTO buildingSaleDTO);
     Long getBuildingSaleByConditionCount(BuildingSale buildingSale);
+
+    /**
+     * 获取某个月份的buildingSale总收入
+     * @return
+     */
+    Long getMonthPrice(Date date);
 }
