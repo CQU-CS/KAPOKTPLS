@@ -253,7 +253,7 @@ public class TransportationTaskController {
             transportationTaskVo.setTruckPlate(truckPlate);
             transportationTaskVos.add(transportationTaskVo);
         }
-        return DataResult.successByTotalData(transportationTasks, total);
+        return DataResult.successByTotalData(transportationTaskVos, total);
     }
 
 }
