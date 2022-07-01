@@ -6,6 +6,8 @@ import com.cqu.kapok.kapoktpls.entity.Goods;
 import com.cqu.kapok.kapoktpls.entity.Material;
 import com.cqu.kapok.kapoktpls.service.MaterialService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.utils.result.code.Code;
+import org.apache.ibatis.logging.stdout.StdOutImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -60,8 +62,8 @@ public class MaterialController {
      * @return 新增结果
      */
     @PostMapping("addMaterial")
-    public ResponseEntity<Material> add(Material material) {
-        return ResponseEntity.ok(this.materialService.insert(material));
+    public DataResult add(@RequestBody Material material) {
+        return DataResult.successByData(this.materialService.insert(material));
     }
 
     /**
@@ -70,9 +72,9 @@ public class MaterialController {
      * @param material 实体
      * @return 编辑结果
      */
-    @PutMapping("editMaterial")
-    public ResponseEntity<Material> edit(Material material) {
-        return ResponseEntity.ok(this.materialService.update(material));
+    @PostMapping("editMaterial")
+    public DataResult edit(@RequestBody Material material) {
+        return DataResult.successByData(this.materialService.update(material));
     }
 
     /**
@@ -81,9 +83,12 @@ public class MaterialController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping("deleteMaterial")
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.materialService.deleteById(id));
+    @PostMapping("deleteMaterial")
+    public DataResult deleteById(Integer id) {
+        System.out.println("获取数据"+id);
+        boolean b = this.materialService.deleteById(id);
+
+        return DataResult.errByErrCode(Code.SUCCESS);
     }
 
 

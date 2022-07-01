@@ -91,4 +91,8 @@ public class CarrierServiceImpl implements CarrierService {
     public Long getCarrierByConditionCount(Carrier carrier) {
         return this.carrierDao.getCarrierByConditionCount(carrier);
     }
+    @Override
+    public List<Carrier> queryByCarrier(Carrier carrier){
+        return this.carrierDao.queryByCarrier(carrier);
+    }
 }

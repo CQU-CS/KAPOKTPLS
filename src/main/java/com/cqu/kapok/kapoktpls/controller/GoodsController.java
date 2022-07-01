@@ -2,10 +2,12 @@ package com.cqu.kapok.kapoktpls.controller;
 
 import com.cqu.kapok.kapoktpls.dto.EcdDTO;
 import com.cqu.kapok.kapoktpls.dto.GoodsDTO;
+import com.cqu.kapok.kapoktpls.entity.Address;
 import com.cqu.kapok.kapoktpls.entity.Ecd;
 import com.cqu.kapok.kapoktpls.entity.Goods;
 import com.cqu.kapok.kapoktpls.service.GoodsService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.utils.result.code.Code;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -60,8 +62,9 @@ public class GoodsController {
      * @return 新增结果
      */
     @PostMapping("addByGoods")
-    public ResponseEntity<Goods> add(Goods goods) {
-        return ResponseEntity.ok(this.goodsService.insert(goods));
+    public DataResult add(@RequestBody  Goods goods) {
+        Goods insert = this.goodsService.insert(goods);
+        return DataResult.errByErrCode(Code.SUCCESS);
     }
 
     /**
@@ -71,8 +74,9 @@ public class GoodsController {
      * @return 编辑结果
      */
     @PostMapping("editByGoods")
-    public ResponseEntity<Goods> edit(Goods goods) {
-        return ResponseEntity.ok(this.goodsService.update(goods));
+    public DataResult edit(@RequestBody Goods goods) {
+        Goods update = this.goodsService.update(goods);
+        return DataResult.errByErrCode(Code.SUCCESS);
     }
 
     /**
@@ -82,16 +86,30 @@ public class GoodsController {
      * @return 删除是否成功
      */
     @PostMapping("deleteByGoodsId")
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.goodsService.deleteById(id));
+    public DataResult deleteById(Integer id) {
+        try {
+            boolean b = this.goodsService.deleteById(id);
+        } catch (Exception e) {
+            return DataResult.errByErrCode(Code.GOODS_DELETE_ERROR);
+        }
+        return DataResult.errByErrCode(Code.SUCCESS);
+    }
+    /**
+     * 根据实体类查询
+     * @param goods
+     * @return
+     */
+    @PostMapping("queryByGoods")
+    public DataResult queryByGoods(Goods goods){
+        return DataResult.successByDatas(this.goodsService.queryByGoods(goods));
     }
     /**
      * 通过GoodsDTO分页查询
      * @param goodsDTO
      * @return 查询结果列表和查询总数
      */
-    @PostMapping("queryByGoods")
-    DataResult queryByGoods(@RequestBody GoodsDTO goodsDTO){
+    @PostMapping("queryByGoodsDTO")
+    DataResult queryByGoodsDTO(@RequestBody GoodsDTO goodsDTO){
         goodsDTO.setPage((goodsDTO.getPage() - 1) * goodsDTO.getLimit());
         List<Goods> goods =this.goodsService.queryAll(goodsDTO);
         Goods goods1 = new Goods();

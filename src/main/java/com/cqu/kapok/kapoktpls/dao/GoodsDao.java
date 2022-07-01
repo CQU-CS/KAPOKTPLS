@@ -81,6 +81,8 @@ public interface GoodsDao {
      * @return 影响行数
      */
     int deleteById(Integer goodsId);
+
+    List<Goods> queryByGoods(Goods goods);
     List<Goods> queryAll(GoodsDTO goodsDTO);
 
     Long getGoodsByConditionCount(Goods goods);

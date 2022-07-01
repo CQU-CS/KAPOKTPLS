@@ -72,6 +72,31 @@
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}
     </select>
+    <select id="queryByGoods" resultMap="GoodsMap">
+        select
+        *
+        from goods
+        <where>
+            <if test="goodsId != null">
+                and goods_id = #{goodsId}
+            </if>
+            <if test="goodsType != null and goodsType != ''">
+                and goods_type = #{goodsType}
+            </if>
+            <if test="goodsName != null and goodsName != ''">
+                and goods_name = #{goodsName}
+            </if>
+            <if test="goodsUnit != null and goodsUnit != ''">
+                and goods_unit = #{goodsUnit}
+            </if>
+            <if test="goodsSpecification != null and goodsSpecification != ''">
+                and goods_specification = #{goodsSpecification}
+            </if>
+            <if test="goodsUnitPrice != null">
+                and goods_unit_price = #{goodsUnitPrice}
+            </if>
+        </where>
+    </select>
     <!--统计总行数-->
     <select id="count" resultType="java.lang.Long">
         select count(1)

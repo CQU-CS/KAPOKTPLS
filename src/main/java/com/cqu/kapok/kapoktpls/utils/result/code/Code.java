@@ -17,4 +17,12 @@ public interface Code {
 	int ADDRESS_DELETE_ERROR = Errs.put(-5,"操作有误，删除的地址被其他表格使用");
 	//公司删除出错
 	int COMPANY_DELETE_ERROR = Errs.put(-5,"操作有误，删除的公司被其他表格使用");
+	// 汽车删除出错
+	int TRUCK_DELETE_ERROR = Errs.put(-5,"操作有误，删除的汽车被其他表格使用");
+	// 汽车维修记录删除出错
+	int TRUCK_REPAIR_RECORD_ERROR = Errs.put(-5,"操作有误，删除的汽车维修记录被其他表格使用");
+	// 运输任务删除出错
+	int TRANSPORTATIONtASK_ERROR = Errs.put(-5,"操作有误，删除的运输任务记录被其他表格使用");
+	//货物记录删除出错
+	int GOODS_DELETE_ERROR = Errs.put(-5,"操作有误，删除的货物被其他表格使用");
 }
