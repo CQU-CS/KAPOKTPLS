@@ -62,4 +62,11 @@ public interface OfficeMaterialPurchaseService {
      */
     List<OfficeMaterialPurchase> getByCondition(OfficeMaterialPurchase officeMaterialPurchase);
 
+    /**
+     * 计数
+     * @param officeMaterialPurchase
+     * @return
+     */
+    Long count(OfficeMaterialPurchase officeMaterialPurchase);
+
 }

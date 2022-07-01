@@ -62,4 +62,11 @@ public interface NoticeService {
      */
     List<Notice> getByCondition(Notice notice);
 
+    /**
+     * 计数
+     * @param notice
+     * @return
+     */
+    Long count(Notice notice);
+
 }

@@ -92,4 +92,14 @@ public class RepairRecordServiceImpl implements RepairRecordService {
     public List<RepairRecord> getByCondition(RepairRecord repairRecord) {
         return this.repairRecordDao.getByCondition(repairRecord);
     }
+
+    /**
+     * 计数
+     * @param repairRecord
+     * @return
+     */
+    @Override
+    public Long count(RepairRecord repairRecord) {
+        return this.repairRecordDao.count(repairRecord);
+    }
 }

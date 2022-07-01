@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PersonPageDTO extends Person {
-    int size;
-    int page;
+public class PersonDTO extends Person {
+    private int size;
+    private int page;
 }

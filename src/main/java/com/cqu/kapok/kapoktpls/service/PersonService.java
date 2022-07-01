@@ -62,4 +62,11 @@ public interface PersonService {
      */
     List<Person> queryByPerson(Person person);
 
+    /**
+     * 计数
+     * @param person
+     * @return
+     */
+    Long count(Person person);
+
 }

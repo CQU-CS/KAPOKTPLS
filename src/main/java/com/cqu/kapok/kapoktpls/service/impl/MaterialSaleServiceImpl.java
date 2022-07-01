@@ -81,8 +81,23 @@ public class MaterialSaleServiceImpl implements MaterialSaleService {
         return this.materialSaleDao.deleteById(materialSaleId) > 0;
     }
 
+    /**
+     * 条件查询
+     * @param materialSale
+     * @return
+     */
     @Override
     public List<MaterialSale> getByCondition(MaterialSale materialSale) {
         return this.materialSaleDao.getByCondition(materialSale);
+    }
+
+    /**
+     * 计数
+     * @param materialSale
+     * @return
+     */
+    @Override
+    public Long count(MaterialSale materialSale) {
+        return this.materialSaleDao.count(materialSale);
     }
 }
