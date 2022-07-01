@@ -75,7 +75,7 @@
                 and person_id = #{personId}
             </if>
             <if test="personName != null and personName != ''">
-                and person_name = #{personName}
+                and person_name like concat('%',#{personName},'%')
             </if>
             <if test="personGender != null">
                 and person_gender = #{personGender}
@@ -90,7 +90,7 @@
                 and person_qq = #{personQq}
             </if>
             <if test="personAddress != null and personAddress != ''">
-                and person_address = #{personAddress}
+                and person_address like concat('%',#{personAddress},'%')
             </if>
             <if test="companyId != null">
                 and company_id = #{companyId}

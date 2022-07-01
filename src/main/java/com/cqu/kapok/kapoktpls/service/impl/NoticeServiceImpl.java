@@ -90,4 +90,14 @@ public class NoticeServiceImpl implements NoticeService {
     public List<Notice> getByCondition(Notice notice) {
         return this.noticeDao.getByCondition(notice);
     }
+
+    /**
+     * 计数
+     * @param notice
+     * @return
+     */
+    @Override
+    public Long count(Notice notice) {
+        return this.noticeDao.count(notice);
+    }
 }

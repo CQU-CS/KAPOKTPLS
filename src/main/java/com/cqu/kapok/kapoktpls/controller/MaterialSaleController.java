@@ -1,15 +1,21 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.dto.MaterialSaleDTO;
 import com.cqu.kapok.kapoktpls.entity.MaterialSale;
+import com.cqu.kapok.kapoktpls.service.CompanyService;
 import com.cqu.kapok.kapoktpls.service.MaterialSaleService;
+import com.cqu.kapok.kapoktpls.service.MaterialService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.vo.MaterialSaleVo;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,17 +33,33 @@ public class MaterialSaleController {
     @Resource
     private MaterialSaleService materialSaleService;
 
+    @Resource
+    private CompanyService companyService;
+
+    @Resource
+    private MaterialService materialService;
+
     /**
      * 分页查询
-     * @param page
-     * @param size
+     * @param materialSaleDTO
      * @return
      */
-    @GetMapping("queryByPage")
-    public DataResult queryByPage(@RequestParam Integer page,@RequestParam Integer size) {
-        PageRequest pageRequest = PageRequest.of(page-1,size);
+    @PostMapping("queryByPage")
+    public DataResult queryByPage(@RequestBody MaterialSaleDTO materialSaleDTO) {
+        PageRequest pageRequest = PageRequest.of(materialSaleDTO.getPage()-1, materialSaleDTO.getSize());
         MaterialSale materialSale = new MaterialSale();
-        return DataResult.successByData(this.materialSaleService.queryByPage(materialSale, pageRequest));
+        BeanUtils.copyProperties(materialSaleDTO,materialSale);
+        List<MaterialSaleVo> materialSaleVos = new ArrayList<>();
+        List<MaterialSale> materialSales = this.materialSaleService.queryByPage(materialSale, pageRequest).getContent();
+        for(MaterialSale materialSale1:materialSales) {
+            MaterialSaleVo materialSaleVo = new MaterialSaleVo();
+            BeanUtils.copyProperties(materialSale1,materialSaleVo);
+            materialSaleVo.setMaterialName(this.materialService.queryById(materialSaleVo.getMaterialId()).getMaterialName());
+            materialSaleVo.setCompanyName(this.companyService.queryById(materialSaleVo.getCompanyId()).getCompanyName());
+            materialSaleVos.add(materialSaleVo);
+        }
+        Long total = this.materialSaleService.count(materialSale);
+        return DataResult.successByTotalData(materialSaleVos,total);
     }
 
     /**
@@ -57,7 +79,7 @@ public class MaterialSaleController {
      * @param materialSale 实体
      * @return 新增结果
      */
-    @PostMapping
+    @PostMapping("add")
     public DataResult add(@RequestBody MaterialSale materialSale) {
         return DataResult.successByData(this.materialSaleService.insert(materialSale));
     }
@@ -68,7 +90,7 @@ public class MaterialSaleController {
      * @param materialSale 实体
      * @return 编辑结果
      */
-    @PutMapping
+    @PostMapping("edit")
     public DataResult edit(@RequestBody MaterialSale materialSale) {
         return DataResult.successByData(this.materialSaleService.update(materialSale));
     }
@@ -79,9 +101,9 @@ public class MaterialSaleController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
-    public DataResult deleteById(Integer id) {
-        return DataResult.successByData(this.materialSaleService.deleteById(id));
+    @PostMapping("deleteById")
+    public DataResult deleteById(@RequestParam Integer id) {
+        return this.materialSaleService.deleteById(id)?DataResult.succ():DataResult.err();
     }
 
     @PostMapping("getByCondition")

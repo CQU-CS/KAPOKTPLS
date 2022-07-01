@@ -1,16 +1,22 @@
 package com.cqu.kapok.kapoktpls.controller;
 
 import com.cqu.kapok.kapoktpls.dao.NoticeDao;
+import com.cqu.kapok.kapoktpls.dto.NoticeDTO;
 import com.cqu.kapok.kapoktpls.entity.MaterialSale;
 import com.cqu.kapok.kapoktpls.entity.Notice;
 import com.cqu.kapok.kapoktpls.service.NoticeService;
+import com.cqu.kapok.kapoktpls.service.PersonService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.vo.NoticeVo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * (Notice)表控制层
@@ -27,17 +33,29 @@ public class NoticeController {
     @Resource
     private NoticeService noticeService;
 
+    @Resource
+    private PersonService personService;
+
     /**
      * 分页查询
-     * @param page
-     * @param size
+     * @param noticeDTO
      * @return
      */
-    @GetMapping("queryByPage")
-    public DataResult queryByPage(@RequestParam Integer page,@RequestParam Integer size) {
-        PageRequest pageRequest = PageRequest.of(page-1,size);
+    @PostMapping("queryByPage")
+    public DataResult queryByPage(@RequestBody NoticeDTO noticeDTO) {
+        PageRequest pageRequest = PageRequest.of(noticeDTO.getPage()-1, noticeDTO.getSize());
         Notice notice = new Notice();
-        return DataResult.successByData(this.noticeService.queryByPage(notice, pageRequest));
+        BeanUtils.copyProperties(noticeDTO,notice);
+        List<Notice> notices = this.noticeService.queryByPage(notice, pageRequest).getContent();
+        List<NoticeVo> noticeVos = new ArrayList<>();
+        for(Notice notice1:notices) {
+            NoticeVo noticeVo = new NoticeVo();
+            BeanUtils.copyProperties(notice1,noticeVo);
+            noticeVo.setPersonName(this.personService.queryById(noticeVo.getPersonId()).getPersonName());
+            noticeVos.add(noticeVo);
+        }
+        Long total = this.noticeService.count(notice);
+        return DataResult.successByTotalData(noticeVos,total);
     }
 
     /**
@@ -57,7 +75,7 @@ public class NoticeController {
      * @param notice 实体
      * @return 新增结果
      */
-    @PostMapping
+    @PostMapping("add")
     public DataResult add(@RequestBody Notice notice) {
         return DataResult.successByData(this.noticeService.insert(notice));
     }
@@ -68,7 +86,7 @@ public class NoticeController {
      * @param notice 实体
      * @return 编辑结果
      */
-    @PutMapping
+    @PostMapping("edit")
     public DataResult edit(@RequestBody Notice notice) {
         return DataResult.successByData(this.noticeService.update(notice));
     }
@@ -79,9 +97,9 @@ public class NoticeController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
-    public DataResult deleteById(Integer id) {
-        return DataResult.successByData(this.noticeService.deleteById(id));
+    @PostMapping("deleteById")
+    public DataResult deleteById(@RequestParam Integer id) {
+        return this.noticeService.deleteById(id)?DataResult.succ():DataResult.err();
     }
 
     /**

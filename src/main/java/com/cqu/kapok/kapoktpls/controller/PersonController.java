@@ -2,14 +2,17 @@ package com.cqu.kapok.kapoktpls.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.cqu.kapok.kapoktpls.dto.PersonDTO;
 import com.cqu.kapok.kapoktpls.entity.Company;
 import com.cqu.kapok.kapoktpls.entity.MaterialSale;
+import com.cqu.kapok.kapoktpls.entity.OfficeMaterialPurchase;
 import com.cqu.kapok.kapoktpls.entity.Person;
 import com.cqu.kapok.kapoktpls.service.CompanyService;
 import com.cqu.kapok.kapoktpls.service.PersonService;
 import com.cqu.kapok.kapoktpls.service.impl.CompanyServiceImpl;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import com.cqu.kapok.kapoktpls.vo.CarrierManageVo;
+import com.cqu.kapok.kapoktpls.vo.OfficeMaterialPurchaseVo;
 import com.cqu.kapok.kapoktpls.vo.PersonVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -46,38 +49,26 @@ public class PersonController {
 
     /**
      * 分页查询
-     * @param page
-     * @param size
+     * @param personDTO
      * @return
      */
-    @GetMapping("queryByPage")
-    public DataResult queryByPage(@RequestParam Integer page,@RequestParam Integer size) {
-//        PageRequest pageRequest = PageRequest.of(page-1,size);
-//        Person person = new Person();
-//        Map<String,Object> map = new HashMap<>();
-//        List<Person> persons = this.personService.queryByPage(person, pageRequest).getContent();
-//        List<String> companies = new ArrayList<>();
-//        map.put("persons",persons);
-//        for(int i=0;i<persons.size();i++) {
-//            companies.add(this.companyService.queryById(persons.get(i).getCompanyId()).getCompanyName());
-//        }
-//        map.put("companies",companies);
-
-        List<PersonVo> personVos = new ArrayList<>();
-        //1.获取主要数据
-        PageRequest pageRequest = PageRequest.of(page-1,size);
+    @PostMapping("queryByPage")
+    public DataResult queryByPage(@RequestBody PersonDTO personDTO) {
+        PageRequest pageRequest = PageRequest.of(personDTO.getPage()-1, personDTO.getSize());
         Person person = new Person();
+        BeanUtils.copyProperties(personDTO,person);
         List<Person> persons = this.personService.queryByPage(person, pageRequest).getContent();
-        String[] gender = {"女","男"};
-        for(Person person1:persons){
-            String companyName = this.companyService.queryById(person1.getCompanyId()).getCompanyName();
+        List<PersonVo> personVos = new ArrayList<>();
+        for(Person person1:persons) {
             PersonVo personVo = new PersonVo();
             BeanUtils.copyProperties(person1,personVo);
-            personVo.setCompanyName(companyName);
-            personVo.setPersonGenderString(gender[person1.getPersonGender()]);
+            personVo.setCompanyName(this.companyService.queryById(personVo.getCompanyId()).getCompanyName());
+            if (personVo.getPersonGender()==1) personVo.setPersonGenderString("男");
+            else personVo.setPersonGenderString("女");
             personVos.add(personVo);
         }
-        return DataResult.successByDatas(personVos);
+        Long total = this.personService.count(person);
+        return DataResult.successByTotalData(personVos,total);
     }
 
     /**
@@ -97,7 +88,7 @@ public class PersonController {
      * @param person 实体
      * @return 新增结果
      */
-    @PostMapping
+    @PostMapping("add")
     public DataResult add(@RequestBody Person person) {
         return DataResult.successByData(this.personService.insert(person));
     }
@@ -108,7 +99,7 @@ public class PersonController {
      * @param person 实体
      * @return 编辑结果
      */
-    @PutMapping
+    @PostMapping("edit")
     public DataResult edit(@RequestBody Person person) {
         return DataResult.successByData(this.personService.update(person));
     }
@@ -119,9 +110,9 @@ public class PersonController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
-    public DataResult deleteById(Integer id) {
-        return DataResult.successByData(this.personService.deleteById(id));
+    @PostMapping("deleteById")
+    public DataResult deleteById(@RequestParam Integer id) {
+        return this.personService.deleteById(id)?DataResult.succ():DataResult.err();
     }
 
     /**

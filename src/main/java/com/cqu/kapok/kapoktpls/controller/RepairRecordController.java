@@ -1,16 +1,23 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import com.cqu.kapok.kapoktpls.dto.RepairRecordDTO;
 import com.cqu.kapok.kapoktpls.entity.Advertisement;
 import com.cqu.kapok.kapoktpls.entity.MaterialSale;
+import com.cqu.kapok.kapoktpls.entity.Person;
 import com.cqu.kapok.kapoktpls.entity.RepairRecord;
+import com.cqu.kapok.kapoktpls.service.PersonService;
 import com.cqu.kapok.kapoktpls.service.RepairRecordService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.vo.PersonVo;
+import com.cqu.kapok.kapoktpls.vo.RepairRecordVo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,17 +35,29 @@ public class RepairRecordController {
     @Resource
     private RepairRecordService repairRecordService;
 
+    @Resource
+    private PersonService personService;
+
     /**
      * 分页查询
-     * @param page
-     * @param size
+     * @param repairRecordDTO
      * @return
      */
-    @GetMapping("queryByPage")
-    public DataResult queryByPage(@RequestParam Integer page,@RequestParam Integer size) {
-        PageRequest pageRequest = PageRequest.of(page-1,size);
+    @PostMapping("queryByPage")
+    public DataResult queryByPage(@RequestBody RepairRecordDTO repairRecordDTO) {
+        PageRequest pageRequest = PageRequest.of(repairRecordDTO.getPage()-1, repairRecordDTO.getSize());
         RepairRecord repairRecord = new RepairRecord();
-        return DataResult.successByData(this.repairRecordService.queryByPage(repairRecord, pageRequest));
+        BeanUtils.copyProperties(repairRecordDTO,repairRecord);
+        List<RepairRecord> repairRecords = this.repairRecordService.queryByPage(repairRecord, pageRequest).getContent();
+        List<RepairRecordVo> repairRecordVos = new ArrayList<>();
+        for(RepairRecord repairRecord1:repairRecords) {
+            RepairRecordVo repairRecordVo = new RepairRecordVo();
+            BeanUtils.copyProperties(repairRecord1,repairRecordVo);
+            repairRecordVo.setPersonName(this.personService.queryById(repairRecordVo.getPersonId()).getPersonName());
+            repairRecordVos.add(repairRecordVo);
+        }
+        Long total = this.repairRecordService.count(repairRecord);
+        return DataResult.successByTotalData(repairRecordVos,total);
     }
 
     /**
@@ -58,9 +77,9 @@ public class RepairRecordController {
      * @param repairRecord 实体
      * @return 新增结果
      */
-    @PostMapping
-    public ResponseEntity<RepairRecord> add(RepairRecord repairRecord) {
-        return ResponseEntity.ok(this.repairRecordService.insert(repairRecord));
+    @PostMapping("add")
+    public DataResult add(@RequestBody RepairRecord repairRecord) {
+        return DataResult.successByData(this.repairRecordService.insert(repairRecord));
     }
 
     /**
@@ -69,9 +88,9 @@ public class RepairRecordController {
      * @param repairRecord 实体
      * @return 编辑结果
      */
-    @PutMapping
-    public ResponseEntity<RepairRecord> edit(RepairRecord repairRecord) {
-        return ResponseEntity.ok(this.repairRecordService.update(repairRecord));
+    @PostMapping("edit")
+    public DataResult edit(@RequestBody RepairRecord repairRecord) {
+        return DataResult.successByData(this.repairRecordService.update(repairRecord));
     }
 
     /**
@@ -80,9 +99,9 @@ public class RepairRecordController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.repairRecordService.deleteById(id));
+    @PostMapping("deleteById")
+    public DataResult deleteById(@RequestParam Integer id) {
+        return this.repairRecordService.deleteById(id)?DataResult.succ():DataResult.err();
     }
 
     /**

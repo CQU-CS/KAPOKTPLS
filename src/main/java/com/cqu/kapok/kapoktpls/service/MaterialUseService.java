@@ -62,4 +62,11 @@ public interface MaterialUseService {
      */
     List<MaterialUse> getByCondition(MaterialUse materialUse);
 
+    /**
+     * 计数
+     * @param materialUse
+     * @return
+     */
+    Long count(MaterialUse materialUse);
+
 }

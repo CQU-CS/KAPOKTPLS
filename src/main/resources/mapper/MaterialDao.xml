@@ -125,5 +125,28 @@
         delete from material where material_id = #{materialId}
     </delete>
 
+    <!--查询指定行数据-->
+    <select id="queryByMaterial" resultMap="BaseResultMap" parameterType="com.cqu.kapok.kapoktpls.entity.Material">
+        select
+        *
+        from material
+        <where>
+            <if test="materialId != null">
+                and material_id = #{materialId}
+            </if>
+            <if test="materialName != null and materialName != ''">
+                and material_name = #{materialName}
+            </if>
+            <if test="materialType != null and materialType != ''">
+                and material_type = #{materialType}
+            </if>
+            <if test="materialPrice != null">
+                and material_price = #{materialPrice}
+            </if>
+            <if test="materialSize != null">
+                and material_size = #{materialSize}
+            </if>
+        </where>
+    </select>
 </mapper>
 

@@ -90,4 +90,14 @@ public class OfficeMaterialPurchaseServiceImpl implements OfficeMaterialPurchase
     public List<OfficeMaterialPurchase> getByCondition(OfficeMaterialPurchase officeMaterialPurchase) {
         return this.officeMaterialPurchaseDao.getByCondition(officeMaterialPurchase);
     }
+
+    /**
+     * 计数
+     * @param officeMaterialPurchase
+     * @return
+     */
+    @Override
+    public Long count(OfficeMaterialPurchase officeMaterialPurchase) {
+        return this.officeMaterialPurchaseDao.count(officeMaterialPurchase);
+    }
 }

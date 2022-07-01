@@ -90,4 +90,14 @@ public class MaterialUseServiceImpl implements MaterialUseService {
     public List<MaterialUse> getByCondition(MaterialUse materialUse) {
         return this.materialUseDao.getByCondition(materialUse);
     }
+
+    /**
+     * 计数
+     * @param materialUse
+     * @return
+     */
+    @Override
+    public Long count(MaterialUse materialUse) {
+        return this.materialUseDao.count(materialUse);
+    }
 }

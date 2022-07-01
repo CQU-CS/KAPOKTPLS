@@ -63,4 +63,11 @@ public interface RepairRecordService {
      */
     List<RepairRecord> getByCondition(RepairRecord repairRecord);
 
+    /**
+     * 计数
+     * @param repairRecord
+     * @return
+     */
+    Long count(RepairRecord repairRecord);
+
 }
