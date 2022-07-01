@@ -74,6 +74,7 @@ public class CertificateController {
             List<Person> persons = this.personService.queryByPerson(person);
             if (persons.size() == 0) {
                 person.setCompanyId(666);
+                person.setPersonGender(0);
                 Person insert = this.personService.insert(person);
                 certificate.setPersonId(insert.getPersonId());
             } else {

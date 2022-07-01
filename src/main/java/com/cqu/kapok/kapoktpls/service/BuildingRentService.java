@@ -6,6 +6,7 @@ import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -71,4 +72,11 @@ public interface BuildingRentService {
      */
     List<BuildingRent> queryByBuildingRentDTO(BuildingRentDTO buildingRentDTO);
     Long getBuildingRentByConditionCount(BuildingRent buildingRent);
+
+    /**
+     * 获取本月总收入
+     * @param date
+     * @return
+     */
+    Long getMonthPrice(Date date);
 }

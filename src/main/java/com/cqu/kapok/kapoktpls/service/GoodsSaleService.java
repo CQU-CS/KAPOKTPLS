@@ -1,6 +1,7 @@
 package com.cqu.kapok.kapoktpls.service;
 
 import com.cqu.kapok.kapoktpls.dto.GoodsSaleDTO;
+import com.cqu.kapok.kapoktpls.dto.ProfitDTO;
 import com.cqu.kapok.kapoktpls.entity.GoodsSale;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -59,4 +60,6 @@ public interface GoodsSaleService {
 	List<GoodsSale> queryAll(GoodsSaleDTO goodsSaleDTO);
 
     Long getGoodsSaleByConditionCount(GoodsSale goodsSale);
+    Long getGoodsSaleProfit(ProfitDTO profitDTO);
+
 }

@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -107,4 +108,11 @@ public class BuildingRentServiceImpl implements BuildingRentService {
     public Long getBuildingRentByConditionCount(BuildingRent buildingRent) {
         return this.buildingRentDao.getBuildingRentByConditionCount(buildingRent);
     }
+
+    @Override
+    public Long getMonthPrice(Date date) {
+        return this.buildingRentDao.getMonthPrice(date);
+    }
+
+
 }

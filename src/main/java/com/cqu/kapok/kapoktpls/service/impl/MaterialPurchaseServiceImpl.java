@@ -2,6 +2,7 @@ package com.cqu.kapok.kapoktpls.service.impl;
 
 import com.cqu.kapok.kapoktpls.dto.GoodsDTO;
 import com.cqu.kapok.kapoktpls.dto.MaterialPurchaseDTO;
+import com.cqu.kapok.kapoktpls.dto.ProfitDTO;
 import com.cqu.kapok.kapoktpls.entity.Goods;
 import com.cqu.kapok.kapoktpls.entity.MaterialPurchase;
 import com.cqu.kapok.kapoktpls.dao.MaterialPurchaseDao;
@@ -92,5 +93,9 @@ public class MaterialPurchaseServiceImpl implements MaterialPurchaseService {
     @Override
     public Long getMaterialPurchaseByConditionCount(MaterialPurchase materialPurchase) {
         return this.materialPurchaseDao.getMaterialPurchaseByConditionCount(materialPurchase);
+    }
+    @Override
+    public Long getMaterialPurchaseProfit(ProfitDTO profitDTO){
+        return this.materialPurchaseDao.getMaterialPurchaseProfit(profitDTO);
     }
 }

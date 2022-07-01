@@ -1,6 +1,7 @@
 package com.cqu.kapok.kapoktpls.dao;
 
 import com.cqu.kapok.kapoktpls.dto.MaterialPurchaseDTO;
+import com.cqu.kapok.kapoktpls.dto.ProfitDTO;
 import com.cqu.kapok.kapoktpls.entity.MaterialPurchase;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
@@ -83,5 +84,6 @@ public interface MaterialPurchaseDao {
 	List<MaterialPurchase> queryAll(MaterialPurchaseDTO materialPurchaseDTO);
 
     Long getMaterialPurchaseByConditionCount(MaterialPurchase materialPurchase);
+    Long getMaterialPurchaseProfit(ProfitDTO profitDTO);
 }
 

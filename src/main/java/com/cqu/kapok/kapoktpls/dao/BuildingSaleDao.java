@@ -5,6 +5,8 @@ import com.cqu.kapok.kapoktpls.entity.BuildingSale;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
+
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -96,5 +98,7 @@ public interface BuildingSaleDao {
     List<BuildingSale> queryByBuildingSaleDTO(BuildingSaleDTO buildingSaleDTO);
 
     Long getBuildingSaleByConditionCount(BuildingSale buildingSale);
+
+    Long getMonthPrice(Date date);
 }
 

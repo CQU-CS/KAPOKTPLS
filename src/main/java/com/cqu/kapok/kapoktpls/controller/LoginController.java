@@ -1,6 +1,8 @@
 package com.cqu.kapok.kapoktpls.controller;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.cqu.kapok.kapoktpls.entity.Account;
 import com.cqu.kapok.kapoktpls.service.AccountService;
 import com.cqu.kapok.kapoktpls.utils.JwtUtil;
@@ -13,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -53,7 +57,7 @@ public class LoginController {
         //3.将用户数据放入session
         session.setAttribute("userInfo", userVo);
         //4.设置session过期时间
-        session.setMaxInactiveInterval(20 * 60);
+        session.setMaxInactiveInterval(3600*60);
         return DataResult.successByData(userVo);
     }
 
@@ -123,6 +127,34 @@ public class LoginController {
             //返回name和avator
             map.put("name",accountTmp.getAccountNickname());
             map.put("avatar",accountTmp.getAccountPicture());
+            //根据权限返回权限信息
+            String type = accountTmp.getAccountType();
+            List<String> stringList = new ArrayList<>();
+            if(type.equals("root")){
+
+            }else if(type.equals("基本信息管理员")){
+                stringList.add("permission");
+
+            }else if(type.equals("购销存管理员")){
+                stringList.add("permission");
+
+            }else if(type.equals("汽车检修管理员")){
+                stringList.add("permission");
+
+            }else if(type.equals("运输调度管理员")){
+                stringList.add("permission");
+
+            }else if(type.equals("对外展示管理员")){
+                stringList.add("permission");
+
+            }else{
+                //普通用户
+                stringList.add("permission");
+            }
+
+            String str = JSON.toJSONString(stringList);
+            map.put("map",str);
+            map.put("role",accountTmp.getAccountType());
             return DataResult.successByData(map);
         }else {
             return DataResult.errByErrCode(50008);

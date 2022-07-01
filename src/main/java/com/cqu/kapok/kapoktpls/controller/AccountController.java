@@ -73,6 +73,7 @@ public class AccountController {
         if(account!=null){
             return DataResult.successByData(this.accountService.insert(account));
         }else{
+            account.setAccountPicture("https://s1.ax1x.com/2022/06/29/jm03Qg.png");
             return DataResult.errByErrCode(Code.ACCOUNTROOT_DELETE_ERROR);
         }
 
