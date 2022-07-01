@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -147,12 +148,20 @@ public class TruckRepairRecordController {
      */
     @PostMapping("queryByTruckRepairRecordDTO")
     DataResult queryByTruckRepairRecordDTO(@RequestBody TruckRepairRecordDTO truckRepairRecordDTO){
+        ArrayList<TruckRepairRecordVo> truckRepairRecordVos = new ArrayList<>();
         truckRepairRecordDTO.setPage((truckRepairRecordDTO.getPage() - 1) * truckRepairRecordDTO.getLimit());
         List<TruckRepairRecord> truckRepairRecords =this.truckRepairRecordService.queryByTruckRepairRecordDTO(truckRepairRecordDTO);
         TruckRepairRecord truckRepairRecord = new TruckRepairRecord();
         BeanUtils.copyProperties(truckRepairRecordDTO,truckRepairRecord);
         Long total = this.truckRepairRecordService.getTruckRepairRecordByConditionCount(truckRepairRecord);
-        return DataResult.successByTotalData(truckRepairRecords, total);
+        for(TruckRepairRecord truckRepairRecord1:truckRepairRecords){
+            String truckPlate = this.truckService.queryById(truckRepairRecord1.getTruckId()).getTruckPlate();
+            TruckRepairRecordVo truckRepairRecordVo = new TruckRepairRecordVo();
+            BeanUtils.copyProperties(truckRepairRecord1,truckRepairRecordVo);
+            truckRepairRecordVo.setTruckPlate(truckPlate);
+            truckRepairRecordVos.add(truckRepairRecordVo);
+        }
+        return DataResult.successByTotalData(truckRepairRecordVos, total);
     }
 }
 
