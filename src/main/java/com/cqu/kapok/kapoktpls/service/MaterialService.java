@@ -59,5 +59,6 @@ public interface MaterialService {
 
     List<Material> queryAllByCondition(MaterialDTO materialDTO);
 
+    List<Material> queryByMaterial(Material material);
     Long getMaterialByConditionCount(Material material);
 }

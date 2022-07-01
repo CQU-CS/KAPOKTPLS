@@ -1,10 +1,14 @@
 package com.cqu.kapok.kapoktpls.controller;
 
 import com.cqu.kapok.kapoktpls.dto.MaterialInventoryDTO;
-import com.cqu.kapok.kapoktpls.entity.Material;
-import com.cqu.kapok.kapoktpls.entity.MaterialInventory;
+import com.cqu.kapok.kapoktpls.entity.*;
+import com.cqu.kapok.kapoktpls.service.AddressService;
 import com.cqu.kapok.kapoktpls.service.MaterialInventoryService;
+import com.cqu.kapok.kapoktpls.service.MaterialService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.utils.result.code.Code;
+import com.cqu.kapok.kapoktpls.vo.MaterialInventoryVo;
+import com.cqu.kapok.kapoktpls.vo.MaterialInventoryVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,6 +33,12 @@ public class MaterialInventoryController {
      */
     @Resource
     private MaterialInventoryService materialInventoryService;
+
+    @Resource
+    private MaterialService materialService;
+
+    @Resource
+    private AddressService addressService;
 
     /**
      * 分页查询
@@ -55,23 +66,85 @@ public class MaterialInventoryController {
     /**
      * 新增数据
      *
-     * @param materialInventory 实体
+     * @param materialInventoryVo 实体
      * @return 新增结果
      */
     @PostMapping("addMaterialInventory")
-    public ResponseEntity<MaterialInventory> add(MaterialInventory materialInventory) {
-        return ResponseEntity.ok(this.materialInventoryService.insert(materialInventory));
+    public DataResult add(@RequestBody MaterialInventoryVo materialInventoryVo) {
+        MaterialInventory materialInventory = new MaterialInventory();
+        BeanUtils.copyProperties(materialInventoryVo,materialInventory);
+
+        Material material = new Material();
+        Address address = new Address();
+
+        material.setMaterialName(materialInventoryVo.getMaterialName());
+        System.out.println(materialInventoryVo.getMaterialName());
+        address.setAddressContent(materialInventoryVo.getAddressContent());
+        System.out.println(materialInventoryVo.getAddressContent());
+
+        List<Material> materials = this.materialService.queryByMaterial(material);
+        List<Address> addresses = this.addressService.queryByAddress(address);
+        if(materials.size() != 0){
+            materialInventory.setMaterialId(materials.get(0).getMaterialId());
+        }else{
+            //插入操作
+            material.setMaterialId(6666);
+            Material material1 = this.materialService.insert(material);
+            materialInventory.setMaterialId(material1.getMaterialId());
+        }
+
+        if(addresses.size() != 0){
+            materialInventory.setAddressId(addresses.get(0).getAddressId());
+        }else{
+            //插入操作
+            address.setAddressId(6666);
+            Address address1 = this.addressService.insert(address);
+            materialInventory.setAddressId(address1.getAddressId());
+        }
+
+        return DataResult.successByData(this.materialInventoryService.insert(materialInventory));
     }
 
     /**
      * 编辑数据
      *
-     * @param materialInventory 实体
+     * @param materialInventoryVo 实体
      * @return 编辑结果
      */
-    @PutMapping("editMaterialInventory")
-    public ResponseEntity<MaterialInventory> edit(MaterialInventory materialInventory) {
-        return ResponseEntity.ok(this.materialInventoryService.update(materialInventory));
+    @PostMapping("editMaterialInventory")
+    public DataResult edit(@RequestBody MaterialInventoryVo materialInventoryVo) {
+        MaterialInventory materialInventory = new MaterialInventory();
+        BeanUtils.copyProperties(materialInventoryVo,materialInventory);
+
+        Material material = new Material();
+        Address address = new Address();
+
+        material.setMaterialName(materialInventoryVo.getMaterialName());
+        System.out.println(materialInventoryVo.getMaterialName());
+        address.setAddressContent(materialInventoryVo.getAddressContent());
+        System.out.println(materialInventoryVo.getAddressContent());
+
+        List<Material> materials = this.materialService.queryByMaterial(material);
+        List<Address> addresses = this.addressService.queryByAddress(address);
+        if(materials.size() != 0){
+            materialInventory.setMaterialId(materials.get(0).getMaterialId());
+        }else{
+            //插入操作
+            material.setMaterialId(6666);
+            Material material1 = this.materialService.insert(material);
+            materialInventory.setMaterialId(material1.getMaterialId());
+        }
+
+        if(addresses.size() != 0){
+            materialInventory.setAddressId(addresses.get(0).getAddressId());
+        }else{
+            //插入操作
+            address.setAddressId(6666);
+            Address address1 = this.addressService.insert(address);
+            materialInventory.setAddressId(address1.getAddressId());
+        }
+
+        return DataResult.successByData(this.materialInventoryService.update(materialInventory));
     }
 
     /**
@@ -80,19 +153,39 @@ public class MaterialInventoryController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping("deleteMaterialInventory")
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.materialInventoryService.deleteById(id));
+    @PostMapping("deleteMaterialInventory")
+    public DataResult deleteById(Integer id) {
+        boolean b = this.materialInventoryService.deleteById(id);
+        return DataResult.errByErrCode(Code.SUCCESS);
     }
 
     @PostMapping("queryByMaterialInventory")
-    DataResult queryByGoods(@RequestBody MaterialInventoryDTO materialInventoryDTO){
+    DataResult queryByMaterial(@RequestBody MaterialInventoryDTO materialInventoryDTO){
         materialInventoryDTO.setPage((materialInventoryDTO.getPage() - 1) * materialInventoryDTO.getLimit());
         List<MaterialInventory> materialInventorys = this.materialInventoryService.queryAll(materialInventoryDTO);
         MaterialInventory materialInventory = new MaterialInventory();
         BeanUtils.copyProperties(materialInventoryDTO,materialInventory);
         Long total = this.materialInventoryService.getMaterialInventoryByConditionCount(materialInventory);
-        return DataResult.successByTotalData(materialInventorys, total);
+
+        Material material = new Material();
+        ArrayList<MaterialInventoryVo> materialInventoryVos = new ArrayList<>();
+        for(MaterialInventory materialInventory1: materialInventorys){
+            material.setMaterialId(materialInventory1.getMaterialId());
+            List<Material> materials = this.materialService.queryByMaterial(material);
+            //物资名称
+            String materialName = materials.get(0).getMaterialName();
+            MaterialInventoryVo materialInventoryVo = new MaterialInventoryVo();
+            BeanUtils.copyProperties(materialInventory1,materialInventoryVo);
+            materialInventoryVo.setMaterialName(materialName);
+
+
+            //地址名称
+            Address address = this.addressService.queryById(materialInventory1.getAddressId());
+            String addressContent = address.getAddressContent();
+            materialInventoryVo.setAddressContent(addressContent);
+            materialInventoryVos.add(materialInventoryVo);
+        }
+        return DataResult.successByTotalData(materialInventoryVos, total);
     }
 }
 

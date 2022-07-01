@@ -103,6 +103,7 @@ public class GoodsPurchaseController {
             //插入操作
             System.out.println("插入com");
             company.setCompanyId(6666);
+            company.setAddressId(666);
             Company company1 = this.companyService.insert(company);
             goodsPurchase.setCompanyId(company1.getCompanyId());
         }
@@ -150,6 +151,7 @@ public class GoodsPurchaseController {
             //插入操作
             System.out.println("插入com");
             company.setCompanyId(6666);
+            company.setAddressId(666);
             Company company1 = this.companyService.insert(company);
             goodsPurchase.setCompanyId(company1.getCompanyId());
         }

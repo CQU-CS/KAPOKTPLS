@@ -1,8 +1,8 @@
 package com.cqu.kapok.kapoktpls.service.impl;
 
-import com.cqu.kapok.kapoktpls.dto.GoodsDTO;
 import com.cqu.kapok.kapoktpls.dto.MaterialDTO;
-import com.cqu.kapok.kapoktpls.entity.Goods;
+import com.cqu.kapok.kapoktpls.dto.MaterialDTO;
+import com.cqu.kapok.kapoktpls.entity.Material;
 import com.cqu.kapok.kapoktpls.entity.Material;
 import com.cqu.kapok.kapoktpls.dao.MaterialDao;
 import com.cqu.kapok.kapoktpls.service.MaterialService;
@@ -90,6 +90,10 @@ public class MaterialServiceImpl implements MaterialService {
         return this.materialDao.queryAllByCondition(materialDTO);
     }
 
+    @Override
+    public  List<Material> queryByMaterial(Material material){
+        return this.materialDao.queryByMaterial(material);
+    }
     @Override
     public Long getMaterialByConditionCount(Material material) {
         return this.materialDao.getMaterialByConditionCount(material);
