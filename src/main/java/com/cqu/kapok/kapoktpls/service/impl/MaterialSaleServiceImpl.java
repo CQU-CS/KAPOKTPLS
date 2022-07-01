@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.service.impl;
 
+import com.cqu.kapok.kapoktpls.dto.ProfitDTO;
 import com.cqu.kapok.kapoktpls.entity.MaterialSale;
 import com.cqu.kapok.kapoktpls.dao.MaterialSaleDao;
 import com.cqu.kapok.kapoktpls.service.MaterialSaleService;
@@ -99,5 +100,9 @@ public class MaterialSaleServiceImpl implements MaterialSaleService {
     @Override
     public Long count(MaterialSale materialSale) {
         return this.materialSaleDao.count(materialSale);
+    }
+    @Override
+    public Long getMaterialSaleProfit(ProfitDTO profitDTO){
+        return this.materialSaleDao.getMaterialSaleProfit(profitDTO);
     }
 }

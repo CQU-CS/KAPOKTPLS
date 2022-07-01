@@ -1,6 +1,7 @@
 package com.cqu.kapok.kapoktpls.controller;
 
 import com.cqu.kapok.kapoktpls.dto.GoodsPurchaseDTO;
+import com.cqu.kapok.kapoktpls.dto.ProfitDTO;
 import com.cqu.kapok.kapoktpls.entity.*;
 import com.cqu.kapok.kapoktpls.entity.GoodsPurchase;
 import com.cqu.kapok.kapoktpls.service.CompanyService;
@@ -10,6 +11,7 @@ import com.cqu.kapok.kapoktpls.service.GoodsService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import com.cqu.kapok.kapoktpls.utils.result.code.Code;
 import com.cqu.kapok.kapoktpls.vo.GoodsPurchaseVo;
+import com.cqu.kapok.kapoktpls.vo.ProfitVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -199,6 +201,19 @@ public class GoodsPurchaseController {
             goodsPurchaseVos.add(goodsPurchaseVo);
         }
         return DataResult.successByTotalData(goodsPurchaseVos, total);
+    }
+    /**
+     * 通过ProfitDTO查询利润
+     *
+     * @param profitDTO
+     * @return
+     */
+    @PostMapping("getGoodsPurchaseProfit")
+    DataResult getGoodsPurchaseProfit(@RequestBody ProfitDTO profitDTO){
+        ProfitVo profitVo = new ProfitVo();
+        Long goodsPurchaseProfit = this.goodsPurchaseService.getGoodsPurchaseProfit(profitDTO);
+        profitVo.setProfit(goodsPurchaseProfit);
+        return DataResult.successByData(profitVo);
     }
 }
 

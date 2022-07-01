@@ -20,7 +20,13 @@
         from material_purchase
         where material_purchase_id = #{materialPurchaseId}
     </select>
-
+    <!--查询利润-->
+    <select id="getMaterialPurchaseProfit" resultType="java.lang.Long" parameterType="com.cqu.kapok.kapoktpls.dto.ProfitDTO">
+        select
+            sum(material_purchase_price)
+        from material_purchase
+        where material_purchase_date between #{monthStart} and #{monthEnd}
+    </select>
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select

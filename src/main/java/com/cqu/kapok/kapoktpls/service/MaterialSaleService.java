@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.service;
 
+import com.cqu.kapok.kapoktpls.dto.ProfitDTO;
 import com.cqu.kapok.kapoktpls.entity.MaterialSale;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -68,4 +69,5 @@ public interface MaterialSaleService {
      * @return
      */
     Long count(MaterialSale materialSale);
+    Long getMaterialSaleProfit(ProfitDTO profitDTO);
 }

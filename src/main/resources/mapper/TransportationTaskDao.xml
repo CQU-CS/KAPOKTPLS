@@ -23,7 +23,13 @@
         from transportation_task
         where transportation_task_id = #{transportationTaskId}
     </select>
-
+    <!--查询某个月利润-->
+    <select id="getMonthProfit" resultType="java.lang.Long" parameterType="com.cqu.kapok.kapoktpls.dto.ProfitDTO">
+        select
+            sum(transportation_task_price)
+        from transportation_task
+        where transportation_task_end_time between #{monthStart} and #{monthEnd}
+    </select>
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select

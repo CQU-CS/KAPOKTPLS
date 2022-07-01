@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.service;
 
+import com.cqu.kapok.kapoktpls.dto.ProfitDTO;
 import com.cqu.kapok.kapoktpls.dto.TransportationTaskDTO;
 import com.cqu.kapok.kapoktpls.entity.TransportationTask;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
@@ -79,4 +80,6 @@ public interface TransportationTaskService {
      * @return
      */
     Long getTransportationTaskByConditionCount(TransportationTask transportationTask);
+
+    Long getMonthProfit(ProfitDTO profitDTO);
 }

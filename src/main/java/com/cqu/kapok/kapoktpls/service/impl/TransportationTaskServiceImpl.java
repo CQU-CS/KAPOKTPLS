@@ -1,5 +1,6 @@
 package com.cqu.kapok.kapoktpls.service.impl;
 
+import com.cqu.kapok.kapoktpls.dto.ProfitDTO;
 import com.cqu.kapok.kapoktpls.dto.TransportationTaskDTO;
 import com.cqu.kapok.kapoktpls.entity.TransportationTask;
 import com.cqu.kapok.kapoktpls.dao.TransportationTaskDao;
@@ -106,5 +107,9 @@ public class TransportationTaskServiceImpl implements TransportationTaskService 
     @Override
     public Long getTransportationTaskByConditionCount(TransportationTask transportationTask) {
         return this.transportationTaskDao.getTransportationTaskByConditionCount(transportationTask);
+    }
+    @Override
+    public Long getMonthProfit(ProfitDTO profitDTO){
+        return this.transportationTaskDao.getMonthProfit(profitDTO);
     }
 }

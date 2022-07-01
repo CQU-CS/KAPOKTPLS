@@ -1,6 +1,7 @@
 package com.cqu.kapok.kapoktpls.dao;
 
 import com.cqu.kapok.kapoktpls.dto.GoodsSaleDTO;
+import com.cqu.kapok.kapoktpls.dto.ProfitDTO;
 import com.cqu.kapok.kapoktpls.entity.GoodsSale;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
@@ -83,5 +84,7 @@ public interface GoodsSaleDao {
 	List<GoodsSale> queryAll(GoodsSaleDTO goodsSaleDTO);
 
     Long getGoodsSaleByConditionCount(GoodsSale goodsSale);
+
+    Long getGoodsSaleProfit(ProfitDTO profitDTO);
 }
 
