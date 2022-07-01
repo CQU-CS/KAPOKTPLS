@@ -61,4 +61,11 @@ public interface MaterialSaleService {
      * @return
      */
     List<MaterialSale> getByCondition(MaterialSale materialSale);
+
+    /**
+     * 计数
+     * @param materialSale
+     * @return
+     */
+    Long count(MaterialSale materialSale);
 }

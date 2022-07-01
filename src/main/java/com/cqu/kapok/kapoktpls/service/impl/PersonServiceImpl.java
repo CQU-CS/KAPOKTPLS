@@ -93,5 +93,15 @@ public class PersonServiceImpl implements PersonService {
         return this.personDao.queryByPerson(person);
     }
 
+    /**
+     * 计数
+     * @param person
+     * @return
+     */
+    @Override
+    public Long count(Person person) {
+        return this.personDao.count(person);
+    }
+
 
 }
