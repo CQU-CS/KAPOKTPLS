@@ -25,4 +25,14 @@ public interface Code {
 	int TRANSPORTATIONtASK_ERROR = Errs.put(-5,"操作有误，删除的运输任务记录被其他表格使用");
 	//货物记录删除出错
 	int GOODS_DELETE_ERROR = Errs.put(-5,"操作有误，删除的货物被其他表格使用");
+	//建筑租赁记录删除出错
+	int BUILDINGRENT_DELETE_ERROR = Errs.put(-5,"操作有误，建筑租赁出现异常");
+	//广告记录删除出错
+	int ADVERTISEMENT_DELETE_ERROR = Errs.put(-5,"操作有误，删除的货物被其他表格使用");
+	//建筑记录删除出错
+	int BUILDING_DELETE_ERROR = Errs.put(-5,"操作有误，删除的货物被其他表格使用");
+	//管理员记录编辑出错
+	int ACCOUNTROOT_DELETE_ERROR = Errs.put(-5,"操作有误，该管理员账号不可被编辑");
+	//建筑出售记录删除出错
+	int BUILDINGSALE_DELETE_ERROR = Errs.put(-5,"操作有误，该管理员账号不可被编辑");
 }
