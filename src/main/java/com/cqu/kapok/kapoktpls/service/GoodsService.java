@@ -56,7 +56,7 @@ public interface GoodsService {
      */
     boolean deleteById(Integer goodsId);
     List<Goods> queryAll(GoodsDTO goodsDTO);
-
+    List<Goods> queryByGoods(Goods goods);
     Long getGoodsByConditionCount(Goods goods);
 
 }

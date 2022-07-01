@@ -84,5 +84,8 @@ public interface CompanyDao {
     List<Company> queryAll(CompanyDTO companyDTO);
 
     Long getCompanyByConditionCount(Company company);
+
+    List<Company> queryCompany(Company company);
+
 }
 

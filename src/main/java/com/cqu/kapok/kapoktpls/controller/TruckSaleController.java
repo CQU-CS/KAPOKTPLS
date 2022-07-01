@@ -2,10 +2,16 @@ package com.cqu.kapok.kapoktpls.controller;
 
 import com.cqu.kapok.kapoktpls.dto.TruckRepairRecordDTO;
 import com.cqu.kapok.kapoktpls.dto.TruckSaleDTO;
+import com.cqu.kapok.kapoktpls.entity.Company;
+import com.cqu.kapok.kapoktpls.entity.Truck;
 import com.cqu.kapok.kapoktpls.entity.TruckRepairRecord;
 import com.cqu.kapok.kapoktpls.entity.TruckSale;
+import com.cqu.kapok.kapoktpls.service.CompanyService;
 import com.cqu.kapok.kapoktpls.service.TruckSaleService;
+import com.cqu.kapok.kapoktpls.service.TruckService;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
+import com.cqu.kapok.kapoktpls.utils.result.code.Code;
+import com.cqu.kapok.kapoktpls.vo.TruckSaleVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.xml.crypto.Data;
 import java.util.List;
 
 /**
@@ -29,6 +36,10 @@ public class TruckSaleController {
      */
     @Resource
     private TruckSaleService truckSaleService;
+    @Resource
+    private TruckService truckService;
+    @Resource
+    private CompanyService companyService;
 
     /**
      * 分页查询
@@ -67,23 +78,85 @@ public class TruckSaleController {
     /**
      * 新增数据
      *
-     * @param truckSale 实体
+     * @param truckSaleVo 实体
      * @return 新增结果
      */
-    @PostMapping
-    public ResponseEntity<TruckSale> add(TruckSale truckSale) {
-        return ResponseEntity.ok(this.truckSaleService.insert(truckSale));
+    @PostMapping("addByTruckSale")
+    public DataResult add(@RequestBody TruckSaleVo truckSaleVo) {
+        TruckSale truckSale = new TruckSale();
+        Truck truck = new Truck();
+        Company company = new Company();
+        BeanUtils.copyProperties(truckSaleVo,truckSale);
+        if(truckSaleVo.getTruckPlate()!=null){
+            truck.setTruckPlate(truckSaleVo.getTruckPlate());
+            List<Truck> trucks = this.truckService.queryByTruck(truck);
+            if(trucks.size()!=0){
+                for(Truck truck1:trucks){
+                    truckSale.setTruckId(truck1.getTruckId());
+                }
+            }
+            else{
+                truck.setPersonId(1);
+                Truck insert = this.truckService.insert(truck);
+                truckSale.setTruckId(insert.getTruckId());
+            }
+        }
+        if(truckSaleVo.getCompanyName()!=null){
+            company.setCompanyName(truckSaleVo.getCompanyName());
+            List<Company> companies = this.companyService.queryCompany(company);
+            if(companies.size()!=0){
+                for(Company company1:companies){
+                    truckSale.setCompanyId(company1.getCompanyId());
+                }
+            }else{
+                company.setAddressId(1);
+                Company insert = this.companyService.insert(company);
+                truckSale.setCompanyId(insert.getCompanyId());
+            }
+        }
+        return DataResult.successByData(this.truckSaleService.insert(truckSale));
     }
 
     /**
      * 编辑数据
      *
-     * @param truckSale 实体
+     * @param truckSaleVo 实体
      * @return 编辑结果
      */
-    @PutMapping
-    public ResponseEntity<TruckSale> edit(TruckSale truckSale) {
-        return ResponseEntity.ok(this.truckSaleService.update(truckSale));
+    @PostMapping("editByTruckSale")
+    public DataResult edit(@RequestBody TruckSaleVo truckSaleVo) {
+        TruckSale truckSale = new TruckSale();
+        Truck truck = new Truck();
+        Company company = new Company();
+        BeanUtils.copyProperties(truckSaleVo,truckSale);
+        if(truckSaleVo.getTruckPlate()!=null){
+            truck.setTruckPlate(truckSaleVo.getTruckPlate());
+            List<Truck> trucks = this.truckService.queryByTruck(truck);
+            if(trucks.size()!=0){
+                for(Truck truck1:trucks){
+                    truckSale.setTruckId(truck1.getTruckId());
+                }
+            }
+            else{
+                truck.setPersonId(1);
+                Truck insert = this.truckService.insert(truck);
+                truckSale.setTruckId(insert.getTruckId());
+            }
+        }
+        if(truckSaleVo.getCompanyName()!=null){
+            company.setCompanyName(truckSaleVo.getCompanyName());
+            List<Company> companies = this.companyService.queryCompany(company);
+            if(companies.size()!=0){
+                for(Company company1:companies){
+                    truckSale.setCompanyId(company1.getCompanyId());
+                }
+            }else{
+                company.setAddressId(1);
+                Company insert = this.companyService.insert(company);
+                truckSale.setCompanyId(insert.getCompanyId());
+            }
+        }
+        return DataResult.successByData(this.truckSaleService.update(truckSale));
     }
 
     /**
@@ -92,9 +165,14 @@ public class TruckSaleController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.truckSaleService.deleteById(id));
+    @PostMapping("deleteByTruckSale")
+    public DataResult deleteById(Integer id) {
+        try{
+            boolean b = this.truckSaleService.deleteById(id);
+        }catch (Exception e){
+
+        }
+        return DataResult.errByErrCode(Code.SUCCESS);
     }
 
     /**

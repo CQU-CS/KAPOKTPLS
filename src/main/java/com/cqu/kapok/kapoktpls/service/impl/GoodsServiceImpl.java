@@ -87,7 +87,10 @@ public class GoodsServiceImpl implements GoodsService {
     public List<Goods> queryAll(GoodsDTO goodsDTO) {
         return this.goodsDao.queryAll(goodsDTO);
     }
-
+    @Override
+    public  List<Goods> queryByGoods(Goods goods){
+        return this.goodsDao.queryByGoods(goods);
+    }
     @Override
     public Long getGoodsByConditionCount(Goods goods) {
         return this.goodsDao.getGoodsByConditionCount(goods);
