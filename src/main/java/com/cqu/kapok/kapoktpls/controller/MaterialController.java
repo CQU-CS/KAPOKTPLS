@@ -1,5 +1,9 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.io.IoUtil;
+import cn.hutool.poi.excel.ExcelUtil;
+import cn.hutool.poi.excel.ExcelWriter;
 import com.cqu.kapok.kapoktpls.dto.GoodsDTO;
 import com.cqu.kapok.kapoktpls.dto.MaterialDTO;
 import com.cqu.kapok.kapoktpls.entity.Goods;
@@ -15,7 +19,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (Material)表控制层
@@ -101,5 +111,36 @@ public class MaterialController {
         Long total = this.materialService.getMaterialByConditionCount(material);
         return DataResult.successByTotalData(materials, total);
     }
+
+    @GetMapping("exportMaterial")
+    public void export(HttpServletResponse response) throws IOException {
+        List<Map<String, Object>> list = CollUtil.newArrayList();
+
+        Material material = new Material();
+        List<Material> all = this.materialService.queryByMaterial(material);
+        for (Material material1 : all) {
+            Map<String, Object> row1 = new LinkedHashMap<>();
+            row1.put("物资编号", material1.getMaterialId());
+            row1.put("物资名称", material1.getMaterialName());
+            row1.put("物资类型", material1.getMaterialType());
+            row1.put("物资价格", material1.getMaterialPrice());
+            row1.put("物资尺寸", material1.getMaterialSize());
+            list.add(row1);
+        }
+
+        // 2. 写excel
+        ExcelWriter writer = ExcelUtil.getWriter(true);
+        writer.write(list, true);
+
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8");
+        String fileName = URLEncoder.encode("物资信息", "UTF-8");
+        response.setHeader("Content-Disposition", "attachment;filename=" + fileName + ".xlsx");
+
+        ServletOutputStream out = response.getOutputStream();
+        writer.flush(out, true);
+        writer.close();
+        IoUtil.close(System.out);
+    }
+
 }
 
