@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -233,11 +234,25 @@ public class TransportationTaskController {
      */
     @PostMapping("queryByTransportationTaskDTO")
     DataResult queryByTransportationTaskDTO(@RequestBody TransportationTaskDTO transportationTaskDTO){
+        ArrayList<TransportationTaskVo> transportationTaskVos = new ArrayList<>();
         transportationTaskDTO.setPage((transportationTaskDTO.getPage() - 1) * transportationTaskDTO.getLimit());
         List<TransportationTask> transportationTasks =this.transportationTaskService.queryByTransportationTaskDTO(transportationTaskDTO);
         TransportationTask transportationTask = new TransportationTask();
         BeanUtils.copyProperties(transportationTaskDTO,transportationTask);
         Long total = this.transportationTaskService.getTransportationTaskByConditionCount(transportationTask);
+        for(TransportationTask transportationTask1:transportationTasks){
+            String truckPlate = this.truckService.queryById(transportationTask1.getTruckId()).getTruckPlate();
+            String companyName = this.companyService.queryById(transportationTask1.getCompanyId()).getCompanyName();
+            String goodsName = this.goodsService.queryById(transportationTask1.getGoodsId()).getGoodsName();
+            String addressContent = this.addressService.queryById(transportationTask1.getAddressId()).getAddressContent();
+            TransportationTaskVo transportationTaskVo = new TransportationTaskVo();
+            BeanUtils.copyProperties(transportationTask1,transportationTaskVo);
+            transportationTaskVo.setAddressContent(addressContent);
+            transportationTaskVo.setGoodsName(goodsName);
+            transportationTaskVo.setCompanyName(companyName);
+            transportationTaskVo.setTruckPlate(truckPlate);
+            transportationTaskVos.add(transportationTaskVo);
+        }
         return DataResult.successByTotalData(transportationTasks, total);
     }
 

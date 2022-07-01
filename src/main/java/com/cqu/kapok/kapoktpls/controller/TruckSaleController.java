@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.xml.crypto.Data;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -183,12 +184,22 @@ public class TruckSaleController {
      */
     @PostMapping("queryByTruckSaleDTO")
     DataResult queryByTruckSaleDTO(@RequestBody TruckSaleDTO truckSaleDTO){
+        ArrayList<TruckSaleVo> truckSaleVos = new ArrayList<>();
         truckSaleDTO.setPage((truckSaleDTO.getPage() - 1) * truckSaleDTO.getLimit());
         List<TruckSale> truckSales =this.truckSaleService.queryByTruckSaleDTO(truckSaleDTO);
         TruckSale truckSale = new TruckSale();
         BeanUtils.copyProperties(truckSaleDTO,truckSale);
         Long total = this.truckSaleService.getTruckSaleByConditionCount(truckSale);
-        return DataResult.successByTotalData(truckSales, total);
+        for(TruckSale truckSale1:truckSales){
+            String truckPlate = this.truckService.queryById(truckSale1.getTruckId()).getTruckPlate();
+            String companyName = this.companyService.queryById(truckSale1.getCompanyId()).getCompanyName();
+            TruckSaleVo truckSaleVo = new TruckSaleVo();
+            BeanUtils.copyProperties(truckSale1,truckSaleVo);
+            truckSaleVo.setTruckPlate(truckPlate);
+            truckSaleVo.setCompanyName(companyName);
+            truckSaleVos.add(truckSaleVo);
+        }
+        return DataResult.successByTotalData(truckSaleVos, total);
     }
 }
 

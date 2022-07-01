@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -180,12 +181,22 @@ public class TruckPurchaseController {
      */
     @PostMapping("queryByTruckPurchaseDTO")
     DataResult queryByTruckPurchaseDTO(@RequestBody TruckPurchaseDTO truckPurchaseDTO){
+        ArrayList<TruckPurchaseVo> truckPurchaseVos = new ArrayList<>();
         truckPurchaseDTO.setPage((truckPurchaseDTO.getPage() - 1) * truckPurchaseDTO.getLimit());
         List<TruckPurchase> truckPurchases =this.truckPurchaseService.queryByTruckPurchaseDTO(truckPurchaseDTO);
         TruckPurchase truckPurchase = new TruckPurchase();
         BeanUtils.copyProperties(truckPurchaseDTO,truckPurchase);
         Long total = this.truckPurchaseService.getTruckPurchaseByConditionCount(truckPurchase);
-        return DataResult.successByTotalData(truckPurchases, total);
+        for(TruckPurchase truckPurchase1:truckPurchases){
+            String truckPlate = this.truckService.queryById(truckPurchase1.getTruckId()).getTruckPlate();
+            String companyName = this.companyService.queryById(truckPurchase1.getCompanyId()).getCompanyName();
+            TruckPurchaseVo truckPurchaseVo = new TruckPurchaseVo();
+            BeanUtils.copyProperties(truckPurchase1,truckPurchaseVo);
+            truckPurchaseVo.setTruckPlate(truckPlate);
+            truckPurchaseVo.setCompanyName(companyName);
+            truckPurchaseVos.add(truckPurchaseVo);
+        }
+        return DataResult.successByTotalData(truckPurchaseVos, total);
     }
 }
 
