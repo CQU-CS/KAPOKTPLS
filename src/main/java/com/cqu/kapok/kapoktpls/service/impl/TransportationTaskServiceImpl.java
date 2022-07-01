@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -111,5 +112,10 @@ public class TransportationTaskServiceImpl implements TransportationTaskService 
     @Override
     public Long getMonthProfit(ProfitDTO profitDTO){
         return this.transportationTaskDao.getMonthProfit(profitDTO);
+    }
+
+    @Override
+    public Long getProfit(Date date) {
+        return this.transportationTaskDao.getProfit(date);
     }
 }

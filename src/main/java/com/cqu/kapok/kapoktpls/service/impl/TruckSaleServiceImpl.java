@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -111,5 +112,10 @@ public class TruckSaleServiceImpl implements TruckSaleService {
     @Override
     public Long getTruckSaleByConditionCount(TruckSale truckSale) {
         return this.truckSaleDao.getTruckSaleByConditionCount(truckSale);
+    }
+
+    @Override
+    public Long getMonthProfit(Date date) {
+        return this.truckSaleDao.getMonthProfit(date);
     }
 }

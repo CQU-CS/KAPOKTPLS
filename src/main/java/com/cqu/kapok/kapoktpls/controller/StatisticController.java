@@ -1,9 +1,6 @@
 package com.cqu.kapok.kapoktpls.controller;
 
-import com.cqu.kapok.kapoktpls.service.BuildingRentService;
-import com.cqu.kapok.kapoktpls.service.BuildingSaleService;
-import com.cqu.kapok.kapoktpls.service.CarrierManageService;
-import com.cqu.kapok.kapoktpls.service.TransportationTaskService;
+import com.cqu.kapok.kapoktpls.service.*;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import com.cqu.kapok.kapoktpls.utils.result.code.Code;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +29,10 @@ public class StatisticController {
     private BuildingSaleService buildingSaleService;
     @Resource
     private BuildingRentService buildingRentService;
+    @Resource
+    private TruckSaleService truckSaleService;
+    @Resource
+    private TruckPurchaseService truckPurchaseService;
 
     /**
      * 获取首页数据
@@ -75,7 +76,7 @@ public class StatisticController {
         Long buildingSalePrice = -1l;
         try {
             Date newTime = format.parse(dateString);
-            buildingSalePrice = this.buildingSaleService.getMonthPrice(newTime);
+            buildingSalePrice = this.transportationTaskService.getProfit(newTime);
         } catch (ParseException e) {
             e.printStackTrace();
         }finally {

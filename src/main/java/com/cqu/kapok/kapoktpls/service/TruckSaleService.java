@@ -6,6 +6,7 @@ import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -77,4 +78,11 @@ public interface TruckSaleService {
      * @return
      */
     Long getTruckSaleByConditionCount(TruckSale truckSale);
+
+    /**
+     * 获取当月卖车利润
+     * @param date
+     * @return
+     */
+    Long getMonthProfit(Date date);
 }

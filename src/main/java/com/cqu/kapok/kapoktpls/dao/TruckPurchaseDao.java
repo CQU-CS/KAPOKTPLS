@@ -5,6 +5,8 @@ import com.cqu.kapok.kapoktpls.entity.TruckPurchase;
 import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
+
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -101,5 +103,7 @@ public interface TruckPurchaseDao {
      * @return
      */
     Long getTruckPurchaseByConditionCount(TruckPurchase truckPurchase);
+
+    Long getMonthCost(Date date);
 }
 

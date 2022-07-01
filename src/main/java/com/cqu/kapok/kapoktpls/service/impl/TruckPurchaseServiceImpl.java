@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -111,5 +112,15 @@ public class TruckPurchaseServiceImpl implements TruckPurchaseService {
     @Override
     public Long getTruckPurchaseByConditionCount(TruckPurchase truckPurchase) {
         return this.truckPurchaseDao.getTruckPurchaseByConditionCount(truckPurchase);
+    }
+
+    /**
+     * 获取每月支出
+     * @param date
+     * @return
+     */
+    @Override
+    public Long getMonthCost(Date date) {
+        return this.truckPurchaseDao.getMonthCost(date);
     }
 }

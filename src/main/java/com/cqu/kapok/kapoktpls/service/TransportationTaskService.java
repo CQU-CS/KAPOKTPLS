@@ -7,6 +7,7 @@ import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -81,5 +82,17 @@ public interface TransportationTaskService {
      */
     Long getTransportationTaskByConditionCount(TransportationTask transportationTask);
 
+    /**
+     *
+     * @param profitDTO
+     * @return
+     */
     Long getMonthProfit(ProfitDTO profitDTO);
+
+    /**
+     * 获取当月收入
+     * @param date
+     * @return
+     */
+    Long getProfit(Date date);
 }

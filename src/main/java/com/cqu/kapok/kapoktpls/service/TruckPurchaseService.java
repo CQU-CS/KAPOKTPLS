@@ -6,6 +6,7 @@ import com.cqu.kapok.kapoktpls.utils.result.DataResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -78,4 +79,11 @@ public interface TruckPurchaseService {
      * @return
      */
     Long getTruckPurchaseByConditionCount(TruckPurchase truckPurchase);
+
+    /**
+     * 获取当月支出
+     * @param date
+     * @return
+     */
+    Long getMonthCost(Date date);
 }
