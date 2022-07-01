@@ -109,5 +109,7 @@ public interface TransportationTaskDao {
     Long getMonthProfit(ProfitDTO profitDTO);
 
     Long getProfit(Date date);
+
+    Long getTrips(Date date);
 }
 

@@ -6,6 +6,8 @@ import com.cqu.kapok.kapoktpls.entity.Carrier;
 import com.cqu.kapok.kapoktpls.entity.CarrierManage;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
+
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -86,5 +88,6 @@ public interface CarrierManageDao {
 
     Long getCarrierMangeByConditionCount(CarrierManage carrierManage);
 
+    Long getMonthPrice(Date date);
 }
 

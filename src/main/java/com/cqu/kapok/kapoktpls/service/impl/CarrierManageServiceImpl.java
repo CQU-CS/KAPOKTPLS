@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -92,5 +93,10 @@ public class CarrierManageServiceImpl implements CarrierManageService {
     @Override
     public Long getCarrierMangeByConditionCount(CarrierManage carrierManage) {
         return this.carrierManageDao.getCarrierMangeByConditionCount(carrierManage);
+    }
+
+    @Override
+    public Long getMonthPrice(Date date) {
+        return this.carrierManageDao.getMonthPrice(date);
     }
 }

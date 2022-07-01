@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -97,5 +98,10 @@ public class MaterialPurchaseServiceImpl implements MaterialPurchaseService {
     @Override
     public Long getMaterialPurchaseProfit(ProfitDTO profitDTO){
         return this.materialPurchaseDao.getMaterialPurchaseProfit(profitDTO);
+    }
+
+    @Override
+    public Long getMonthPrice(Date date) {
+        return this.materialPurchaseDao.getMonthPrice(date);
     }
 }

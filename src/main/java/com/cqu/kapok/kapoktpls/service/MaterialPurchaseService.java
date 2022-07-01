@@ -6,6 +6,7 @@ import com.cqu.kapok.kapoktpls.entity.MaterialPurchase;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -61,4 +62,11 @@ public interface MaterialPurchaseService {
 
     Long getMaterialPurchaseByConditionCount(MaterialPurchase materialPurchase);
     Long getMaterialPurchaseProfit(ProfitDTO profitDTO);
+
+    /**
+     * 当月支出
+     * @param date
+     * @return
+     */
+    Long getMonthPrice(Date date);
 }

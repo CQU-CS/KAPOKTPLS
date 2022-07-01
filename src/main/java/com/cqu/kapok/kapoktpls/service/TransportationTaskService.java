@@ -95,4 +95,11 @@ public interface TransportationTaskService {
      * @return
      */
     Long getProfit(Date date);
+
+    /**
+     * 获得当月运输次数
+     * @param date
+     * @return
+     */
+    Long getTrips(Date date);
 }

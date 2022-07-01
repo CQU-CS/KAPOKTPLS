@@ -5,6 +5,8 @@ import com.cqu.kapok.kapoktpls.dto.ProfitDTO;
 import com.cqu.kapok.kapoktpls.entity.MaterialPurchase;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
+
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -85,5 +87,7 @@ public interface MaterialPurchaseDao {
 
     Long getMaterialPurchaseByConditionCount(MaterialPurchase materialPurchase);
     Long getMaterialPurchaseProfit(ProfitDTO profitDTO);
+
+    Long getMonthPrice(Date date);
 }
 

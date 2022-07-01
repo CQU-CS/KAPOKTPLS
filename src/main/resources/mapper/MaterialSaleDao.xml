@@ -179,5 +179,9 @@
             </if>
         </where>
     </select>
+    <select id="getMonthPrice" resultType="java.lang.Long">
+        SELECT sum(material_sale_price) FROM material_sale
+        WHERE DATE_FORMAT( material_sale_date, '%Y%m' ) = DATE_FORMAT( #{date} , '%Y%m' ) and pay_status = 1
+    </select>
 </mapper>
 
