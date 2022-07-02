@@ -215,6 +215,59 @@ public class StatisticController {
     }
 
     /**
+     * 获得首页扇形图
+     * @param dateString
+     * @return
+     * @throws ParseException
+     */
+    @PostMapping("getSectorDiagram")
+    public DataResult getSectorDiagram(String dateString) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = format.parse(dateString);
+        List<Long> longList = new ArrayList<>();
+        //本月建筑出售收入
+        long buildingSalePrice = 0;
+        if(this.buildingSaleService.getMonthPrice(date)!=null){
+            buildingSalePrice = this.buildingSaleService.getMonthPrice(date);
+        }
+        //本月建筑出租收入
+        long buildingRentPrice = 0;
+        if(this.buildingRentService.getMonthPrice(date)!=null){
+            buildingRentPrice = this.buildingRentService.getMonthPrice(date);
+        }
+        //本月商品出售收入
+        long goodSalePrice = 0;
+        if(this.goodsSaleService.getMonthPrice(date)!=null){
+            goodSalePrice = this.goodsSaleService.getMonthPrice(date);
+        }
+        //本月物资出售收入
+        long materialPrice = 0;
+        if(this.materialSaleService.getMonthPrice(date)!=null){
+            materialPrice = this.materialSaleService.getMonthPrice(date);
+        }
+        //本月运输收入
+        long transpositionPrice = 0;
+        if(this.transportationTaskService.getProfit(date)!=null){
+            transpositionPrice = this.transportationTaskService.getProfit(date);
+        }
+        //本月汽车出售收入
+        long truckSalePrice = 0;
+        if(this.truckSaleService.getMonthProfit(date)!=null){
+            truckSalePrice = this.truckSaleService.getMonthProfit(date);
+        }
+
+        longList.add(buildingSalePrice);
+        longList.add(buildingRentPrice);
+        longList.add(goodSalePrice);
+        longList.add(materialPrice);
+        longList.add(transpositionPrice);
+        longList.add(truckSalePrice);
+        Map<String,Object> map = new HashMap<>();
+        map.put("chartList",longList);
+        return DataResult.successByData(map);
+    }
+
+    /**
      * 某月总收入
      * @param date
      * @return
