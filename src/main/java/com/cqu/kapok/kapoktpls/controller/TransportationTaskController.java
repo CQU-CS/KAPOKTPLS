@@ -81,21 +81,24 @@ public class TransportationTaskController {
      * @return 新增结果
      */
     @PostMapping("addByTransportationTask")
-    public DataResult add(TransportationTaskVo transportationTaskVo) {
+    public DataResult add(@RequestBody TransportationTaskVo transportationTaskVo) {
         TransportationTask transportationTask = new TransportationTask();
         Truck truck = new Truck();
         Company company = new Company();
         Goods goods = new Goods();
         Address address = new Address();
         BeanUtils.copyProperties(transportationTaskVo,transportationTask);
+        System.out.println("————————————————————————"+ transportationTaskVo.getTruckPlate());
         if(transportationTaskVo.getTruckPlate()!=null){
             truck.setTruckPlate(transportationTaskVo.getTruckPlate());
             List<Truck> trucks = this.truckService.queryByTruck(truck);
+            System.out.println(1);
             if(trucks.size()!=0){
                 for (Truck truck1:trucks){
                     transportationTask.setTruckId(truck1.getTruckId());
                 }
             }else{
+                System.out.println(2);
                 truck.setPersonId(1);
                 Truck insert = this.truckService.insert(truck);
                 transportationTask.setTruckId(insert.getTruckId());
