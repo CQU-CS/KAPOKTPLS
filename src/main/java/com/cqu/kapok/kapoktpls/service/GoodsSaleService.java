@@ -6,6 +6,7 @@ import com.cqu.kapok.kapoktpls.entity.GoodsSale;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -61,5 +62,12 @@ public interface GoodsSaleService {
 
     Long getGoodsSaleByConditionCount(GoodsSale goodsSale);
     Long getGoodsSaleProfit(ProfitDTO profitDTO);
+
+    /**
+     * 当月商品销售额
+     * @param date
+     * @return
+     */
+    Long getMonthPrice(Date date);
 
 }

@@ -6,6 +6,7 @@ import com.cqu.kapok.kapoktpls.entity.CarrierManage;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -59,5 +60,12 @@ public interface CarrierManageService {
     List<CarrierManage> queryAll(CarrierManageDTO carrierManageDTO);
 
     Long getCarrierMangeByConditionCount(CarrierManage carrierManage);
+
+    /**
+     * 获取本月支出
+     * @param date
+     * @return
+     */
+    Long getMonthPrice(Date date);
 
 }

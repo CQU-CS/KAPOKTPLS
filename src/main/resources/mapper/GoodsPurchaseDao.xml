@@ -147,6 +147,10 @@
             </if>
         </where>
     </select>
+    <select id="getMonthPrice" resultType="java.lang.Long">
+        SELECT sum(goods_purchase_price) FROM goods_purchase
+        WHERE DATE_FORMAT( goods_purchase_date, '%Y%m' ) = DATE_FORMAT( #{date} , '%Y%m' ) and pay_status = 1
+    </select>
     <!--新增所有列-->
     <insert id="insert" keyProperty="goodsPurchaseId" useGeneratedKeys="true">
         insert into goods_purchase(goods_id, company_id, goods_purchase_num, goods_purchase_price, goods_purchase_date, pay_status)

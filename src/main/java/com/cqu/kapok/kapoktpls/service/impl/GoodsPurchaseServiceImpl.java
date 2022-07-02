@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -95,5 +96,10 @@ public class GoodsPurchaseServiceImpl implements GoodsPurchaseService {
     @Override
     public Long getGoodsPurchaseProfit(ProfitDTO profitDTO){
         return  this.goodsPurchaseDao.getGoodsPurchaseProfit(profitDTO);
+    }
+
+    @Override
+    public Long getMonthPrice(Date date) {
+        return this.goodsPurchaseDao.getMonthPrice(date);
     }
 }

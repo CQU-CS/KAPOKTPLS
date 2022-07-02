@@ -118,4 +118,9 @@ public class TransportationTaskServiceImpl implements TransportationTaskService 
     public Long getProfit(Date date) {
         return this.transportationTaskDao.getProfit(date);
     }
+
+    @Override
+    public Long getTrips(Date date) {
+        return this.transportationTaskDao.getTrips(date);
+    }
 }

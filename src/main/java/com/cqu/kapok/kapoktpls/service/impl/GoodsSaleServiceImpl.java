@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -97,5 +98,10 @@ public class GoodsSaleServiceImpl implements GoodsSaleService {
     @Override
     public Long getGoodsSaleProfit(ProfitDTO profitDTO){
         return this.goodsSaleDao.getGoodsSaleProfit(profitDTO);
+    }
+
+    @Override
+    public Long getMonthPrice(Date date) {
+        return this.goodsSaleDao.getMonthPrice(date);
     }
 }

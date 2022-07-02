@@ -297,5 +297,9 @@
         SELECT sum(transportation_task_price) FROM transportation_task
         WHERE DATE_FORMAT( transportation_task_start_time, '%Y%m' ) = DATE_FORMAT( #{date} , '%Y%m' )
     </select>
+    <select id="getTrips" resultType="java.lang.Long">
+        SELECT count(1) FROM transportation_task
+        WHERE DATE_FORMAT( transportation_task_start_time, '%Y%m' ) = DATE_FORMAT( #{date} , '%Y%m' )
+    </select>
 </mapper>
 
