@@ -81,7 +81,7 @@ public class TransportationTaskController {
      * @return 新增结果
      */
     @PostMapping("addByTransportationTask")
-    public DataResult add(TransportationTaskVo transportationTaskVo) {
+    public DataResult add(@RequestBody TransportationTaskVo transportationTaskVo) {
         TransportationTask transportationTask = new TransportationTask();
         Truck truck = new Truck();
         Company company = new Company();

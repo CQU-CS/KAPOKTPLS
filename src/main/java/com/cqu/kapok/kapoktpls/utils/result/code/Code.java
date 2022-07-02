@@ -16,23 +16,23 @@ public interface Code {
 	//删除地址出错
 	int ADDRESS_DELETE_ERROR = Errs.put(-5,"操作有误，删除的地址被其他表格使用");
 	//公司删除出错
-	int COMPANY_DELETE_ERROR = Errs.put(-5,"操作有误，删除的公司被其他表格使用");
+	int COMPANY_DELETE_ERROR = Errs.put(-6,"操作有误，删除的公司被其他表格使用");
 	// 汽车删除出错
-	int TRUCK_DELETE_ERROR = Errs.put(-5,"操作有误，删除的汽车被其他表格使用");
+	int TRUCK_DELETE_ERROR = Errs.put(-7,"操作有误，删除的汽车被其他表格使用");
 	// 汽车维修记录删除出错
-	int TRUCK_REPAIR_RECORD_ERROR = Errs.put(-5,"操作有误，删除的汽车维修记录被其他表格使用");
+	int TRUCK_REPAIR_RECORD_ERROR = Errs.put(-8,"操作有误，删除的汽车维修记录被其他表格使用");
 	// 运输任务删除出错
-	int TRANSPORTATIONtASK_ERROR = Errs.put(-5,"操作有误，删除的运输任务记录被其他表格使用");
+	int TRANSPORTATIONtASK_ERROR = Errs.put(-9,"操作有误，删除的运输任务记录被其他表格使用");
 	//货物记录删除出错
-	int GOODS_DELETE_ERROR = Errs.put(-5,"操作有误，删除的货物被其他表格使用");
+	int GOODS_DELETE_ERROR = Errs.put(-10,"操作有误，删除的货物被其他表格使用");
 	//建筑租赁记录删除出错
-	int BUILDINGRENT_DELETE_ERROR = Errs.put(-5,"操作有误，建筑租赁出现异常");
+	int BUILDINGRENT_DELETE_ERROR = Errs.put(-11,"操作有误，建筑租赁出现异常");
 	//广告记录删除出错
-	int ADVERTISEMENT_DELETE_ERROR = Errs.put(-5,"操作有误，删除的货物被其他表格使用");
+	int ADVERTISEMENT_DELETE_ERROR = Errs.put(-12,"操作有误，删除的货物被其他表格使用");
 	//建筑记录删除出错
-	int BUILDING_DELETE_ERROR = Errs.put(-5,"操作有误，删除的货物被其他表格使用");
+	int BUILDING_DELETE_ERROR = Errs.put(-13,"操作有误，删除的货物被其他表格使用");
 	//管理员记录编辑出错
-	int ACCOUNTROOT_DELETE_ERROR = Errs.put(-5,"操作有误，该管理员账号不可被编辑");
+	int ACCOUNTROOT_DELETE_ERROR = Errs.put(-14,"操作有误，该管理员账号不可被编辑");
 	//建筑出售记录删除出错
-	int BUILDINGSALE_DELETE_ERROR = Errs.put(-5,"操作有误，该管理员账号不可被编辑");
+	int BUILDINGSALE_DELETE_ERROR = Errs.put(-15,"操作有误，该管理员账号不可被编辑");
 }
