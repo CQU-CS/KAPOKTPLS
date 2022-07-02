@@ -140,6 +140,63 @@ public class StatisticController {
         }
     }
 
+
+    /**
+     * 获取某一年每个月总收入
+     * @param dateString
+     * @return
+     * @throws ParseException
+     */
+    @PostMapping("getYearIncome")
+    public DataResult getYearIncome(String dateString) throws ParseException {
+        //获取所有月份
+        String[] array = new String[12];
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR,Integer.parseInt(dateString));
+        cal.set(Calendar.MONTH, 0);
+        List<Long> longList = new ArrayList<>();
+
+        for(int i=0;i<12;i++){
+            array[i] = sdf.format(cal.getTime());
+            cal.add(Calendar.MONTH, 1);
+            Date date = sdf.parse(array[i]);
+            longList.add(getTotalIncome(date));
+        }
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("totalIncomes",longList);
+        return DataResult.successByData(map);
+    }
+
+    /**
+     * 获取某一年每个月总支出
+     * @param dateString
+     * @return
+     * @throws ParseException
+     */
+    @PostMapping("getYearExpenditures")
+    public DataResult getYearExpenditures(String dateString) throws ParseException {
+        //获取所有月份
+        String[] array = new String[12];
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR,Integer.parseInt(dateString));
+        cal.set(Calendar.MONTH, 0);
+        List<Long> longList = new ArrayList<>();
+
+        for(int i=0;i<12;i++){
+            array[i] = sdf.format(cal.getTime());
+            cal.add(Calendar.MONTH, 1);
+            Date date = sdf.parse(array[i]);
+            longList.add(getTotalExpenditures(date));
+        }
+        Map<String,Object> map = new HashMap<>();
+        map.put("totalExpenditures",longList);
+        return DataResult.successByData(map);
+    }
+
+
     /**
      * 半年收入
      * @param dateString
@@ -211,6 +268,92 @@ public class StatisticController {
         Map<String,Object> map = new HashMap<>();
         map.put("totalExpenditureses",longList);
         //返回数值
+        return DataResult.successByData(map);
+    }
+
+    /**
+     * 获得首页扇形图
+     * @param dateString
+     * @return
+     * @throws ParseException
+     */
+    @PostMapping("getSectorDiagram")
+    public DataResult getSectorDiagram(String dateString) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = format.parse(dateString);
+        List<Long> longList = new ArrayList<>();
+        //本月建筑出售收入
+        long buildingSalePrice = 0;
+        if(this.buildingSaleService.getMonthPrice(date)!=null){
+            buildingSalePrice = this.buildingSaleService.getMonthPrice(date);
+        }
+        //本月建筑出租收入
+        long buildingRentPrice = 0;
+        if(this.buildingRentService.getMonthPrice(date)!=null){
+            buildingRentPrice = this.buildingRentService.getMonthPrice(date);
+        }
+        //本月商品出售收入
+        long goodSalePrice = 0;
+        if(this.goodsSaleService.getMonthPrice(date)!=null){
+            goodSalePrice = this.goodsSaleService.getMonthPrice(date);
+        }
+        //本月物资出售收入
+        long materialPrice = 0;
+        if(this.materialSaleService.getMonthPrice(date)!=null){
+            materialPrice = this.materialSaleService.getMonthPrice(date);
+        }
+        //本月运输收入
+        long transpositionPrice = 0;
+        if(this.transportationTaskService.getProfit(date)!=null){
+            transpositionPrice = this.transportationTaskService.getProfit(date);
+        }
+        //本月汽车出售收入
+        long truckSalePrice = 0;
+        if(this.truckSaleService.getMonthProfit(date)!=null){
+            truckSalePrice = this.truckSaleService.getMonthProfit(date);
+        }
+
+        longList.add(buildingSalePrice);
+        longList.add(buildingRentPrice);
+        longList.add(goodSalePrice);
+        longList.add(materialPrice);
+        longList.add(transpositionPrice);
+        longList.add(truckSalePrice);
+        Map<String,Object> map = new HashMap<>();
+        map.put("chartList",longList);
+        return DataResult.successByData(map);
+    }
+
+    /**
+     * 获取支出扇形图
+     * @return
+     */
+    @PostMapping("getExpendituresSectorDiagram")
+    public DataResult getExpendituresSectorDiagram(String dateString) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = format.parse(dateString);
+        List<Long> longList = new ArrayList<>();
+        //本月商品购买支出
+        long goodPurchesePrice = 0;
+        if(this.goodsPurchaseService.getMonthPrice(date)!=null){
+            goodPurchesePrice = this.goodsPurchaseService.getMonthPrice(date);
+        }
+        //本月物资购买支出
+        long materialPurchesePrice = 0;
+        if(this.materialPurchaseService.getMonthPrice(date)!=null){
+            materialPurchesePrice = this.materialPurchaseService.getMonthPrice(date);
+        }
+        //本月汽车购买支出
+        long truckPurchasePrice = 0;
+        if(this.truckPurchaseService.getMonthCost(date)!=null){
+            truckPurchasePrice = this.truckPurchaseService.getMonthCost(date);
+        }
+
+        longList.add(goodPurchesePrice);
+        longList.add(materialPurchesePrice);
+        longList.add(truckPurchasePrice);
+        Map<String,Object> map = new HashMap<>();
+        map.put("chartList",longList);
         return DataResult.successByData(map);
     }
 
