@@ -94,6 +94,7 @@ public class TruckController {
                 }
             }else{
                 person.setCompanyId(1);
+                person.setPersonGender(0);
                 Person insert = this.personService.insert(person);
                 truck.setPersonId(insert.getPersonId());
             }
@@ -121,6 +122,7 @@ public class TruckController {
                 }
             }else{
                 person.setCompanyId(1);
+                person.setPersonGender(0);
                 Person insert = this.personService.insert(person);
                 truck.setPersonId(insert.getPersonId());
             }
