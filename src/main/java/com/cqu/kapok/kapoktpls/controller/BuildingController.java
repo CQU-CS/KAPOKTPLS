@@ -142,7 +142,21 @@ public class BuildingController {
      */
     @PostMapping("queryByBuilding")
     public DataResult queryByBuilding(@RequestBody Building building){
-        return DataResult.successByDatas(this.buildingService.queryByBuilding(building));
+        List<Building> buildings = this.buildingService.queryByBuilding(building);
+        List<BuildingVo> buildingVos = new ArrayList<>();
+        for(Building building1:buildings){
+            String addressContent = this.addressService.queryById(building1.getAddressId()).getAddressContent();
+            int i;
+            for(i=0;i<addressContent.length();i++) {
+                if (Character.isDigit(addressContent.charAt(i))) break;
+            }
+            addressContent = addressContent.substring(0,i);
+            BuildingVo buildingVo = new BuildingVo();
+            BeanUtils.copyProperties(building1,buildingVo);
+            buildingVo.setAddressContent(addressContent);
+            buildingVos.add(buildingVo);
+        }
+        return DataResult.successByDatas(buildingVos);
     }
 
     /**

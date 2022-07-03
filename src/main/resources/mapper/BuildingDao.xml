@@ -92,6 +92,7 @@
                 and building_buy_time = #{buildingBuyTime}
             </if>
         </where>
+        limit 1
     </select>
     <select id="queryByBuildingDTO" resultType="com.cqu.kapok.kapoktpls.entity.Building">
         select *
