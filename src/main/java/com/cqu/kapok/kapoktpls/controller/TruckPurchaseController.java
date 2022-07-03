@@ -123,7 +123,7 @@ public class TruckPurchaseController {
      * @param truckPurchaseVo 实体
      * @return 编辑结果
      */
-    @PostMapping("editByTrucKPurchase")
+    @PostMapping("editByTruckPurchase")
     public DataResult edit(@RequestBody TruckPurchaseVo truckPurchaseVo) {
         TruckPurchase truckPurchase = new TruckPurchase();
         Truck truck = new Truck();

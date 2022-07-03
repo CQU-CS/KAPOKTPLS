@@ -1,11 +1,12 @@
 package com.cqu.kapok.kapoktpls.controller;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.io.IoUtil;
+import cn.hutool.poi.excel.ExcelUtil;
+import cn.hutool.poi.excel.ExcelWriter;
 import com.cqu.kapok.kapoktpls.dto.GoodsDTO;
 import com.cqu.kapok.kapoktpls.dto.GoodsInventoryDTO;
-import com.cqu.kapok.kapoktpls.entity.Address;
-import com.cqu.kapok.kapoktpls.entity.Goods;
-import com.cqu.kapok.kapoktpls.entity.GoodsInventory;
-import com.cqu.kapok.kapoktpls.entity.Person;
+import com.cqu.kapok.kapoktpls.entity.*;
 import com.cqu.kapok.kapoktpls.service.AddressService;
 import com.cqu.kapok.kapoktpls.service.GoodsInventoryService;
 import com.cqu.kapok.kapoktpls.service.GoodsService;
@@ -20,8 +21,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (GoodsInventory)表控制层
@@ -191,5 +198,58 @@ public class GoodsInventoryController {
         return DataResult.successByTotalData(goodsInventoryVos, total);
     }
 
+    @GetMapping("exportGoodsInventory")
+    public void export(HttpServletResponse response) throws IOException {
+        List<Map<String, Object>> list = CollUtil.newArrayList();
+
+        GoodsInventoryDTO goodsInventoryDTO = new GoodsInventoryDTO();
+        goodsInventoryDTO.setPage(1);
+        goodsInventoryDTO.setLimit(200);
+        List<GoodsInventory> goodsInventories = this.goodsInventoryService.queryAll(goodsInventoryDTO);
+
+        Goods goods = new Goods();
+        ArrayList<GoodsInventoryVo> goodsInventoryVos = new ArrayList<>();
+        for (GoodsInventory goodsInventory1 : goodsInventories) {
+            goods.setGoodsId(goodsInventory1.getGoodsId());
+            List<Goods> goodss = this.goodsService.queryByGoods(goods);
+            //货物名称
+            String goodsName = goodss.get(0).getGoodsName();
+            GoodsInventoryVo goodsInventoryVo = new GoodsInventoryVo();
+            BeanUtils.copyProperties(goodsInventory1,goodsInventoryVo);
+            goodsInventoryVo.setGoodsName(goodsName);
+
+
+            //地址名称
+            Address address = this.addressService.queryById(goodsInventory1.getAddressId());
+            String addressContent = address.getAddressContent();
+            goodsInventoryVo.setAddressContent(addressContent);
+            goodsInventoryVos.add(goodsInventoryVo);
+        }
+
+        for (GoodsInventoryVo goodsInventoryVo : goodsInventoryVos) {
+            Map<String, Object> row1 = new LinkedHashMap<>();
+            row1.put("货物库存编号", goodsInventoryVo.getGoodsInventoryId());
+            row1.put("货物名称", goodsInventoryVo.getGoodsName());
+            row1.put("货物地址",goodsInventoryVo.getAddressContent());
+            row1.put("货物数量",goodsInventoryVo.getGoodsInventoryNum());
+            list.add(row1);
+        }
+
+
+        // 2. 写excel
+        ExcelWriter writer = ExcelUtil.getWriter(true);
+        writer.write(list, true);
+
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8");
+        String fileName = URLEncoder.encode("货物信息", "UTF-8");
+        response.setHeader("Content-Disposition", "attachment;filename=" + fileName + ".xlsx");
+
+        ServletOutputStream out = response.getOutputStream();
+        writer.flush(out, true);
+        writer.close();
+        IoUtil.close(System.out);
+    }
+
 }
+
 
